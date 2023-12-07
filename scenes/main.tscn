@@ -1,11 +1,9 @@
-[gd_scene load_steps=8 format=3 uid="uid://c6vxaopkyqc6i"]
+[gd_scene load_steps=6 format=3 uid="uid://c6vxaopkyqc6i"]
 
 [ext_resource type="Script" path="res://scenes/main.gd" id="1_1ogx0"]
 [ext_resource type="PackedScene" uid="uid://bgbubl4fsvupu" path="res://scenes/map.tscn" id="1_ng5yi"]
 [ext_resource type="PackedScene" uid="uid://cyliupk1rrn74" path="res://scenes/player.tscn" id="2_oappt"]
 [ext_resource type="PackedScene" uid="uid://cc5v1bd4naah2" path="res://scenes/enemy.tscn" id="3_8iqgq"]
-[ext_resource type="PackedScene" uid="uid://bywqy23a8pc2w" path="res://scenes/medkit.tscn" id="4_1nucw"]
-[ext_resource type="PackedScene" uid="uid://cpyurip1l5cvp" path="res://scenes/ammobox.tscn" id="5_61ebn"]
 [ext_resource type="Script" path="res://scenes/BulletManager.gd" id="7_85jpq"]
 
 [node name="Main" type="Node2D"]
@@ -22,12 +20,6 @@ player = NodePath("../player")
 [node name="enemy2" parent="." node_paths=PackedStringArray("player") instance=ExtResource("3_8iqgq")]
 position = Vector2(-249, 312)
 player = NodePath("../player")
-
-[node name="medkit" parent="." instance=ExtResource("4_1nucw")]
-position = Vector2(161, -163)
-
-[node name="ammobox" parent="." instance=ExtResource("5_61ebn")]
-position = Vector2(207, 38)
 
 [node name="enemy3" parent="." node_paths=PackedStringArray("player") instance=ExtResource("3_8iqgq")]
 position = Vector2(-234, 188)

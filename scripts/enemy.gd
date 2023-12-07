@@ -51,9 +51,9 @@ func dropitem(item):
 
 func die():
 	drop = randi_range(1,100)
-	if(drop>=1 && drop <=5):
+	if(drop>=1 && drop <=20):
 		dropitem("medkit")
-	if(drop>5 && drop <=10):
+	if(drop>20 && drop <=40):
 		dropitem("ammo")
 	queue_free()
 

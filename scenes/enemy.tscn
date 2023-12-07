@@ -6,7 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://cevr5uftr6ebv" path="res://textures/zombie.png" id="4_b4snf"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_pdxxf"]
-radius = 20.0
+radius = 14.0357
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_12256"]
 radius = 21.0238
@@ -27,6 +27,7 @@ texture = ExtResource("4_b4snf")
 region_rect = Rect2(-0.780212, -4.24907, 676.967, 692.529)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-8, 0)
 shape = SubResource("CircleShape2D_pdxxf")
 debug_color = Color(0.992157, 0, 0.278431, 0.419608)
 
@@ -37,6 +38,7 @@ wait_time = 0.5
 autostart = true
 
 [node name="AttackCooldown" type="Timer" parent="."]
+wait_time = 0.5
 
 [node name="DamageArea" type="Area2D" parent="."]
 collision_layer = 0

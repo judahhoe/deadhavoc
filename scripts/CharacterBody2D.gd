@@ -15,7 +15,7 @@ extends CharacterBody2D
 
 var health = 100
 var max_health = 100
-var speed = 400  # speed in pixels/sec
+var speed = 200  # speed in pixels/sec
 var max_ammo = 20
 var ammo = 20
 var mag_size = 15
@@ -80,8 +80,7 @@ func shoot():
 	else:
 		pass
 	if (reload_timer.is_stopped() && ammo_in_mag <=0):
-		reload_timer.start()
-		print("reloading")
+		reload()
 
 func reload():
 	reload_timer.start()
