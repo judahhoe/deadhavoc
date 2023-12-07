@@ -1,0 +1,53 @@
+[gd_scene load_steps=10 format=3 uid="uid://cpyurip1l5cvp"]
+
+[ext_resource type="Script" path="res://assets/pickups/pickup.gd" id="1_nyva4"]
+[ext_resource type="Texture2D" uid="uid://c4gboiyvkg6fr" path="res://assets/pickups/ammobox_pickup/ammobox_0.png" id="2_wjqj8"]
+[ext_resource type="Texture2D" uid="uid://n86wf53bdivr" path="res://assets/pickups/ammobox_pickup/ammobox_0_5.png" id="3_5ymls"]
+[ext_resource type="Texture2D" uid="uid://c144g30i56qmo" path="res://assets/pickups/ammobox_pickup/ammobox_1.png" id="4_ijmu0"]
+[ext_resource type="Texture2D" uid="uid://d1qk0y6pcfhra" path="res://assets/pickups/ammobox_pickup/ammobox_2.png" id="5_07lsj"]
+[ext_resource type="Texture2D" uid="uid://dvkuxf8tbt73v" path="res://assets/pickups/ammobox_pickup/ammobox_2_5.png" id="6_age83"]
+[ext_resource type="Texture2D" uid="uid://8gg8ls6oj8wn" path="res://assets/pickups/ammobox_pickup/ammobox_3.png" id="7_5ewgs"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_sqbx6"]
+animations = [{
+"frames": [{
+"duration": 10.0,
+"texture": ExtResource("2_wjqj8")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_5ymls")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_ijmu0")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_07lsj")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_age83")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_5ewgs")
+}],
+"loop": true,
+"name": &"default",
+"speed": 10.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_a38im"]
+radius = 12.0
+
+[node name="ammobox" type="Area2D"]
+collision_layer = 512
+script = ExtResource("1_nyva4")
+pickup_type = "ammobox"
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+scale = Vector2(0.1, 0.1)
+sprite_frames = SubResource("SpriteFrames_sqbx6")
+autoplay = "default"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_a38im")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

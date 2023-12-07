@@ -1,0 +1,169 @@
+[gd_scene load_steps=16 format=3 uid="uid://cyliupk1rrn74"]
+
+[ext_resource type="Script" path="res://scripts/CharacterBody2D.gd" id="1_d7hat"]
+[ext_resource type="Texture2D" uid="uid://icbe6i4238se" path="res://icon.svg" id="2_r7rbj"]
+[ext_resource type="PackedScene" uid="uid://c3ygjka63koed" path="res://scenes/ammo_count.tscn" id="3_p5vta"]
+[ext_resource type="Texture2D" uid="uid://cw2ckuqrgoqia" path="res://textures/pistol.png" id="3_t4cjj"]
+[ext_resource type="Texture2D" uid="uid://pvld50db7x4y" path="res://textures/crosshair.png" id="4_n73xp"]
+[ext_resource type="PackedScene" uid="uid://cc3x0e03i1200" path="res://scenes/bullet.tscn" id="5_isk51"]
+[ext_resource type="Texture2D" uid="uid://cxeac5y833pnl" path="res://textures/muzzleflash.png" id="6_nevmw"]
+[ext_resource type="Texture2D" uid="uid://c356jvrlffjsu" path="res://textures/hp_under.png" id="8_gx0o6"]
+[ext_resource type="Texture2D" uid="uid://ni761p86o5d4" path="res://textures/hp_over.png" id="9_byqna"]
+[ext_resource type="Texture2D" uid="uid://co8drx5i04sbh" path="res://textures/hp_progress.png" id="10_n8xai"]
+[ext_resource type="Texture2D" uid="uid://crhw8jpp5ivdm" path="res://textures/reload.png" id="11_eoshx"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_t8v8n"]
+
+[sub_resource type="Animation" id="Animation_uksqy"]
+resource_name = "dipense_casing"
+
+[sub_resource type="Animation" id="Animation_gnxu1"]
+resource_name = "muzzle_flash"
+length = 0.05
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("MuzzleFlash:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.05),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("MuzzleFlash:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.05),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0.05, 0.05), Vector2(0.02, 0.08)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("MuzzleFlash:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.05),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(62, -1.72804e-11), Vector2(68, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_fxbyx"]
+_data = {
+"dipense_casing": SubResource("Animation_uksqy"),
+"muzzle_flash": SubResource("Animation_gnxu1")
+}
+
+[node name="player" type="CharacterBody2D" node_paths=PackedStringArray("crosshair")]
+collision_mask = 515
+script = ExtResource("1_d7hat")
+crosshair = NodePath("crosshair")
+Bullet = ExtResource("5_isk51")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+zoom = Vector2(1.5, 1.5)
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+self_modulate = Color(0, 0.917647, 0, 1)
+scale = Vector2(0.4, 0.4)
+texture = ExtResource("2_r7rbj")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+scale = Vector2(2, 2)
+shape = SubResource("CircleShape2D_t8v8n")
+debug_color = Color(0, 0.65098, 0.14902, 0.419608)
+
+[node name="weapon" type="Sprite2D" parent="."]
+position = Vector2(26, 5.91172e-12)
+rotation = 1.57079
+scale = Vector2(0.1, 0.1)
+texture = ExtResource("3_t4cjj")
+
+[node name="crosshair" type="Sprite2D" parent="."]
+visible = false
+texture = ExtResource("4_n73xp")
+
+[node name="EndOfGun" type="Marker2D" parent="."]
+position = Vector2(53, 0)
+
+[node name="BulletDirection" type="Marker2D" parent="."]
+position = Vector2(62, 0)
+
+[node name="MuzzleFlash" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(62, -1.72804e-11)
+rotation = 1.57079
+scale = Vector2(0.05, 0.05)
+texture = ExtResource("6_nevmw")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_fxbyx")
+}
+
+[node name="ShootingCooldown" type="Timer" parent="."]
+wait_time = 0.2
+one_shot = true
+
+[node name="ReloadTimer" type="Timer" parent="."]
+wait_time = 2.0
+one_shot = true
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="AmmoCount" parent="CanvasLayer" instance=ExtResource("3_p5vta")]
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -161.0
+offset_top = -83.0
+offset_right = -90.0
+offset_bottom = -40.0
+grow_horizontal = 0
+grow_vertical = 0
+size_flags_horizontal = 8
+size_flags_vertical = 8
+
+[node name="HealthBar" type="TextureProgressBar" parent="CanvasLayer"]
+offset_left = 21.0
+offset_top = 21.0
+offset_right = 61.0
+offset_bottom = 61.0
+scale = Vector2(0.15, 0.15)
+value = 100.0
+texture_under = ExtResource("8_gx0o6")
+texture_over = ExtResource("9_byqna")
+texture_progress = ExtResource("10_n8xai")
+texture_progress_offset = Vector2(5, 0)
+
+[node name="ReloadProgress" type="TextureProgressBar" parent="CanvasLayer"]
+visible = false
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -90.0
+offset_top = -83.0
+offset_right = 350.0
+offset_bottom = 357.0
+grow_horizontal = 0
+grow_vertical = 0
+scale = Vector2(0.1, 0.1)
+size_flags_horizontal = 4
+value = 80.0
+fill_mode = 4
+texture_progress = ExtResource("11_eoshx")
+
+[connection signal="timeout" from="ReloadTimer" to="." method="_on_reload_timer_timeout"]

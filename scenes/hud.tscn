@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://bsbr3uru44i58"]
+
+[ext_resource type="PackedScene" uid="uid://c3ygjka63koed" path="res://scenes/ammo_count.tscn" id="1_ywlg4"]
+
+[node name="Node2D" type="Node2D"]
+
+[node name="AmmoCount" parent="." instance=ExtResource("1_ywlg4")]

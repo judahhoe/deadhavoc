@@ -1,0 +1,54 @@
+[gd_scene load_steps=10 format=3 uid="uid://bywqy23a8pc2w"]
+
+[ext_resource type="Script" path="res://assets/pickups/pickup.gd" id="1_sran8"]
+[ext_resource type="Texture2D" uid="uid://dr28gmp8poa7e" path="res://assets/pickups/medkit_pickup/medkit_0.png" id="2_1p5mg"]
+[ext_resource type="Texture2D" uid="uid://b68gvrkeakrko" path="res://assets/pickups/medkit_pickup/medkit_1.png" id="3_clio0"]
+[ext_resource type="Texture2D" uid="uid://cevib0bnepx2r" path="res://assets/pickups/medkit_pickup/medkit_2.png" id="4_pcxmy"]
+[ext_resource type="Texture2D" uid="uid://fqykmgnpyvqa" path="res://assets/pickups/medkit_pickup/medkit_3.png" id="5_jx5j3"]
+[ext_resource type="Texture2D" uid="uid://da5qoejccvy61" path="res://assets/pickups/medkit_pickup/medkit_4.png" id="6_x28v8"]
+[ext_resource type="Texture2D" uid="uid://du631b1rb3cct" path="res://assets/pickups/medkit_pickup/medkit_5.png" id="7_p1lar"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_sqbx6"]
+animations = [{
+"frames": [{
+"duration": 10.0,
+"texture": ExtResource("2_1p5mg")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_clio0")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_pcxmy")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_jx5j3")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_x28v8")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_p1lar")
+}],
+"loop": true,
+"name": &"default",
+"speed": 10.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_a38im"]
+radius = 13.0
+
+[node name="medkit" type="Area2D"]
+collision_layer = 512
+script = ExtResource("1_sran8")
+pickup_type = "medkit"
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+scale = Vector2(0.1, 0.1)
+sprite_frames = SubResource("SpriteFrames_sqbx6")
+autoplay = "default"
+frame_progress = 0.533453
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_a38im")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

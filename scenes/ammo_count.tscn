@@ -1,0 +1,7 @@
+[gd_scene format=3 uid="uid://c3ygjka63koed"]
+
+[node name="AmmoCount" type="Label"]
+offset_left = 304.0
+offset_top = 164.0
+offset_right = 375.0
+offset_bottom = 207.0
