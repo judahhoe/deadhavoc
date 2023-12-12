@@ -10,6 +10,5 @@ func _ready():
 func _process(delta):
 	pass
 
-
-func _on_player_player_fired_bulled(bullet, direction):
+func _on_pistol_player_fired_bullet(bullet):
 	add_child(bullet)

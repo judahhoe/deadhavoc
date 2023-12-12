@@ -59,7 +59,8 @@ func die():
 
 
 func handle_hit():
-	health -= 20
+	if (health > 0):
+		health -= 20
 	if (health <= 0):
 		die();
 

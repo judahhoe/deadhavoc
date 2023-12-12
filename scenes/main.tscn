@@ -35,5 +35,3 @@ player = NodePath("../player")
 
 [node name="BulletManager" type="Node2D" parent="."]
 script = ExtResource("7_85jpq")
-
-[connection signal="player_fired_bulled" from="player" to="BulletManager" method="_on_player_player_fired_bulled"]
