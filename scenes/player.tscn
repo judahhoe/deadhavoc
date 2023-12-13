@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://cyliupk1rrn74"]
+[gd_scene load_steps=17 format=3 uid="uid://cyliupk1rrn74"]
 
 [ext_resource type="Script" path="res://scripts/CharacterBody2D.gd" id="1_d7hat"]
 [ext_resource type="PackedScene" uid="uid://dc7afid6ykfrs" path="res://scenes/pistol.tscn" id="2_ixrmp"]
@@ -11,6 +11,7 @@
 [ext_resource type="Texture2D" uid="uid://ni761p86o5d4" path="res://textures/hp_over.png" id="9_byqna"]
 [ext_resource type="Texture2D" uid="uid://co8drx5i04sbh" path="res://textures/hp_progress.png" id="10_n8xai"]
 [ext_resource type="Texture2D" uid="uid://crhw8jpp5ivdm" path="res://textures/reload.png" id="11_eoshx"]
+[ext_resource type="Texture2D" uid="uid://dof8ixgdbinqt" path="res://textures/light.png" id="12_4v6hq"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_t8v8n"]
 
@@ -94,3 +95,14 @@ size_flags_horizontal = 4
 value = 80.0
 fill_mode = 4
 texture_progress = ExtResource("11_eoshx")
+
+[node name="PointLight2D" type="PointLight2D" parent="."]
+rotation = 1.57079
+energy = 0.2
+shadow_enabled = true
+shadow_filter = 2
+texture = ExtResource("12_4v6hq")
+offset = Vector2(0, -270)
+texture_scale = 0.4
+
+[connection signal="timeout" from="ReloadTimer" to="." method="_on_reload_timer_timeout"]
