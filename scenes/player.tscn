@@ -78,7 +78,6 @@ texture_progress = ExtResource("10_n8xai")
 texture_progress_offset = Vector2(5, 0)
 
 [node name="ReloadProgress" type="TextureProgressBar" parent="HUD"]
-visible = false
 anchors_preset = 3
 anchor_left = 1.0
 anchor_top = 1.0

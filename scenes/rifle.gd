@@ -54,12 +54,12 @@ func shoot():
 		reload()
 
 func reload():
-	if(ammo > 0):
+	if(ammo > 0 && reload_timer.is_stopped()):
 		reload_timer.start()
 		reload_progress.visible = true
 		print("reloading")
 	else:
-		print ("mag is empty")
+		print ("mag is empty or reloading")
 	
 func cancel_reload():
 	reload_timer.stop()

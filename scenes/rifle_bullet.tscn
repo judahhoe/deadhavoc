@@ -21,7 +21,7 @@ texture = ExtResource("2_yhen2")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 rotation = 7.85398
-scale = Vector2(0.4, 0.4)
+scale = Vector2(0.3, 0.3)
 texture = ExtResource("3_maiiw")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
