@@ -169,7 +169,7 @@ texture_progress = ExtResource("11_eoshx")
 
 [node name="PointLight2D" type="PointLight2D" parent="."]
 rotation = 1.57079
-energy = 0.2
+energy = 0.3
 shadow_enabled = true
 shadow_filter = 2
 texture = ExtResource("12_4v6hq")
