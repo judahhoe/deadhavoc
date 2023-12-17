@@ -1,10 +1,14 @@
-[gd_scene load_steps=6 format=3 uid="uid://c6vxaopkyqc6i"]
+[gd_scene load_steps=8 format=3 uid="uid://c6vxaopkyqc6i"]
 
 [ext_resource type="Script" path="res://scenes/main.gd" id="1_1ogx0"]
 [ext_resource type="PackedScene" uid="uid://bgbubl4fsvupu" path="res://scenes/map.tscn" id="1_ng5yi"]
 [ext_resource type="PackedScene" uid="uid://cyliupk1rrn74" path="res://scenes/player.tscn" id="2_oappt"]
 [ext_resource type="PackedScene" uid="uid://cc5v1bd4naah2" path="res://scenes/enemy.tscn" id="3_8iqgq"]
+[ext_resource type="Texture2D" uid="uid://b87qvvxo6y2ww" path="res://textures/door.png" id="6_dyu0q"]
 [ext_resource type="Script" path="res://scenes/BulletManager.gd" id="7_85jpq"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_5dtf5"]
+size = Vector2(76, 15)
 
 [node name="Main" type="Node2D"]
 script = ExtResource("1_1ogx0")
@@ -35,5 +39,17 @@ player = NodePath("../player")
 
 [node name="BulletManager" type="Node2D" parent="."]
 script = ExtResource("7_85jpq")
+
+[node name="door" type="StaticBody2D" parent="."]
+position = Vector2(284, 246)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="door"]
+position = Vector2(15, 2.5)
+shape = SubResource("RectangleShape2D_5dtf5")
+
+[node name="Sprite2D" type="Sprite2D" parent="door"]
+position = Vector2(15, 2)
+scale = Vector2(0.614754, 0.630435)
+texture = ExtResource("6_dyu0q")
 
 [connection signal="player_fired_bulled" from="player" to="BulletManager" method="_on_player_player_fired_bulled"]
