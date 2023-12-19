@@ -1,0 +1,99 @@
+[gd_scene load_steps=8 format=3 uid="uid://dc7afid6ykfrs"]
+
+[ext_resource type="Script" path="res://pistol.gd" id="1_t7bhw"]
+[ext_resource type="Texture2D" uid="uid://cw2ckuqrgoqia" path="res://textures/pistol.png" id="1_unxar"]
+[ext_resource type="PackedScene" uid="uid://bre3f8ftiir6j" path="res://scenes/pistol_bullet.tscn" id="2_hqsxh"]
+[ext_resource type="Texture2D" uid="uid://cxeac5y833pnl" path="res://textures/muzzleflash.png" id="3_fvo0n"]
+
+[sub_resource type="Animation" id="Animation_uksqy"]
+resource_name = "dipense_casing"
+
+[sub_resource type="Animation" id="Animation_gnxu1"]
+resource_name = "muzzle_flash"
+length = 0.05
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("MuzzleFlash:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.05),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("MuzzleFlash:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.05),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0.05, 0.05), Vector2(0.02, 0.08)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("MuzzleFlash:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.05),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(32, 0), Vector2(38, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_fxbyx"]
+_data = {
+"dipense_casing": SubResource("Animation_uksqy"),
+"muzzle_flash": SubResource("Animation_gnxu1")
+}
+
+[node name="pistol" type="Node2D"]
+script = ExtResource("1_t7bhw")
+weapon_type = "pistol"
+max_ammo = 30
+ammo = 30
+mag_size = 15
+ammo_in_mag = 15
+Bullet = ExtResource("2_hqsxh")
+reload_modifier = 50
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(8.42502, 9.53674e-07)
+rotation = 1.57079
+scale = Vector2(0.05, 0.05)
+texture = ExtResource("1_unxar")
+
+[node name="EndOfGun" type="Marker2D" parent="."]
+position = Vector2(35, 0)
+
+[node name="BulletDirection" type="Marker2D" parent="."]
+position = Vector2(45, 0)
+
+[node name="MuzzleFlash" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(32, 0)
+rotation = 1.57079
+scale = Vector2(0.05, 0.05)
+texture = ExtResource("3_fvo0n")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_fxbyx")
+}
+
+[node name="ShootingCooldown" type="Timer" parent="."]
+wait_time = 0.2
+one_shot = true
+
+[node name="ReloadTimer" type="Timer" parent="."]
+wait_time = 2.0
+one_shot = true
+
+[connection signal="timeout" from="ReloadTimer" to="." method="_on_reload_timer_timeout"]

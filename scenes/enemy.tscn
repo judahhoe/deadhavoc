@@ -9,7 +9,7 @@
 light_mode = 2
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_pdxxf"]
-radius = 14.0357
+radius = 21.0238
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_12256"]
 radius = 21.0238
@@ -32,7 +32,6 @@ texture = ExtResource("4_b4snf")
 region_rect = Rect2(-0.780212, -4.24907, 676.967, 692.529)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(-8, 0)
 shape = SubResource("CircleShape2D_pdxxf")
 debug_color = Color(0.992157, 0, 0.278431, 0.419608)
 
