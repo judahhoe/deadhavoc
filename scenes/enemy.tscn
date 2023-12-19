@@ -23,6 +23,7 @@ ammobox = ExtResource("3_i4e12")
 enemy = NodePath(".")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
+modulate = Color(0.368627, 0.368627, 0.368627, 1)
 material = SubResource("CanvasItemMaterial_jkbv8")
 position = Vector2(4.76837e-07, -2.84217e-14)
 rotation = 1.57079
