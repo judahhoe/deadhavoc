@@ -13,6 +13,11 @@ var health = 100
 var max_health = 100
 var speed = 200  # speed in pixels/sec
 var weapon
+
+var rotation_speed = 5
+var direction = Vector2(1.0,1.0)
+
+signal player_fired_bulled(bullet, direction)
 signal pickup_used()
 
 func _ready():
@@ -21,11 +26,33 @@ func _ready():
 	weapon.ammo_count.text = str(weapon.ammo_in_mag) + "/" + str(weapon.ammo)
 	
 func _physics_process(delta):
-	var direction = Input.get_vector("left", "right", "up", "down")
+	if (Input.is_action_pressed("left") || Input.is_action_pressed("right") || Input.is_action_pressed("down") || Input.is_action_pressed("up")):
+		direction = Input.get_vector("left", "right", "up", "down")
 	var movement_direction := Vector2.ZERO
-	velocity = (direction * speed)
-	move_and_slide()
-	look_at(get_global_mouse_position())
+	#player rotation
+	if (Input.is_action_pressed("aim")):
+		speed = 50
+		var v = get_global_mouse_position() - global_position
+		var angle = v.angle()
+		var r = global_rotation
+		var angle_delta = rotation_speed * delta
+		angle = lerp_angle(r, angle, 1.0)
+		angle = clamp(angle, r-angle_delta, r+angle_delta)
+		global_rotation = angle
+	else:
+		speed = 150
+		var v = direction
+		var angle = v.angle()
+		var r = global_rotation
+		var angle_delta = rotation_speed * delta
+		angle = lerp_angle(r, angle, 1.0)
+		angle = clamp(angle, r-angle_delta, r+angle_delta)
+		global_rotation = angle
+	if (Input.is_action_pressed("left") || Input.is_action_pressed("right") || Input.is_action_pressed("down") || Input.is_action_pressed("up")):
+		velocity = (direction * speed)
+		move_and_slide()
+
+	reload_progress.value = (reload_timer.wait_time - reload_timer.time_left) * 50
 	
 func _unhandled_input(event):
 	if(event.is_action_pressed("shoot")):
