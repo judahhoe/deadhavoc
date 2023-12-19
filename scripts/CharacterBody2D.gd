@@ -51,8 +51,6 @@ func _physics_process(delta):
 	if (Input.is_action_pressed("left") || Input.is_action_pressed("right") || Input.is_action_pressed("down") || Input.is_action_pressed("up")):
 		velocity = (direction * speed)
 		move_and_slide()
-
-	reload_progress.value = (reload_timer.wait_time - reload_timer.time_left) * 50
 	
 func _unhandled_input(event):
 	if(event.is_action_pressed("shoot")):

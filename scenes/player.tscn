@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://cyliupk1rrn74"]
+[gd_scene load_steps=14 format=3 uid="uid://cyliupk1rrn74"]
 
 [ext_resource type="Script" path="res://scripts/CharacterBody2D.gd" id="1_d7hat"]
 [ext_resource type="PackedScene" uid="uid://dc7afid6ykfrs" path="res://scenes/pistol.tscn" id="2_ixrmp"]
@@ -104,5 +104,3 @@ shadow_filter = 2
 texture = ExtResource("12_4v6hq")
 offset = Vector2(0, -270)
 texture_scale = 0.4
-
-[connection signal="timeout" from="ReloadTimer" to="." method="_on_reload_timer_timeout"]
