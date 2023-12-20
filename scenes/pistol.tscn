@@ -1,8 +1,8 @@
-[gd_scene load_steps=8 format=3 uid="uid://dc7afid6ykfrs"]
+[gd_scene load_steps=8 format=3 uid="uid://dlx7joevlhiba"]
 
 [ext_resource type="Script" path="res://pistol.gd" id="1_t7bhw"]
 [ext_resource type="Texture2D" uid="uid://cw2ckuqrgoqia" path="res://textures/pistol.png" id="1_unxar"]
-[ext_resource type="PackedScene" uid="uid://bre3f8ftiir6j" path="res://scenes/pistol_bullet.tscn" id="2_hqsxh"]
+[ext_resource type="PackedScene" path="res://scenes/pistol_bullet.tscn" id="2_hqsxh"]
 [ext_resource type="Texture2D" uid="uid://cxeac5y833pnl" path="res://textures/muzzleflash.png" id="3_fvo0n"]
 
 [sub_resource type="Animation" id="Animation_uksqy"]
@@ -57,10 +57,10 @@ _data = {
 [node name="pistol" type="Node2D"]
 script = ExtResource("1_t7bhw")
 weapon_type = "pistol"
-max_ammo = 30
-ammo = 30
-mag_size = 15
-ammo_in_mag = 15
+max_ammo = 300
+ammo = 300
+mag_size = 150
+ammo_in_mag = 150
 Bullet = ExtResource("2_hqsxh")
 reload_modifier = 50
 

@@ -9,7 +9,7 @@ extends CharacterBody2D
 @onready var sprite: Sprite2D = $Sprite2D
 @onready var attack_cooldown = $AttackCooldown
 
-const 	speed 	= 50
+var 	speed 	= 50
 var 	health 	= 100
 var 	drop
 var 	zombie_damage = 10
@@ -41,7 +41,8 @@ func dropitem(item):
 			pickup = medkit.instantiate()
 		"ammo":
 			pickup = ammobox.instantiate()
-	owner.add_child.call_deferred(pickup)
+	
+	get_parent().add_child.call_deferred(pickup)
 	pickup.position = enemy.global_position
 	var direction : Vector2 = Vector2(
 		randf_range(-1.0, 1.0),
@@ -61,6 +62,8 @@ func die():
 func handle_hit():
 	if (health > 0):
 		health -= 20
+
+		
 	if (health <= 0):
 		die();
 
