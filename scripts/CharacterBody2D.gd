@@ -116,10 +116,13 @@ func die():
 	get_tree().change_scene_to_file("res://scenes/gameover.tscn")
 	
 func commitDataToDB():
-	var tableName = "player_info"
+	var tableName = "user"
 	var dict : Dictionary = Dictionary()
-	dict["name"] = "this is a test user"
-	dict["score"] = 20
+	dict["nickname"] = "test2_user"
+	dict["email"] = "test2@wp.pl"
+	dict["password"] = "password"
+	dict["experience"] = 20
+	dict["coins"] = 200.5
 	
 	db.insert_row(tableName, dict)
 	# Called every frame. 'delta' is the elapsed time since the previous frame.
