@@ -17,6 +17,9 @@ var weapon
 var rotation_speed = 5
 var direction = Vector2(1.0,1.0)
 
+var db #database object 
+var db_name = "res://DataStore/database" #Path to DB
+
 signal player_fired_bulled(bullet, direction)
 signal pickup_used()
 
@@ -24,6 +27,10 @@ func _ready():
 	health_bar.value = max_health
 	weapon = pistol
 	weapon.ammo_count.text = str(weapon.ammo_in_mag) + "/" + str(weapon.ammo)
+	db = SQLite.new()
+	db.path = db_name
+	db.open_db()
+	commitDataToDB()
 	
 func _physics_process(delta):
 	if (Input.is_action_pressed("left") || Input.is_action_pressed("right") || Input.is_action_pressed("down") || Input.is_action_pressed("up")):
@@ -107,3 +114,15 @@ func take_damage(damage):
 
 func die():
 	get_tree().change_scene_to_file("res://scenes/gameover.tscn")
+	
+func commitDataToDB():
+	var tableName = "user"
+	var dict : Dictionary = Dictionary()
+	dict["nickname"] = "test2_user"
+	dict["email"] = "test2@wp.pl"
+	dict["password"] = "password"
+	dict["experience"] = 20
+	dict["coins"] = 200.5
+	
+	db.insert_row(tableName, dict)
+	# Called every frame. 'delta' is the elapsed time since the previous frame.
