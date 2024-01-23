@@ -5,16 +5,13 @@ extends CharacterBody2D
 @export var medkit: PackedScene
 @export var ammobox: PackedScene
 @export var enemy: Node2D
-
+@export var Bullet : PackedScene
 @onready var sprite: Sprite2D = $Sprite2D
 @onready var attack_cooldown = $AttackCooldown
-@onready var mob_scene = preload("res://scenes/enemy.tscn")
-
-var 	speed 	= 10 # 20% of base movement speed
-var 	start_health = 2000.0
-var 	health 	= 2000.0  # *2000% of base health
+var 	speed 	= 30
+var 	health 	= 200
 var 	drop
-var 	zombie_damage = 20 # * 200% of base damage
+var 	zombie_damage = 20
 var 	target
 var 	isTargetInRange = false
 
@@ -22,6 +19,24 @@ var 	isTargetInRange = false
 var pickup : Pickup
 var launch_speed : float = 100
 var launch_time :float = 0.25
+var dodgeChance: float = 0.5
+
+var timer = 0
+var czas_miedzy_akcjami = 1.0  # czas w sekundach między kolejnymi akcjami
+var test = 0
+func _process(delta):
+	timer += delta  # dodaj czas od ostatniego wywołania funkcji
+
+	if timer >= czas_miedzy_akcjami:
+		throw()
+		print("zombie throws stone")
+		timer = 0  # zresetuj timer po wykonaniu akcji
+	
+		if (test ==0):
+			enemy.position=player.global_position
+			test = 1
+			
+
 
 
 func _physics_process(_delta: float) -> void:
@@ -62,25 +77,10 @@ func die():
 
 
 func handle_hit():
-	health -= 20
+	if (health > 0):
+		health -= 20
 	if (health <= 0):
 		die();
-	else:
-		var health_percent_drop = ((start_health - health) / start_health * 100)
-		if health_percent_drop >= 5:
-			start_health -= (start_health*0.05)
-			spawn_new_base_enemy()
-
-func spawn_new_base_enemy():
-	var mob = mob_scene.instantiate()
-	print("zombie spawned")
-	mob.player = player
-	mob.medkit = medkit
-	mob.ammobox = ammobox
-	var position = enemy.position
-	position+= Vector2(10,10)
-	mob.global_position = position
-	owner.add_child.call_deferred(mob)
 
 
 func _on_attack_cooldown_timeout():
@@ -104,3 +104,14 @@ func _on_damage_area_body_exited(body):
 	if (body.has_method("take_damage")):
 		isTargetInRange = false
 		attack_cooldown.stop()
+
+func throw():
+	var bullet_instance = Bullet.instantiate()
+	bullet_instance.global_position = enemy.position
+	var target =  player.global_position
+	var direction_to_shoot = bullet_instance.global_position.direction_to(target).normalized()
+	bullet_instance.set_direction(direction_to_shoot)
+	add_child(bullet_instance)
+
+
+

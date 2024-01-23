@@ -1,8 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://buytdgkxqcuho"]
+[gd_scene load_steps=5 format=3 uid="uid://cj77atslstuy5"]
 
-[ext_resource type="Script" path="res://scenes/bullet.gd" id="1_lptld"]
-[ext_resource type="Texture2D" uid="uid://doo41snforyol" path="res://textures/bullet_smear.png" id="2_b0e4f"]
-[ext_resource type="Texture2D" uid="uid://dm8dgh4bvtle0" path="res://textures/bullet.png" id="2_m5dhx"]
+[ext_resource type="Script" path="res://stone.gd" id="1_5yk6u"]
+[ext_resource type="Texture2D" uid="uid://doo41snforyol" path="res://textures/bullet_smear.png" id="2_fl51o"]
+[ext_resource type="Texture2D" uid="uid://dm8dgh4bvtle0" path="res://textures/bullet.png" id="3_6ispk"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_s8kyx"]
 radius = 3.16228
@@ -11,19 +11,18 @@ radius = 3.16228
 scale = Vector2(0.5, 0.5)
 collision_layer = 8
 collision_mask = 2
-script = ExtResource("1_lptld")
-speed = 2
+script = ExtResource("1_5yk6u")
 
 [node name="Smear" type="Sprite2D" parent="."]
 position = Vector2(-32, 1.81896e-12)
 rotation = 1.57079
 scale = Vector2(0.2, 0.2)
-texture = ExtResource("2_b0e4f")
+texture = ExtResource("2_fl51o")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 rotation = 7.85398
 scale = Vector2(0.3, 0.3)
-texture = ExtResource("2_m5dhx")
+texture = ExtResource("3_6ispk")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_s8kyx")

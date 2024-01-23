@@ -8,13 +8,11 @@ extends CharacterBody2D
 
 @onready var sprite: Sprite2D = $Sprite2D
 @onready var attack_cooldown = $AttackCooldown
-@onready var mob_scene = preload("res://scenes/enemy.tscn")
 
-var 	speed 	= 10 # 20% of base movement speed
-var 	start_health = 2000.0
-var 	health 	= 2000.0  # *2000% of base health
+var 	speed 	= 100
+var 	health 	= 50
 var 	drop
-var 	zombie_damage = 20 # * 200% of base damage
+var 	zombie_damage = 10
 var 	target
 var 	isTargetInRange = false
 
@@ -22,6 +20,7 @@ var 	isTargetInRange = false
 var pickup : Pickup
 var launch_speed : float = 100
 var launch_time :float = 0.25
+var dodgeChance: float = 0.5
 
 
 func _physics_process(_delta: float) -> void:
@@ -62,25 +61,17 @@ func die():
 
 
 func handle_hit():
-	health -= 20
-	if (health <= 0):
-		die();
+	if(randf() < dodgeChance):
+		print("dodged")
+		var dodgeVector:Vector2 = Vector2(-5,0)
+		enemy.global_position += dodgeVector*speed*get_process_delta_time()
+		await get_tree().create_timer(1.0).timeout
+		enemy.global_position -= dodgeVector*speed*get_process_delta_time()
 	else:
-		var health_percent_drop = ((start_health - health) / start_health * 100)
-		if health_percent_drop >= 5:
-			start_health -= (start_health*0.05)
-			spawn_new_base_enemy()
-
-func spawn_new_base_enemy():
-	var mob = mob_scene.instantiate()
-	print("zombie spawned")
-	mob.player = player
-	mob.medkit = medkit
-	mob.ammobox = ammobox
-	var position = enemy.position
-	position+= Vector2(10,10)
-	mob.global_position = position
-	owner.add_child.call_deferred(mob)
+		if (health > 0):
+			health -= 20
+		if (health <= 0):
+			die();
 
 
 func _on_attack_cooldown_timeout():

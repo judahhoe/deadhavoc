@@ -1,11 +1,14 @@
-[gd_scene load_steps=8 format=3 uid="uid://c6vxaopkyqc6i"]
+[gd_scene load_steps=11 format=3 uid="uid://c6vxaopkyqc6i"]
 
 [ext_resource type="Script" path="res://scenes/main.gd" id="1_1ogx0"]
 [ext_resource type="PackedScene" uid="uid://bgbubl4fsvupu" path="res://scenes/map.tscn" id="1_ng5yi"]
 [ext_resource type="PackedScene" uid="uid://cyliupk1rrn74" path="res://scenes/player.tscn" id="2_oappt"]
 [ext_resource type="PackedScene" uid="uid://cc5v1bd4naah2" path="res://scenes/enemy.tscn" id="3_8iqgq"]
 [ext_resource type="Script" path="res://scripts/blob_zombie.gd" id="5_owpaj"]
+[ext_resource type="Script" path="res://scripts/big_zombie.gd" id="6_4df2o"]
+[ext_resource type="Script" path="res://scripts/quick_zombie.gd" id="6_cix40"]
 [ext_resource type="Script" path="res://scenes/BulletManager.gd" id="7_85jpq"]
+[ext_resource type="PackedScene" uid="uid://buytdgkxqcuho" path="res://scenes/pistol_bullet.tscn" id="7_pjrb4"]
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_inj5l"]
 
@@ -20,6 +23,12 @@ script = ExtResource("1_1ogx0")
 position = Vector2(-200, -161)
 script = ExtResource("5_owpaj")
 player = NodePath("../player")
+
+[node name="enemy6" parent="." node_paths=PackedStringArray("player") instance=ExtResource("3_8iqgq")]
+position = Vector2(-200, -161)
+script = ExtResource("6_4df2o")
+player = NodePath("../player")
+Bullet = ExtResource("7_pjrb4")
 
 [node name="enemy2" parent="." node_paths=PackedStringArray("player") instance=ExtResource("3_8iqgq")]
 position = Vector2(-249, 312)
@@ -36,6 +45,7 @@ player = NodePath("../player")
 
 [node name="enemy5" parent="." node_paths=PackedStringArray("player") instance=ExtResource("3_8iqgq")]
 position = Vector2(-106, 247)
+script = ExtResource("6_cix40")
 player = NodePath("../player")
 
 [node name="BulletManager" type="Node2D" parent="."]
