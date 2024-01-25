@@ -1,5 +1,7 @@
 extends CharacterBody2D
 
+signal enemy_died(exp_value, position)
+
 @export var player: Node2D
 @onready var nav_agent := $NavigationAgent2D as NavigationAgent2D
 @export var medkit: PackedScene
@@ -50,11 +52,13 @@ func dropitem(item):
 	pickup.launch(direction * launch_speed, launch_time)
 
 func die():
+	print("Wróg został zabity")
 	drop = randi_range(1,100)
 	if(drop>=1 && drop <=20):
 		dropitem("medkit")
 	if(drop>20 && drop <=40):
 		dropitem("ammo")
+	emit_signal("enemy_died", 100, global_position)
 	queue_free()
 
 
