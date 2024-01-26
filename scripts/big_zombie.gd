@@ -79,6 +79,7 @@ func die():
 func handle_hit():
 	if (health > 0):
 		health -= 20
+		print("bullet hit")
 	if (health <= 0):
 		die();
 
@@ -107,11 +108,12 @@ func _on_damage_area_body_exited(body):
 
 func throw():
 	var bullet_instance = Bullet.instantiate()
-	bullet_instance.global_position = enemy.position
+	var bulletPosition: Vector2 = Vector2(20, 0).rotated(enemy.rotation)
+	bullet_instance.global_position = enemy.global_position+bulletPosition
 	var target =  player.global_position
 	var direction_to_shoot = bullet_instance.global_position.direction_to(target).normalized()
 	bullet_instance.set_direction(direction_to_shoot)
-	add_child(bullet_instance)
+	owner.add_child.call_deferred(bullet_instance)
 
 
 

@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://stone.gd" id="1_5yk6u"]
 [ext_resource type="Texture2D" uid="uid://doo41snforyol" path="res://textures/bullet_smear.png" id="2_fl51o"]
-[ext_resource type="Texture2D" uid="uid://dm8dgh4bvtle0" path="res://textures/bullet.png" id="3_6ispk"]
+[ext_resource type="Texture2D" uid="uid://kais2ipll6tk" path="res://textures/stone.png" id="3_sabu4"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_s8kyx"]
 radius = 3.16228
@@ -22,13 +22,13 @@ texture = ExtResource("2_fl51o")
 [node name="Sprite2D" type="Sprite2D" parent="."]
 rotation = 7.85398
 scale = Vector2(0.3, 0.3)
-texture = ExtResource("3_6ispk")
+texture = ExtResource("3_sabu4")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_s8kyx")
 
 [node name="KillTimer" type="Timer" parent="."]
-wait_time = 0.5
+wait_time = 3.692
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
 [connection signal="timeout" from="KillTimer" to="." method="_on_kill_timer_timeout"]

@@ -8,7 +8,7 @@
 [ext_resource type="Script" path="res://scripts/big_zombie.gd" id="6_4df2o"]
 [ext_resource type="Script" path="res://scripts/quick_zombie.gd" id="6_cix40"]
 [ext_resource type="Script" path="res://scenes/BulletManager.gd" id="7_85jpq"]
-[ext_resource type="PackedScene" uid="uid://buytdgkxqcuho" path="res://scenes/pistol_bullet.tscn" id="7_pjrb4"]
+[ext_resource type="PackedScene" uid="uid://cj77atslstuy5" path="res://scenes/stone.tscn" id="7_kwrx2"]
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_inj5l"]
 
@@ -28,7 +28,7 @@ player = NodePath("../player")
 position = Vector2(-200, -161)
 script = ExtResource("6_4df2o")
 player = NodePath("../player")
-Bullet = ExtResource("7_pjrb4")
+Bullet = ExtResource("7_kwrx2")
 
 [node name="enemy2" parent="." node_paths=PackedStringArray("player") instance=ExtResource("3_8iqgq")]
 position = Vector2(-249, 312)
