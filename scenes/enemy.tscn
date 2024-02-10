@@ -9,7 +9,7 @@
 light_mode = 2
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_pdxxf"]
-radius = 21.0238
+radius = 19.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_12256"]
 radius = 21.0238
@@ -49,6 +49,7 @@ light_mask = 3
 collision_layer = 0
 
 [node name="DamageCollision" type="CollisionShape2D" parent="DamageArea"]
+position = Vector2(5, 0)
 shape = SubResource("CircleShape2D_12256")
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

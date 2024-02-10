@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3 uid="uid://cj4sexhji3sx7"]
+
+[ext_resource type="Script" path="res://scenes/menu_scenes/background_music.gd" id="1_smtgy"]
+[ext_resource type="AudioStream" uid="uid://062hyri3x5vx" path="res://assets/menus/zombie_main_menu.mp3" id="1_ypydn"]
+
+[node name="BackgroundMusic" type="Node"]
+script = ExtResource("1_smtgy")
+
+[node name="Music" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("1_ypydn")
+bus = &"Music"
