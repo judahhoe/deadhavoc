@@ -13,6 +13,8 @@ extends CharacterBody2D
 @onready var lvl_label = $"HUD/LVLLabel"
 @onready var exp_to_next_level_label = $"HUD/ExpToNextLevelLabel"
 
+var db #database object 
+var db_name = "res://DataStore/database" #Path to DB
 
 var health = 100
 var max_health = 100
@@ -79,7 +81,6 @@ func _unhandled_input(event):
 	if(event.is_action_pressed("weapon_rifle")):
 		change_weapon(rifle)
 
-
 func change_weapon(weapon_type):
 	weapon.cancel_reload()
 	weapon.visible = false
@@ -136,9 +137,26 @@ func level_up():
 	
 func _on_enemy_died(exp_value, position):
 	gain_exp(exp_value)
+	update_db_exp(exp_value)
 	update_labels()
 
-
+func update_db_exp(amount: int):
+	db = SQLite.new()
+	db.path = db_name
+	db.open_db()
+	var table_name = "user"
+	var nick = "test_user"
+	var exp = str(amount)
+	#var dict : Dictionary = Dictionary()
+	#dict["nickname"] = "test3_user"
+	#dict["email"] = "test3@wp.pl"
+	#dict["password"] = "password"
+	#dict["experience"] = 20
+	#dict["coins"] = 200.5
+	#db.insert_row(table_name, dict)
+	db.query("UPDATE " + table_name + " SET experience = experience + " + exp + " WHERE nickname = '" + nick + "';")
+	#db.query("UPDATE " + table_name + " set experience = experience + " + exp + ";")
+	
 func update_labels():
 	exp_label.text = "EXP: %d" % experience
 	lvl_label.text = "LVL: %d" % level #
