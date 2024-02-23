@@ -1,9 +1,9 @@
-[gd_scene load_steps=7 format=3 uid="uid://vxvjm4c7mp1d"]
+[gd_scene load_steps=7 format=3 uid="uid://662ivfos4fue"]
 
-[ext_resource type="Script" path="res://scripts/enemy.gd" id="1_be34m"]
-[ext_resource type="PackedScene" uid="uid://bywqy23a8pc2w" path="res://scenes/medkit.tscn" id="2_rmhsh"]
-[ext_resource type="PackedScene" uid="uid://cpyurip1l5cvp" path="res://scenes/ammobox.tscn" id="3_wkpni"]
-[ext_resource type="Texture2D" uid="uid://nu5p4e2ypxxn" path="res://textures/blob_zombie.png" id="4_4npja"]
+[ext_resource type="Script" path="res://scripts/enemy.gd" id="1_erwo8"]
+[ext_resource type="PackedScene" uid="uid://bywqy23a8pc2w" path="res://scenes/medkit.tscn" id="2_wtjwd"]
+[ext_resource type="PackedScene" uid="uid://cpyurip1l5cvp" path="res://scenes/ammobox.tscn" id="3_cbofh"]
+[ext_resource type="Texture2D" uid="uid://486f7o5cvqhs" path="res://textures/big_zombie.png" id="4_qweaa"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_pdxxf"]
 radius = 14.0357
@@ -14,17 +14,17 @@ radius = 21.0238
 [node name="enemy" type="CharacterBody2D" node_paths=PackedStringArray("player", "enemy")]
 collision_layer = 2
 collision_mask = 3
-script = ExtResource("1_be34m")
+script = ExtResource("1_erwo8")
 player = NodePath(".")
-medkit = ExtResource("2_rmhsh")
-ammobox = ExtResource("3_wkpni")
+medkit = ExtResource("2_wtjwd")
+ammobox = ExtResource("3_cbofh")
 enemy = NodePath(".")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(4.76837e-07, -2.84217e-14)
 rotation = 1.57079
 scale = Vector2(0.06, 0.06)
-texture = ExtResource("4_4npja")
+texture = ExtResource("4_qweaa")
 region_rect = Rect2(-0.780212, -4.24907, 676.967, 692.529)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]

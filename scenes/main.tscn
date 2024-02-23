@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://c6vxaopkyqc6i"]
+[gd_scene load_steps=14 format=3 uid="uid://c6vxaopkyqc6i"]
 
 [ext_resource type="Script" path="res://scenes/main.gd" id="1_1ogx0"]
 [ext_resource type="PackedScene" uid="uid://bgbubl4fsvupu" path="res://scenes/map.tscn" id="1_ng5yi"]
@@ -7,8 +7,11 @@
 [ext_resource type="Script" path="res://scripts/blob_zombie.gd" id="5_owpaj"]
 [ext_resource type="Script" path="res://scripts/big_zombie.gd" id="6_4df2o"]
 [ext_resource type="Script" path="res://scripts/quick_zombie.gd" id="6_cix40"]
+[ext_resource type="PackedScene" uid="uid://dtdnidxcdgbwa" path="res://scenes/quick_enemy.tscn" id="6_tvhnt"]
 [ext_resource type="Script" path="res://scenes/BulletManager.gd" id="7_85jpq"]
 [ext_resource type="PackedScene" uid="uid://cj77atslstuy5" path="res://scenes/stone.tscn" id="7_kwrx2"]
+[ext_resource type="PackedScene" uid="uid://vxvjm4c7mp1d" path="res://scenes/blob_zombie.tscn" id="8_1530l"]
+[ext_resource type="PackedScene" uid="uid://662ivfos4fue" path="res://scenes/big_zombie.tscn" id="10_dyyr4"]
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_inj5l"]
 
@@ -19,22 +22,6 @@ script = ExtResource("1_1ogx0")
 
 [node name="player" parent="." instance=ExtResource("2_oappt")]
 
-[node name="enemy" parent="." node_paths=PackedStringArray("player") instance=ExtResource("3_8iqgq")]
-position = Vector2(-200, -161)
-script = ExtResource("5_owpaj")
-player = NodePath("../player")
-
-[node name="enemy6" parent="." node_paths=PackedStringArray("player") instance=ExtResource("3_8iqgq")]
-position = Vector2(-200, -161)
-script = ExtResource("6_4df2o")
-player = NodePath("../player")
-Bullet = ExtResource("7_kwrx2")
-
-[node name="enemy2" parent="." node_paths=PackedStringArray("player") instance=ExtResource("3_8iqgq")]
-position = Vector2(-249, 312)
-script = ExtResource("5_owpaj")
-player = NodePath("../player")
-
 [node name="enemy3" parent="." node_paths=PackedStringArray("player") instance=ExtResource("3_8iqgq")]
 position = Vector2(-234, 188)
 player = NodePath("../player")
@@ -43,16 +30,26 @@ player = NodePath("../player")
 position = Vector2(36, -171)
 player = NodePath("../player")
 
-[node name="enemy5" parent="." node_paths=PackedStringArray("player") instance=ExtResource("3_8iqgq")]
-position = Vector2(-106, 247)
-script = ExtResource("6_cix40")
-player = NodePath("../player")
-
 [node name="BulletManager" type="Node2D" parent="."]
 script = ExtResource("7_85jpq")
 
 [node name="CanvasModulate" type="CanvasModulate" parent="."]
 material = SubResource("CanvasItemMaterial_inj5l")
 color = Color(0.109804, 0.137255, 0.196078, 1)
+
+[node name="enemy7" parent="." node_paths=PackedStringArray("player") instance=ExtResource("6_tvhnt")]
+script = ExtResource("6_cix40")
+player = NodePath("../player")
+
+[node name="enemy8" parent="." node_paths=PackedStringArray("player") instance=ExtResource("8_1530l")]
+position = Vector2(-234, 188)
+script = ExtResource("5_owpaj")
+player = NodePath("../player")
+
+[node name="enemy" parent="." node_paths=PackedStringArray("player") instance=ExtResource("10_dyyr4")]
+position = Vector2(-234, 188)
+script = ExtResource("6_4df2o")
+player = NodePath("../player")
+Bullet = ExtResource("7_kwrx2")
 
 [connection signal="player_fired_bulled" from="player" to="BulletManager" method="_on_player_player_fired_bulled"]

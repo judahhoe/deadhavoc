@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://scripts/enemy.gd" id="1_ikath"]
 [ext_resource type="PackedScene" uid="uid://bywqy23a8pc2w" path="res://scenes/medkit.tscn" id="2_h4dmw"]
 [ext_resource type="PackedScene" uid="uid://cpyurip1l5cvp" path="res://scenes/ammobox.tscn" id="3_i4e12"]
-[ext_resource type="Texture2D" uid="uid://cevr5uftr6ebv" path="res://textures/zombie.png" id="4_b4snf"]
+[ext_resource type="Texture2D" uid="uid://cevr5uftr6ebv" path="res://textures/zombie.png" id="4_6l2a8"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_pdxxf"]
 radius = 14.0357
@@ -24,7 +24,7 @@ enemy = NodePath(".")
 position = Vector2(4.76837e-07, -2.84217e-14)
 rotation = 1.57079
 scale = Vector2(0.06, 0.06)
-texture = ExtResource("4_b4snf")
+texture = ExtResource("4_6l2a8")
 region_rect = Rect2(-0.780212, -4.24907, 676.967, 692.529)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
