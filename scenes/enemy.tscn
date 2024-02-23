@@ -6,7 +6,9 @@
 [ext_resource type="Texture2D" uid="uid://cevr5uftr6ebv" path="res://textures/zombie.png" id="4_6l2a8"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_pdxxf"]
-radius = 14.0357
+
+radius = 19.0
+
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_12256"]
 radius = 21.0238
@@ -45,6 +47,7 @@ wait_time = 0.5
 collision_layer = 0
 
 [node name="DamageCollision" type="CollisionShape2D" parent="DamageArea"]
+position = Vector2(5, 0)
 shape = SubResource("CircleShape2D_12256")
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

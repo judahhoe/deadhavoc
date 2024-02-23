@@ -1,4 +1,6 @@
+
 [gd_scene load_steps=14 format=3 uid="uid://c6vxaopkyqc6i"]
+
 
 [ext_resource type="Script" path="res://scenes/main.gd" id="1_1ogx0"]
 [ext_resource type="PackedScene" uid="uid://bgbubl4fsvupu" path="res://scenes/map.tscn" id="1_ng5yi"]
@@ -12,8 +14,6 @@
 [ext_resource type="PackedScene" uid="uid://cj77atslstuy5" path="res://scenes/stone.tscn" id="7_kwrx2"]
 [ext_resource type="PackedScene" uid="uid://vxvjm4c7mp1d" path="res://scenes/blob_zombie.tscn" id="8_1530l"]
 [ext_resource type="PackedScene" uid="uid://662ivfos4fue" path="res://scenes/big_zombie.tscn" id="10_dyyr4"]
-
-[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_inj5l"]
 
 [node name="Main" type="Node2D"]
 script = ExtResource("1_1ogx0")
@@ -34,8 +34,7 @@ player = NodePath("../player")
 script = ExtResource("7_85jpq")
 
 [node name="CanvasModulate" type="CanvasModulate" parent="."]
-material = SubResource("CanvasItemMaterial_inj5l")
-color = Color(0.109804, 0.137255, 0.196078, 1)
+color = Color(0.0431373, 0.0588235, 0.0941176, 1)
 
 [node name="enemy7" parent="." node_paths=PackedStringArray("player") instance=ExtResource("6_tvhnt")]
 script = ExtResource("6_cix40")

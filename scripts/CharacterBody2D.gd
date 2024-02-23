@@ -9,6 +9,13 @@ extends CharacterBody2D
 
 @onready var health_bar = $"HUD/HealthBar"
 
+@onready var exp_label = $"HUD/EXPLabel"
+@onready var lvl_label = $"HUD/LVLLabel"
+@onready var exp_to_next_level_label = $"HUD/ExpToNextLevelLabel"
+
+var db #database object 
+var db_name = "res://DataStore/database" #Path to DB
+
 var health = 100
 var max_health = 100
 var speed = 200  # speed in pixels/sec
@@ -17,6 +24,10 @@ var weapon
 var rotation_speed = 5
 var direction = Vector2(1.0,1.0)
 
+var experience = 0
+var exp_to_next_level = 300
+var level = 1
+
 signal player_fired_bulled(bullet, direction)
 signal pickup_used()
 
@@ -24,6 +35,9 @@ func _ready():
 	health_bar.value = max_health
 	weapon = pistol
 	weapon.ammo_count.text = str(weapon.ammo_in_mag) + "/" + str(weapon.ammo)
+	for enemy in get_node("/root/Main").get_children():
+		enemy.connect("enemy_died", Callable(self, "_on_enemy_died"))
+	update_labels()
 	
 func _physics_process(delta):
 	if (Input.is_action_pressed("left") || Input.is_action_pressed("right") || Input.is_action_pressed("down") || Input.is_action_pressed("up")):
@@ -66,7 +80,6 @@ func _unhandled_input(event):
 		change_weapon(shotgun)
 	if(event.is_action_pressed("weapon_rifle")):
 		change_weapon(rifle)
-
 
 func change_weapon(weapon_type):
 	weapon.cancel_reload()
@@ -117,3 +130,44 @@ func handle_hit(damage):
 
 func die():
 	get_tree().change_scene_to_file("res://scenes/gameover.tscn")
+	
+func gain_exp(amount: int):
+	experience += amount
+	print("Otrzymamano exp")
+	if experience >= exp_to_next_level:
+		level_up()
+
+
+func level_up():
+	level += 1
+	experience -= exp_to_next_level
+	exp_to_next_level *= 2  # Możesz dostosować wzór wzrostu doświadczenia
+	print("Osiągnięto poziom: ", level)
+	
+	
+func _on_enemy_died(exp_value, position):
+	gain_exp(exp_value)
+	update_db_exp(exp_value)
+	update_labels()
+
+func update_db_exp(amount: int):
+	db = SQLite.new()
+	db.path = db_name
+	db.open_db()
+	var table_name = "user"
+	var nick = "test_user"
+	var exp = str(amount)
+	#var dict : Dictionary = Dictionary()
+	#dict["nickname"] = "test3_user"
+	#dict["email"] = "test3@wp.pl"
+	#dict["password"] = "password"
+	#dict["experience"] = 20
+	#dict["coins"] = 200.5
+	#db.insert_row(table_name, dict)
+	db.query("UPDATE " + table_name + " SET experience = experience + " + exp + " WHERE nickname = '" + nick + "';")
+	#db.query("UPDATE " + table_name + " set experience = experience + " + exp + ";")
+	
+func update_labels():
+	exp_label.text = "EXP: %d" % experience
+	lvl_label.text = "LVL: %d" % level #
+	exp_to_next_level_label.text = "EXP to next level: %d" % exp_to_next_level #

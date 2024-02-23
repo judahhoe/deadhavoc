@@ -96,6 +96,24 @@ value = 80.0
 fill_mode = 4
 texture_progress = ExtResource("11_eoshx")
 
+[node name="EXPLabel" type="Label" parent="HUD"]
+offset_left = 32.0
+offset_top = 536.0
+offset_right = 72.0
+offset_bottom = 559.0
+
+[node name="LVLLabel" type="Label" parent="HUD"]
+offset_left = 32.0
+offset_top = 560.0
+offset_right = 72.0
+offset_bottom = 583.0
+
+[node name="ExpToNextLevelLabel" type="Label" parent="HUD"]
+offset_left = 32.0
+offset_top = 584.0
+offset_right = 72.0
+offset_bottom = 607.0
+
 [node name="PointLight2D" type="PointLight2D" parent="."]
 rotation = 1.57079
 energy = 0.3
