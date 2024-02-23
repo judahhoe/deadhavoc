@@ -1,7 +1,5 @@
 extends CharacterBody2D
 
-signal enemy_died(exp_value, position)
-
 @export var player: Node2D
 @onready var nav_agent := $NavigationAgent2D as NavigationAgent2D
 @export var medkit: PackedScene
@@ -10,11 +8,13 @@ signal enemy_died(exp_value, position)
 
 @onready var sprite: Sprite2D = $Sprite2D
 @onready var attack_cooldown = $AttackCooldown
+@onready var mob_scene = preload("res://scenes/enemy.tscn")
 
-var 	speed 	= 50
-var 	health 	= 100
+var 	speed 	= 10 # 20% of base movement speed
+var 	start_health = 2000.0
+var 	health 	= 2000.0  # *2000% of base health
 var 	drop
-var 	zombie_damage = 10
+var 	zombie_damage = 20 # * 200% of base damage
 var 	target
 var 	isTargetInRange = false
 
@@ -53,21 +53,34 @@ func dropitem(item):
 	pickup.launch(direction * launch_speed, launch_time)
 
 func die():
-	print("Wróg został zabity")
 	drop = randi_range(1,100)
 	if(drop>=1 && drop <=20):
 		dropitem("medkit")
 	if(drop>20 && drop <=40):
 		dropitem("ammo")
-	emit_signal("enemy_died", 100, global_position)
 	queue_free()
 
 
 func handle_hit():
-	if (health > 0):
-		health -= 20
+	health -= 20
 	if (health <= 0):
 		die();
+	else:
+		var health_percent_drop = ((start_health - health) / start_health * 100)
+		if health_percent_drop >= 5:
+			start_health -= (start_health*0.05)
+			spawn_new_base_enemy()
+
+func spawn_new_base_enemy():
+	var mob = mob_scene.instantiate()
+	print("zombie spawned")
+	mob.player = player
+	mob.medkit = medkit
+	mob.ammobox = ammobox
+	var position = enemy.position
+	position+= Vector2(10,10)
+	mob.global_position = position
+	owner.add_child.call_deferred(mob)
 
 
 func _on_attack_cooldown_timeout():

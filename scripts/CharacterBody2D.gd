@@ -117,6 +117,16 @@ func take_damage(damage):
 		health_bar.value = 0
 	if (health <= 0):
 		die()
+		
+		
+func handle_hit(damage):
+	health -= damage
+	if (health >= 0):
+		health_bar.value = health
+	else:
+		health_bar.value = 0
+	if (health <= 0):
+		die()
 
 func die():
 	get_tree().change_scene_to_file("res://scenes/gameover.tscn")

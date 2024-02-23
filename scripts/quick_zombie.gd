@@ -1,7 +1,5 @@
 extends CharacterBody2D
 
-signal enemy_died(exp_value, position)
-
 @export var player: Node2D
 @onready var nav_agent := $NavigationAgent2D as NavigationAgent2D
 @export var medkit: PackedScene
@@ -11,8 +9,8 @@ signal enemy_died(exp_value, position)
 @onready var sprite: Sprite2D = $Sprite2D
 @onready var attack_cooldown = $AttackCooldown
 
-var 	speed 	= 50
-var 	health 	= 100
+var 	speed 	= 100
+var 	health 	= 50
 var 	drop
 var 	zombie_damage = 10
 var 	target
@@ -22,6 +20,7 @@ var 	isTargetInRange = false
 var pickup : Pickup
 var launch_speed : float = 100
 var launch_time :float = 0.25
+var dodgeChance: float = 0.5
 
 
 func _physics_process(_delta: float) -> void:
@@ -53,21 +52,26 @@ func dropitem(item):
 	pickup.launch(direction * launch_speed, launch_time)
 
 func die():
-	print("Wróg został zabity")
 	drop = randi_range(1,100)
 	if(drop>=1 && drop <=20):
 		dropitem("medkit")
 	if(drop>20 && drop <=40):
 		dropitem("ammo")
-	emit_signal("enemy_died", 100, global_position)
 	queue_free()
 
 
 func handle_hit():
-	if (health > 0):
-		health -= 20
-	if (health <= 0):
-		die();
+	if(randf() < dodgeChance):
+		print("dodged")
+		var dodgeVector:Vector2 = Vector2(-5,0)
+		enemy.global_position += dodgeVector*speed*get_process_delta_time()
+		await get_tree().create_timer(1.0).timeout
+		enemy.global_position -= dodgeVector*speed*get_process_delta_time()
+	else:
+		if (health > 0):
+			health -= 20
+		if (health <= 0):
+			die();
 
 
 func _on_attack_cooldown_timeout():
