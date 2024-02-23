@@ -12,7 +12,6 @@ scale = Vector2(0.5, 0.5)
 collision_layer = 8
 collision_mask = 2
 script = ExtResource("1_lptld")
-speed = 2
 
 [node name="Smear" type="Sprite2D" parent="."]
 position = Vector2(-32, 1.81896e-12)

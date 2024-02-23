@@ -1,6 +1,6 @@
 extends Area2D
 
-@export var speed = 10
+@export var speed = 30
 
 @onready var kill_timer = $KillTimer
 

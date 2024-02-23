@@ -28,7 +28,7 @@ texture = ExtResource("3_sabu4")
 shape = SubResource("CircleShape2D_s8kyx")
 
 [node name="KillTimer" type="Timer" parent="."]
-wait_time = 3.692
+wait_time = 0.5
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
 [connection signal="timeout" from="KillTimer" to="." method="_on_kill_timer_timeout"]
