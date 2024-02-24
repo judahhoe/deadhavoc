@@ -1,6 +1,4 @@
-
-[gd_scene load_steps=14 format=3 uid="uid://c6vxaopkyqc6i"]
-
+[gd_scene load_steps=13 format=3 uid="uid://c6vxaopkyqc6i"]
 
 [ext_resource type="Script" path="res://scenes/main.gd" id="1_1ogx0"]
 [ext_resource type="PackedScene" uid="uid://bgbubl4fsvupu" path="res://scenes/map.tscn" id="1_ng5yi"]
@@ -9,11 +7,11 @@
 [ext_resource type="Script" path="res://scripts/blob_zombie.gd" id="5_owpaj"]
 [ext_resource type="Script" path="res://scripts/big_zombie.gd" id="6_4df2o"]
 [ext_resource type="Script" path="res://scripts/quick_zombie.gd" id="6_cix40"]
-[ext_resource type="PackedScene" uid="uid://dtdnidxcdgbwa" path="res://scenes/quick_enemy.tscn" id="6_tvhnt"]
+[ext_resource type="PackedScene" path="res://scenes/quick_enemy.tscn" id="6_tvhnt"]
 [ext_resource type="Script" path="res://scenes/BulletManager.gd" id="7_85jpq"]
-[ext_resource type="PackedScene" uid="uid://cj77atslstuy5" path="res://scenes/stone.tscn" id="7_kwrx2"]
-[ext_resource type="PackedScene" uid="uid://vxvjm4c7mp1d" path="res://scenes/blob_zombie.tscn" id="8_1530l"]
-[ext_resource type="PackedScene" uid="uid://662ivfos4fue" path="res://scenes/big_zombie.tscn" id="10_dyyr4"]
+[ext_resource type="PackedScene" path="res://scenes/stone.tscn" id="7_kwrx2"]
+[ext_resource type="PackedScene" path="res://scenes/blob_zombie.tscn" id="8_1530l"]
+[ext_resource type="PackedScene" path="res://scenes/big_zombie.tscn" id="10_dyyr4"]
 
 [node name="Main" type="Node2D"]
 script = ExtResource("1_1ogx0")
@@ -37,6 +35,7 @@ script = ExtResource("7_85jpq")
 color = Color(0.0431373, 0.0588235, 0.0941176, 1)
 
 [node name="enemy7" parent="." node_paths=PackedStringArray("player") instance=ExtResource("6_tvhnt")]
+visible = false
 script = ExtResource("6_cix40")
 player = NodePath("../player")
 

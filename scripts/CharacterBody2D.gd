@@ -11,13 +11,14 @@ extends CharacterBody2D
 
 @onready var exp_label = $"HUD/EXPLabel"
 @onready var lvl_label = $"HUD/LVLLabel"
+@onready var money_label =$"HUD/MoneyLabel"
 @onready var exp_to_next_level_label = $"HUD/ExpToNextLevelLabel"
 
 var db #database object 
 var db_name = "res://DataStore/database" #Path to DB
 
-var health = 100
-var max_health = 100
+var health = 10000
+var max_health = 10000
 var speed = 200  # speed in pixels/sec
 var weapon
 
@@ -27,6 +28,8 @@ var direction = Vector2(1.0,1.0)
 var experience = 0
 var exp_to_next_level = 300
 var level = 1
+
+var money = 0
 
 signal player_fired_bulled(bullet, direction)
 signal pickup_used()
@@ -137,6 +140,10 @@ func gain_exp(amount: int):
 	if experience >= exp_to_next_level:
 		level_up()
 
+func gain_money(amount:int):
+	money += amount
+	print(amount)
+
 
 func level_up():
 	level += 1
@@ -145,8 +152,10 @@ func level_up():
 	print("Osiągnięto poziom: ", level)
 	
 	
-func _on_enemy_died(exp_value, position):
+func _on_enemy_died(exp_value,money, position):
+	print("died")
 	gain_exp(exp_value)
+	gain_money(money)
 	update_db_exp(exp_value)
 	update_labels()
 

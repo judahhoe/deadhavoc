@@ -1,5 +1,7 @@
 extends CharacterBody2D
 
+signal enemy_died(exp_value,money, position)
+
 @export var player: Node2D
 @onready var nav_agent := $NavigationAgent2D as NavigationAgent2D
 @export var medkit: PackedScene
@@ -17,6 +19,7 @@ var 	drop
 var 	zombie_damage = 20 # * 200% of base damage
 var 	target
 var 	isTargetInRange = false
+var 	moneyForKill = 200
 
 #pickups vars
 var pickup : Pickup
@@ -58,6 +61,7 @@ func die():
 		dropitem("medkit")
 	if(drop>20 && drop <=40):
 		dropitem("ammo")
+	emit_signal("enemy_died", 100,moneyForKill, global_position)
 	queue_free()
 
 
