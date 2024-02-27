@@ -25,6 +25,7 @@ func _on_kill_timer_timeout():
 
 
 func _on_body_entered(body):
+	print(body)
 	if (body.has_method("handle_hit")):
 		body.handle_hit()
 		queue_free()
