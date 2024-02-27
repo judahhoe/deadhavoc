@@ -1,5 +1,7 @@
 extends CharacterBody2D
 
+@onready var Score_manager = get_node("/root/Main/ScoreManager")
+
 @export var player: Node2D
 @onready var nav_agent := $NavigationAgent2D as NavigationAgent2D
 @export var medkit: PackedScene
@@ -14,6 +16,9 @@ var 	drop
 var 	zombie_damage = 20
 var 	target
 var 	isTargetInRange = false
+
+var exp_value = 300
+var points_value = 1000
 
 #pickups vars
 var pickup : Pickup
@@ -73,6 +78,7 @@ func die():
 		dropitem("medkit")
 	if(drop>20 && drop <=40):
 		dropitem("ammo")
+	add_score()
 	queue_free()
 
 
@@ -115,5 +121,7 @@ func throw():
 	bullet_instance.set_direction(direction_to_shoot)
 	owner.add_child.call_deferred(bullet_instance)
 
-
+func add_score():
+	Score_manager.add_experience(exp_value)
+	Score_manager.add_points(points_value)
 

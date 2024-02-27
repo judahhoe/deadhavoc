@@ -1,6 +1,4 @@
-
 [gd_scene load_steps=14 format=3 uid="uid://c6vxaopkyqc6i"]
-
 
 [ext_resource type="Script" path="res://scenes/main.gd" id="1_1ogx0"]
 [ext_resource type="PackedScene" uid="uid://bgbubl4fsvupu" path="res://scenes/map.tscn" id="1_ng5yi"]
@@ -14,6 +12,7 @@
 [ext_resource type="PackedScene" uid="uid://cj77atslstuy5" path="res://scenes/stone.tscn" id="7_kwrx2"]
 [ext_resource type="PackedScene" uid="uid://vxvjm4c7mp1d" path="res://scenes/blob_zombie.tscn" id="8_1530l"]
 [ext_resource type="PackedScene" uid="uid://662ivfos4fue" path="res://scenes/big_zombie.tscn" id="10_dyyr4"]
+[ext_resource type="Script" path="res://scenes/ScoreManager.gd" id="13_fpqvc"]
 
 [node name="Main" type="Node2D"]
 script = ExtResource("1_1ogx0")
@@ -50,5 +49,8 @@ position = Vector2(-234, 188)
 script = ExtResource("6_4df2o")
 player = NodePath("../player")
 Bullet = ExtResource("7_kwrx2")
+
+[node name="ScoreManager" type="Node2D" parent="."]
+script = ExtResource("13_fpqvc")
 
 [connection signal="player_fired_bulled" from="player" to="BulletManager" method="_on_player_player_fired_bulled"]
