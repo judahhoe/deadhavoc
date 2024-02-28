@@ -1,6 +1,6 @@
 extends CharacterBody2D
 
-signal enemy_died(exp_value, position)
+@onready var Score_manager = get_node("/root/Main/ScoreManager")
 
 @export var player: Node2D
 @onready var nav_agent := $NavigationAgent2D as NavigationAgent2D
@@ -17,6 +17,9 @@ var 	drop
 var 	zombie_damage = 10
 var 	target
 var 	isTargetInRange = false
+
+var exp_value = 100
+var points_value = 300
 
 #pickups vars
 var pickup : Pickup
@@ -59,7 +62,7 @@ func die():
 		dropitem("medkit")
 	if(drop>20 && drop <=40):
 		dropitem("ammo")
-	emit_signal("enemy_died", 100, global_position)
+	add_score()
 	queue_free()
 
 
@@ -91,3 +94,7 @@ func _on_damage_area_body_exited(body):
 	if (body.has_method("take_damage")):
 		isTargetInRange = false
 		attack_cooldown.stop()
+
+func add_score():
+	Score_manager.add_experience(exp_value)
+	Score_manager.add_points(points_value)
