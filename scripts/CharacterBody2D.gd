@@ -30,26 +30,28 @@ func _ready():
 func _physics_process(delta):
 	if (Input.is_action_pressed("left") || Input.is_action_pressed("right") || Input.is_action_pressed("down") || Input.is_action_pressed("up")):
 		direction = Input.get_vector("left", "right", "up", "down")
-	var movement_direction := Vector2.ZERO
-	#player rotation
+	
+	#angle between aim direction and walking direction
+	var look_angle = calculate_angle(direction, get_global_mouse_position()-position)
+	# Print the result
+	var speed_modifier = (0.4+(0.6*(180.0-look_angle)/180.0))
+	print("Angle between vectors: ", look_angle)
+	print("speed modi: ", speed_modifier)
+
+	
 	if (Input.is_action_pressed("aim")):
-		speed = 50
-		var v = get_global_mouse_position() - global_position
-		var angle = v.angle()
-		var r = global_rotation
-		var angle_delta = rotation_speed * delta
-		angle = lerp_angle(r, angle, 1.0)
-		angle = clamp(angle, r-angle_delta, r+angle_delta)
-		global_rotation = angle
+		speed = 30
 	else:
 		speed = 150
-		var v = direction
-		var angle = v.angle()
-		var r = global_rotation
-		var angle_delta = rotation_speed * delta
-		angle = lerp_angle(r, angle, 1.0)
-		angle = clamp(angle, r-angle_delta, r+angle_delta)
-		global_rotation = angle
+		if (!is_nan(speed_modifier)):
+			speed *= speed_modifier
+	var v = get_global_mouse_position() - global_position
+	var angle = v.angle()
+	var r = global_rotation
+	var angle_delta = rotation_speed * delta
+	angle = lerp_angle(r, angle, 1.0)
+	angle = clamp(angle, r-angle_delta, r+angle_delta)
+	global_rotation = angle
 	if (Input.is_action_pressed("left") || Input.is_action_pressed("right") || Input.is_action_pressed("down") || Input.is_action_pressed("up")):
 		velocity = (direction * speed)
 		move_and_slide()
@@ -76,6 +78,24 @@ func change_weapon(weapon_type):
 	weapon.visible = true
 	weapon.ammo_count.text = str(weapon.ammo_in_mag) + "/" + str(weapon.ammo)
 	
+func calculate_angle(vectorA, vectorB):
+	# Calculate the dot product of the vectors
+	var dot_product = vectorA.dot(vectorB)
+
+	# Calculate the magnitude (length) of each vector
+	var magnitude_A = vectorA.length()
+	var magnitude_B = vectorB.length()
+
+	# Calculate the cosine of the angle using the dot product and magnitudes
+	var cos_angle = dot_product / (magnitude_A * magnitude_B)
+
+	# Use the arccosine function to get the angle in radians
+	var angle_radians = acos(cos_angle)
+
+	# Convert radians to degrees
+	var angle_degrees = rad_to_deg(angle_radians)
+
+	return angle_degrees
 
 func handle_pickup(pickup_obj, pickup):
 	print(pickup_obj)
