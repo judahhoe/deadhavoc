@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://cyliupk1rrn74"]
+[gd_scene load_steps=18 format=3 uid="uid://cyliupk1rrn74"]
 
 [ext_resource type="Script" path="res://scripts/CharacterBody2D.gd" id="1_d7hat"]
 [ext_resource type="PackedScene" uid="uid://dlx7joevlhiba" path="res://scenes/pistol.tscn" id="2_ixrmp"]
@@ -6,14 +6,52 @@
 [ext_resource type="PackedScene" uid="uid://c3ygjka63koed" path="res://scenes/ammo_count.tscn" id="3_p5vta"]
 [ext_resource type="PackedScene" uid="uid://dmscpcoytwixa" path="res://scenes/shotgun.tscn" id="4_i1uek"]
 [ext_resource type="Texture2D" uid="uid://pvld50db7x4y" path="res://textures/crosshair.png" id="4_n73xp"]
-[ext_resource type="PackedScene" path="res://scenes/rifle.tscn" id="5_44hwj"]
+[ext_resource type="PackedScene" uid="uid://c25vukuvl2snb" path="res://scenes/rifle.tscn" id="5_44hwj"]
 [ext_resource type="Texture2D" uid="uid://c356jvrlffjsu" path="res://textures/hp_under.png" id="8_gx0o6"]
 [ext_resource type="Texture2D" uid="uid://ni761p86o5d4" path="res://textures/hp_over.png" id="9_byqna"]
 [ext_resource type="Texture2D" uid="uid://co8drx5i04sbh" path="res://textures/hp_progress.png" id="10_n8xai"]
 [ext_resource type="Texture2D" uid="uid://crhw8jpp5ivdm" path="res://textures/reload.png" id="11_eoshx"]
 [ext_resource type="Texture2D" uid="uid://dof8ixgdbinqt" path="res://textures/light.png" id="12_4v6hq"]
+[ext_resource type="Texture2D" uid="uid://bcq4qb6aigpbg" path="res://assets/BloodOverlay/Krew5.png" id="12_mkfaa"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_t8v8n"]
+
+[sub_resource type="Animation" id="Animation_xq4aw"]
+resource_name = "pain"
+length = 4.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Blood:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.4, 2, 4),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 0.470588), Color(1, 1, 1, 0.470588), Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_xc5by"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Blood:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_f0c4d"]
+_data = {
+"RESET": SubResource("Animation_xc5by"),
+"pain": SubResource("Animation_xq4aw")
+}
 
 [node name="player" type="CharacterBody2D" node_paths=PackedStringArray("crosshair")]
 collision_mask = 515
@@ -50,6 +88,28 @@ visible = false
 texture = ExtResource("4_n73xp")
 
 [node name="HUD" type="CanvasLayer" parent="."]
+
+[node name="BloodOverlay" type="Camera2D" parent="HUD"]
+
+[node name="Blood" type="TextureRect" parent="HUD/BloodOverlay"]
+modulate = Color(1, 1, 1, 0)
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -126.0
+offset_top = -141.0
+offset_right = 1794.0
+offset_bottom = 939.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(1.16294, 1.24506)
+size_flags_vertical = 4
+texture = ExtResource("12_mkfaa")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="HUD/BloodOverlay"]
+libraries = {
+"": SubResource("AnimationLibrary_f0c4d")
+}
 
 [node name="AmmoCount" parent="HUD" instance=ExtResource("3_p5vta")]
 anchors_preset = 3

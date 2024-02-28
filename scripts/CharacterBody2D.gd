@@ -13,6 +13,8 @@ extends CharacterBody2D
 @onready var lvl_label = $"HUD/LVLLabel"
 @onready var exp_to_next_level_label = $"HUD/ExpToNextLevelLabel"
 
+@onready var Pain = $"HUD/BloodOverlay/AnimationPlayer" 
+
 var db #database object 
 var db_name = "res://DataStore/database" #Path to DB
 
@@ -111,6 +113,7 @@ func handle_pickup(pickup_obj, pickup):
 
 func take_damage(damage):
 	health -= damage
+	Pain.play("pain")
 	if (health >= 0):
 		health_bar.value = health
 	else:
@@ -121,6 +124,7 @@ func take_damage(damage):
 		
 func handle_hit(damage):
 	health -= damage
+	Pain.play("pain")
 	if (health >= 0):
 		health_bar.value = health
 	else:
