@@ -3,14 +3,10 @@
 [ext_resource type="Script" path="res://scripts/enemy.gd" id="1_ikath"]
 [ext_resource type="Texture2D" uid="uid://cevr5uftr6ebv" path="res://textures/zombie.png" id="4_b4snf"]
 
-[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_jkbv8"]
-light_mode = 2
-
 [sub_resource type="CircleShape2D" id="CircleShape2D_12256"]
 radius = 21.0238
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_pdxxf"]
-
 radius = 19.0
 
 [sub_resource type="Animation" id="Animation_jyft3"]

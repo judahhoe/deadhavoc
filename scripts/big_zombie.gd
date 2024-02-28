@@ -2,12 +2,14 @@ extends CharacterBody2D
 
 @onready var Score_manager = get_node("/root/Main/ScoreManager")
 
-@export var player: Node2D
+@onready var player = $"../%player"
 @onready var nav_agent := $NavigationAgent2D as NavigationAgent2D
-@export var medkit: PackedScene
-@export var ammobox: PackedScene
-@export var enemy: Node2D
+@onready var medkit = preload("res://scenes/medkit.tscn").instantiate()
+@onready var ammobox = preload("res://scenes/ammobox.tscn").instantiate()
+@onready var enemy = self
+
 @export var Bullet : PackedScene
+
 @onready var sprite: Sprite2D = $Sprite2D
 @onready var attack_cooldown = $AttackCooldown
 var 	speed 	= 30
@@ -60,11 +62,12 @@ func _on_timer_timeout():
 func dropitem(item):
 	match item :
 		"medkit":
-			pickup = medkit.instantiate()
+			pickup = medkit
 		"ammo":
-			pickup = ammobox.instantiate()
+			pickup = ammobox
+	if (owner != null):
+		owner.add_child.call_deferred(pickup)
 	
-	get_parent().add_child.call_deferred(pickup)
 	pickup.position = enemy.global_position
 	var direction : Vector2 = Vector2(
 		randf_range(-1.0, 1.0),
