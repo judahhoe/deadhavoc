@@ -9,6 +9,15 @@ extends CharacterBody2D
 
 @onready var health_bar = $"HUD/HealthBar"
 
+@onready var exp_label = $"HUD/EXPLabel"
+@onready var lvl_label = $"HUD/LVLLabel"
+@onready var exp_to_next_level_label = $"HUD/ExpToNextLevelLabel"
+
+@onready var Pain = $"HUD/BloodOverlay/AnimationPlayer" 
+
+var db #database object 
+var db_name = "res://DataStore/database" #Path to DB
+
 var infection_count
 var is_infected = false
 var healthy = "e40000"
@@ -127,6 +136,7 @@ func take_damage(damage):
 	if(infection_chance>=1 && infection_chance <=20):
 		get_infected()
 	health -= damage
+	Pain.play("pain")
 	if (health >= 0):
 		health_bar.value = health
 	else:
@@ -137,6 +147,7 @@ func take_damage(damage):
 		
 func handle_hit(damage):
 	health -= damage
+	Pain.play("pain")
 	if (health >= 0):
 		health_bar.value = health
 	else:
