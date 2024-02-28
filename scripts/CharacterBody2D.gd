@@ -9,6 +9,10 @@ extends CharacterBody2D
 
 @onready var health_bar = $"HUD/HealthBar"
 
+var infection_count
+var is_infected = false
+var healthy = "e40000"
+var infected = "696900"
 
 var health = 100
 var max_health = 100
@@ -24,6 +28,7 @@ signal pickup_used()
 
 func _ready():
 	health_bar.value = max_health
+	health_bar.tint_progress = healthy
 	weapon = pistol
 	weapon.ammo_count.text = str(weapon.ammo_in_mag) + "/" + str(weapon.ammo)
 
@@ -118,6 +123,9 @@ func handle_pickup(pickup_obj, pickup):
 
 
 func take_damage(damage):
+	var infection_chance = randi_range(1,100)
+	if(infection_chance>=1 && infection_chance <=20):
+		get_infected()
 	health -= damage
 	if (health >= 0):
 		health_bar.value = health
@@ -135,6 +143,21 @@ func handle_hit(damage):
 		health_bar.value = 0
 	if (health <= 0):
 		die()
+		
+func get_infected():
+	if (!is_infected):
+		health_bar.tint_progress = infected
+		is_infected = true
+		infection_count = 10
+		while infection_count>0:
+			await get_tree().create_timer(1).timeout
+			infection_count -= 1
+			health -= 1
+			health_bar.value = health
+		is_infected = false
+		health_bar.tint_progress = healthy
+	else:
+		infection_count += 2
 
 func die():
 	get_tree().change_scene_to_file("res://scenes/gameover.tscn")

@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://c6vxaopkyqc6i"]
+[gd_scene load_steps=15 format=3 uid="uid://c6vxaopkyqc6i"]
 
 [ext_resource type="Script" path="res://scenes/main.gd" id="1_1ogx0"]
 [ext_resource type="PackedScene" uid="uid://bgbubl4fsvupu" path="res://scenes/map.tscn" id="1_ng5yi"]
@@ -7,9 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://ci15i02n5bjak" path="res://scenes/spawner_bush.tscn" id="4_0x1ta"]
 [ext_resource type="Script" path="res://scripts/blob_zombie.gd" id="5_owpaj"]
 [ext_resource type="Script" path="res://scripts/big_zombie.gd" id="6_4df2o"]
-[ext_resource type="Script" path="res://scripts/quick_zombie.gd" id="6_cix40"]
 [ext_resource type="PackedScene" uid="uid://dl8wrgmp0q3vc" path="res://scenes/spawner_sewer.tscn" id="6_togh1"]
-[ext_resource type="PackedScene" uid="uid://dtdnidxcdgbwa" path="res://scenes/quick_enemy.tscn" id="6_tvhnt"]
 [ext_resource type="Script" path="res://scenes/BulletManager.gd" id="7_85jpq"]
 [ext_resource type="PackedScene" uid="uid://cj77atslstuy5" path="res://scenes/stone.tscn" id="7_kwrx2"]
 [ext_resource type="PackedScene" uid="uid://vxvjm4c7mp1d" path="res://scenes/blob_zombie.tscn" id="8_1530l"]
@@ -31,13 +29,13 @@ scale = Vector2(0.08, 0.08)
 unique_name_in_owner = true
 
 [node name="enemy" parent="." instance=ExtResource("3_8iqgq")]
-position = Vector2(-200, -161)
+position = Vector2(-183, -122)
 
 [node name="enemy2" parent="." instance=ExtResource("3_8iqgq")]
 position = Vector2(-249, 312)
 
 [node name="enemy3" parent="." instance=ExtResource("3_8iqgq")]
-position = Vector2(-234, 188)
+position = Vector2(-277, 67)
 
 [node name="enemy4" parent="." instance=ExtResource("3_8iqgq")]
 position = Vector2(36, -171)
@@ -66,18 +64,15 @@ position = Vector2(432, -74)
 [node name="destroyable_crate3" parent="." instance=ExtResource("8_x1ocu")]
 position = Vector2(377, -22)
 
-[node name="enemy7" parent="." instance=ExtResource("6_tvhnt")]
-script = ExtResource("6_cix40")
-
 [node name="enemy8" parent="." node_paths=PackedStringArray("player") instance=ExtResource("8_1530l")]
-position = Vector2(-234, 188)
+position = Vector2(-289, 200)
 script = ExtResource("5_owpaj")
 player = NodePath("../player")
 medkit = null
 ammobox = null
 
 [node name="enemy6" parent="." instance=ExtResource("10_dyyr4")]
-position = Vector2(-234, 188)
+position = Vector2(-322, 121)
 script = ExtResource("6_4df2o")
 Bullet = ExtResource("7_kwrx2")
 
