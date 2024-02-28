@@ -1,12 +1,13 @@
 extends CharacterBody2D
 
-signal enemy_died(exp_value, position)
+@onready var Score_manager = get_node("/root/Main/ScoreManager")
 
-@export var player: Node2D
+@onready var player = $"../%player"
 @onready var nav_agent := $NavigationAgent2D as NavigationAgent2D
-@export var medkit: PackedScene
-@export var ammobox: PackedScene
-@export var enemy: Node2D
+@onready var medkit = preload("res://scenes/medkit.tscn").instantiate()
+@onready var ammobox = preload("res://scenes/ammobox.tscn").instantiate()
+@onready var enemy = self
+@onready var animation_player = $AnimationPlayer
 
 @onready var sprite: Sprite2D = $Sprite2D
 @onready var attack_cooldown = $AttackCooldown
@@ -18,11 +19,16 @@ var 	zombie_damage = 10
 var 	target
 var 	isTargetInRange = false
 
+var exp_value = 100
+var points_value = 300
+
 #pickups vars
 var pickup : Pickup
 var launch_speed : float = 100
 var launch_time :float = 0.25
 
+func _ready():
+	animation_player.play("spawn")
 
 func _physics_process(_delta: float) -> void:
 	var dir = to_local(nav_agent.get_next_path_position()).normalized()
@@ -40,11 +46,12 @@ func _on_timer_timeout():
 func dropitem(item):
 	match item :
 		"medkit":
-			pickup = medkit.instantiate()
+			pickup = medkit
 		"ammo":
-			pickup = ammobox.instantiate()
-	
-	get_parent().add_child.call_deferred(pickup)
+			pickup = ammobox
+	if (owner != null):
+		owner.add_child.call_deferred(pickup)
+
 	pickup.position = enemy.global_position
 	var direction : Vector2 = Vector2(
 		randf_range(-1.0, 1.0),
@@ -59,7 +66,7 @@ func die():
 		dropitem("medkit")
 	if(drop>20 && drop <=40):
 		dropitem("ammo")
-	emit_signal("enemy_died", 100, global_position)
+	add_score()
 	queue_free()
 
 
@@ -91,3 +98,7 @@ func _on_damage_area_body_exited(body):
 	if (body.has_method("take_damage")):
 		isTargetInRange = false
 		attack_cooldown.stop()
+
+func add_score():
+	Score_manager.add_experience(exp_value)
+	Score_manager.add_points(points_value)

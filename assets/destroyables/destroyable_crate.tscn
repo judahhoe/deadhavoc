@@ -1,0 +1,86 @@
+[gd_scene load_steps=11 format=3 uid="uid://5eregx8y4420"]
+
+[ext_resource type="Script" path="res://destroyable_crate.gd" id="1_ag7y0"]
+[ext_resource type="Texture2D" uid="uid://cbu4opvery5os" path="res://assets/destroyables/crate_0.png" id="2_4fc0a"]
+[ext_resource type="Texture2D" uid="uid://bw6265v3eu8w0" path="res://assets/destroyables/crate_1.png" id="3_kkvil"]
+[ext_resource type="Texture2D" uid="uid://dat2633055hkd" path="res://assets/destroyables/crate_2.png" id="4_sx42a"]
+[ext_resource type="Texture2D" uid="uid://b828ci8sqmg7n" path="res://assets/destroyables/plank_0.png" id="5_i6072"]
+[ext_resource type="Texture2D" uid="uid://tvd5irj0lfrt" path="res://assets/destroyables/dust_0.png" id="6_4m1ld"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_cj027"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_4fc0a")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_kkvil")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_sx42a")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="Curve" id="Curve_v6wh7"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.578947, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="Gradient" id="Gradient_78ep4"]
+offsets = PackedFloat32Array(0, 0.691358, 1)
+colors = PackedColorArray(1, 1, 1, 0.862745, 1, 1, 1, 0.839216, 1, 1, 1, 0)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_wsn8p"]
+
+[node name="destroyable_crate" type="StaticBody2D"]
+scale = Vector2(0.05, 0.05)
+collision_layer = 3
+script = ExtResource("1_ag7y0")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_cj027")
+speed_scale = 0.0
+
+[node name="CPUParticles2D" type="CPUParticles2D" parent="."]
+emitting = false
+amount = 10
+one_shot = true
+explosiveness = 1.0
+randomness = 1.0
+lifetime_randomness = 0.2
+texture = ExtResource("5_i6072")
+spread = 180.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 500.0
+initial_velocity_max = 900.0
+angular_velocity_min = 82.29
+angular_velocity_max = 342.86
+scale_amount_min = 0.4
+scale_amount_max = 0.6
+scale_amount_curve = SubResource("Curve_v6wh7")
+color_ramp = SubResource("Gradient_78ep4")
+
+[node name="CPUParticles2D2" type="CPUParticles2D" parent="."]
+emitting = false
+amount = 10
+one_shot = true
+explosiveness = 1.0
+randomness = 1.0
+lifetime_randomness = 0.2
+texture = ExtResource("6_4m1ld")
+spread = 180.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 500.0
+initial_velocity_max = 900.0
+angular_velocity_min = 82.29
+angular_velocity_max = 342.86
+scale_amount_min = 0.03
+scale_amount_max = 0.05
+scale_amount_curve = SubResource("Curve_v6wh7")
+color_ramp = SubResource("Gradient_78ep4")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+scale = Vector2(45, 45)
+shape = SubResource("RectangleShape2D_wsn8p")

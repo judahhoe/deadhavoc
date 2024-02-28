@@ -18,6 +18,11 @@ extends CharacterBody2D
 var db #database object 
 var db_name = "res://DataStore/database" #Path to DB
 
+var infection_count
+var is_infected = false
+var healthy = "e40000"
+var infected = "696900"
+
 var health = 100
 var max_health = 100
 var speed = 200  # speed in pixels/sec
@@ -26,44 +31,41 @@ var weapon
 var rotation_speed = 5
 var direction = Vector2(1.0,1.0)
 
-var experience = 0
-var exp_to_next_level = 300
-var level = 1
 
 signal player_fired_bulled(bullet, direction)
 signal pickup_used()
 
 func _ready():
 	health_bar.value = max_health
+	health_bar.tint_progress = healthy
 	weapon = pistol
 	weapon.ammo_count.text = str(weapon.ammo_in_mag) + "/" + str(weapon.ammo)
-	for enemy in get_node("/root/Main").get_children():
-		enemy.connect("enemy_died", Callable(self, "_on_enemy_died"))
-	update_labels()
-	
+
 func _physics_process(delta):
 	if (Input.is_action_pressed("left") || Input.is_action_pressed("right") || Input.is_action_pressed("down") || Input.is_action_pressed("up")):
 		direction = Input.get_vector("left", "right", "up", "down")
-	var movement_direction := Vector2.ZERO
-	#player rotation
+	
+	#angle between aim direction and walking direction
+	var look_angle = calculate_angle(direction, get_global_mouse_position()-position)
+	# Print the result
+	var speed_modifier = (0.4+(0.6*(180.0-look_angle)/180.0))
+	print("Angle between vectors: ", look_angle)
+	print("speed modi: ", speed_modifier)
+
+	
 	if (Input.is_action_pressed("aim")):
-		speed = 50
-		var v = get_global_mouse_position() - global_position
-		var angle = v.angle()
-		var r = global_rotation
-		var angle_delta = rotation_speed * delta
-		angle = lerp_angle(r, angle, 1.0)
-		angle = clamp(angle, r-angle_delta, r+angle_delta)
-		global_rotation = angle
+		speed = 30
 	else:
 		speed = 150
-		var v = direction
-		var angle = v.angle()
-		var r = global_rotation
-		var angle_delta = rotation_speed * delta
-		angle = lerp_angle(r, angle, 1.0)
-		angle = clamp(angle, r-angle_delta, r+angle_delta)
-		global_rotation = angle
+		if (!is_nan(speed_modifier)):
+			speed *= speed_modifier
+	var v = get_global_mouse_position() - global_position
+	var angle = v.angle()
+	var r = global_rotation
+	var angle_delta = rotation_speed * delta
+	angle = lerp_angle(r, angle, 1.0)
+	angle = clamp(angle, r-angle_delta, r+angle_delta)
+	global_rotation = angle
 	if (Input.is_action_pressed("left") || Input.is_action_pressed("right") || Input.is_action_pressed("down") || Input.is_action_pressed("up")):
 		velocity = (direction * speed)
 		move_and_slide()
@@ -90,6 +92,24 @@ func change_weapon(weapon_type):
 	weapon.visible = true
 	weapon.ammo_count.text = str(weapon.ammo_in_mag) + "/" + str(weapon.ammo)
 	
+func calculate_angle(vectorA, vectorB):
+	# Calculate the dot product of the vectors
+	var dot_product = vectorA.dot(vectorB)
+
+	# Calculate the magnitude (length) of each vector
+	var magnitude_A = vectorA.length()
+	var magnitude_B = vectorB.length()
+
+	# Calculate the cosine of the angle using the dot product and magnitudes
+	var cos_angle = dot_product / (magnitude_A * magnitude_B)
+
+	# Use the arccosine function to get the angle in radians
+	var angle_radians = acos(cos_angle)
+
+	# Convert radians to degrees
+	var angle_degrees = rad_to_deg(angle_radians)
+
+	return angle_degrees
 
 func handle_pickup(pickup_obj, pickup):
 	print(pickup_obj)
@@ -112,6 +132,9 @@ func handle_pickup(pickup_obj, pickup):
 
 
 func take_damage(damage):
+	var infection_chance = randi_range(1,100)
+	if(infection_chance>=1 && infection_chance <=20):
+		get_infected()
 	health -= damage
 	Pain.play("pain")
 	if (health >= 0):
@@ -131,47 +154,21 @@ func handle_hit(damage):
 		health_bar.value = 0
 	if (health <= 0):
 		die()
+		
+func get_infected():
+	if (!is_infected):
+		health_bar.tint_progress = infected
+		is_infected = true
+		infection_count = 10
+		while infection_count>0:
+			await get_tree().create_timer(1).timeout
+			infection_count -= 1
+			health -= 1
+			health_bar.value = health
+		is_infected = false
+		health_bar.tint_progress = healthy
+	else:
+		infection_count += 2
 
 func die():
 	get_tree().change_scene_to_file("res://scenes/gameover.tscn")
-	
-func gain_exp(amount: int):
-	experience += amount
-	print("Otrzymamano exp")
-	if experience >= exp_to_next_level:
-		level_up()
-
-
-func level_up():
-	level += 1
-	experience -= exp_to_next_level
-	exp_to_next_level *= 2  # Możesz dostosować wzór wzrostu doświadczenia
-	print("Osiągnięto poziom: ", level)
-	
-	
-func _on_enemy_died(exp_value, position):
-	gain_exp(exp_value)
-	update_db_exp(exp_value)
-	update_labels()
-
-func update_db_exp(amount: int):
-	db = SQLite.new()
-	db.path = db_name
-	db.open_db()
-	var table_name = "user"
-	var nick = "test_user"
-	var exp = str(amount)
-	#var dict : Dictionary = Dictionary()
-	#dict["nickname"] = "test3_user"
-	#dict["email"] = "test3@wp.pl"
-	#dict["password"] = "password"
-	#dict["experience"] = 20
-	#dict["coins"] = 200.5
-	#db.insert_row(table_name, dict)
-	db.query("UPDATE " + table_name + " SET experience = experience + " + exp + " WHERE nickname = '" + nick + "';")
-	#db.query("UPDATE " + table_name + " set experience = experience + " + exp + ";")
-	
-func update_labels():
-	exp_label.text = "EXP: %d" % experience
-	lvl_label.text = "LVL: %d" % level #
-	exp_to_next_level_label.text = "EXP to next level: %d" % exp_to_next_level #
