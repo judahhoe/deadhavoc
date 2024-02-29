@@ -242,7 +242,6 @@ texture_under = ExtResource("18_am8uu")
 texture_progress = ExtResource("19_6ubdg")
 
 [node name="Rifle_ammo_bar2" type="TextureProgressBar" parent="HUD"]
-visible = false
 offset_left = 1640.0
 offset_top = 970.0
 offset_right = 1810.0

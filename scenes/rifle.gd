@@ -21,8 +21,8 @@ class_name Rifle
 @onready var reload_progress = $"../HUD/ReloadProgress"
 @onready var bullet_manager = $"../../BulletManager"
 
-@onready var ammo_bar = $"../HUD/Rifle_ammo_bar1"
-@onready var ammo_bar2 = $"../HUD/Rifle_ammo_bar2"
+@onready var ammo_bar_bottom = $"../HUD/Rifle_ammo_bar1"
+@onready var ammo_bar_top = $"../HUD/Rifle_ammo_bar2"
 
 signal player_fired_bullet(bullet, direction)
 
@@ -31,10 +31,11 @@ func _ready():
 	reload_progress.visible = false
 	ammo_count.text = str(ammo_in_mag) + "/" + str(ammo)
 	get_node(".").connect("player_fired_bullet",bullet_manager._on_pistol_player_fired_bullet)
-	ammo_bar.max_value = 15  
-	ammo_bar.value = min(ammo_in_mag, 15)  
-	ammo_bar2.max_value = 15  
-	ammo_bar2.value = max(0, ammo_in_mag - 15) 
+	if (ammo_in_mag >= mag_size/2):
+		ammo_bar_top.value = ammo_in_mag-(mag_size/2)
+		ammo_bar_bottom.value = mag_size/2
+	else :
+		ammo_bar_bottom.value = ammo_in_mag
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -44,8 +45,10 @@ func _physics_process(delta):
 func shoot():
 	if (shooting_cooldown.is_stopped() && ammo_in_mag >=1 && reload_timer.is_stopped()):
 		ammo_in_mag -= 1
-		ammo_bar.value = min(ammo_in_mag, 15)  
-		ammo_bar2.value = max(0, ammo_in_mag - 15) 
+		if (ammo_in_mag >= mag_size/2):
+			ammo_bar_top.value -= 1
+		else :
+			ammo_bar_bottom.value -= 1
 		ammo_count.text = str(ammo_in_mag) + "/" + str(ammo)
 		var recoil_radians = deg_to_rad(randf_range(-recoil, recoil)) 
 		var bullet_instance = Bullet.instantiate()
@@ -77,8 +80,11 @@ func cancel_reload():
 func _on_reload_timer_timeout():
 	while (ammo_in_mag < mag_size && ammo > 0):
 		ammo_in_mag += 1
-		ammo_bar.value = min(ammo_in_mag, 15)  
-		ammo_bar2.value = max(0, ammo_in_mag - 15)  
+		if (ammo_in_mag >= mag_size/2):
+			ammo_bar_top.value = ammo_in_mag-(mag_size/2)
+			ammo_bar_bottom.value = mag_size/2
+		else :
+			ammo_bar_bottom.value = ammo_in_mag
 		ammo -= 1
 	ammo_count.text = str(ammo_in_mag) + "/" + str(ammo)
 	reload_progress.visible = false

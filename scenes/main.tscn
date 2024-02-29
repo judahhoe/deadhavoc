@@ -64,12 +64,9 @@ position = Vector2(432, -74)
 [node name="destroyable_crate3" parent="." instance=ExtResource("8_x1ocu")]
 position = Vector2(377, -22)
 
-[node name="enemy8" parent="." node_paths=PackedStringArray("player") instance=ExtResource("8_1530l")]
+[node name="enemy8" parent="." instance=ExtResource("8_1530l")]
 position = Vector2(-289, 200)
 script = ExtResource("5_owpaj")
-player = NodePath("../player")
-medkit = null
-ammobox = null
 
 [node name="enemy6" parent="." instance=ExtResource("10_dyyr4")]
 position = Vector2(-322, 121)

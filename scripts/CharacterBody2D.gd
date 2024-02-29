@@ -10,8 +10,8 @@ extends CharacterBody2D
 @onready var health_bar = $"HUD/HealthBar"
 
 @onready var pistol_ammo_bar = $"HUD/Pistol_ammo_bar"
-@onready var rifle_ammo_bar = $"HUD/Rifle_ammo_bar1"
-@onready var rifle_ammo_bar2 = $"HUD/Rifle_ammo_bar2"
+@onready var rifle_ammo_bar_bottom = $"HUD/Rifle_ammo_bar1"
+@onready var rifle_ammo_bar_top = $"HUD/Rifle_ammo_bar2"
 @onready var shotgun_ammo_bar = $"HUD/Shotgun_ammo_bar"
 @onready var pistol_hud =$"HUD/Pistol"
 @onready var rifle_hud =$"HUD/Rifle"
@@ -184,8 +184,8 @@ func update_weapon_hud(weapon, visible = false):
 	rifle_hud.visible = false
 	shotgun_hud.visible = false
 	pistol_ammo_bar.visible = false
-	rifle_ammo_bar.visible = false
-	rifle_ammo_bar2.visible = false
+	rifle_ammo_bar_top.visible = false
+	rifle_ammo_bar_bottom.visible = false
 	shotgun_ammo_bar.visible = false
 	
 	if weapon is Pistol and visible:
@@ -193,8 +193,8 @@ func update_weapon_hud(weapon, visible = false):
 		pistol_ammo_bar.visible = true
 	elif weapon is Rifle and visible:
 		rifle_hud.visible = true
-		rifle_ammo_bar.visible = true
-		rifle_ammo_bar2.visible = true
+		rifle_ammo_bar_top.visible = true
+		rifle_ammo_bar_bottom.visible = true
 	elif weapon is Shotgun and visible:
 		shotgun_hud.visible = true
 		shotgun_ammo_bar.visible = true
