@@ -9,9 +9,13 @@ extends CharacterBody2D
 
 @onready var health_bar = $"HUD/HealthBar"
 
-@onready var exp_label = $"HUD/EXPLabel"
-@onready var lvl_label = $"HUD/LVLLabel"
-@onready var exp_to_next_level_label = $"HUD/ExpToNextLevelLabel"
+@onready var pistol_ammo_bar = $"HUD/Pistol_ammo_bar"
+@onready var rifle_ammo_bar = $"HUD/Rifle_ammo_bar1"
+@onready var rifle_ammo_bar2 = $"HUD/Rifle_ammo_bar2"
+@onready var shotgun_ammo_bar = $"HUD/Shotgun_ammo_bar"
+@onready var pistol_hud =$"HUD/Pistol"
+@onready var rifle_hud =$"HUD/Rifle"
+@onready var shotgun_hud =$"HUD/Shotgun"
 
 @onready var Pain = $"HUD/BloodOverlay/AnimationPlayer" 
 
@@ -20,7 +24,7 @@ var db_name = "res://DataStore/database" #Path to DB
 
 var infection_count
 var is_infected = false
-var healthy = "e40000"
+var healthy = "f2f2f2"
 var infected = "696900"
 
 var health = 100
@@ -40,6 +44,7 @@ func _ready():
 	health_bar.tint_progress = healthy
 	weapon = pistol
 	weapon.ammo_count.text = str(weapon.ammo_in_mag) + "/" + str(weapon.ammo)
+	update_weapon_hud(weapon, true)
 
 func _physics_process(delta):
 	if (Input.is_action_pressed("left") || Input.is_action_pressed("right") || Input.is_action_pressed("down") || Input.is_action_pressed("up")):
@@ -91,6 +96,7 @@ func change_weapon(weapon_type):
 	weapon = weapon_type
 	weapon.visible = true
 	weapon.ammo_count.text = str(weapon.ammo_in_mag) + "/" + str(weapon.ammo)
+	update_weapon_hud(weapon, true)
 	
 func calculate_angle(vectorA, vectorB):
 	# Calculate the dot product of the vectors
@@ -172,3 +178,23 @@ func get_infected():
 
 func die():
 	get_tree().change_scene_to_file("res://scenes/gameover.tscn")
+
+func update_weapon_hud(weapon, visible = false):
+	pistol_hud.visible = false
+	rifle_hud.visible = false
+	shotgun_hud.visible = false
+	pistol_ammo_bar.visible = false
+	rifle_ammo_bar.visible = false
+	rifle_ammo_bar2.visible = false
+	shotgun_ammo_bar.visible = false
+	
+	if weapon is Pistol and visible:
+		pistol_hud.visible = true
+		pistol_ammo_bar.visible = true
+	elif weapon is Rifle and visible:
+		rifle_hud.visible = true
+		rifle_ammo_bar.visible = true
+		rifle_ammo_bar2.visible = true
+	elif weapon is Shotgun and visible:
+		shotgun_hud.visible = true
+		shotgun_ammo_bar.visible = true

@@ -8,7 +8,7 @@ class_name Pistol
 @export var mag_size : int
 @export var ammo_in_mag : int
 @export var Bullet : PackedScene
-@export var reload_modifier : int
+@export var reload_modifier : int 
 @export var recoil : float = 6.0
 
 @onready var end_of_gun = $EndOfGun
@@ -21,6 +21,8 @@ class_name Pistol
 @onready var reload_progress = $"../HUD/ReloadProgress"
 @onready var bullet_manager = $"../../BulletManager"
 
+@onready var ammo_bar = $"../HUD/Pistol_ammo_bar"
+
 signal player_fired_bullet(bullet, direction)
 
 # Called when the node enters the scene tree for the first time.
@@ -28,6 +30,8 @@ func _ready():
 	reload_progress.visible = false
 	ammo_count.text = str(ammo_in_mag) + "/" + str(ammo)
 	get_node(".").connect("player_fired_bullet",bullet_manager._on_pistol_player_fired_bullet)
+	ammo_bar.max_value = mag_size 
+	ammo_bar.value = ammo_in_mag 
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -37,6 +41,7 @@ func _physics_process(delta):
 func shoot():
 	if (shooting_cooldown.is_stopped() && ammo_in_mag >=1 && reload_timer.is_stopped()):
 		ammo_in_mag -= 1
+		ammo_bar.value = ammo_in_mag 
 		ammo_count.text = str(ammo_in_mag) + "/" + str(ammo)
 		var recoil_radians = deg_to_rad(randf_range(-recoil, recoil)) 
 		var bullet_instance = Bullet.instantiate()
@@ -68,6 +73,7 @@ func cancel_reload():
 func _on_reload_timer_timeout():
 	while (ammo_in_mag < mag_size && ammo > 0):
 		ammo_in_mag += 1
+		ammo_bar.value = ammo_in_mag  
 		ammo -= 1
 	ammo_count.text = str(ammo_in_mag) + "/" + str(ammo)
 	reload_progress.visible = false

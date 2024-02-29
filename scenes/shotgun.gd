@@ -7,7 +7,7 @@ class_name Shotgun
 @export var mag_size : int
 @export var ammo_in_mag : int
 @export var Bullet : PackedScene
-@export var reload_modifier : int
+@export var reload_modifier : int 
 @export var recoil : float = 20.0
 @export var max_pellets : int
 
@@ -21,6 +21,8 @@ class_name Shotgun
 @onready var reload_progress = $"../HUD/ReloadProgress"
 @onready var bullet_manager = $"../../BulletManager"
 
+@onready var ammo_bar = $"../HUD/Shotgun_ammo_bar"
+
 @onready var pellets_shot = 0
 
 signal player_fired_bullet(bullet, direction)
@@ -30,6 +32,8 @@ func _ready():
 	reload_progress.visible = false
 	ammo_count.text = str(ammo_in_mag) + "/" + str(ammo)
 	get_node(".").connect("player_fired_bullet",bullet_manager._on_pistol_player_fired_bullet)
+	ammo_bar.max_value = mag_size 
+	ammo_bar.value = ammo_in_mag  
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -41,6 +45,8 @@ func shoot():
 	if (shooting_cooldown.is_stopped() && ammo_in_mag >=1):
 		pellets_shot = 0
 		ammo_in_mag -= 1
+		ammo_bar.max_value = mag_size 
+		ammo_bar.value = ammo_in_mag  
 		ammo_count.text = str(ammo_in_mag) + "/" + str(ammo) 
 		while (pellets_shot < max_pellets):
 			var recoil_radians = deg_to_rad(randf_range(-recoil, recoil)) 
@@ -74,6 +80,8 @@ func cancel_reload():
 func _on_reload_timer_timeout():
 	if (ammo_in_mag < mag_size && ammo > 0):
 		ammo_in_mag += 1
+		ammo_bar.max_value = mag_size  
+		ammo_bar.value = ammo_in_mag  
 		ammo -= 1
 	ammo_count.text = str(ammo_in_mag) + "/" + str(ammo)
 	reload_progress.visible = false
