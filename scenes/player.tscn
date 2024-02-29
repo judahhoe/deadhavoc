@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://cyliupk1rrn74"]
+[gd_scene load_steps=29 format=3 uid="uid://cyliupk1rrn74"]
 
 [ext_resource type="Script" path="res://scripts/CharacterBody2D.gd" id="1_d7hat"]
 [ext_resource type="PackedScene" uid="uid://dlx7joevlhiba" path="res://scenes/pistol.tscn" id="2_ixrmp"]
@@ -7,14 +7,40 @@
 [ext_resource type="PackedScene" uid="uid://dmscpcoytwixa" path="res://scenes/shotgun.tscn" id="4_i1uek"]
 [ext_resource type="Texture2D" uid="uid://pvld50db7x4y" path="res://textures/crosshair.png" id="4_n73xp"]
 [ext_resource type="PackedScene" uid="uid://c25vukuvl2snb" path="res://scenes/rifle.tscn" id="5_44hwj"]
-[ext_resource type="Texture2D" uid="uid://c356jvrlffjsu" path="res://textures/hp_under.png" id="8_gx0o6"]
-[ext_resource type="Texture2D" uid="uid://ni761p86o5d4" path="res://textures/hp_over.png" id="9_byqna"]
-[ext_resource type="Texture2D" uid="uid://co8drx5i04sbh" path="res://textures/hp_progress.png" id="10_n8xai"]
+[ext_resource type="Texture2D" uid="uid://d32nwsf6e30au" path="res://assets/HUD/HP_Under.png" id="9_ucl0n"]
+[ext_resource type="Texture2D" uid="uid://chcgu73vk4dpp" path="res://assets/HUD/HP.png" id="10_dk3ec"]
 [ext_resource type="Texture2D" uid="uid://crhw8jpp5ivdm" path="res://textures/reload.png" id="11_eoshx"]
 [ext_resource type="Texture2D" uid="uid://dof8ixgdbinqt" path="res://textures/light.png" id="12_4v6hq"]
 [ext_resource type="Texture2D" uid="uid://bcq4qb6aigpbg" path="res://assets/BloodOverlay/Krew5.png" id="12_mkfaa"]
+[ext_resource type="Texture2D" uid="uid://bl7b2ql18klwg" path="res://assets/HUD/Weapons/Pistol2.png" id="13_jmjl0"]
+[ext_resource type="Texture2D" uid="uid://d0ra4koqh8dgt" path="res://assets/HUD/Weapons/Rifle2.png" id="14_y1d4f"]
+[ext_resource type="Texture2D" uid="uid://c8thmncbrnpv5" path="res://assets/HUD/Weapons/Shotgun2.png" id="15_5wqk3"]
+[ext_resource type="Texture2D" uid="uid://b62p4tmuadwfr" path="res://assets/HUD/Weapons/Ammo/Pistol_ammo_under.png" id="16_ewqkt"]
+[ext_resource type="Texture2D" uid="uid://v51b0dj4o3vb" path="res://assets/HUD/Weapons/Ammo/Pistol_ammo_progress.png" id="17_pbxx7"]
+[ext_resource type="Texture2D" uid="uid://c6q3r1jun6qc" path="res://assets/HUD/Weapons/Ammo/Rifle_ammo_under.png" id="18_am8uu"]
+[ext_resource type="Texture2D" uid="uid://dpb2jt3p8dgd0" path="res://assets/HUD/Weapons/Ammo/Rifle_ammo_progress.png" id="19_6ubdg"]
+[ext_resource type="Texture2D" uid="uid://c5in8qrwi4b7x" path="res://assets/HUD/Weapons/Ammo/Shotgun_ammo_under.png" id="20_4vtyd"]
+[ext_resource type="Texture2D" uid="uid://s7sqaaws7t3w" path="res://assets/HUD/Weapons/Ammo/Shotgun_ammo_progress.png" id="21_j77pw"]
+[ext_resource type="Texture2D" uid="uid://dpwk3yi04vdv4" path="res://assets/HUD/EXP_Under.png" id="22_pfv3p"]
+[ext_resource type="Texture2D" uid="uid://xreuodxrpnqc" path="res://assets/HUD/Weapons/Granat.png" id="22_xmt5h"]
+[ext_resource type="Texture2D" uid="uid://dhcxrw1weclwq" path="res://assets/HUD/EXP_Progress.png" id="23_rharf"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_t8v8n"]
+
+[sub_resource type="Animation" id="Animation_xc5by"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Blood:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
 
 [sub_resource type="Animation" id="Animation_xq4aw"]
 resource_name = "pain"
@@ -30,21 +56,6 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 0,
 "values": [Color(1, 1, 1, 0), Color(1, 1, 1, 0.470588), Color(1, 1, 1, 0.470588), Color(1, 1, 1, 0)]
-}
-
-[sub_resource type="Animation" id="Animation_xc5by"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Blood:modulate")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Color(1, 1, 1, 0)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_f0c4d"]
@@ -73,11 +84,18 @@ debug_color = Color(0, 0.65098, 0.14902, 0.419608)
 
 [node name="pistol" parent="." instance=ExtResource("2_ixrmp")]
 position = Vector2(23, 10)
+mag_size = 15
+ammo_in_mag = 15
+reload_modifier = 0
 
 [node name="shotgun" parent="." instance=ExtResource("4_i1uek")]
 visible = false
 position = Vector2(-8, 13)
-reload_modifier = 50
+max_ammo = 14
+ammo = 14
+mag_size = 7
+ammo_in_mag = 7
+reload_modifier = 15
 
 [node name="rifle" parent="." instance=ExtResource("5_44hwj")]
 visible = false
@@ -117,27 +135,25 @@ anchor_left = 1.0
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -161.0
-offset_top = -83.0
-offset_right = -90.0
-offset_bottom = -40.0
+offset_left = -364.0
+offset_top = -94.0
+offset_right = -293.0
+offset_bottom = -51.0
 grow_horizontal = 0
 grow_vertical = 0
 size_flags_horizontal = 8
 size_flags_vertical = 8
 
 [node name="HealthBar" type="TextureProgressBar" parent="HUD"]
-offset_left = 21.0
-offset_top = 21.0
-offset_right = 61.0
-offset_bottom = 61.0
-scale = Vector2(0.15, 0.15)
+offset_left = 71.0
+offset_top = 948.0
+offset_right = 1871.0
+offset_bottom = 1067.0
+scale = Vector2(0.2, 0.2)
 value = 100.0
-texture_under = ExtResource("8_gx0o6")
-texture_over = ExtResource("9_byqna")
-texture_progress = ExtResource("10_n8xai")
+texture_under = ExtResource("9_ucl0n")
+texture_progress = ExtResource("10_dk3ec")
 texture_progress_offset = Vector2(5, 0)
-tint_progress = Color(0.894118, 0, 0, 1)
 
 [node name="ReloadProgress" type="TextureProgressBar" parent="HUD"]
 anchors_preset = 3
@@ -145,10 +161,10 @@ anchor_left = 1.0
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -90.0
-offset_top = -83.0
-offset_right = 350.0
-offset_bottom = 357.0
+offset_left = -216.0
+offset_top = -192.0
+offset_right = 224.0
+offset_bottom = 248.0
 grow_horizontal = 0
 grow_vertical = 0
 scale = Vector2(0.1, 0.1)
@@ -157,23 +173,162 @@ value = 80.0
 fill_mode = 4
 texture_progress = ExtResource("11_eoshx")
 
-[node name="EXPLabel" type="Label" parent="HUD"]
-offset_left = 32.0
-offset_top = 536.0
-offset_right = 72.0
-offset_bottom = 559.0
+[node name="Pistol" type="TextureRect" parent="HUD"]
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -620.0
+offset_top = -160.0
+offset_right = -220.0
+offset_bottom = -10.0
+grow_horizontal = 0
+grow_vertical = 0
+texture = ExtResource("13_jmjl0")
+stretch_mode = 3
 
-[node name="LVLLabel" type="Label" parent="HUD"]
-offset_left = 32.0
-offset_top = 560.0
-offset_right = 72.0
-offset_bottom = 583.0
+[node name="Rifle" type="TextureRect" parent="HUD"]
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -604.0
+offset_top = -172.0
+offset_right = -204.0
+offset_bottom = -22.0
+grow_horizontal = 0
+grow_vertical = 0
+texture = ExtResource("14_y1d4f")
+stretch_mode = 3
 
-[node name="ExpToNextLevelLabel" type="Label" parent="HUD"]
-offset_left = 32.0
-offset_top = 584.0
-offset_right = 72.0
-offset_bottom = 607.0
+[node name="Shotgun" type="TextureRect" parent="HUD"]
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -604.0
+offset_top = -179.0
+offset_right = -204.0
+offset_bottom = -29.0
+grow_horizontal = 0
+grow_vertical = 0
+scale = Vector2(1.1, 1.1)
+texture = ExtResource("15_5wqk3")
+stretch_mode = 3
+
+[node name="Pistol_ammo_bar" type="TextureProgressBar" parent="HUD"]
+offset_left = 1640.0
+offset_top = 1006.0
+offset_right = 1810.0
+offset_bottom = 1046.0
+scale = Vector2(0.7, 0.7)
+max_value = 15.0
+value = 4.0
+texture_under = ExtResource("16_ewqkt")
+texture_progress = ExtResource("17_pbxx7")
+
+[node name="Rifle_ammo_bar1" type="TextureProgressBar" parent="HUD"]
+offset_left = 1640.0
+offset_top = 1006.0
+offset_right = 1810.0
+offset_bottom = 1046.0
+scale = Vector2(0.7, 0.7)
+max_value = 15.0
+value = 4.0
+texture_under = ExtResource("18_am8uu")
+texture_progress = ExtResource("19_6ubdg")
+
+[node name="Rifle_ammo_bar2" type="TextureProgressBar" parent="HUD"]
+offset_left = 1640.0
+offset_top = 970.0
+offset_right = 1810.0
+offset_bottom = 1018.0
+scale = Vector2(0.7, 0.7)
+max_value = 15.0
+value = 4.0
+texture_under = ExtResource("18_am8uu")
+texture_progress = ExtResource("19_6ubdg")
+
+[node name="Shotgun_ammo_bar" type="TextureProgressBar" parent="HUD"]
+offset_left = 1636.0
+offset_top = 993.0
+offset_right = 1811.0
+offset_bottom = 1046.0
+scale = Vector2(0.7, 0.7)
+max_value = 15.0
+value = 4.0
+texture_under = ExtResource("20_4vtyd")
+texture_progress = ExtResource("21_j77pw")
+
+[node name="Grenade" type="TextureRect" parent="HUD"]
+offset_left = 1819.0
+offset_top = 989.0
+offset_right = 1862.0
+offset_bottom = 1046.0
+scale = Vector2(0.9, 0.9)
+texture = ExtResource("22_xmt5h")
+stretch_mode = 2
+
+[node name="LevelLabel" type="Label" parent="HUD"]
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 72.0
+offset_top = -144.0
+offset_right = 119.0
+offset_bottom = -121.0
+grow_vertical = 0
+scale = Vector2(0.8, 0.8)
+text = "TEKST"
+
+[node name="ExpLabel" type="Label" parent="HUD"]
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 72.0
+offset_top = -72.0
+offset_right = 119.0
+offset_bottom = -49.0
+grow_vertical = 0
+scale = Vector2(0.8, 0.8)
+text = "TEKST
+"
+
+[node name="ExpToNextLvlLabel" type="Label" parent="HUD"]
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 192.0
+offset_top = -72.0
+offset_right = 239.0
+offset_bottom = -49.0
+grow_vertical = 0
+scale = Vector2(0.8, 0.8)
+text = "TEKST"
+
+[node name="PointsLabel" type="Label" parent="HUD"]
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 352.0
+offset_top = -72.0
+offset_right = 399.0
+offset_bottom = -49.0
+grow_vertical = 0
+scale = Vector2(0.8, 0.8)
+text = "TEKST"
+
+[node name="ExpBar" type="TextureProgressBar" parent="HUD"]
+offset_left = 73.0
+offset_top = 986.0
+offset_right = 1873.0
+offset_bottom = 1040.0
+scale = Vector2(0.2, 0.2)
+texture_under = ExtResource("22_pfv3p")
+texture_progress = ExtResource("23_rharf")
 
 [node name="PointLight2D" type="PointLight2D" parent="."]
 rotation = 1.57079
