@@ -21,6 +21,7 @@ func _ready():
 
 func add_experience(amount: int):
 	experience += amount
+	update_db_exp(amount)
 	exp_bar.value = experience
 	update_labels()
 	if experience >= exp_to_next_level:
@@ -38,6 +39,7 @@ func level_up():
 
 func add_points(amount: int):
 	points += amount
+	update_db_coins(amount)
 	update_labels()
 	print("Liczba punktów: ", points)
 
@@ -63,3 +65,12 @@ func update_db_exp(amount: int):
 	#db.insert_row(table_name, dict)
 	db.query("UPDATE " + table_name + " SET experience = experience + " + exp + " WHERE nickname = '" + nick + "';")
 	#db.query("UPDATE " + table_name + " set experience = experience + " + exp + ";")
+
+func update_db_coins(amount: int):
+	db = SQLite.new()
+	db.path = db_name
+	db.open_db()
+	var table_name = "user"
+	var nick = "test_user"
+	var coins = str(amount)
+	db.query("UPDATE " + table_name + " SET coins = coins + " + coins + " WHERE nickname = '" + nick + "';")
