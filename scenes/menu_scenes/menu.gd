@@ -17,11 +17,10 @@ var nick = "test_user"
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	get_settings_from_db()
+	get_settings_from_db()
 	playbutton.grab_focus()
 	if(!BackgroundMusic.isMusicPlaying):
 		BackgroundMusic.play_music()
-
-
 # Called every frame. 'delta' is the elapsed time since the previous frame.d
 func _process(delta):
 	pass
@@ -135,9 +134,9 @@ func get_settings_from_db():
 	db.open_db()
 	#remember to not use variables inside the query connected with other variables, it's not working properly
 	db.query("SELECT user_configuration.master_sound, user_configuration.music, user_configuration.sound_effects, user_configuration.display_mode, user_configuration.vsync, user_configuration.fps_cap from user INNER JOIN user_configuration ON user.id = user_configuration.user_id where user.nickname = '" + nick + "';")
-	var master_sound_query = db.query_result[0]["master_sound"]#int
-	var music_query = db.query_result[0]["music"]#int
-	var sound_effects_query = db.query_result[0]["sound_effects"]#int
+	var master_sound_query = db.query_result[0]["master_sound"]#float(scope 0-1)
+	var music_query = db.query_result[0]["music"]#float(scope 0-1)
+	var sound_effects_query = db.query_result[0]["sound_effects"]#float(scope 0-1)
 	var display_mode_query = db.query_result[0]["display_mode"]#text
 	var vsync_query = db.query_result[0]["vsync"]#int(0 - off;1 - on)
 	var fps_cap_query = db.query_result[0]["fps_cap"]#int

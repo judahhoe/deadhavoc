@@ -23,6 +23,7 @@ var nick = "test_user"
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	get_settings_from_db()
+	get_settings_from_db()
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	FpsCounter.text = "FPS: " + str(Engine.get_frames_per_second())
@@ -93,13 +94,13 @@ func get_settings_from_db():
 		DisplayServer.window_set_mode(0)
 		DisplayServer.window_set_flag(1, false)
 		DisplayServer.window_set_size(Vector2i(1024,768))
-		DisplayModeDropdown.select(0)
+		DisplayModeDropdown.selected = 0
 	if(display_mode_query == "fullscreen"): #fullscreen
 		DisplayServer.window_set_mode(4)
-		DisplayModeDropdown.select(1)
+		DisplayModeDropdown.selected = 1
 	if(display_mode_query == "borderless"): #borderless
 		DisplayServer.window_set_mode(3)
-		DisplayModeDropdown.select(2)
+		DisplayModeDropdown.selected = 2
 		
 	if(vsync_query == 1):
 		DisplayServer.window_set_vsync_mode(1)
