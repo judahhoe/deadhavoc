@@ -1,12 +1,15 @@
-[gd_scene load_steps=29 format=3 uid="uid://cyliupk1rrn74"]
+[gd_scene load_steps=32 format=3 uid="uid://cyliupk1rrn74"]
 
 [ext_resource type="Script" path="res://scripts/CharacterBody2D.gd" id="1_d7hat"]
 [ext_resource type="PackedScene" uid="uid://dlx7joevlhiba" path="res://scenes/pistol.tscn" id="2_ixrmp"]
 [ext_resource type="Texture2D" uid="uid://vg4rn545m2sb" path="res://textures/character_pistol_aim.png" id="3_g4bnp"]
 [ext_resource type="PackedScene" uid="uid://c3ygjka63koed" path="res://scenes/ammo_count.tscn" id="3_p5vta"]
+[ext_resource type="PackedScene" uid="uid://cexyrpakyu33a" path="res://scenes/pistol_casing_particles.tscn" id="4_0fd2u"]
 [ext_resource type="PackedScene" uid="uid://dmscpcoytwixa" path="res://scenes/shotgun.tscn" id="4_i1uek"]
 [ext_resource type="Texture2D" uid="uid://pvld50db7x4y" path="res://textures/crosshair.png" id="4_n73xp"]
 [ext_resource type="PackedScene" uid="uid://c25vukuvl2snb" path="res://scenes/rifle.tscn" id="5_44hwj"]
+[ext_resource type="PackedScene" uid="uid://xq2gkhh3x73u" path="res://scenes/shotgun_casing_particles.tscn" id="6_b7qnj"]
+[ext_resource type="PackedScene" uid="uid://bn2gj3f7fnf4r" path="res://scenes/rifle_casing_particles.tscn" id="8_mdtjk"]
 [ext_resource type="Texture2D" uid="uid://d32nwsf6e30au" path="res://assets/HUD/HP_Under.png" id="9_ucl0n"]
 [ext_resource type="Texture2D" uid="uid://chcgu73vk4dpp" path="res://assets/HUD/HP.png" id="10_dk3ec"]
 [ext_resource type="Texture2D" uid="uid://crhw8jpp5ivdm" path="res://textures/reload.png" id="11_eoshx"]
@@ -88,6 +91,8 @@ mag_size = 15
 ammo_in_mag = 15
 reload_modifier = 0
 
+[node name="pistol_casing_particles" parent="pistol" instance=ExtResource("4_0fd2u")]
+
 [node name="shotgun" parent="." instance=ExtResource("4_i1uek")]
 visible = false
 position = Vector2(-8, 13)
@@ -97,9 +102,13 @@ mag_size = 7
 ammo_in_mag = 7
 reload_modifier = 15
 
+[node name="shotgun_casing_particles" parent="shotgun" instance=ExtResource("6_b7qnj")]
+
 [node name="rifle" parent="." instance=ExtResource("5_44hwj")]
 visible = false
 position = Vector2(-6, 10)
+
+[node name="rifle_casing_particles" parent="rifle" instance=ExtResource("8_mdtjk")]
 
 [node name="crosshair" type="Sprite2D" parent="."]
 visible = false

@@ -1,9 +1,10 @@
-[gd_scene load_steps=7 format=3 uid="uid://662ivfos4fue"]
+[gd_scene load_steps=6 format=3 uid="uid://662ivfos4fue"]
 
 [ext_resource type="Script" path="res://scripts/enemy.gd" id="1_erwo8"]
-[ext_resource type="PackedScene" uid="uid://bywqy23a8pc2w" path="res://scenes/medkit.tscn" id="2_wtjwd"]
-[ext_resource type="PackedScene" uid="uid://cpyurip1l5cvp" path="res://scenes/ammobox.tscn" id="3_cbofh"]
 [ext_resource type="Texture2D" uid="uid://486f7o5cvqhs" path="res://textures/big_zombie.png" id="4_qweaa"]
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_ejoij"]
+light_mode = 2
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_pdxxf"]
 radius = 14.0357
@@ -11,16 +12,14 @@ radius = 14.0357
 [sub_resource type="CircleShape2D" id="CircleShape2D_12256"]
 radius = 21.0238
 
-[node name="enemy" type="CharacterBody2D" node_paths=PackedStringArray("player", "enemy")]
+[node name="enemy" type="CharacterBody2D"]
 collision_layer = 2
 collision_mask = 3
 script = ExtResource("1_erwo8")
-player = NodePath(".")
-medkit = ExtResource("2_wtjwd")
-ammobox = ExtResource("3_cbofh")
-enemy = NodePath(".")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
+modulate = Color(0.427451, 0.427451, 0.427451, 1)
+material = SubResource("CanvasItemMaterial_ejoij")
 position = Vector2(4.76837e-07, -2.84217e-14)
 rotation = 1.57079
 scale = Vector2(0.06, 0.06)

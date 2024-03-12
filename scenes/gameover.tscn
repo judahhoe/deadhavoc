@@ -1,10 +1,13 @@
-[gd_scene format=3 uid="uid://c3harb7fx7fga"]
+[gd_scene load_steps=2 format=3 uid="uid://c3harb7fx7fga"]
+
+[ext_resource type="Script" path="res://scenes/gameover.gd" id="1_bog7o"]
 
 [node name="Control" type="Control"]
 layout_mode = 3
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
+script = ExtResource("1_bog7o")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
@@ -35,3 +38,5 @@ offset_bottom = 56.0
 grow_horizontal = 2
 grow_vertical = 2
 text = "TRY AGAIN"
+
+[connection signal="pressed" from="CanvasLayer/Button" to="." method="_on_button_pressed"]
