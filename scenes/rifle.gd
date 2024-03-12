@@ -11,6 +11,7 @@ class_name Rifle
 @export var reload_modifier : int 
 @export var recoil : float = 6.0
 
+@onready var casing_emitter = preload("res://scenes/rifle_casing_particles.tscn")
 @onready var end_of_gun = $EndOfGun
 @onready var bullet_direction = $BulletDirection
 @onready var animation_player = $AnimationPlayer
@@ -59,11 +60,17 @@ func shoot():
 		bullet_instance.set_direction(direction_to_shoot)
 		emit_signal("player_fired_bullet", bullet_instance)
 		animation_player.play("muzzle_flash")
+		emitt_casing()
 		shooting_cooldown.start()
 	else:
 		pass
 	if (reload_timer.is_stopped() && ammo_in_mag <=0):
 		reload()
+
+func emitt_casing():
+	var casing = casing_emitter.instantiate()
+	add_child(casing)
+	casing.emitting = true
 
 func reload():
 	if(ammo > 0 && reload_timer.is_stopped()):

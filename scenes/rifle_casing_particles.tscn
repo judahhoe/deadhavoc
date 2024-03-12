@@ -1,0 +1,25 @@
+[gd_scene load_steps=3 format=3 uid="uid://bn2gj3f7fnf4r"]
+
+[ext_resource type="Texture2D" uid="uid://djljtip8esiwe" path="res://textures/rifle_casing.png" id="1_oektk"]
+
+[sub_resource type="Gradient" id="Gradient_bkyrk"]
+offsets = PackedFloat32Array(0, 0.765432, 1)
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0)
+
+[node name="rifle_casing_particles" type="CPUParticles2D"]
+position = Vector2(38, 5)
+emitting = false
+amount = 1
+lifetime = 2.0
+one_shot = true
+texture = ExtResource("1_oektk")
+direction = Vector2(0, 1)
+gravity = Vector2(0, 0)
+initial_velocity_min = 4.0
+initial_velocity_max = 8.0
+angular_velocity_min = 260.58
+angular_velocity_max = 260.58
+scale_amount_min = 0.05
+scale_amount_max = 0.05
+color = Color(0.647059, 0.647059, 0.647059, 1)
+color_ramp = SubResource("Gradient_bkyrk")

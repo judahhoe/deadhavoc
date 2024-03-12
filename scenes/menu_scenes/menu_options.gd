@@ -57,7 +57,7 @@ func _on_fps_slider_value_changed(value):
 	SelectedFps = value
 
 func _on_back_button_pressed():
-	get_tree().change_scene_to_file("res://scenes/menu_main.tscn")
+	get_tree().change_scene_to_file("res://scenes/menus_scenes/menu_main.tscn")
 
 func _on_master_slider_value_changed(value):
 	AudioServer.set_bus_volume_db(MasterBus, linear_to_db(value))
