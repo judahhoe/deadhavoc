@@ -1,0 +1,82 @@
+[gd_scene load_steps=6 format=3 uid="uid://byfoewl1ap1wn"]
+
+[ext_resource type="Script" path="res://scenes/menu_scenes/login_window.gd" id="1_1h3v5"]
+[ext_resource type="Texture2D" uid="uid://cl80jwt3021s2" path="res://assets/menus/login_plank_0.png" id="2_kgygo"]
+[ext_resource type="Texture2D" uid="uid://d18ldiatlfqdy" path="res://assets/menus/register_plank_0.png" id="3_3ox1p"]
+[ext_resource type="Texture2D" uid="uid://dn85rkghsjd4t" path="res://assets/menus/menu_plank_3.png" id="3_d1c4h"]
+[ext_resource type="AudioStream" uid="uid://fkvn2yts26js" path="res://assets/menus/blood_splatter2.ogg" id="4_h4amd"]
+
+[node name="login_window" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_1h3v5")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -257.5
+offset_top = -135.5
+offset_right = 257.5
+offset_bottom = 135.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="LoginField" type="TextEdit" parent="VBoxContainer"]
+custom_minimum_size = Vector2(300, 40)
+layout_mode = 2
+size_flags_horizontal = 4
+placeholder_text = "Login"
+
+[node name="PasswordField" type="TextEdit" parent="VBoxContainer"]
+custom_minimum_size = Vector2(300, 40)
+layout_mode = 2
+size_flags_horizontal = 4
+placeholder_text = "Password"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+
+[node name="LoginButton" type="Button" parent="VBoxContainer/HBoxContainer"]
+layout_mode = 2
+icon = ExtResource("2_kgygo")
+flat = true
+
+[node name="RegisterButton" type="Button" parent="VBoxContainer/HBoxContainer"]
+layout_mode = 2
+icon = ExtResource("3_3ox1p")
+flat = true
+
+[node name="QuitButton" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+icon = ExtResource("3_d1c4h")
+flat = true
+icon_alignment = 1
+
+[node name="ButtonClickSplatter" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_h4amd")
+pitch_scale = 2.0
+bus = &"UI"
+
+[connection signal="focus_entered" from="VBoxContainer/HBoxContainer/LoginButton" to="." method="_on_login_button_focus_entered"]
+[connection signal="focus_exited" from="VBoxContainer/HBoxContainer/LoginButton" to="." method="_on_login_button_focus_exited"]
+[connection signal="mouse_entered" from="VBoxContainer/HBoxContainer/LoginButton" to="." method="_on_login_button_mouse_entered"]
+[connection signal="mouse_exited" from="VBoxContainer/HBoxContainer/LoginButton" to="." method="_on_login_button_mouse_exited"]
+[connection signal="pressed" from="VBoxContainer/HBoxContainer/LoginButton" to="." method="_on_login_button_pressed"]
+[connection signal="focus_entered" from="VBoxContainer/HBoxContainer/RegisterButton" to="." method="_on_register_button_focus_entered"]
+[connection signal="focus_exited" from="VBoxContainer/HBoxContainer/RegisterButton" to="." method="_on_register_button_focus_exited"]
+[connection signal="mouse_entered" from="VBoxContainer/HBoxContainer/RegisterButton" to="." method="_on_register_button_mouse_entered"]
+[connection signal="mouse_exited" from="VBoxContainer/HBoxContainer/RegisterButton" to="." method="_on_register_button_mouse_exited"]
+[connection signal="pressed" from="VBoxContainer/HBoxContainer/RegisterButton" to="." method="_on_register_button_pressed"]
+[connection signal="focus_entered" from="VBoxContainer/QuitButton" to="." method="_on_quit_button_focus_entered"]
+[connection signal="focus_exited" from="VBoxContainer/QuitButton" to="." method="_on_quit_button_focus_exited"]
+[connection signal="mouse_entered" from="VBoxContainer/QuitButton" to="." method="_on_quit_button_mouse_entered"]
+[connection signal="mouse_exited" from="VBoxContainer/QuitButton" to="." method="_on_quit_button_mouse_exited"]
+[connection signal="pressed" from="VBoxContainer/QuitButton" to="." method="_on_quit_button_pressed"]
