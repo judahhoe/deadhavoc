@@ -88,7 +88,7 @@ func get_settings_from_db():
 	MusicSlider.value = music_query
 	
 	AudioServer.set_bus_volume_db(SfxBus, linear_to_db(sound_effects_query))
-	SfxSlider.value = music_query
+	SfxSlider.value = sound_effects_query
 	
 	if(display_mode_query == "windowed"): #windowed
 		DisplayServer.window_set_mode(0)
@@ -117,3 +117,47 @@ func get_settings_from_db():
 	Engine.max_fps = SelectedFps
 	FpsSlider.value = fps_cap_query
 	
+func update_db_video():
+	db = SQLite.new()
+	db.path = db_name
+	db.open_db()
+	var table_name = "user_configuration"
+	var nick = "test_user"
+	var display_mode_index = DisplayModeDropdown.selected
+	var display_mode_todb = ""
+	if display_mode_index == 0:
+		display_mode_todb = "windowed"
+	elif display_mode_index == 1:
+		display_mode_todb = "fullscreen"
+	else:
+		display_mode_todb = "borderless"
+	
+	var vsync_bool = VsyncButton.button_pressed
+	var vsync_todb = ""
+	if vsync_bool == true:
+		vsync_todb = str(1)
+	else:
+		vsync_todb = str(0)
+	var fps_cap_todb = str(FpsSlider.value)
+	db.query("SELECT id from user where nickname = '" + nick + "';")
+	var user_id_todb = str(db.query_result[0]["id"])
+	db.query("UPDATE " + table_name + " SET display_mode= '" + display_mode_todb + "', vsync = " + vsync_todb + ", fps_cap = " + fps_cap_todb + " WHERE user_id = " + user_id_todb + ";")
+	
+func update_db_audio():
+	db = SQLite.new()
+	db.path = db_name
+	db.open_db()
+	var table_name = "user_configuration"
+	var nick = "test_user"
+	var master_sound_todb = str(MasterSlider.value)
+	var music_todb = str(MusicSlider.value)
+	var sound_effects_todb = str(SfxSlider.value)
+	db.query("SELECT id from user where nickname = '" + nick + "';")
+	var user_id_todb = str(db.query_result[0]["id"])
+	db.query("UPDATE " + table_name + " SET master_sound = " + master_sound_todb + ", music = " + music_todb + ", sound_effects = " + sound_effects_todb + " WHERE user_id = " + user_id_todb + ";")
+
+func _on_apply_button_audio_pressed():
+	update_db_audio()
+
+func _on_apply_button_video_pressed():
+	update_db_video()

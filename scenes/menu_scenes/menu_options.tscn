@@ -95,6 +95,21 @@ layout_mode = 2
 text = "Unlimited"
 horizontal_alignment = 2
 
+[node name="ApplyButtonVideo" type="Button" parent="TabContainer/Video"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -26.0
+offset_top = -59.5
+offset_right = 26.0
+offset_bottom = -28.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "Apply"
+
 [node name="Audio" type="TabBar" parent="TabContainer"]
 visible = false
 layout_mode = 2
@@ -155,6 +170,21 @@ max_value = 1.0
 step = 0.01
 value = 1.0
 
+[node name="ApplyButtonAudio" type="Button" parent="TabContainer/Audio"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -26.0
+offset_top = -60.0
+offset_right = 26.0
+offset_bottom = -29.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Apply"
+
 [node name="FpsCounter" type="Label" parent="."]
 layout_mode = 0
 offset_right = 40.0
@@ -179,7 +209,9 @@ text = "BACK TO MENU"
 [connection signal="toggled" from="TabContainer/Video/MarginContainer/GridContainer/VsyncButton" to="." method="_on_vsync_button_toggled"]
 [connection signal="drag_ended" from="TabContainer/Video/MarginContainer/GridContainer/HBoxContainer/FPSSlider" to="." method="_on_fps_slider_drag_ended"]
 [connection signal="value_changed" from="TabContainer/Video/MarginContainer/GridContainer/HBoxContainer/FPSSlider" to="." method="_on_fps_slider_value_changed"]
+[connection signal="pressed" from="TabContainer/Video/ApplyButtonVideo" to="." method="_on_apply_button_video_pressed"]
 [connection signal="value_changed" from="TabContainer/Audio/MarginContainer/GridContainer/MasterSlider" to="." method="_on_master_slider_value_changed"]
 [connection signal="value_changed" from="TabContainer/Audio/MarginContainer/GridContainer/MusicSlider" to="." method="_on_music_slider_value_changed"]
 [connection signal="value_changed" from="TabContainer/Audio/MarginContainer/GridContainer/SFXSlider" to="." method="_on_sfx_slider_value_changed"]
+[connection signal="pressed" from="TabContainer/Audio/ApplyButtonAudio" to="." method="_on_apply_button_audio_pressed"]
 [connection signal="pressed" from="BackButton" to="." method="_on_back_button_pressed"]
