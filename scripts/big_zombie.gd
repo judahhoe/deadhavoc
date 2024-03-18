@@ -21,6 +21,7 @@ var 	isTargetInRange = false
 
 var exp_value = 300
 var points_value = 1000
+var money_value = 100
 
 #pickups vars
 var pickup : Pickup
@@ -127,4 +128,5 @@ func throw():
 func add_score():
 	Score_manager.add_experience(exp_value)
 	Score_manager.add_points(points_value)
+	Score_manager.add_money(money_value)
 
