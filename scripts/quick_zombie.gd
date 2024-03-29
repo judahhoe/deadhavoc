@@ -20,6 +20,7 @@ var 	isTargetInRange = false
 
 var exp_value = 200
 var points_value = 600
+var money_value = 150
 
 #pickups vars
 var pickup : Pickup
@@ -106,3 +107,4 @@ func _on_damage_area_body_exited(body):
 func add_score():
 	Score_manager.add_experience(exp_value)
 	Score_manager.add_points(points_value)
+	Score_manager.add_money(money_value)
