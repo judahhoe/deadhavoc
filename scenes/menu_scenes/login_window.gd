@@ -52,8 +52,9 @@ func _on_quit_button_mouse_exited():
 
 func _on_login_button_pressed():
 	sound.play()
-	loginbutton.icon = load("res://assets/menus/login_plank_1.png")
-
+	var user_found = await check_if_proper_login_data()
+	if user_found==true:
+		loginbutton.icon = load("res://assets/menus/login_plank_1.png")
 
 func _on_login_button_focus_entered():
 	loginbutton.modulate = "909090"
@@ -98,3 +99,24 @@ func _on_register_button_mouse_entered():
 func _on_register_button_mouse_exited():
 	registerbutton.modulate = "ffffff"
 	registerbutton.release_focus()
+	
+func check_if_proper_login_data() -> bool:
+	nick = login.text
+	var login_to_check = nick
+	var password_to_check = password.text
+	db = SQLite.new()
+	db.path = db_name
+	db.open_db()
+	var table_name = "user"
+	db.query("SELECT * from user where nickname = '" + login_to_check + "' and password = '" + password_to_check + "';")
+	var user_found = false
+	if db.query_result.size()>0:
+		user_found = true
+	if user_found == false:
+		var message = "Błędne dane logowania! spróbuj ponownie."
+		OS.alert(message)
+	else:
+		sound.play()
+		await get_tree().create_timer(0.2).timeout
+		get_tree().change_scene_to_file("res://scenes/menu_scenes/menu_main.tscn")
+	return user_found
