@@ -18,7 +18,7 @@ extends CharacterBody2D
 @onready var shotgun_hud =$"HUD/Shotgun"
 @onready var impact_manager = $"../../ImpactManager"
 @onready var Pain = $"HUD/BloodOverlay/AnimationPlayer" 
-
+const BULLET_IMPACT_KILL = preload("res://scenes/bullet_impact2.tscn")
 var db #database object 
 var db_name = "res://DataStore/database" #Path to DB
 
@@ -178,7 +178,7 @@ func get_infected():
 		infection_count += 2
 
 func die():
-	emit_signal("impact_kill",global_position)
+	handle_kill(global_position)
 	get_tree().change_scene_to_file("res://scenes/gameover.tscn")
 
 func update_weapon_hud(weapon, visible = false):
@@ -200,3 +200,9 @@ func update_weapon_hud(weapon, visible = false):
 	elif weapon is Shotgun and visible:
 		shotgun_hud.visible = true
 		shotgun_ammo_bar.visible = true
+		
+func handle_kill(position:Vector2):
+	var impact = BULLET_IMPACT_KILL.instantiate()
+	add_child(impact)
+	impact.global_position = position
+	impact.emitting = true
