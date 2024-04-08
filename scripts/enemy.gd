@@ -8,7 +8,7 @@ extends CharacterBody2D
 @onready var ammobox = preload("res://scenes/ammobox.tscn").instantiate()
 @onready var enemy = self
 @onready var animation_player = $AnimationPlayer
-
+@onready var impact_manager = $"../../ImpactManager"
 @onready var sprite: Sprite2D = $Sprite2D
 @onready var attack_cooldown = $AttackCooldown
 
@@ -67,6 +67,7 @@ func die():
 	if(drop>20 && drop <=40):
 		dropitem("ammo")
 	add_score()
+	emit_signal("impact_kill",enemy.global_position)
 	queue_free()
 
 

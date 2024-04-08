@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://c6vxaopkyqc6i"]
+[gd_scene load_steps=13 format=3 uid="uid://c6vxaopkyqc6i"]
 
 [ext_resource type="Script" path="res://scenes/main.gd" id="1_1ogx0"]
 [ext_resource type="PackedScene" uid="uid://bgbubl4fsvupu" path="res://scenes/map.tscn" id="1_ng5yi"]
@@ -10,6 +10,7 @@
 [ext_resource type="Script" path="res://scenes/BulletManager.gd" id="7_85jpq"]
 [ext_resource type="PackedScene" uid="uid://vxvjm4c7mp1d" path="res://scenes/blob_zombie.tscn" id="8_1530l"]
 [ext_resource type="PackedScene" uid="uid://5eregx8y4420" path="res://assets/destroyables/destroyable_crate.tscn" id="8_x1ocu"]
+[ext_resource type="Script" path="res://scenes/ImpactManager.gd" id="12_aa78p"]
 [ext_resource type="Script" path="res://scenes/ScoreManager.gd" id="13_fpqvc"]
 
 [node name="Main" type="Node2D"]
@@ -67,5 +68,8 @@ script = ExtResource("13_fpqvc")
 
 [node name="CanvasModulate" type="CanvasModulate" parent="."]
 color = Color(0.0431373, 0.0588235, 0.0941176, 1)
+
+[node name="ImpactManager" type="Node2D" parent="."]
+script = ExtResource("12_aa78p")
 
 [connection signal="player_fired_bulled" from="player" to="BulletManager" method="_on_player_player_fired_bulled"]
