@@ -11,7 +11,7 @@ extends CharacterBody2D
 @onready var sprite: Sprite2D = $Sprite2D
 @onready var attack_cooldown = $AttackCooldown
 @onready var mob_scene = preload("res://scenes/enemy.tscn")
-
+const BULLET_IMPACT_KILL = preload("res://scenes/bullet_impact2.tscn")
 var 	speed 	= 10 # 20% of base movement speed
 var 	start_health = 2000.0
 var 	health 	= 2000.0  # *2000% of base health
@@ -64,6 +64,7 @@ func die():
 	if(drop>20 && drop <=40):
 		dropitem("ammo")
 	add_score()
+	handle_kill(enemy.global_position)
 	queue_free()
 
 
@@ -115,3 +116,9 @@ func add_score():
 	Score_manager.add_experience(exp_value)
 	Score_manager.add_points(points_value)
 	Score_manager.add_money(money_value)
+	
+func handle_kill(position:Vector2):
+	var impact = BULLET_IMPACT_KILL.instantiate()
+	impact.global_position = position
+	impact.emitting = true
+	owner.add_child.call_deferred(impact)

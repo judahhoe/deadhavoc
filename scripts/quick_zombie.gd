@@ -7,7 +7,7 @@ extends CharacterBody2D
 @onready var medkit = preload("res://scenes/medkit.tscn").instantiate()
 @onready var ammobox = preload("res://scenes/ammobox.tscn").instantiate()
 @onready var enemy = self
-
+const BULLET_IMPACT_KILL = preload("res://scenes/bullet_impact2.tscn")
 @onready var sprite: Sprite2D = $Sprite2D
 @onready var attack_cooldown = $AttackCooldown
 
@@ -65,6 +65,7 @@ func die():
 	if(drop>20 && drop <=40):
 		dropitem("ammo")
 	add_score()
+	handle_kill(enemy.global_position)
 	queue_free()
 
 
@@ -108,3 +109,9 @@ func add_score():
 	Score_manager.add_experience(exp_value)
 	Score_manager.add_points(points_value)
 	Score_manager.add_money(money_value)
+	
+func handle_kill(position:Vector2):
+	var impact = BULLET_IMPACT_KILL.instantiate()
+	impact.global_position = position
+	impact.emitting = true
+	owner.add_child.call_deferred(impact)
