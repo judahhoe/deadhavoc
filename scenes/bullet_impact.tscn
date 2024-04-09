@@ -1,0 +1,48 @@
+[gd_scene load_steps=7 format=3 uid="uid://dj5whh6shu5gn"]
+
+[ext_resource type="Script" path="res://scenes/bullet_impact.gd" id="1_gnhyq"]
+
+[sub_resource type="Gradient" id="Gradient_mqmt5"]
+offsets = PackedFloat32Array(0.00505051, 0.959596, 1)
+colors = PackedColorArray(0.941176, 0, 0, 1, 0, 0, 0, 1, 0.916667, 0.916667, 0.916667, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_8t0v4"]
+gradient = SubResource("Gradient_mqmt5")
+
+[sub_resource type="Curve" id="Curve_ge1ql"]
+_data = [Vector2(0, 0.604396), 0.0, 0.0, 0, 0, Vector2(0.287611, 1), 0.0, 0.0, 0, 0, Vector2(1, 0.32967), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_ymv3i"]
+curve = SubResource("Curve_ge1ql")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_6li4a"]
+particle_flag_rotate_y = true
+particle_flag_disable_z = true
+angle_min = -670.5
+angle_max = 692.5
+spread = 145.96
+initial_velocity_min = 250.0
+initial_velocity_max = 300.0
+angular_velocity_min = 50.0
+angular_velocity_max = 50.0
+gravity = Vector3(0, 0, 0)
+damping_min = 1000.0
+damping_max = 1000.0
+scale_min = 5.0
+scale_max = 5.0
+scale_curve = SubResource("CurveTexture_ymv3i")
+color_ramp = SubResource("GradientTexture1D_8t0v4")
+
+[node name="BulletImpact" type="GPUParticles2D"]
+amount = 20
+process_material = SubResource("ParticleProcessMaterial_6li4a")
+lifetime = 0.3
+explosiveness = 0.26
+randomness = 0.11
+script = ExtResource("1_gnhyq")
+
+[node name="Timer" type="Timer" parent="."]
+one_shot = true
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
