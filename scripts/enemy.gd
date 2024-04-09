@@ -8,6 +8,8 @@ extends CharacterBody2D
 @onready var ammobox = preload("res://scenes/ammobox.tscn").instantiate()
 @onready var enemy = self
 @onready var animation_player = $AnimationPlayer
+
+@onready var timer = $"Timer"
 @onready var impact_manager = $"../../ImpactManager"
 @onready var sprite: Sprite2D = $Sprite2D
 @onready var attack_cooldown = $AttackCooldown
@@ -41,6 +43,7 @@ func makepath() -> void:
 	nav_agent.target_position = player.global_position
 
 func _on_timer_timeout():
+	timer.wait_time = randf_range(1, 2)
 	makepath()
 
 func dropitem(item):
@@ -60,7 +63,6 @@ func dropitem(item):
 	pickup.launch(direction * launch_speed, launch_time)
 
 func die():
-	print("Wróg został zabity")
 	drop = randi_range(1,100)
 	if(drop>=1 && drop <=20):
 		dropitem("medkit")

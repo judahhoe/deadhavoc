@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://ci15i02n5bjak"]
+[gd_scene load_steps=8 format=3 uid="uid://ci15i02n5bjak"]
 
 [ext_resource type="Script" path="res://scenes/spawner_bush.gd" id="1_3qdnd"]
 [ext_resource type="PackedScene" uid="uid://cc5v1bd4naah2" path="res://scenes/enemy.tscn" id="2_sm72v"]
@@ -12,6 +12,9 @@ point_count = 3
 [sub_resource type="Gradient" id="Gradient_2b0am"]
 offsets = PackedFloat32Array(0, 0.796296, 1)
 colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_gcbj8"]
+radius = 216.037
 
 [node name="spawner_bush" type="Node2D"]
 position = Vector2(0, -1)
@@ -42,3 +45,11 @@ scale_amount_min = 0.05
 scale_amount_max = 0.1
 scale_amount_curve = SubResource("Curve_u80nk")
 color_ramp = SubResource("Gradient_2b0am")
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("CircleShape2D_gcbj8")
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
+[connection signal="body_exited" from="Area2D" to="." method="_on_area_2d_body_exited"]
