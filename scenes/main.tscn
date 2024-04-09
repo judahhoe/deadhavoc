@@ -51,5 +51,3 @@ color = Color(0.0431373, 0.0588235, 0.0941176, 1)
 
 [node name="ImpactManager" type="Node2D" parent="."]
 script = ExtResource("12_aa78p")
-
-[connection signal="player_fired_bulled" from="player" to="BulletManager" method="_on_player_player_fired_bulled"]

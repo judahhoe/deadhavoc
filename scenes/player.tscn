@@ -1,7 +1,8 @@
-[gd_scene load_steps=32 format=3 uid="uid://cyliupk1rrn74"]
+[gd_scene load_steps=33 format=3 uid="uid://cyliupk1rrn74"]
 
 [ext_resource type="Script" path="res://scripts/CharacterBody2D.gd" id="1_d7hat"]
 [ext_resource type="PackedScene" uid="uid://dlx7joevlhiba" path="res://scenes/pistol.tscn" id="2_ixrmp"]
+[ext_resource type="AudioStream" uid="uid://ftb5vjbry8wm" path="res://sfx/tup1.mp3" id="3_fwc6h"]
 [ext_resource type="Texture2D" uid="uid://vg4rn545m2sb" path="res://textures/character_pistol_aim.png" id="3_g4bnp"]
 [ext_resource type="PackedScene" uid="uid://c3ygjka63koed" path="res://scenes/ammo_count.tscn" id="3_p5vta"]
 [ext_resource type="PackedScene" uid="uid://cexyrpakyu33a" path="res://scenes/pistol_casing_particles.tscn" id="4_0fd2u"]
@@ -84,6 +85,13 @@ texture = ExtResource("3_g4bnp")
 scale = Vector2(2, 2)
 shape = SubResource("CircleShape2D_t8v8n")
 debug_color = Color(0, 0.65098, 0.14902, 0.419608)
+
+[node name="StepTimer" type="Timer" parent="."]
+wait_time = 0.7
+
+[node name="StepsSounds" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_fwc6h")
+bus = &"SoundEffects"
 
 [node name="pistol" parent="." instance=ExtResource("2_ixrmp")]
 position = Vector2(23, 10)
@@ -359,3 +367,5 @@ shadow_filter = 2
 texture = ExtResource("12_4v6hq")
 offset = Vector2(0, -270)
 texture_scale = 0.4
+
+[connection signal="timeout" from="StepTimer" to="." method="_on_step_timer_timeout"]

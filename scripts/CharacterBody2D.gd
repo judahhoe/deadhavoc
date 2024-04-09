@@ -9,6 +9,13 @@ extends CharacterBody2D
 
 @onready var health_bar = $"HUD/HealthBar"
 
+@onready var step_sounds = $"StepsSounds"
+@onready var step_timer = $"StepTimer"
+var step_timer_on = false
+const step1 = preload("res://sfx/tup1.mp3")
+const step2 = preload("res://sfx/tup2.mp3")
+var step = false
+
 @onready var pistol_ammo_bar = $"HUD/Pistol_ammo_bar"
 @onready var rifle_ammo_bar_bottom = $"HUD/Rifle_ammo_bar1"
 @onready var rifle_ammo_bar_top = $"HUD/Rifle_ammo_bar2"
@@ -16,9 +23,10 @@ extends CharacterBody2D
 @onready var pistol_hud =$"HUD/Pistol"
 @onready var rifle_hud =$"HUD/Rifle"
 @onready var shotgun_hud =$"HUD/Shotgun"
-@onready var impact_manager = $"../../ImpactManager"
+@onready var impact_manager = $"../ImpactManager"
 @onready var Pain = $"HUD/BloodOverlay/AnimationPlayer" 
 const BULLET_IMPACT_KILL = preload("res://scenes/bullet_impact2.tscn")
+
 var db #database object 
 var db_name = "res://DataStore/database" #Path to DB
 
@@ -36,7 +44,7 @@ var rotation_speed = 5
 var direction = Vector2(1.0,1.0)
 
 
-signal player_fired_bulled(bullet, direction)
+#signal player_fired_bullet(bullet, direction)
 signal pickup_used()
 
 func _ready():
@@ -75,6 +83,9 @@ func _physics_process(delta):
 	if (Input.is_action_pressed("left") || Input.is_action_pressed("right") || Input.is_action_pressed("down") || Input.is_action_pressed("up")):
 		velocity = (direction * speed)
 		move_and_slide()
+		if(!step_timer_on):
+			step_timer_on = true
+			step_timer.start()
 	
 func _unhandled_input(event):
 	if(event.is_action_pressed("shoot")):
@@ -206,3 +217,20 @@ func handle_kill(position:Vector2):
 	add_child(impact)
 	impact.global_position = position
 	impact.emitting = true
+
+
+func _on_step_timer_timeout():
+	if(step):
+		step_sounds.set_stream(step1)
+		step_sounds.play()
+		await get_tree().create_timer(0.6).timeout
+		step_sounds.stop()
+		step_timer_on = false
+		step = false
+	else:
+		step_sounds.set_stream(step2)
+		step_sounds.play()
+		await get_tree().create_timer(0.6).timeout
+		step_sounds.stop()
+		step_timer_on = false
+		step = true

@@ -71,10 +71,10 @@ scale = Vector2(0.05, 0.05)
 texture = ExtResource("1_unxar")
 
 [node name="EndOfGun" type="Marker2D" parent="."]
-position = Vector2(35, 0)
+position = Vector2(17, 0)
 
 [node name="BulletDirection" type="Marker2D" parent="."]
-position = Vector2(45, 0)
+position = Vector2(30, 0)
 
 [node name="MuzzleFlash" type="Sprite2D" parent="."]
 visible = false
