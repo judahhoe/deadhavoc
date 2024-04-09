@@ -198,3 +198,4 @@ func update_weapon_hud(weapon, visible = false):
 	elif weapon is Shotgun and visible:
 		shotgun_hud.visible = true
 		shotgun_ammo_bar.visible = true
+		

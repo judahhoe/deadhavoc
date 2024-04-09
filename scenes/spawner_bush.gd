@@ -1,6 +1,7 @@
 extends Node2D
 
 @onready var particles = $CPUParticles2D
+@onready var sprite = $"Sprite2D"
 
 @export var et : PackedScene
 @export var ec : int
@@ -25,3 +26,14 @@ func spawn_enemy(enemy_type, enemy_count):
 		await get_tree().create_timer(2.0).timeout
 		particles.restart()
 		enemy_count -= 1
+
+
+func _on_area_2d_body_entered(body):
+	if(body.has_method("get_infected")):
+		sprite.modulate = "ffffff4e"
+
+
+func _on_area_2d_body_exited(body):
+	if(body.has_method("get_infected")):
+		sprite.modulate = "ffffffff"
+
