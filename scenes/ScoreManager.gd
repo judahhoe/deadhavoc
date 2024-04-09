@@ -4,6 +4,7 @@ extends Node2D
 @onready var exp_label = $"/root/Main/player/HUD/ExpLabel"
 @onready var level_label = $"/root/Main/player/HUD/LevelLabel"
 @onready var points_label = $"/root/Main/player/HUD/PointsLabel"
+@onready var money_label = $"/root/Main/player/HUD/MoneyLabel"
 @onready var experience_to_next_level = $"/root/Main/player/HUD/ExpToNextLvlLabel"
 
 var db #database object 
@@ -13,6 +14,7 @@ var experience: int = 0
 var points: int = 0
 var exp_to_next_level: int = 300
 var level: int = 1
+var money:int = 0
 
 func _ready():
 	exp_bar.max_value = exp_to_next_level
@@ -42,11 +44,18 @@ func add_points(amount: int):
 	update_db_coins(amount)
 	update_labels()
 	print("Liczba punktów: ", points)
+	
+func add_money(amount: int):
+	money += amount
+	update_db_money(amount)
+	update_labels()
+	print("Ilość $$$: ", money)
 
 func update_labels():
 	exp_label.text = "Exp: %d" % experience
 	points_label.text ="Points: %d" % points
 	level_label.text = "Level: %d" % level
+	money_label.text = "Money: %d" % money
 	experience_to_next_level.text = "Next level: %d" % exp_to_next_level
 
 func update_db_exp(amount: int):
@@ -74,3 +83,12 @@ func update_db_coins(amount: int):
 	var nick = "test_user"
 	var coins = str(amount)
 	db.query("UPDATE " + table_name + " SET coins = coins + " + coins + " WHERE nickname = '" + nick + "';")
+
+func update_db_money(amount: int):
+	db = SQLite.new()
+	db.path = db_name
+	db.open_db()
+	var table_name = "user"
+	var nick = "test_user"
+	var money = str(amount)
+	db.query("UPDATE " + table_name + " SET money = money + " + money + " WHERE nickname = '" + nick + "';")

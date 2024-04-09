@@ -16,9 +16,9 @@ extends CharacterBody2D
 @onready var pistol_hud =$"HUD/Pistol"
 @onready var rifle_hud =$"HUD/Rifle"
 @onready var shotgun_hud =$"HUD/Shotgun"
-
+@onready var impact_manager = $"../../ImpactManager"
 @onready var Pain = $"HUD/BloodOverlay/AnimationPlayer" 
-
+const BULLET_IMPACT_KILL = preload("res://scenes/bullet_impact2.tscn")
 var db #database object 
 var db_name = "res://DataStore/database" #Path to DB
 
@@ -46,6 +46,8 @@ func _ready():
 	weapon.ammo_count.text = str(weapon.ammo_in_mag) + "/" + str(weapon.ammo)
 	update_weapon_hud(weapon, true)
 
+
+
 func _physics_process(delta):
 	if (Input.is_action_pressed("left") || Input.is_action_pressed("right") || Input.is_action_pressed("down") || Input.is_action_pressed("up")):
 		direction = Input.get_vector("left", "right", "up", "down")
@@ -54,8 +56,7 @@ func _physics_process(delta):
 	var look_angle = calculate_angle(direction, get_global_mouse_position()-position)
 	# Print the result
 	var speed_modifier = (0.4+(0.6*(180.0-look_angle)/180.0))
-	print("Angle between vectors: ", look_angle)
-	print("speed modi: ", speed_modifier)
+
 
 	
 	if (Input.is_action_pressed("aim")):
@@ -177,6 +178,7 @@ func get_infected():
 		infection_count += 2
 
 func die():
+	handle_kill(global_position)
 	get_tree().change_scene_to_file("res://scenes/gameover.tscn")
 
 func update_weapon_hud(weapon, visible = false):
@@ -199,3 +201,8 @@ func update_weapon_hud(weapon, visible = false):
 		shotgun_hud.visible = true
 		shotgun_ammo_bar.visible = true
 		
+func handle_kill(position:Vector2):
+	var impact = BULLET_IMPACT_KILL.instantiate()
+	add_child(impact)
+	impact.global_position = position
+	impact.emitting = true
