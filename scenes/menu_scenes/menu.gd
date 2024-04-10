@@ -35,7 +35,8 @@ func _on_play_button_pressed():
 	await get_tree().create_timer(0.2).timeout
 	if(BackgroundMusic.isMusicPlaying):
 		BackgroundMusic.stop_music()
-	get_tree().change_scene_to_file("res://scenes/main.tscn")
+	get_tree().change_scene_to_packed(load("res://scenes/menu_scenes/loading_screen.tscn"))
+	#get_tree().change_scene_to_file("res://scenes/main.tscn")
 
 
 func _on_perks_button_pressed():
