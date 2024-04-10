@@ -3,6 +3,7 @@ extends Node2D
 @onready var particles = $CPUParticles2D
 @onready var particles2 = $CPUParticles2D2
 @onready var sprite = $AnimatedSprite2D
+@onready var collision = $"CollisionShape2D"
 
 @onready var medkit = preload("res://scenes/medkit.tscn").instantiate()
 @onready var ammobox = preload("res://scenes/ammobox.tscn").instantiate()
@@ -51,6 +52,7 @@ func handle_hit():
 		sprite.frame = 2
 
 func destroy():
+	collision.queue_free()
 	drop = randi_range(1,100)
 	if(drop>=1 && drop <=20):
 		dropitem("medkit")

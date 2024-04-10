@@ -1,7 +1,5 @@
 extends CharacterBody2D
 
-@onready var crosshair = $"HUD/Crosshair"
-
 #@onready var knife = $"knife"
 @onready var pistol = $"pistol"
 @onready var shotgun = $"shotgun"
@@ -16,7 +14,7 @@ extends CharacterBody2D
 @onready var pistol_hud =$"HUD/Pistol"
 @onready var rifle_hud =$"HUD/Rifle"
 @onready var shotgun_hud =$"HUD/Shotgun"
-@onready var impact_manager = $"../../ImpactManager"
+@onready var impact_manager = get_node("/root/Main/ImpactManager")
 @onready var Pain = $"HUD/BloodOverlay/AnimationPlayer" 
 const BULLET_IMPACT_KILL = preload("res://scenes/bullet_impact2.tscn")
 var db #database object 
@@ -54,7 +52,6 @@ func _physics_process(delta):
 	if (Input.is_action_pressed("left") || Input.is_action_pressed("right") || Input.is_action_pressed("down") || Input.is_action_pressed("up")):
 		direction = Input.get_vector("left", "right", "up", "down")
 	
-	crosshair.global_position = get_global_mouse_position() - global_position
 	#angle between aim direction and walking direction
 	var look_angle = calculate_angle(direction, get_global_mouse_position()-position)
 	# Print the result

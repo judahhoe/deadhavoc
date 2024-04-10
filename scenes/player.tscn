@@ -1,4 +1,4 @@
-[gd_scene load_steps=32 format=3 uid="uid://cyliupk1rrn74"]
+[gd_scene load_steps=31 format=3 uid="uid://cyliupk1rrn74"]
 
 [ext_resource type="Script" path="res://scripts/CharacterBody2D.gd" id="1_d7hat"]
 [ext_resource type="PackedScene" uid="uid://dlx7joevlhiba" path="res://scenes/pistol.tscn" id="2_ixrmp"]
@@ -6,7 +6,6 @@
 [ext_resource type="PackedScene" uid="uid://c3ygjka63koed" path="res://scenes/ammo_count.tscn" id="3_p5vta"]
 [ext_resource type="PackedScene" uid="uid://cexyrpakyu33a" path="res://scenes/pistol_casing_particles.tscn" id="4_0fd2u"]
 [ext_resource type="PackedScene" uid="uid://dmscpcoytwixa" path="res://scenes/shotgun.tscn" id="4_i1uek"]
-[ext_resource type="Texture2D" uid="uid://pvld50db7x4y" path="res://textures/crosshair.png" id="4_n73xp"]
 [ext_resource type="PackedScene" uid="uid://c25vukuvl2snb" path="res://scenes/rifle.tscn" id="5_44hwj"]
 [ext_resource type="PackedScene" uid="uid://xq2gkhh3x73u" path="res://scenes/shotgun_casing_particles.tscn" id="6_b7qnj"]
 [ext_resource type="PackedScene" uid="uid://bn2gj3f7fnf4r" path="res://scenes/rifle_casing_particles.tscn" id="8_mdtjk"]
@@ -345,9 +344,6 @@ offset_bottom = 1040.0
 scale = Vector2(0.2, 0.2)
 texture_under = ExtResource("22_pfv3p")
 texture_progress = ExtResource("23_rharf")
-
-[node name="Crosshair" type="Sprite2D" parent="HUD"]
-texture = ExtResource("4_n73xp")
 
 [node name="PointLight2D" type="PointLight2D" parent="."]
 rotation = 1.57079

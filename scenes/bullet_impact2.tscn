@@ -33,6 +33,7 @@ scale_curve = SubResource("CurveTexture_ymv3i")
 color_ramp = SubResource("GradientTexture1D_8t0v4")
 
 [node name="BulletImpact" type="GPUParticles2D"]
+scale = Vector2(0.8, 0.8)
 amount = 50
 process_material = SubResource("ParticleProcessMaterial_6li4a")
 texture = ExtResource("1_ic1cx")

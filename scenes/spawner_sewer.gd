@@ -5,6 +5,8 @@ extends Node2D
 @export var et : PackedScene
 @export var ec : int
 
+@onready var sound = $"SewerSound"
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	await get_tree().create_timer(4.0).timeout
@@ -17,6 +19,7 @@ func _process(delta):
 
 func spawn_enemy(enemy_type, enemy_count):
 	animationPlayer.play("open_sewer")
+	sound.play()
 	await get_tree().create_timer(2.0).timeout
 	while (enemy_count>0):
 		var spawned_enemy = enemy_type.instantiate()
@@ -25,3 +28,4 @@ func spawn_enemy(enemy_type, enemy_count):
 		await get_tree().create_timer(2.0).timeout
 		enemy_count -= 1
 	animationPlayer.play("close_sewer")
+	sound.play()
