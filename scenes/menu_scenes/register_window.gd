@@ -1,7 +1,7 @@
 extends Control
 
-@onready var loginbutton = $VBoxContainer/HBoxContainer/LoginButton
-@onready var registerbutton = $VBoxContainer/HBoxContainer/RegisterButton
+@onready var loginbutton = $VBoxContainer/LoginButton
+@onready var registerbutton = $VBoxContainer/RegisterButton
 @onready var quitbutton = $VBoxContainer/QuitButton
 @onready var sound = $ButtonClickSplatter
 @onready var login = $VBoxContainer/LoginField

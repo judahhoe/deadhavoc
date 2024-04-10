@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://c6vxaopkyqc6i"]
+[gd_scene load_steps=17 format=3 uid="uid://c6vxaopkyqc6i"]
 
 [ext_resource type="Script" path="res://scenes/main.gd" id="1_1ogx0"]
 [ext_resource type="PackedScene" uid="uid://bgbubl4fsvupu" path="res://scenes/map.tscn" id="1_ng5yi"]
@@ -7,11 +7,23 @@
 [ext_resource type="PackedScene" uid="uid://dl8wrgmp0q3vc" path="res://scenes/spawner_sewer.tscn" id="6_togh1"]
 [ext_resource type="Script" path="res://scenes/BulletManager.gd" id="7_85jpq"]
 [ext_resource type="PackedScene" uid="uid://5eregx8y4420" path="res://assets/destroyables/destroyable_crate.tscn" id="8_x1ocu"]
+[ext_resource type="Script" path="res://scenes/minimap.gd" id="10_hx26b"]
+[ext_resource type="Shader" path="res://scenes/minimap.gdshader" id="10_xajyc"]
+[ext_resource type="Texture2D" uid="uid://d1gd74fqo27gs" path="res://textures/minimap.png" id="11_y8y6c"]
 [ext_resource type="Script" path="res://scenes/ImpactManager.gd" id="12_aa78p"]
+[ext_resource type="Texture2D" uid="uid://icbe6i4238se" path="res://icon.svg" id="12_sfed1"]
 [ext_resource type="Script" path="res://scenes/ScoreManager.gd" id="13_fpqvc"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_5b8d7"]
 font_size = 50
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_orn37"]
+shader = ExtResource("10_xajyc")
+shader_parameter/radius = 1.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_e156b"]
+shader = ExtResource("10_xajyc")
+shader_parameter/radius = 1.0
 
 [node name="Main" type="Node2D"]
 script = ExtResource("1_1ogx0")
@@ -25,6 +37,7 @@ scale = Vector2(0.08, 0.08)
 
 [node name="player" parent="." instance=ExtResource("2_oappt")]
 unique_name_in_owner = true
+position = Vector2(752, -496)
 
 [node name="spawner_bush" parent="." instance=ExtResource("4_0x1ta")]
 z_index = 1
@@ -154,6 +167,38 @@ grow_horizontal = 2
 grow_vertical = 2
 text = "QUIT
 "
+
+[node name="UI" type="CanvasLayer" parent="."]
+
+[node name="SubViewportContainer" type="SubViewportContainer" parent="UI"]
+material = SubResource("ShaderMaterial_orn37")
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -266.0
+offset_top = 61.0
+offset_right = -66.0
+offset_bottom = 261.0
+grow_horizontal = 0
+
+[node name="SubViewport" type="SubViewport" parent="UI/SubViewportContainer"]
+handle_input_locally = false
+size = Vector2i(200, 200)
+render_target_update_mode = 4
+script = ExtResource("10_hx26b")
+
+[node name="Sprite2D" type="Sprite2D" parent="UI/SubViewportContainer/SubViewport"]
+material = SubResource("ShaderMaterial_e156b")
+texture = ExtResource("11_y8y6c")
+offset = Vector2(85, 120)
+
+[node name="Camera2D" type="Camera2D" parent="UI/SubViewportContainer/SubViewport"]
+zoom = Vector2(1.5, 1.5)
+
+[node name="Sprite2D" type="Sprite2D" parent="UI/SubViewportContainer"]
+scale = Vector2(0.1, 0.1)
+texture = ExtResource("12_sfed1")
+offset = Vector2(1000, 1000)
 
 [connection signal="player_fired_bulled" from="player" to="BulletManager" method="_on_player_player_fired_bulled"]
 [connection signal="pressed" from="Pause/PauseMenu/UnpauseButton" to="." method="_on_button_pressed"]
