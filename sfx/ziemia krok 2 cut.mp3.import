@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://34bg4rif8eai"
+path="res://.godot/imported/ziemia krok 2 cut.mp3-418004605b5afae414ccf31eea315528.mp3str"
+
+[deps]
+
+source_file="res://sfx/ziemia krok 2 cut.mp3"
+dest_files=["res://.godot/imported/ziemia krok 2 cut.mp3-418004605b5afae414ccf31eea315528.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

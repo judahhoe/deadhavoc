@@ -9,7 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://5eregx8y4420" path="res://assets/destroyables/destroyable_crate.tscn" id="8_x1ocu"]
 [ext_resource type="Script" path="res://scenes/minimap.gd" id="10_hx26b"]
 [ext_resource type="Shader" path="res://scenes/minimap.gdshader" id="10_xajyc"]
-[ext_resource type="Texture2D" uid="uid://d1gd74fqo27gs" path="res://textures/minimap.png" id="11_y8y6c"]
+[ext_resource type="Texture2D" uid="uid://c63pkn0vrrtdk" path="res://textures/minimap_bw.png" id="12_5n76g"]
 [ext_resource type="Script" path="res://scenes/ImpactManager.gd" id="12_aa78p"]
 [ext_resource type="Texture2D" uid="uid://icbe6i4238se" path="res://icon.svg" id="12_sfed1"]
 [ext_resource type="Script" path="res://scenes/ScoreManager.gd" id="13_fpqvc"]
@@ -188,8 +188,9 @@ render_target_update_mode = 4
 script = ExtResource("10_hx26b")
 
 [node name="Sprite2D" type="Sprite2D" parent="UI/SubViewportContainer/SubViewport"]
+modulate = Color(1, 1, 1, 0.741176)
 material = SubResource("ShaderMaterial_e156b")
-texture = ExtResource("11_y8y6c")
+texture = ExtResource("12_5n76g")
 offset = Vector2(85, 120)
 
 [node name="Camera2D" type="Camera2D" parent="UI/SubViewportContainer/SubViewport"]

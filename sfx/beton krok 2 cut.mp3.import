@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://drj1l36ydm8x8"
+path="res://.godot/imported/beton krok 2 cut.mp3-33571a2c03b19e28e76683d14938604c.mp3str"
+
+[deps]
+
+source_file="res://sfx/beton krok 2 cut.mp3"
+dest_files=["res://.godot/imported/beton krok 2 cut.mp3-33571a2c03b19e28e76683d14938604c.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4
