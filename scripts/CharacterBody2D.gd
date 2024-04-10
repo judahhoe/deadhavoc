@@ -11,9 +11,9 @@ extends CharacterBody2D
 @onready var rifle_ammo_bar_bottom = $"HUD/Rifle_ammo_bar1"
 @onready var rifle_ammo_bar_top = $"HUD/Rifle_ammo_bar2"
 @onready var shotgun_ammo_bar = $"HUD/Shotgun_ammo_bar"
-@onready var pistol_hud =$"HUD/Pistol"
-@onready var rifle_hud =$"HUD/Rifle"
-@onready var shotgun_hud =$"HUD/Shotgun"
+@onready var pistol_hud = $"HUD/Pistol"
+@onready var rifle_hud = $"HUD/Rifle"
+@onready var shotgun_hud = $"HUD/Shotgun"
 @onready var impact_manager = get_node("/root/Main/ImpactManager")
 @onready var Pain = $"HUD/BloodOverlay/AnimationPlayer" 
 const BULLET_IMPACT_KILL = preload("res://scenes/bullet_impact2.tscn")
@@ -21,6 +21,15 @@ var db #database object
 var db_name = "res://DataStore/database" #Path to DB
 
 @onready var particle_manager = get_node("/root/Main/ParticleManager")
+
+@onready var footsteps_sound = $"FootstepsSounds"
+@onready var walking_animation = $"Walking"
+@onready var tilemap = get_node("/root/Main/Map/GroundAndWalls")
+@onready var grass_step = preload("res://sfx/trawa krok1 cut.mp3")
+@onready var wood_step = preload("res://sfx/drewno krok 1 cut.mp3")
+@onready var cement_step = preload("res://sfx/beton krok 1 cut.mp3")
+@onready var step_position = $"StepChecker"
+var tile
 
 var infection_count
 var is_infected = false
@@ -51,13 +60,15 @@ func _ready():
 func _physics_process(delta):
 	if (Input.is_action_pressed("left") || Input.is_action_pressed("right") || Input.is_action_pressed("down") || Input.is_action_pressed("up")):
 		direction = Input.get_vector("left", "right", "up", "down")
+		walking_animation.play("walking_animation")
 	
 	#angle between aim direction and walking direction
 	var look_angle = calculate_angle(direction, get_global_mouse_position()-position)
 	# Print the result
 	var speed_modifier = (0.4+(0.6*(180.0-look_angle)/180.0))
-
-
+	
+	#tilemap.local_to_map(step_position.global_position - Vector2(80,-80)) DON'T EVER DELETE THIS
+	tile = tilemap.get_cell_atlas_coords(0, tilemap.local_to_map(step_position.global_position - Vector2(80,-80))) 
 	
 	if (Input.is_action_pressed("aim")):
 		speed = 30
@@ -150,8 +161,9 @@ func take_damage(damage):
 		health_bar.value = 0
 	if (health <= 0):
 		die()
-		
-		
+
+
+
 func handle_hit(damage):
 	health -= damage
 	Pain.play("pain")
@@ -206,3 +218,16 @@ func handle_kill(position:Vector2):
 	particle_manager.add_child(impact)
 	impact.global_position = position
 	impact.emitting = true
+
+func play_footsteps():
+	#print(tilemap.get_cell_source_id(0, tilemap.local_to_map(position)))
+	print(tile)
+	if(tile == Vector2i(0,0) || tile == Vector2i(0,1) || tile == Vector2i(0,2)):
+		footsteps_sound.stream = grass_step
+	if(tile == Vector2i(1,0) || tile == Vector2i(4,0) || tile == Vector2i(7,0)):
+		footsteps_sound.stream = cement_step
+	if(tile == Vector2i(5,0)):
+		footsteps_sound.stream = wood_step
+	
+	footsteps_sound.pitch_scale = randf_range(.8, 1.2)
+	footsteps_sound.play()
