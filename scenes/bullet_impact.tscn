@@ -1,5 +1,6 @@
-[gd_scene load_steps=7 format=3 uid="uid://dj5whh6shu5gn"]
+[gd_scene load_steps=8 format=3 uid="uid://dj5whh6shu5gn"]
 
+[ext_resource type="Texture2D" uid="uid://da25cdpau3yb3" path="res://textures/blood_particles.png" id="1_c22vb"]
 [ext_resource type="Script" path="res://scenes/bullet_impact.gd" id="1_gnhyq"]
 
 [sub_resource type="Gradient" id="Gradient_mqmt5"]
@@ -29,14 +30,14 @@ angular_velocity_max = 50.0
 gravity = Vector3(0, 0, 0)
 damping_min = 1000.0
 damping_max = 1000.0
-scale_min = 5.0
-scale_max = 5.0
+scale_min = 0.5
 scale_curve = SubResource("CurveTexture_ymv3i")
 color_ramp = SubResource("GradientTexture1D_8t0v4")
 
 [node name="BulletImpact" type="GPUParticles2D"]
 amount = 20
 process_material = SubResource("ParticleProcessMaterial_6li4a")
+texture = ExtResource("1_c22vb")
 lifetime = 0.3
 explosiveness = 0.26
 randomness = 0.11

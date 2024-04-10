@@ -67,10 +67,9 @@ _data = {
 "pain": SubResource("Animation_xq4aw")
 }
 
-[node name="player" type="CharacterBody2D" node_paths=PackedStringArray("crosshair")]
+[node name="player" type="CharacterBody2D"]
 collision_mask = 515
 script = ExtResource("1_d7hat")
-crosshair = NodePath("crosshair")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 zoom = Vector2(1.5, 1.5)
@@ -109,10 +108,6 @@ visible = false
 position = Vector2(-6, 10)
 
 [node name="rifle_casing_particles" parent="rifle" instance=ExtResource("8_mdtjk")]
-
-[node name="crosshair" type="Sprite2D" parent="."]
-visible = false
-texture = ExtResource("4_n73xp")
 
 [node name="HUD" type="CanvasLayer" parent="."]
 
@@ -350,6 +345,9 @@ offset_bottom = 1040.0
 scale = Vector2(0.2, 0.2)
 texture_under = ExtResource("22_pfv3p")
 texture_progress = ExtResource("23_rharf")
+
+[node name="Crosshair" type="Sprite2D" parent="HUD"]
+texture = ExtResource("4_n73xp")
 
 [node name="PointLight2D" type="PointLight2D" parent="."]
 rotation = 1.57079

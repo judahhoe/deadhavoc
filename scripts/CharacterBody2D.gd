@@ -1,6 +1,6 @@
 extends CharacterBody2D
 
-@export var crosshair : Sprite2D
+@onready var crosshair = $"HUD/Crosshair"
 
 #@onready var knife = $"knife"
 @onready var pistol = $"pistol"
@@ -21,6 +21,8 @@ extends CharacterBody2D
 const BULLET_IMPACT_KILL = preload("res://scenes/bullet_impact2.tscn")
 var db #database object 
 var db_name = "res://DataStore/database" #Path to DB
+
+@onready var particle_manager = get_node("/root/Main/ParticleManager")
 
 var infection_count
 var is_infected = false
@@ -52,6 +54,7 @@ func _physics_process(delta):
 	if (Input.is_action_pressed("left") || Input.is_action_pressed("right") || Input.is_action_pressed("down") || Input.is_action_pressed("up")):
 		direction = Input.get_vector("left", "right", "up", "down")
 	
+	crosshair.global_position = get_global_mouse_position() - global_position
 	#angle between aim direction and walking direction
 	var look_angle = calculate_angle(direction, get_global_mouse_position()-position)
 	# Print the result
@@ -203,6 +206,6 @@ func update_weapon_hud(weapon, visible = false):
 		
 func handle_kill(position:Vector2):
 	var impact = BULLET_IMPACT_KILL.instantiate()
-	add_child(impact)
+	particle_manager.add_child(impact)
 	impact.global_position = position
 	impact.emitting = true
