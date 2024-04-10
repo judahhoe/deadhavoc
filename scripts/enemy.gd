@@ -7,6 +7,7 @@ extends CharacterBody2D
 @onready var nav_agent := $NavigationAgent2D as NavigationAgent2D
 @onready var medkit = preload("res://scenes/medkit.tscn").instantiate()
 @onready var ammobox = preload("res://scenes/ammobox.tscn").instantiate()
+@onready var blood_pool = preload("res://scenes/blood_pool.tscn").instantiate()
 @onready var enemy = self
 @onready var animation_player = $AnimationPlayer
 
@@ -112,4 +113,6 @@ func handle_kill(position:Vector2):
 	var impact = BULLET_IMPACT_KILL.instantiate()
 	impact.global_position = position
 	impact.emitting = true
+	blood_pool.global_position = position
 	particle_manager.add_child.call_deferred(impact)
+	particle_manager.add_child.call_deferred(blood_pool)

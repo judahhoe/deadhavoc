@@ -27,6 +27,8 @@ shadow_size = 20
 shadow_color = Color(0, 0, 0, 0.360784)
 
 [node name="Map" type="Node2D"]
+z_index = -10
+z_as_relative = false
 
 [node name="GroundAndWalls" type="TileMap" parent="."]
 position = Vector2(64, -64)
