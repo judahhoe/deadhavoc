@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://c6vxaopkyqc6i"]
+[gd_scene load_steps=11 format=3 uid="uid://c6vxaopkyqc6i"]
 
 [ext_resource type="Script" path="res://scenes/main.gd" id="1_1ogx0"]
 [ext_resource type="PackedScene" uid="uid://bgbubl4fsvupu" path="res://scenes/map.tscn" id="1_ng5yi"]
@@ -9,6 +9,9 @@
 [ext_resource type="PackedScene" uid="uid://5eregx8y4420" path="res://assets/destroyables/destroyable_crate.tscn" id="8_x1ocu"]
 [ext_resource type="Script" path="res://scenes/ImpactManager.gd" id="12_aa78p"]
 [ext_resource type="Script" path="res://scenes/ScoreManager.gd" id="13_fpqvc"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_5b8d7"]
+font_size = 50
 
 [node name="Main" type="Node2D"]
 script = ExtResource("1_1ogx0")
@@ -45,7 +48,6 @@ position = Vector2(377, -22)
 script = ExtResource("13_fpqvc")
 
 [node name="CanvasModulate" type="CanvasModulate" parent="."]
-visible = false
 z_as_relative = false
 color = Color(0.0431373, 0.0588235, 0.0941176, 1)
 
@@ -54,4 +56,106 @@ script = ExtResource("12_aa78p")
 
 [node name="ParticleManager" type="Node2D" parent="."]
 
+[node name="Pause" type="CanvasLayer" parent="."]
+
+[node name="PauseMenu" type="Control" parent="Pause"]
+process_mode = 3
+visible = false
+light_mask = 0
+z_index = 10
+z_as_relative = false
+layout_mode = 3
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="Pause/PauseMenu"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -96.0
+offset_top = -127.0
+offset_right = 97.0
+offset_bottom = -58.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "PAUSED"
+label_settings = SubResource("LabelSettings_5b8d7")
+
+[node name="ColorRect" type="ColorRect" parent="Pause/PauseMenu"]
+custom_minimum_size = Vector2(400, 400)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -200.0
+offset_top = -200.0
+offset_right = 200.0
+offset_bottom = 200.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.286275, 0.286275, 0.286275, 0.666667)
+
+[node name="UnpauseButton" type="Button" parent="Pause/PauseMenu"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -4.0
+offset_top = 55.0
+offset_right = 4.0
+offset_bottom = 63.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "UNPAUSE"
+
+[node name="MenuButton" type="Button" parent="Pause/PauseMenu"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -4.0
+offset_top = 108.0
+offset_right = 4.0
+offset_bottom = 116.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "MENU"
+
+[node name="QuitButton" type="Button" parent="Pause/PauseMenu"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -23.0
+offset_top = 151.0
+offset_right = 24.0
+offset_bottom = 182.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "QUIT
+"
+
 [connection signal="player_fired_bulled" from="player" to="BulletManager" method="_on_player_player_fired_bulled"]
+[connection signal="pressed" from="Pause/PauseMenu/UnpauseButton" to="." method="_on_button_pressed"]
+[connection signal="pressed" from="Pause/PauseMenu/MenuButton" to="." method="_on_menu_button_pressed"]
+[connection signal="pressed" from="Pause/PauseMenu/QuitButton" to="." method="_on_quit_button_pressed"]
