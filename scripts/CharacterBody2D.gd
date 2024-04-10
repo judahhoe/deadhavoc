@@ -1,7 +1,5 @@
 extends CharacterBody2D
 
-@export var crosshair : Sprite2D
-
 #@onready var knife = $"knife"
 @onready var pistol = $"pistol"
 @onready var shotgun = $"shotgun"
@@ -16,11 +14,13 @@ extends CharacterBody2D
 @onready var pistol_hud =$"HUD/Pistol"
 @onready var rifle_hud =$"HUD/Rifle"
 @onready var shotgun_hud =$"HUD/Shotgun"
-@onready var impact_manager = $"../../ImpactManager"
+@onready var impact_manager = get_node("/root/Main/ImpactManager")
 @onready var Pain = $"HUD/BloodOverlay/AnimationPlayer" 
 const BULLET_IMPACT_KILL = preload("res://scenes/bullet_impact2.tscn")
 var db #database object 
 var db_name = "res://DataStore/database" #Path to DB
+
+@onready var particle_manager = get_node("/root/Main/ParticleManager")
 
 var infection_count
 var is_infected = false
@@ -203,6 +203,6 @@ func update_weapon_hud(weapon, visible = false):
 		
 func handle_kill(position:Vector2):
 	var impact = BULLET_IMPACT_KILL.instantiate()
-	add_child(impact)
+	particle_manager.add_child(impact)
 	impact.global_position = position
 	impact.emitting = true

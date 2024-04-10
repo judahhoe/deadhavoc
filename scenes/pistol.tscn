@@ -1,9 +1,11 @@
-[gd_scene load_steps=8 format=3 uid="uid://dlx7joevlhiba"]
+[gd_scene load_steps=10 format=3 uid="uid://dlx7joevlhiba"]
 
 [ext_resource type="Script" path="res://pistol.gd" id="1_t7bhw"]
 [ext_resource type="Texture2D" uid="uid://cw2ckuqrgoqia" path="res://textures/pistol.png" id="1_unxar"]
 [ext_resource type="PackedScene" uid="uid://buytdgkxqcuho" path="res://scenes/pistol_bullet.tscn" id="2_hqsxh"]
 [ext_resource type="Texture2D" uid="uid://cxeac5y833pnl" path="res://textures/muzzleflash.png" id="3_fvo0n"]
+[ext_resource type="AudioStream" uid="uid://blcrx1upwkcpn" path="res://sfx/shot_pitol.mp3" id="5_roosi"]
+[ext_resource type="AudioStream" uid="uid://cka4ak8ec404b" path="res://sfx/reload.mp3" id="6_jn7ek"]
 
 [sub_resource type="Animation" id="Animation_uksqy"]
 resource_name = "dipense_casing"
@@ -95,5 +97,16 @@ one_shot = true
 [node name="ReloadTimer" type="Timer" parent="."]
 wait_time = 2.0
 one_shot = true
+
+[node name="CasingEject" type="Marker2D" parent="."]
+position = Vector2(4, 3)
+
+[node name="Gunshot" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("5_roosi")
+bus = &"SoundEffects"
+
+[node name="Reload" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("6_jn7ek")
+bus = &"SoundEffects"
 
 [connection signal="timeout" from="ReloadTimer" to="." method="_on_reload_timer_timeout"]

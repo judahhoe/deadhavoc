@@ -56,7 +56,6 @@ rotation = -0.498592
 [node name="Trashcan10" parent="Clutter/Trashcans" instance=ExtResource("2_yyqf5")]
 position = Vector2(1836, -1969)
 rotation = 0.233436
-scale = Vector2(1, 1)
 
 [node name="Trashcan2" parent="Clutter/Trashcans" instance=ExtResource("2_yyqf5")]
 position = Vector2(1358, 2739)
@@ -64,22 +63,18 @@ position = Vector2(1358, 2739)
 [node name="Trashcan3" parent="Clutter/Trashcans" instance=ExtResource("6_1usan")]
 position = Vector2(882, 708)
 rotation = 2.87979
-scale = Vector2(1, 1)
 
 [node name="Trashcan5" parent="Clutter/Trashcans" instance=ExtResource("6_1usan")]
 position = Vector2(1780, -1950)
 rotation = 2.87979
-scale = Vector2(1, 1)
 
 [node name="Trashcan6" parent="Clutter/Trashcans" instance=ExtResource("6_1usan")]
 position = Vector2(1709, -647)
 rotation = 2.87979
-scale = Vector2(1, 1)
 
 [node name="Trashcan7" parent="Clutter/Trashcans" instance=ExtResource("6_1usan")]
 position = Vector2(1755, -646)
 rotation = 2.87979
-scale = Vector2(1, 1)
 
 [node name="bushes" type="Node2D" parent="Clutter"]
 

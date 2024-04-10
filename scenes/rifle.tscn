@@ -95,4 +95,7 @@ one_shot = true
 wait_time = 2.0
 one_shot = true
 
+[node name="CasingEject" type="Marker2D" parent="."]
+position = Vector2(44, 2)
+
 [connection signal="timeout" from="ReloadTimer" to="." method="_on_reload_timer_timeout"]

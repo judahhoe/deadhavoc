@@ -1,4 +1,4 @@
-[gd_scene load_steps=32 format=3 uid="uid://cyliupk1rrn74"]
+[gd_scene load_steps=31 format=3 uid="uid://cyliupk1rrn74"]
 
 [ext_resource type="Script" path="res://scripts/CharacterBody2D.gd" id="1_d7hat"]
 [ext_resource type="PackedScene" uid="uid://dlx7joevlhiba" path="res://scenes/pistol.tscn" id="2_ixrmp"]
@@ -6,7 +6,6 @@
 [ext_resource type="PackedScene" uid="uid://c3ygjka63koed" path="res://scenes/ammo_count.tscn" id="3_p5vta"]
 [ext_resource type="PackedScene" uid="uid://cexyrpakyu33a" path="res://scenes/pistol_casing_particles.tscn" id="4_0fd2u"]
 [ext_resource type="PackedScene" uid="uid://dmscpcoytwixa" path="res://scenes/shotgun.tscn" id="4_i1uek"]
-[ext_resource type="Texture2D" uid="uid://pvld50db7x4y" path="res://textures/crosshair.png" id="4_n73xp"]
 [ext_resource type="PackedScene" uid="uid://c25vukuvl2snb" path="res://scenes/rifle.tscn" id="5_44hwj"]
 [ext_resource type="PackedScene" uid="uid://xq2gkhh3x73u" path="res://scenes/shotgun_casing_particles.tscn" id="6_b7qnj"]
 [ext_resource type="PackedScene" uid="uid://bn2gj3f7fnf4r" path="res://scenes/rifle_casing_particles.tscn" id="8_mdtjk"]
@@ -67,10 +66,9 @@ _data = {
 "pain": SubResource("Animation_xq4aw")
 }
 
-[node name="player" type="CharacterBody2D" node_paths=PackedStringArray("crosshair")]
+[node name="player" type="CharacterBody2D"]
 collision_mask = 515
 script = ExtResource("1_d7hat")
-crosshair = NodePath("crosshair")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 zoom = Vector2(1.5, 1.5)
@@ -109,10 +107,6 @@ visible = false
 position = Vector2(-6, 10)
 
 [node name="rifle_casing_particles" parent="rifle" instance=ExtResource("8_mdtjk")]
-
-[node name="crosshair" type="Sprite2D" parent="."]
-visible = false
-texture = ExtResource("4_n73xp")
 
 [node name="HUD" type="CanvasLayer" parent="."]
 

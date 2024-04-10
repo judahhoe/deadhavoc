@@ -21,6 +21,13 @@ class_name Pistol
 @onready var ammo_count = $"../HUD/AmmoCount"
 @onready var reload_progress = $"../HUD/ReloadProgress"
 @onready var bullet_manager = $"../../BulletManager"
+@onready var casing_eject = $"CasingEject"
+
+#sounds
+@onready var gunshot_sound = $"Gunshot"
+@onready var reload_sound = $"Reload"
+
+@onready var particle_manager = get_node("/root/Main/ParticleManager")
 
 @onready var ammo_bar = $"../HUD/Pistol_ammo_bar"
 
@@ -46,6 +53,7 @@ func shoot():
 		ammo_count.text = str(ammo_in_mag) + "/" + str(ammo)
 		var recoil_radians = deg_to_rad(randf_range(-recoil, recoil)) 
 		var bullet_instance = Bullet.instantiate()
+		gunshot_sound.play()
 		bullet_instance.global_position = end_of_gun.global_position
 		var target = bullet_direction.global_position
 		var direction_to_shoot = bullet_instance.global_position.direction_to(target).normalized()
@@ -62,13 +70,15 @@ func shoot():
 
 func emitt_casing():
 	var casing = casing_emitter.instantiate()
-	add_child(casing)
+	casing.global_position = casing_eject.global_position 
+	particle_manager.add_child(casing)
 	casing.emitting = true
 
 func reload():
 	if(ammo > 0 && reload_timer.is_stopped()):
 		reload_timer.start()
 		reload_progress.visible = true
+		reload_sound.play()
 		print("reloading")
 	else:
 		print ("mag is empty or reloading")

@@ -1,6 +1,7 @@
 extends CharacterBody2D
 
 @onready var Score_manager = get_node("/root/Main/ScoreManager")
+@onready var particle_manager = get_node("/root/Main/ParticleManager")
 
 @onready var player = $"../%player"
 @onready var nav_agent := $NavigationAgent2D as NavigationAgent2D
@@ -10,7 +11,7 @@ extends CharacterBody2D
 @onready var animation_player = $AnimationPlayer
 
 @onready var timer = $"Timer"
-@onready var impact_manager = $"../../ImpactManager"
+@onready var impact_manager = get_node("/root/Main/ImpactManager")
 @onready var sprite: Sprite2D = $Sprite2D
 @onready var attack_cooldown = $AttackCooldown
 const BULLET_IMPACT_KILL = preload("res://scenes/bullet_impact2.tscn")
@@ -111,4 +112,4 @@ func handle_kill(position:Vector2):
 	var impact = BULLET_IMPACT_KILL.instantiate()
 	impact.global_position = position
 	impact.emitting = true
-	owner.add_child.call_deferred(impact)
+	particle_manager.add_child.call_deferred(impact)
