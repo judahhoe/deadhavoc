@@ -30,6 +30,7 @@ func _on_kill_timer_timeout():
 func _on_body_entered(body):
 	print(body)
 	if (body.has_method("handle_hit")):
-		emit_signal("bullet_impacted",global_position,direction)
+		if (body.has_method("handle_kill")):
+			emit_signal("bullet_impacted",global_position,direction)
 		body.handle_hit()
 		queue_free()

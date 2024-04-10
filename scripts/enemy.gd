@@ -2,6 +2,7 @@ extends CharacterBody2D
 
 @onready var Score_manager = get_node("/root/Main/ScoreManager")
 @onready var particle_manager = get_node("/root/Main/ParticleManager")
+@onready var main_node = get_node("/root/Main")
 
 @onready var player = $"../%player"
 @onready var nav_agent := $NavigationAgent2D as NavigationAgent2D
@@ -54,8 +55,7 @@ func dropitem(item):
 			pickup = medkit
 		"ammo":
 			pickup = ammobox
-	if (owner != null):
-		owner.add_child.call_deferred(pickup)
+	main_node.add_child.call_deferred(pickup)
 
 	pickup.position = enemy.global_position
 	var direction : Vector2 = Vector2(

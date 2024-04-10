@@ -29,17 +29,18 @@ offset_bottom = 135.5
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="LoginField" type="TextEdit" parent="VBoxContainer"]
+[node name="LoginField" type="LineEdit" parent="VBoxContainer"]
 custom_minimum_size = Vector2(300, 40)
 layout_mode = 2
 size_flags_horizontal = 4
 placeholder_text = "Login"
 
-[node name="PasswordField" type="TextEdit" parent="VBoxContainer"]
+[node name="PasswordField" type="LineEdit" parent="VBoxContainer"]
 custom_minimum_size = Vector2(300, 40)
 layout_mode = 2
 size_flags_horizontal = 4
 placeholder_text = "Password"
+secret = true
 
 [node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
 layout_mode = 2
