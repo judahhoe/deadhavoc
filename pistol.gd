@@ -3,6 +3,7 @@ extends Node2D
 class_name Pistol
 
 @export var weapon_type : String
+#data base reads
 @export var max_ammo : int
 @export var ammo : int
 @export var mag_size : int

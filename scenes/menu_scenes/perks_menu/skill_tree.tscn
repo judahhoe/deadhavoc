@@ -1,0 +1,158 @@
+[gd_scene load_steps=8 format=3 uid="uid://8cx0f8raabjt"]
+
+[ext_resource type="Script" path="res://scenes/menu_scenes/perks_menu/skill_tree.gd" id="1_qt80f"]
+[ext_resource type="PackedScene" uid="uid://d0kwb3epc5nwc" path="res://scenes/menu_scenes/perks_menu/skill_ammo.tscn" id="2_wcwa7"]
+[ext_resource type="PackedScene" uid="uid://bixdlyavsdrdg" path="res://scenes/menu_scenes/perks_menu/skill_health.tscn" id="3_o0na6"]
+[ext_resource type="PackedScene" uid="uid://bd7sa8rdca2hc" path="res://scenes/menu_scenes/perks_menu/skill_recoil.tscn" id="4_0ntes"]
+[ext_resource type="PackedScene" uid="uid://dka6qirukxyqh" path="res://scenes/menu_scenes/perks_menu/skill_reload.tscn" id="5_jmc7u"]
+[ext_resource type="PackedScene" uid="uid://c58pnt6fimqef" path="res://scenes/menu_scenes/perks_menu/skill_speed.tscn" id="6_4xvds"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_2mbrp"]
+font_size = 40
+
+[node name="SkillTree" type="Control"]
+layout_direction = 1
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_qt80f")
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -24.5
+offset_top = 272.0
+offset_right = 24.5
+offset_bottom = 295.0
+grow_horizontal = 2
+text = "PERKS"
+label_settings = SubResource("LabelSettings_2mbrp")
+
+[node name="SkillPoints" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -114.5
+offset_top = 338.0
+offset_right = 114.5
+offset_bottom = 393.0
+grow_horizontal = 2
+text = "Skill points :"
+label_settings = SubResource("LabelSettings_2mbrp")
+
+[node name="SkillAmmo" parent="." instance=ExtResource("2_wcwa7")]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -50.0
+offset_top = -50.0
+offset_right = 50.0
+offset_bottom = 50.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(1, 1)
+tooltip_text = "Increase max ammo by 20"
+
+[node name="SkillHealth" parent="." instance=ExtResource("3_o0na6")]
+layout_mode = 0
+offset_left = 1021.0
+offset_top = 640.0
+offset_right = 1121.0
+offset_bottom = 740.0
+scale = Vector2(1, 1)
+tooltip_text = "Increase player health by 20"
+
+[node name="SkillRecoil" parent="." instance=ExtResource("4_0ntes")]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 150.0
+offset_top = -50.0
+offset_right = 250.0
+offset_bottom = 50.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(1, 1)
+tooltip_text = "Decrease all weapons recoil by 20%"
+
+[node name="SkillReload" parent="." instance=ExtResource("5_jmc7u")]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -265.0
+offset_top = -50.0
+offset_right = -165.0
+offset_bottom = 50.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(1, 1)
+tooltip_text = "Increase reload speed for all weapons by 20%"
+
+[node name="SkillSpeed" parent="." instance=ExtResource("6_4xvds")]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -160.0
+offset_top = 100.0
+offset_right = -60.0
+offset_bottom = 200.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(1, 1)
+tooltip_text = "Increase player movement speed by 5%"
+
+[node name="ApplyButton" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -4.0
+offset_top = -277.0
+offset_right = 4.0
+offset_bottom = -269.0
+grow_horizontal = 2
+grow_vertical = 0
+text = "APPLY"
+
+[node name="ReturnButton" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -23.5
+offset_top = -238.0
+offset_right = 23.5
+offset_bottom = -184.0
+grow_horizontal = 2
+grow_vertical = 0
+text = "RETURN"
+
+[connection signal="pressed" from="SkillAmmo" to="." method="_on_skill_ammo_pressed"]
+[connection signal="pressed" from="SkillHealth" to="." method="_on_skill_health_pressed"]
+[connection signal="pressed" from="SkillRecoil" to="." method="_on_skill_recoil_pressed"]
+[connection signal="pressed" from="SkillReload" to="." method="_on_skill_reload_pressed"]
+[connection signal="pressed" from="SkillSpeed" to="." method="_on_skill_speed_pressed"]
+[connection signal="pressed" from="ApplyButton" to="." method="_on_apply_button_pressed"]
+[connection signal="pressed" from="ReturnButton" to="." method="_on_return_button_pressed"]
