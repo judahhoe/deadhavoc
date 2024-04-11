@@ -43,6 +43,7 @@ func _on_perks_button_pressed():
 	sound.play()
 	perksbutton.icon = load("res://assets/menus/menu_plank_bloody_1.png")
 	await get_tree().create_timer(0.2).timeout
+	get_tree().change_scene_to_file("res://scenes/menu_scenes/perks_menu/skill_tree.tscn")
 
 
 func _on_options_button_pressed():

@@ -1,0 +1,25 @@
+[gd_scene load_steps=3 format=3 uid="uid://bd7sa8rdca2hc"]
+
+[ext_resource type="Texture2D" uid="uid://dhrbtx2wpivv5" path="res://scenes/menu_scenes/perks_menu/perk_recoil.png" id="1_h7nib"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_w3ptj"]
+font_size = 25
+
+[node name="SkillButton" type="TextureButton"]
+offset_right = 100.0
+offset_bottom = 100.0
+scale = Vector2(0.1, 0.1)
+texture_normal = ExtResource("1_h7nib")
+
+[node name="SkillLevel" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -40.0
+offset_right = -20.0
+grow_horizontal = 2
+grow_vertical = 0
+label_settings = SubResource("LabelSettings_w3ptj")
+horizontal_alignment = 2
