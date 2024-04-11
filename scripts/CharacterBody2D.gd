@@ -17,8 +17,16 @@ extends CharacterBody2D
 @onready var impact_manager = get_node("/root/Main/ImpactManager")
 @onready var Pain = $"HUD/BloodOverlay/AnimationPlayer" 
 const BULLET_IMPACT_KILL = preload("res://scenes/bullet_impact2.tscn")
+var max_level : int = 3
+var ammo_level = 0
+var health_level = 0
+var recoil_level = 0
+var reload_level = 0
+var speed_level = 0
+
 var db #database object 
 var db_name = "res://DataStore/database" #Path to DB
+var nick = "test_user"
 
 @onready var particle_manager = get_node("/root/Main/ParticleManager")
 
@@ -49,6 +57,7 @@ signal player_fired_bulled(bullet, direction)
 signal pickup_used()
 
 func _ready():
+	get_settings_from_db()
 	health_bar.value = max_health
 	health_bar.tint_progress = healthy
 	weapon = pistol
@@ -231,3 +240,14 @@ func play_footsteps():
 	
 	footsteps_sound.pitch_scale = randf_range(.8, 1.2)
 	footsteps_sound.play()
+func get_settings_from_db():
+	db = SQLite.new()
+	db.path = db_name
+	db.open_db()
+	#remember to not use variables inside the query somehow connected with other variables names, it's not working properly
+	db.query("SELECT perks.player_health, perks.movement_speed, perks.weapons_recoil, perks.max_ammo, perks.reload_speed from user INNER JOIN perks ON user.id = perks.id where user.nickname = '" + nick + "';")
+	health_level = db.query_result[0]["player_health"]
+	speed_level = db.query_result[0]["movement_speed"]
+	recoil_level = db.query_result[0]["weapons_recoil"]
+	ammo_level = db.query_result[0]["max_ammo"]
+	reload_level = db.query_result[0]["reload_speed"]
