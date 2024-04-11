@@ -31,11 +31,22 @@ class_name Pistol
 @onready var particle_manager = get_node("/root/Main/ParticleManager")
 
 @onready var ammo_bar = $"../HUD/Pistol_ammo_bar"
+var max_level : int = 3
+var ammo_level = 0
+var health_level = 0
+var recoil_level = 0
+var reload_level = 0
+var speed_level = 0
+
+var db #database object 
+var db_name = "res://DataStore/database" #Path to DB
+var nick = "test_user"
 
 signal player_fired_bullet(bullet, direction)
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	get_settings_from_db()
 	reload_progress.visible = false
 	ammo_count.text = str(ammo_in_mag) + "/" + str(ammo)
 	get_node(".").connect("player_fired_bullet",bullet_manager._on_pistol_player_fired_bullet)
@@ -96,3 +107,15 @@ func _on_reload_timer_timeout():
 	ammo_count.text = str(ammo_in_mag) + "/" + str(ammo)
 	reload_progress.visible = false
 	print("reloaded")
+
+func get_settings_from_db():
+	db = SQLite.new()
+	db.path = db_name
+	db.open_db()
+	#remember to not use variables inside the query somehow connected with other variables names, it's not working properly
+	db.query("SELECT perks.player_health, perks.movement_speed, perks.weapons_recoil, perks.max_ammo, perks.reload_speed from user INNER JOIN perks ON user.id = perks.id where user.nickname = '" + nick + "';")
+	health_level = db.query_result[0]["player_health"]
+	speed_level = db.query_result[0]["movement_speed"]
+	recoil_level = db.query_result[0]["weapons_recoil"]
+	ammo_level = db.query_result[0]["max_ammo"]
+	reload_level = db.query_result[0]["reload_speed"]
