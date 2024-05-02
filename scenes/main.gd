@@ -6,11 +6,33 @@ extends Node2D
 @onready var cursor = preload("res://textures/cursor.png")
 var isPaused = false
 @onready var pause_menu = $"Pause/PauseMenu"
+@onready var music = $BackgroundMusic
+
+@onready var label = $CanvasLayer/Label
+@onready var suitcase = $suitcase
+@onready var gascan = $gascan
+
+@onready var objectiveSpawnpoints = $ObjectiveSpawnpoints
 
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	#spawn objective
+	var suitcaseSpawnID = randi_range(1,21)
+	suitcase.global_position = objectiveSpawnpoints.get_child(suitcaseSpawnID).global_position
+	var gascanSpawnID = randi_range(1,21)
+	while gascanSpawnID == suitcaseSpawnID:
+		gascanSpawnID = randi_range(1,21)
+	gascan.global_position = objectiveSpawnpoints.get_child(gascanSpawnID).global_position
+	
+	music.play()
 	Input.set_custom_mouse_cursor(crosshair)
+	label.visible = true
+	await get_tree().create_timer(3).timeout
+	label.visible = false
+	
+	
+	#Input.set_mouse_mode(Input.MOUSE_MODE_HIDDEN)
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -27,6 +49,8 @@ func _unhandled_input(event):
 func pause():
 	isPaused = true
 	Input.set_custom_mouse_cursor(cursor)
+	#Input.set_mouse_mode(Input.MOUSE_MODE_CONFINED)
+	#Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 	get_tree().paused = true
 	pause_menu.show()
 
@@ -34,6 +58,8 @@ func pause():
 func unpause():
 	isPaused = false
 	Input.set_custom_mouse_cursor(crosshair)
+	#Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
+	#Input.set_mouse_mode(Input.MOUSE_MODE_HIDDEN)
 	pause_menu.hide()
 	get_tree().paused = false
 

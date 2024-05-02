@@ -18,6 +18,7 @@ func _ready():
 		blood.texture = sprite3
 	if(ran == 4):
 		blood.texture = sprite4
+	scale *= randf_range(1.0,2.0)
 	vanishing.play("blood_vanish")
 
 

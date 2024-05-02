@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://cpyurip1l5cvp"]
+[gd_scene load_steps=11 format=3 uid="uid://cpyurip1l5cvp"]
 
 [ext_resource type="Script" path="res://assets/pickups/pickup.gd" id="1_nyva4"]
 [ext_resource type="Texture2D" uid="uid://c4gboiyvkg6fr" path="res://assets/pickups/ammobox_pickup/ammobox_0.png" id="2_wjqj8"]
@@ -7,6 +7,9 @@
 [ext_resource type="Texture2D" uid="uid://d1qk0y6pcfhra" path="res://assets/pickups/ammobox_pickup/ammobox_2.png" id="5_07lsj"]
 [ext_resource type="Texture2D" uid="uid://dvkuxf8tbt73v" path="res://assets/pickups/ammobox_pickup/ammobox_2_5.png" id="6_age83"]
 [ext_resource type="Texture2D" uid="uid://8gg8ls6oj8wn" path="res://assets/pickups/ammobox_pickup/ammobox_3.png" id="7_5ewgs"]
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_q1kcn"]
+light_mode = 2
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_sqbx6"]
 animations = [{
@@ -43,6 +46,8 @@ script = ExtResource("1_nyva4")
 pickup_type = "ammobox"
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+light_mask = 2
+material = SubResource("CanvasItemMaterial_q1kcn")
 scale = Vector2(0.1, 0.1)
 sprite_frames = SubResource("SpriteFrames_sqbx6")
 autoplay = "default"

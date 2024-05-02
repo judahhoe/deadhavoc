@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://dlx7joevlhiba"]
+[gd_scene load_steps=11 format=3 uid="uid://dlx7joevlhiba"]
 
 [ext_resource type="Script" path="res://pistol.gd" id="1_t7bhw"]
 [ext_resource type="Texture2D" uid="uid://cw2ckuqrgoqia" path="res://textures/pistol.png" id="1_unxar"]
@@ -7,48 +7,16 @@
 [ext_resource type="AudioStream" uid="uid://blcrx1upwkcpn" path="res://sfx/shot_pitol.mp3" id="5_roosi"]
 [ext_resource type="AudioStream" uid="uid://cka4ak8ec404b" path="res://sfx/reload.mp3" id="6_jn7ek"]
 
+[sub_resource type="Gradient" id="Gradient_wvh71"]
+offsets = PackedFloat32Array(0, 0.160494, 0.919753, 1)
+colors = PackedColorArray(1, 0, 0, 0, 1, 0, 0, 0.784314, 1, 0, 0, 0.784314, 1, 0, 0, 0)
+
 [sub_resource type="Animation" id="Animation_uksqy"]
 resource_name = "dipense_casing"
 
 [sub_resource type="Animation" id="Animation_gnxu1"]
 resource_name = "muzzle_flash"
 length = 0.05
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("MuzzleFlash:visible")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.05),
-"transitions": PackedFloat32Array(1, 1),
-"update": 1,
-"values": [true, false]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("MuzzleFlash:scale")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.05),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Vector2(0.05, 0.05), Vector2(0.02, 0.08)]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("MuzzleFlash:position")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0, 0.05),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Vector2(32, 0), Vector2(38, 0)]
-}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_fxbyx"]
 _data = {
@@ -59,12 +27,18 @@ _data = {
 [node name="pistol" type="Node2D"]
 script = ExtResource("1_t7bhw")
 weapon_type = "pistol"
-max_ammo = 300
-ammo = 300
 mag_size = 150
 ammo_in_mag = 150
 Bullet = ExtResource("2_hqsxh")
 reload_modifier = 50
+
+[node name="Line2D" type="Line2D" parent="."]
+visible = false
+position = Vector2(19, 0)
+points = PackedVector2Array(0, 0, 10, 0, 190, 0, 200, 0)
+width = 1.5
+default_color = Color(1, 0, 0, 0.623529)
+gradient = SubResource("Gradient_wvh71")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(8.42502, 9.53674e-07)

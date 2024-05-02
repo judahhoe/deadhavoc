@@ -3,16 +3,15 @@ extends Node2D
 @onready var particles = $CPUParticles2D
 @onready var sprite = $"Sprite2D"
 
-@export var et : PackedScene
-@export var ec : int
+@onready var enemyTypeBasic = preload("res://scenes/enemy.tscn")
 
 @onready var sound = $"BushSounds"
 
+var spawnedEnemies = false
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	await get_tree().create_timer(4.0).timeout
-	spawn_enemy(et, ec)
-
+	pass
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
@@ -26,7 +25,7 @@ func spawn_enemy(enemy_type, enemy_count):
 		spawned_enemy.position = global_position
 		particles.emitting = true
 		sound.play()
-		await get_tree().create_timer(2.0).timeout
+		await get_tree().create_timer(randf_range(0.5,2.5)).timeout
 		particles.restart()
 		enemy_count -= 1
 
@@ -48,3 +47,10 @@ func _on_area_2d_body_exited(body):
 	await get_tree().create_timer(2.0).timeout
 	particles.restart()
 
+
+func _on_detect_player_body_entered(body):
+	if(body.has_method("get_infected")):
+		if(!spawnedEnemies):
+			var enemyCount = randi_range(1, 6)
+			spawnedEnemies = true
+			spawn_enemy(enemyTypeBasic, enemyCount)

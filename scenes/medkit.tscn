@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://bywqy23a8pc2w"]
+[gd_scene load_steps=11 format=3 uid="uid://bywqy23a8pc2w"]
 
 [ext_resource type="Script" path="res://assets/pickups/pickup.gd" id="1_sran8"]
 [ext_resource type="Texture2D" uid="uid://dr28gmp8poa7e" path="res://assets/pickups/medkit_pickup/medkit_0.png" id="2_1p5mg"]
@@ -7,6 +7,9 @@
 [ext_resource type="Texture2D" uid="uid://fqykmgnpyvqa" path="res://assets/pickups/medkit_pickup/medkit_3.png" id="5_jx5j3"]
 [ext_resource type="Texture2D" uid="uid://da5qoejccvy61" path="res://assets/pickups/medkit_pickup/medkit_4.png" id="6_x28v8"]
 [ext_resource type="Texture2D" uid="uid://du631b1rb3cct" path="res://assets/pickups/medkit_pickup/medkit_5.png" id="7_p1lar"]
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_4et4i"]
+light_mode = 2
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_sqbx6"]
 animations = [{
@@ -43,6 +46,8 @@ script = ExtResource("1_sran8")
 pickup_type = "medkit"
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+light_mask = 2
+material = SubResource("CanvasItemMaterial_4et4i")
 scale = Vector2(0.1, 0.1)
 sprite_frames = SubResource("SpriteFrames_sqbx6")
 autoplay = "default"

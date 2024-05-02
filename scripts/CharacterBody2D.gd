@@ -1,9 +1,9 @@
 extends CharacterBody2D
 
-#@onready var knife = $"knife"
-@onready var pistol = $"pistol"
-@onready var shotgun = $"shotgun"
-@onready var rifle = $"rifle"
+@onready var knife = $"Skeleton2D/hip/chest/arm_right/forearm_right/hand_right/knife"
+@onready var pistol = $Skeleton2D/hip/chest/arm_right/forearm_right/hand_right/pistol
+@onready var shotgun = $"Skeleton2D/hip/chest/arm_right/forearm_right/hand_right/shotgun"
+@onready var rifle = $"Skeleton2D/hip/chest/arm_right/forearm_right/hand_right/rifle"
 
 @onready var health_bar = $"HUD/HealthBar"
 
@@ -14,7 +14,6 @@ extends CharacterBody2D
 @onready var pistol_hud = $"HUD/Pistol"
 @onready var rifle_hud = $"HUD/Rifle"
 @onready var shotgun_hud = $"HUD/Shotgun"
-@onready var impact_manager = get_node("/root/Main/ImpactManager")
 @onready var Pain = $"HUD/BloodOverlay/AnimationPlayer" 
 const BULLET_IMPACT_KILL = preload("res://scenes/bullet_impact2.tscn")
 var max_level : int = 3
@@ -31,7 +30,9 @@ var nick = "test_user"
 @onready var particle_manager = get_node("/root/Main/ParticleManager")
 
 @onready var footsteps_sound = $"FootstepsSounds"
-@onready var walking_animation = $"Walking"
+@onready var animation_player_legs = $"AnimationPlayerLegs"
+@onready var animation_player_body = $"AnimationPlayerBody"
+
 @onready var tilemap = get_node("/root/Main/Map/GroundAndWalls")
 @onready var grass_step = preload("res://sfx/trawa krok1 cut.mp3")
 @onready var wood_step = preload("res://sfx/drewno krok 1 cut.mp3")
@@ -52,24 +53,38 @@ var weapon
 var rotation_speed = 5
 var direction = Vector2(1.0,1.0)
 
+var step = false
 
 signal player_fired_bulled(bullet, direction)
 signal pickup_used()
 
+@onready var global_variables = get_node("/root/GlobalVariables")
+
 func _ready():
 	get_settings_from_db()
+	max_health += health_level * 20
+	health = max_health
+	speed += speed_level * 10
+	
 	health_bar.value = max_health
 	health_bar.tint_progress = healthy
 	weapon = pistol
 	weapon.ammo_count.text = str(weapon.ammo_in_mag) + "/" + str(weapon.ammo)
 	update_weapon_hud(weapon, true)
+	change_weapon(pistol)
+	animation_player_body.play("pistol_aim")
 
 
 
 func _physics_process(delta):
+	if(Input.is_action_pressed("shoot")):
+		weapon.shoot()
 	if (Input.is_action_pressed("left") || Input.is_action_pressed("right") || Input.is_action_pressed("down") || Input.is_action_pressed("up")):
 		direction = Input.get_vector("left", "right", "up", "down")
-		walking_animation.play("walking_animation")
+		if(step):
+			animation_player_legs.play("walking_animation_0")
+		else:
+			animation_player_legs.play("walking_animation_1")
 	
 	#angle between aim direction and walking direction
 	var look_angle = calculate_angle(direction, get_global_mouse_position()-position)
@@ -97,27 +112,32 @@ func _physics_process(delta):
 		move_and_slide()
 	
 func _unhandled_input(event):
-	if(event.is_action_pressed("shoot")):
-		weapon.shoot()
 	if(event.is_action_pressed("reload")):
 		if(weapon.ammo_in_mag<weapon.mag_size):
 			weapon.reload()
 		else:
 			print("fully reloaded")
+	if(event.is_action_pressed("weapon_knife")):
+		change_weapon(knife)
+		animation_player_body.play("melee_idle")
 	if(event.is_action_pressed("weapon_pistol")):
 		change_weapon(pistol)
+		animation_player_body.play("pistol_aim")
 	if(event.is_action_pressed("weapon_shotgun")):
 		change_weapon(shotgun)
+		animation_player_body.play("shotgun_aim")
 	if(event.is_action_pressed("weapon_rifle")):
 		change_weapon(rifle)
+		animation_player_body.play("rifle_aim")
 
 func change_weapon(weapon_type):
 	weapon.cancel_reload()
 	weapon.visible = false
 	weapon = weapon_type
 	weapon.visible = true
-	weapon.ammo_count.text = str(weapon.ammo_in_mag) + "/" + str(weapon.ammo)
-	update_weapon_hud(weapon, true)
+	if(weapon_type != knife):
+		weapon.ammo_count.text = str(weapon.ammo_in_mag) + "/" + str(weapon.ammo)
+		update_weapon_hud(weapon, true)
 	
 func calculate_angle(vectorA, vectorB):
 	# Calculate the dot product of the vectors
@@ -149,13 +169,20 @@ func handle_pickup(pickup_obj, pickup):
 			pickup_obj.queue_free()
 			health_bar.value = health
 	if (pickup == "ammobox"):
-		if (weapon.ammo<weapon.max_ammo):
-			weapon.ammo += 10
-			if (weapon.ammo > weapon.max_ammo):
-				weapon.ammo = weapon.max_ammo
-			print("picked up ammo")
-			weapon.ammo_count.text = str(weapon.ammo_in_mag) + "/" + str(weapon.ammo)
-			pickup_obj.queue_free()
+		if(weapon != knife):
+			if (weapon.ammo<weapon.max_ammo):
+				weapon.ammo += 10
+				if (weapon.ammo > weapon.max_ammo):
+					weapon.ammo = weapon.max_ammo
+				print("picked up ammo")
+				weapon.ammo_count.text = str(weapon.ammo_in_mag) + "/" + str(weapon.ammo)
+				pickup_obj.queue_free()
+	if (pickup == "suitcase"):
+		global_variables.hasSuitcase = true
+		pickup_obj.queue_free()
+	if (pickup == "gascan"):
+		global_variables.hasGascan = true
+		pickup_obj.queue_free()
 
 
 func take_damage(damage):
@@ -211,7 +238,9 @@ func update_weapon_hud(weapon, visible = false):
 	rifle_ammo_bar_bottom.visible = false
 	shotgun_ammo_bar.visible = false
 	
-	if weapon is Pistol and visible:
+	if weapon is Knife and visible:
+		pass
+	elif weapon is Pistol and visible:
 		pistol_hud.visible = true
 		pistol_ammo_bar.visible = true
 	elif weapon is Rifle and visible:
@@ -229,8 +258,6 @@ func handle_kill(position:Vector2):
 	impact.emitting = true
 
 func play_footsteps():
-	#print(tilemap.get_cell_source_id(0, tilemap.local_to_map(position)))
-	print(tile)
 	if(tile == Vector2i(0,0) || tile == Vector2i(0,1) || tile == Vector2i(0,2)):
 		footsteps_sound.stream = grass_step
 	if(tile == Vector2i(1,0) || tile == Vector2i(4,0) || tile == Vector2i(7,0)):
@@ -251,3 +278,9 @@ func get_settings_from_db():
 	recoil_level = db.query_result[0]["weapons_recoil"]
 	ammo_level = db.query_result[0]["max_ammo"]
 	reload_level = db.query_result[0]["reload_speed"]
+
+func set_step():
+	if(step):
+		step = false
+	else:
+		step = true
