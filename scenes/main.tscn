@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://c6vxaopkyqc6i"]
+[gd_scene load_steps=21 format=3 uid="uid://c6vxaopkyqc6i"]
 
 [ext_resource type="Script" path="res://scenes/main.gd" id="1_1ogx0"]
 [ext_resource type="PackedScene" uid="uid://bgbubl4fsvupu" path="res://scenes/map.tscn" id="1_ng5yi"]
@@ -10,9 +10,12 @@
 [ext_resource type="Script" path="res://scenes/minimap.gd" id="10_hx26b"]
 [ext_resource type="Shader" path="res://scenes/minimap.gdshader" id="10_xajyc"]
 [ext_resource type="Texture2D" uid="uid://c63pkn0vrrtdk" path="res://textures/minimap_bw.png" id="12_5n76g"]
-[ext_resource type="Script" path="res://scenes/ImpactManager.gd" id="12_aa78p"]
 [ext_resource type="Texture2D" uid="uid://icbe6i4238se" path="res://icon.svg" id="12_sfed1"]
 [ext_resource type="Script" path="res://scenes/ScoreManager.gd" id="13_fpqvc"]
+[ext_resource type="PackedScene" uid="uid://b3mxvq14r1e0h" path="res://scenes/car.tscn" id="13_qxrvk"]
+[ext_resource type="PackedScene" uid="uid://dkto8g4nanyhu" path="res://scenes/gascan.tscn" id="14_cu04f"]
+[ext_resource type="PackedScene" uid="uid://cswl5fdgsweig" path="res://scenes/suitcase.tscn" id="15_ywsrf"]
+[ext_resource type="AudioStream" uid="uid://72aeavxlk5rg" path="res://sfx/ingamethemesong.mp3" id="16_hmnpi"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_5b8d7"]
 font_size = 50
@@ -25,25 +28,570 @@ shader_parameter/radius = 1.0
 shader = ExtResource("10_xajyc")
 shader_parameter/radius = 1.0
 
+[sub_resource type="LabelSettings" id="LabelSettings_7o2oy"]
+font_size = 40
+outline_color = Color(0, 0, 0, 1)
+shadow_size = 20
+shadow_color = Color(0, 0, 0, 0.360784)
+
 [node name="Main" type="Node2D"]
 script = ExtResource("1_1ogx0")
 
 [node name="Map" parent="." instance=ExtResource("1_ng5yi")]
 
-[node name="spawner_sewer" parent="." instance=ExtResource("6_togh1")]
-position = Vector2(269, -2)
+[node name="SpawnersSewer" type="Node2D" parent="."]
+
+[node name="spawner_sewer" parent="SpawnersSewer" instance=ExtResource("6_togh1")]
+position = Vector2(732, 212)
 rotation = 0.837138
 scale = Vector2(0.08, 0.08)
 
-[node name="player" parent="." instance=ExtResource("2_oappt")]
-unique_name_in_owner = true
-position = Vector2(752, -496)
+[node name="spawner_sewer2" parent="SpawnersSewer" instance=ExtResource("6_togh1")]
+position = Vector2(3583, -494)
+rotation = 0.837138
+scale = Vector2(0.08, 0.08)
 
-[node name="spawner_bush" parent="." instance=ExtResource("4_0x1ta")]
+[node name="spawner_sewer3" parent="SpawnersSewer" instance=ExtResource("6_togh1")]
+position = Vector2(3597, 974)
+rotation = 0.837138
+scale = Vector2(0.08, 0.08)
+
+[node name="spawner_sewer4" parent="SpawnersSewer" instance=ExtResource("6_togh1")]
+position = Vector2(7788, -537)
+rotation = 0.178078
+scale = Vector2(0.08, 0.08)
+
+[node name="spawner_sewer5" parent="SpawnersSewer" instance=ExtResource("6_togh1")]
+position = Vector2(7795, 1807)
+rotation = 1.35664
+scale = Vector2(0.08, 0.08)
+
+[node name="spawner_sewer6" parent="SpawnersSewer" instance=ExtResource("6_togh1")]
+position = Vector2(4788, 4223)
+rotation = 0.888399
+scale = Vector2(0.08, 0.08)
+
+[node name="spawner_sewer7" parent="SpawnersSewer" instance=ExtResource("6_togh1")]
+position = Vector2(756, 6863)
+rotation = 0.888399
+scale = Vector2(0.08, 0.08)
+
+[node name="spawner_sewer8" parent="SpawnersSewer" instance=ExtResource("6_togh1")]
+position = Vector2(-3404, 3951)
+rotation = 0.888399
+scale = Vector2(0.08, 0.08)
+
+[node name="spawner_sewer9" parent="SpawnersSewer" instance=ExtResource("6_togh1")]
+position = Vector2(8948, 4447)
+rotation = 0.888399
+scale = Vector2(0.08, 0.08)
+
+[node name="spawner_sewer10" parent="SpawnersSewer" instance=ExtResource("6_togh1")]
+position = Vector2(10420, 1167)
+rotation = 0.888399
+scale = Vector2(0.08, 0.08)
+
+[node name="spawner_sewer11" parent="SpawnersSewer" instance=ExtResource("6_togh1")]
+position = Vector2(740, 3253)
+rotation = 0.888399
+scale = Vector2(0.08, 0.08)
+
+[node name="spawner_sewer12" parent="SpawnersSewer" instance=ExtResource("6_togh1")]
+position = Vector2(-3444, 1450)
+rotation = -0.997262
+scale = Vector2(0.08, 0.08)
+
+[node name="spawner_sewer13" parent="SpawnersSewer" instance=ExtResource("6_togh1")]
+position = Vector2(-7438, 2966)
+rotation = -3.13472
+scale = Vector2(0.08, 0.08)
+
+[node name="spawner_sewer14" parent="SpawnersSewer" instance=ExtResource("6_togh1")]
+position = Vector2(7795, 6967)
+rotation = -3.94654
+scale = Vector2(0.08, 0.08)
+
+[node name="ParticleManager" type="Node2D" parent="."]
+
+[node name="SpawnersBush" type="Node2D" parent="."]
+
+[node name="spawner_bush" parent="SpawnersBush" instance=ExtResource("4_0x1ta")]
 z_index = 1
 z_as_relative = false
 position = Vector2(425, -288)
 scale = Vector2(0.3, 0.3)
+
+[node name="spawner_bush2" parent="SpawnersBush" instance=ExtResource("4_0x1ta")]
+z_index = 1
+z_as_relative = false
+position = Vector2(1983, 1109)
+scale = Vector2(0.3, 0.3)
+
+[node name="spawner_bush3" parent="SpawnersBush" instance=ExtResource("4_0x1ta")]
+z_index = 1
+z_as_relative = false
+position = Vector2(2351, 1189)
+scale = Vector2(0.3, 0.3)
+
+[node name="spawner_bush4" parent="SpawnersBush" instance=ExtResource("4_0x1ta")]
+z_index = 1
+z_as_relative = false
+position = Vector2(2426, 180)
+scale = Vector2(0.3, 0.3)
+
+[node name="spawner_bush5" parent="SpawnersBush" instance=ExtResource("4_0x1ta")]
+z_index = 1
+z_as_relative = false
+position = Vector2(-25, 1850)
+scale = Vector2(0.3, 0.3)
+
+[node name="spawner_bush6" parent="SpawnersBush" instance=ExtResource("4_0x1ta")]
+z_index = 1
+z_as_relative = false
+position = Vector2(226, 2335)
+scale = Vector2(0.3, 0.3)
+
+[node name="spawner_bush7" parent="SpawnersBush" instance=ExtResource("4_0x1ta")]
+z_index = 1
+z_as_relative = false
+position = Vector2(-1687, 1814)
+scale = Vector2(0.3, 0.3)
+
+[node name="spawner_bush8" parent="SpawnersBush" instance=ExtResource("4_0x1ta")]
+z_index = 1
+z_as_relative = false
+position = Vector2(-2531, 3260)
+scale = Vector2(0.3, 0.3)
+
+[node name="spawner_bush9" parent="SpawnersBush" instance=ExtResource("4_0x1ta")]
+z_index = 1
+z_as_relative = false
+position = Vector2(-4049, 3323)
+scale = Vector2(0.3, 0.3)
+
+[node name="spawner_bush10" parent="SpawnersBush" instance=ExtResource("4_0x1ta")]
+z_index = 1
+z_as_relative = false
+position = Vector2(3234, 2667)
+scale = Vector2(0.3, 0.3)
+
+[node name="spawner_bush11" parent="SpawnersBush" instance=ExtResource("4_0x1ta")]
+z_index = 1
+z_as_relative = false
+position = Vector2(4401, 1158)
+scale = Vector2(0.3, 0.3)
+
+[node name="spawner_bush12" parent="SpawnersBush" instance=ExtResource("4_0x1ta")]
+z_index = 1
+z_as_relative = false
+position = Vector2(4697, 709)
+scale = Vector2(0.3, 0.3)
+
+[node name="spawner_bush13" parent="SpawnersBush" instance=ExtResource("4_0x1ta")]
+z_index = 1
+z_as_relative = false
+position = Vector2(7068, 601)
+scale = Vector2(0.3, 0.3)
+
+[node name="spawner_bush14" parent="SpawnersBush" instance=ExtResource("4_0x1ta")]
+z_index = 1
+z_as_relative = false
+position = Vector2(7167, 825)
+scale = Vector2(0.3, 0.3)
+
+[node name="spawner_bush15" parent="SpawnersBush" instance=ExtResource("4_0x1ta")]
+z_index = 1
+z_as_relative = false
+position = Vector2(8245, -208)
+scale = Vector2(0.3, 0.3)
+
+[node name="spawner_bush16" parent="SpawnersBush" instance=ExtResource("4_0x1ta")]
+z_index = 1
+z_as_relative = false
+position = Vector2(8209, 34)
+scale = Vector2(0.3, 0.3)
+
+[node name="spawner_bush17" parent="SpawnersBush" instance=ExtResource("4_0x1ta")]
+z_index = 1
+z_as_relative = false
+position = Vector2(8730, -101)
+scale = Vector2(0.3, 0.3)
+
+[node name="spawner_bush18" parent="SpawnersBush" instance=ExtResource("4_0x1ta")]
+z_index = 1
+z_as_relative = false
+position = Vector2(9969, 546)
+scale = Vector2(0.3, 0.3)
+
+[node name="spawner_bush19" parent="SpawnersBush" instance=ExtResource("4_0x1ta")]
+z_index = 1
+z_as_relative = false
+position = Vector2(9762, 2387)
+scale = Vector2(0.3, 0.3)
+
+[node name="spawner_bush20" parent="SpawnersBush" instance=ExtResource("4_0x1ta")]
+z_index = 1
+z_as_relative = false
+position = Vector2(9960, 2647)
+scale = Vector2(0.3, 0.3)
+
+[node name="spawner_bush21" parent="SpawnersBush" instance=ExtResource("4_0x1ta")]
+z_index = 1
+z_as_relative = false
+position = Vector2(11307, 3778)
+scale = Vector2(0.3, 0.3)
+
+[node name="spawner_bush22" parent="SpawnersBush" instance=ExtResource("4_0x1ta")]
+z_index = 1
+z_as_relative = false
+position = Vector2(11217, 3410)
+scale = Vector2(0.3, 0.3)
+
+[node name="spawner_bush23" parent="SpawnersBush" instance=ExtResource("4_0x1ta")]
+z_index = 1
+z_as_relative = false
+position = Vector2(12133, 3186)
+scale = Vector2(0.3, 0.3)
+
+[node name="spawner_bush24" parent="SpawnersBush" instance=ExtResource("4_0x1ta")]
+z_index = 1
+z_as_relative = false
+position = Vector2(9421, 4919)
+scale = Vector2(0.3, 0.3)
+
+[node name="spawner_bush25" parent="SpawnersBush" instance=ExtResource("4_0x1ta")]
+z_index = 1
+z_as_relative = false
+position = Vector2(8352, 4964)
+scale = Vector2(0.3, 0.3)
+
+[node name="spawner_bush26" parent="SpawnersBush" instance=ExtResource("4_0x1ta")]
+z_index = 1
+z_as_relative = false
+position = Vector2(5136, 4564)
+scale = Vector2(0.3, 0.3)
+
+[node name="spawner_bush27" parent="SpawnersBush" instance=ExtResource("4_0x1ta")]
+z_index = 1
+z_as_relative = false
+position = Vector2(5568, 4500)
+scale = Vector2(0.3, 0.3)
+
+[node name="spawner_bush28" parent="SpawnersBush" instance=ExtResource("4_0x1ta")]
+z_index = 1
+z_as_relative = false
+position = Vector2(6528, 4756)
+scale = Vector2(0.3, 0.3)
+
+[node name="spawner_bush29" parent="SpawnersBush" instance=ExtResource("4_0x1ta")]
+z_index = 1
+z_as_relative = false
+position = Vector2(7216, 2708)
+scale = Vector2(0.3, 0.3)
+
+[node name="spawner_bush30" parent="SpawnersBush" instance=ExtResource("4_0x1ta")]
+z_index = 1
+z_as_relative = false
+position = Vector2(4416, 6500)
+scale = Vector2(0.3, 0.3)
+
+[node name="spawner_bush31" parent="SpawnersBush" instance=ExtResource("4_0x1ta")]
+z_index = 1
+z_as_relative = false
+position = Vector2(3904, 6500)
+scale = Vector2(0.3, 0.3)
+
+[node name="spawner_bush32" parent="SpawnersBush" instance=ExtResource("4_0x1ta")]
+z_index = 1
+z_as_relative = false
+position = Vector2(2672, 6468)
+scale = Vector2(0.3, 0.3)
+
+[node name="spawner_bush33" parent="SpawnersBush" instance=ExtResource("4_0x1ta")]
+z_index = 1
+z_as_relative = false
+position = Vector2(1872, 6500)
+scale = Vector2(0.3, 0.3)
+
+[node name="spawner_bush34" parent="SpawnersBush" instance=ExtResource("4_0x1ta")]
+z_index = 1
+z_as_relative = false
+position = Vector2(-944, 4804)
+scale = Vector2(0.3, 0.3)
+
+[node name="spawner_bush35" parent="SpawnersBush" instance=ExtResource("4_0x1ta")]
+z_index = 1
+z_as_relative = false
+position = Vector2(-1296, 5956)
+scale = Vector2(0.3, 0.3)
+
+[node name="spawner_bush36" parent="SpawnersBush" instance=ExtResource("4_0x1ta")]
+z_index = 1
+z_as_relative = false
+position = Vector2(3104, 8356)
+scale = Vector2(0.3, 0.3)
+
+[node name="spawner_bush37" parent="SpawnersBush" instance=ExtResource("4_0x1ta")]
+z_index = 1
+z_as_relative = false
+position = Vector2(6240, 8452)
+scale = Vector2(0.3, 0.3)
+
+[node name="spawner_bush38" parent="SpawnersBush" instance=ExtResource("4_0x1ta")]
+z_index = 1
+z_as_relative = false
+position = Vector2(9360, 8276)
+scale = Vector2(0.3, 0.3)
+
+[node name="spawner_bush39" parent="SpawnersBush" instance=ExtResource("4_0x1ta")]
+z_index = 1
+z_as_relative = false
+position = Vector2(11242, -1075)
+scale = Vector2(0.3, 0.3)
+
+[node name="spawner_bush40" parent="SpawnersBush" instance=ExtResource("4_0x1ta")]
+z_index = 1
+z_as_relative = false
+position = Vector2(12012, -1104)
+scale = Vector2(0.3, 0.3)
+
+[node name="spawner_bush41" parent="SpawnersBush" instance=ExtResource("4_0x1ta")]
+z_index = 1
+z_as_relative = false
+position = Vector2(10088, -1033)
+scale = Vector2(0.3, 0.3)
+
+[node name="spawner_bush42" parent="SpawnersBush" instance=ExtResource("4_0x1ta")]
+z_index = 1
+z_as_relative = false
+position = Vector2(13010, -1119)
+scale = Vector2(0.3, 0.3)
+
+[node name="spawner_bush43" parent="SpawnersBush" instance=ExtResource("4_0x1ta")]
+z_index = 1
+z_as_relative = false
+position = Vector2(14194, -1311)
+scale = Vector2(0.3, 0.3)
+
+[node name="spawner_bush44" parent="SpawnersBush" instance=ExtResource("4_0x1ta")]
+z_index = 1
+z_as_relative = false
+position = Vector2(13986, -1231)
+scale = Vector2(0.3, 0.3)
+
+[node name="spawner_bush45" parent="SpawnersBush" instance=ExtResource("4_0x1ta")]
+z_index = 1
+z_as_relative = false
+position = Vector2(12210, -1007)
+scale = Vector2(0.3, 0.3)
+
+[node name="spawner_bush46" parent="SpawnersBush" instance=ExtResource("4_0x1ta")]
+z_index = 1
+z_as_relative = false
+position = Vector2(10610, -1279)
+scale = Vector2(0.3, 0.3)
+
+[node name="spawner_bush47" parent="SpawnersBush" instance=ExtResource("4_0x1ta")]
+z_index = 1
+z_as_relative = false
+position = Vector2(10498, -991)
+scale = Vector2(0.3, 0.3)
+
+[node name="spawner_bush48" parent="SpawnersBush" instance=ExtResource("4_0x1ta")]
+z_index = 1
+z_as_relative = false
+position = Vector2(5554, -1599)
+scale = Vector2(0.3, 0.3)
+
+[node name="spawner_bush49" parent="SpawnersBush" instance=ExtResource("4_0x1ta")]
+z_index = 1
+z_as_relative = false
+position = Vector2(5714, -1343)
+scale = Vector2(0.3, 0.3)
+
+[node name="spawner_bush50" parent="SpawnersBush" instance=ExtResource("4_0x1ta")]
+z_index = 1
+z_as_relative = false
+position = Vector2(6210, -1743)
+scale = Vector2(0.3, 0.3)
+
+[node name="spawner_bush51" parent="SpawnersBush" instance=ExtResource("4_0x1ta")]
+z_index = 1
+z_as_relative = false
+position = Vector2(6322, -1215)
+scale = Vector2(0.3, 0.3)
+
+[node name="spawner_bush52" parent="SpawnersBush" instance=ExtResource("4_0x1ta")]
+z_index = 1
+z_as_relative = false
+position = Vector2(5682, -959)
+scale = Vector2(0.3, 0.3)
+
+[node name="spawner_bush53" parent="SpawnersBush" instance=ExtResource("4_0x1ta")]
+z_index = 1
+z_as_relative = false
+position = Vector2(-7374, 193)
+scale = Vector2(0.3, 0.3)
+
+[node name="spawner_bush54" parent="SpawnersBush" instance=ExtResource("4_0x1ta")]
+z_index = 1
+z_as_relative = false
+position = Vector2(-7913, 678)
+scale = Vector2(0.3, 0.3)
+
+[node name="spawner_bush55" parent="SpawnersBush" instance=ExtResource("4_0x1ta")]
+z_index = 1
+z_as_relative = false
+position = Vector2(-6638, 804)
+scale = Vector2(0.3, 0.3)
+
+[node name="spawner_bush56" parent="SpawnersBush" instance=ExtResource("4_0x1ta")]
+z_index = 1
+z_as_relative = false
+position = Vector2(-5291, -1172)
+scale = Vector2(0.3, 0.3)
+
+[node name="spawner_bush57" parent="SpawnersBush" instance=ExtResource("4_0x1ta")]
+z_index = 1
+z_as_relative = false
+position = Vector2(-4142, -1028)
+scale = Vector2(0.3, 0.3)
+
+[node name="spawner_bush58" parent="SpawnersBush" instance=ExtResource("4_0x1ta")]
+z_index = 1
+z_as_relative = false
+position = Vector2(-4286, -22)
+scale = Vector2(0.3, 0.3)
+
+[node name="spawner_bush59" parent="SpawnersBush" instance=ExtResource("4_0x1ta")]
+z_index = 1
+z_as_relative = false
+position = Vector2(-5884, 2259)
+scale = Vector2(0.3, 0.3)
+
+[node name="spawner_bush60" parent="SpawnersBush" instance=ExtResource("4_0x1ta")]
+z_index = 1
+z_as_relative = false
+position = Vector2(-9530, 1774)
+scale = Vector2(0.3, 0.3)
+
+[node name="spawner_bush61" parent="SpawnersBush" instance=ExtResource("4_0x1ta")]
+z_index = 1
+z_as_relative = false
+position = Vector2(-9512, 643)
+scale = Vector2(0.3, 0.3)
+
+[node name="spawner_bush62" parent="SpawnersBush" instance=ExtResource("4_0x1ta")]
+z_index = 1
+z_as_relative = false
+position = Vector2(-5274, 3247)
+scale = Vector2(0.3, 0.3)
+
+[node name="spawner_bush63" parent="SpawnersBush" instance=ExtResource("4_0x1ta")]
+z_index = 1
+z_as_relative = false
+position = Vector2(-7070, 4863)
+scale = Vector2(0.3, 0.3)
+
+[node name="spawner_bush64" parent="SpawnersBush" instance=ExtResource("4_0x1ta")]
+z_index = 1
+z_as_relative = false
+position = Vector2(-5543, 5240)
+scale = Vector2(0.3, 0.3)
+
+[node name="spawner_bush65" parent="SpawnersBush" instance=ExtResource("4_0x1ta")]
+z_index = 1
+z_as_relative = false
+position = Vector2(-9620, 4558)
+scale = Vector2(0.3, 0.3)
+
+[node name="spawner_bush66" parent="SpawnersBush" instance=ExtResource("4_0x1ta")]
+z_index = 1
+z_as_relative = false
+position = Vector2(-9889, 5869)
+scale = Vector2(0.3, 0.3)
+
+[node name="spawner_bush67" parent="SpawnersBush" instance=ExtResource("4_0x1ta")]
+z_index = 1
+z_as_relative = false
+position = Vector2(-6028, 6749)
+scale = Vector2(0.3, 0.3)
+
+[node name="ObjectiveSpawnpoints" type="Node2D" parent="."]
+
+[node name="Marker2D" type="Marker2D" parent="ObjectiveSpawnpoints"]
+position = Vector2(-4122, 940)
+
+[node name="Marker2D2" type="Marker2D" parent="ObjectiveSpawnpoints"]
+position = Vector2(-3140, 929)
+
+[node name="Marker2D3" type="Marker2D" parent="ObjectiveSpawnpoints"]
+position = Vector2(-3866, 1986)
+
+[node name="Marker2D4" type="Marker2D" parent="ObjectiveSpawnpoints"]
+position = Vector2(-2520, 2125)
+
+[node name="Marker2D5" type="Marker2D" parent="ObjectiveSpawnpoints"]
+position = Vector2(-651, 1922)
+
+[node name="Marker2D6" type="Marker2D" parent="ObjectiveSpawnpoints"]
+position = Vector2(1741, 3385)
+
+[node name="Marker2D7" type="Marker2D" parent="ObjectiveSpawnpoints"]
+position = Vector2(-160, 950)
+
+[node name="Marker2D8" type="Marker2D" parent="ObjectiveSpawnpoints"]
+position = Vector2(1399, 320)
+
+[node name="Marker2D9" type="Marker2D" parent="ObjectiveSpawnpoints"]
+position = Vector2(3748, -1741)
+
+[node name="Marker2D10" type="Marker2D" parent="ObjectiveSpawnpoints"]
+position = Vector2(4261, 395)
+
+[node name="Marker2D11" type="Marker2D" parent="ObjectiveSpawnpoints"]
+position = Vector2(5938, 278)
+
+[node name="Marker2D12" type="Marker2D" parent="ObjectiveSpawnpoints"]
+position = Vector2(6493, 278)
+
+[node name="Marker2D13" type="Marker2D" parent="ObjectiveSpawnpoints"]
+position = Vector2(11523, 1730)
+
+[node name="Marker2D14" type="Marker2D" parent="ObjectiveSpawnpoints"]
+position = Vector2(12185, 577)
+
+[node name="Marker2D15" type="Marker2D" parent="ObjectiveSpawnpoints"]
+position = Vector2(5861, 6152)
+
+[node name="Marker2D16" type="Marker2D" parent="ObjectiveSpawnpoints"]
+position = Vector2(1924, 7206)
+
+[node name="Marker2D17" type="Marker2D" parent="ObjectiveSpawnpoints"]
+position = Vector2(45, 8235)
+
+[node name="Marker2D18" type="Marker2D" parent="ObjectiveSpawnpoints"]
+position = Vector2(-169, 6567)
+
+[node name="Marker2D19" type="Marker2D" parent="ObjectiveSpawnpoints"]
+position = Vector2(2688, 2884)
+
+[node name="Marker2D20" type="Marker2D" parent="ObjectiveSpawnpoints"]
+position = Vector2(1583, 2135)
+
+[node name="Marker2D21" type="Marker2D" parent="ObjectiveSpawnpoints"]
+position = Vector2(3780, -862)
+
+[node name="Marker2D22" type="Marker2D" parent="ObjectiveSpawnpoints"]
+position = Vector2(3488, -849)
+
+[node name="car" parent="." instance=ExtResource("13_qxrvk")]
+position = Vector2(545, -694)
+rotation = 1.13069
+
+[node name="player" parent="." instance=ExtResource("2_oappt")]
+unique_name_in_owner = true
+position = Vector2(752, -496)
 
 [node name="BulletManager" type="Node2D" parent="."]
 script = ExtResource("7_85jpq")
@@ -63,11 +611,6 @@ script = ExtResource("13_fpqvc")
 [node name="CanvasModulate" type="CanvasModulate" parent="."]
 z_as_relative = false
 color = Color(0.0431373, 0.0588235, 0.0941176, 1)
-
-[node name="ImpactManager" type="Node2D" parent="."]
-script = ExtResource("12_aa78p")
-
-[node name="ParticleManager" type="Node2D" parent="."]
 
 [node name="Pause" type="CanvasLayer" parent="."]
 
@@ -200,6 +743,35 @@ zoom = Vector2(1.5, 1.5)
 scale = Vector2(0.1, 0.1)
 texture = ExtResource("12_sfed1")
 offset = Vector2(1000, 1000)
+
+[node name="gascan" parent="." instance=ExtResource("14_cu04f")]
+position = Vector2(876, -708)
+
+[node name="suitcase" parent="." instance=ExtResource("15_ywsrf")]
+position = Vector2(962, -596)
+
+[node name="BackgroundMusic" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("16_hmnpi")
+bus = &"Music"
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Label" type="Label" parent="CanvasLayer"]
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -288.5
+offset_top = -100.0
+offset_right = 288.5
+offset_bottom = -44.9998
+grow_horizontal = 2
+grow_vertical = 0
+text = "I need to find the suitcase, it is supposed to be in this town... 
+and I need to find some gas for my car."
+label_settings = SubResource("LabelSettings_7o2oy")
+metadata/_edit_use_anchors_ = true
 
 [connection signal="player_fired_bulled" from="player" to="BulletManager" method="_on_player_player_fired_bulled"]
 [connection signal="pressed" from="Pause/PauseMenu/UnpauseButton" to="." method="_on_button_pressed"]

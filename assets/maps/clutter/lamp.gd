@@ -2,6 +2,7 @@ extends Node2D
 
 @onready var timer = $"Timer"
 @onready var light = $"PointLight2D"
+@onready var flicker_sound = $AudioStreamPlayer2D
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -16,6 +17,7 @@ func _process(delta):
 func _on_timer_timeout():
 	timer.wait_time = randi_range(5,20)
 	light.energy = 0.1;
+	flicker_sound.play()
 	await get_tree().create_timer(0.1).timeout
 	light.energy = 0.3;
 	await get_tree().create_timer(0.1).timeout

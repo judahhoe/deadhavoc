@@ -1,9 +1,14 @@
-[gd_scene load_steps=8 format=3 uid="uid://dmscpcoytwixa"]
+[gd_scene load_steps=10 format=3 uid="uid://dmscpcoytwixa"]
 
 [ext_resource type="Script" path="res://scenes/shotgun.gd" id="1_hhmyy"]
 [ext_resource type="PackedScene" uid="uid://ddowheu4mpu6i" path="res://scenes/shotgun_bullet.tscn" id="2_4pkbn"]
 [ext_resource type="Texture2D" uid="uid://jbckm2ktpxjt" path="res://textures/shotgun.png" id="2_hpq5l"]
 [ext_resource type="Texture2D" uid="uid://cxeac5y833pnl" path="res://textures/muzzleflash.png" id="3_rdk80"]
+[ext_resource type="AudioStream" uid="uid://dgugjcrgyura3" path="res://sfx/strzal + przeladowanie cut.mp3" id="5_bip14"]
+
+[sub_resource type="Gradient" id="Gradient_gor4i"]
+offsets = PackedFloat32Array(0, 0.160494, 0.919753, 1)
+colors = PackedColorArray(1, 0, 0, 0, 1, 0, 0, 0.784314, 1, 0, 0, 0.784314, 1, 0, 0, 0)
 
 [sub_resource type="Animation" id="Animation_uksqy"]
 resource_name = "dipense_casing"
@@ -56,12 +61,18 @@ _data = {
 
 [node name="shotgun" type="Node2D"]
 script = ExtResource("1_hhmyy")
-max_ammo = 12
-ammo = 12
 mag_size = 6
 ammo_in_mag = 6
 Bullet = ExtResource("2_4pkbn")
 max_pellets = 6
+
+[node name="Line2D" type="Line2D" parent="."]
+visible = false
+position = Vector2(79, 0)
+points = PackedVector2Array(0, 0, 10, 0, 90, 0, 100, 0)
+width = 1.5
+default_color = Color(1, 0, 0, 0.623529)
+gradient = SubResource("Gradient_gor4i")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(35, 4.54747e-13)
@@ -88,13 +99,19 @@ libraries = {
 }
 
 [node name="ShootingCooldown" type="Timer" parent="."]
+wait_time = 1.2
 one_shot = true
 
 [node name="ReloadTimer" type="Timer" parent="."]
-wait_time = 0.5
+wait_time = 0.8
 one_shot = true
 
 [node name="CasingEject" type="Marker2D" parent="."]
 position = Vector2(40, 3)
+
+[node name="Gunshot" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("5_bip14")
+volume_db = -10.0
+bus = &"SoundEffects"
 
 [connection signal="timeout" from="ReloadTimer" to="." method="_on_reload_timer_timeout"]

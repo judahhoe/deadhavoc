@@ -2,7 +2,6 @@
 
 [ext_resource type="Script" path="res://scenes/spawner_sewer.gd" id="1_5sxnv"]
 [ext_resource type="Texture2D" uid="uid://luqhf8flfhm5" path="res://textures/sewer_grate.png" id="1_td7md"]
-[ext_resource type="PackedScene" uid="uid://cc5v1bd4naah2" path="res://scenes/enemy.tscn" id="2_djhm3"]
 [ext_resource type="Texture2D" uid="uid://bl5ik8sls8l5b" path="res://textures/sewer_hole.png" id="2_o3gdb"]
 [ext_resource type="AudioStream" uid="uid://bveabk2bsflho" path="res://sfx/sewers.mp3" id="5_n6exm"]
 
@@ -66,10 +65,11 @@ _data = {
 "open_sewer": SubResource("Animation_74jqh")
 }
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_v7lv3"]
+radius = 15325.3
+
 [node name="spawner_sewer" type="Node2D"]
 script = ExtResource("1_5sxnv")
-et = ExtResource("2_djhm3")
-ec = 4
 
 [node name="Sprite2D2" type="Sprite2D" parent="."]
 texture = ExtResource("2_o3gdb")
@@ -86,3 +86,11 @@ libraries = {
 stream = ExtResource("5_n6exm")
 attenuation = 3.36357
 bus = &"SoundEffects"
+
+[node name="DetectPlayer" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DetectPlayer"]
+shape = SubResource("CircleShape2D_v7lv3")
+debug_color = Color(0.980392, 0.145098, 0, 0.027451)
+
+[connection signal="body_entered" from="DetectPlayer" to="." method="_on_detect_player_body_entered"]

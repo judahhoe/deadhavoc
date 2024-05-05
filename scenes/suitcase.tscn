@@ -1,0 +1,63 @@
+[gd_scene load_steps=12 format=3 uid="uid://cswl5fdgsweig"]
+
+[ext_resource type="Script" path="res://assets/pickups/pickup.gd" id="1_0u2n1"]
+[ext_resource type="Texture2D" uid="uid://voqirkp37cy5" path="res://assets/pickups/suitcase_pickup/suitcase_1.png" id="2_3a3wv"]
+[ext_resource type="Texture2D" uid="uid://bpj8uqjj1rogw" path="res://assets/pickups/suitcase_pickup/suitcase_glow.png" id="2_tpf4t"]
+[ext_resource type="Texture2D" uid="uid://6u3i3oocbnmq" path="res://assets/pickups/suitcase_pickup/suitcase_2.png" id="3_2wmyw"]
+[ext_resource type="Texture2D" uid="uid://l1mx513qy56c" path="res://assets/pickups/suitcase_pickup/suitcase_3.png" id="4_00ne7"]
+[ext_resource type="Texture2D" uid="uid://debyawgsupxut" path="res://assets/pickups/suitcase_pickup/suitcase_4.png" id="5_5q75v"]
+[ext_resource type="Texture2D" uid="uid://cnd4f2nht7w2j" path="res://assets/pickups/suitcase_pickup/suitcase_5.png" id="6_hfi08"]
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_tv24w"]
+light_mode = 2
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_kj6rs"]
+light_mode = 2
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_8ukxj"]
+animations = [{
+"frames": [{
+"duration": 10.0,
+"texture": ExtResource("2_3a3wv")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_2wmyw")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_00ne7")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_5q75v")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_hfi08")
+}],
+"loop": true,
+"name": &"default",
+"speed": 8.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_a38im"]
+radius = 13.0
+
+[node name="suitcase" type="Area2D"]
+collision_layer = 512
+script = ExtResource("1_0u2n1")
+pickup_type = "suitcase"
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+material = SubResource("CanvasItemMaterial_tv24w")
+scale = Vector2(0.1, 0.1)
+texture = ExtResource("2_tpf4t")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+material = SubResource("CanvasItemMaterial_kj6rs")
+scale = Vector2(0.1, 0.1)
+sprite_frames = SubResource("SpriteFrames_8ukxj")
+autoplay = "default"
+frame_progress = 0.285946
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_a38im")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

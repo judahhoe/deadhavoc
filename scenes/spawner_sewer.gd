@@ -2,16 +2,15 @@ extends Node2D
 
 @onready var animationPlayer = $AnimationPlayer
 
-@export var et : PackedScene
-@export var ec : int
+@onready var enemyTypeBasic = preload("res://scenes/enemy.tscn")
 
 @onready var sound = $"SewerSound"
 
+var spawnedEnemies = false
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	await get_tree().create_timer(4.0).timeout
-	spawn_enemy(et, ec)
-
+	pass
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
@@ -25,7 +24,15 @@ func spawn_enemy(enemy_type, enemy_count):
 		var spawned_enemy = enemy_type.instantiate()
 		owner.add_child.call_deferred(spawned_enemy)
 		spawned_enemy.position = global_position
-		await get_tree().create_timer(2.0).timeout
+		await get_tree().create_timer(randf_range(0.5,2.5)).timeout
 		enemy_count -= 1
 	animationPlayer.play("close_sewer")
 	sound.play()
+
+
+func _on_detect_player_body_entered(body):
+		if(body.has_method("get_infected")):
+			if(!spawnedEnemies):
+				var enemyCount = randi_range(1, 6)
+				spawnedEnemies = true
+				spawn_enemy(enemyTypeBasic, enemyCount)

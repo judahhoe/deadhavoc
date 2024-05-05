@@ -6,16 +6,16 @@ extends CharacterBody2D
 
 @onready var player = $"../%player"
 @onready var nav_agent := $NavigationAgent2D as NavigationAgent2D
-@onready var medkit = preload("res://scenes/medkit.tscn").instantiate()
-@onready var ammobox = preload("res://scenes/ammobox.tscn").instantiate()
-@onready var blood_pool = preload("res://scenes/blood_pool.tscn").instantiate()
+@onready var medkit = preload("res://scenes/medkit.tscn")
+@onready var ammobox = preload("res://scenes/ammobox.tscn")
+@onready var blood_pool = preload("res://scenes/blood_pool.tscn")
 @onready var enemy = self
 @onready var animation_player = $AnimationPlayer
 
 @onready var timer = $"Timer"
-@onready var impact_manager = get_node("/root/Main/ImpactManager")
 @onready var sprite: Sprite2D = $Sprite2D
 @onready var attack_cooldown = $AttackCooldown
+const BULLET_IMPACT = preload("res://scenes/bullet_impact.tscn")
 const BULLET_IMPACT_KILL = preload("res://scenes/bullet_impact2.tscn")
 var 	speed 	= 50
 var 	health 	= 100
@@ -52,9 +52,9 @@ func _on_timer_timeout():
 func dropitem(item):
 	match item :
 		"medkit":
-			pickup = medkit
+			pickup = medkit.instantiate()
 		"ammo":
-			pickup = ammobox
+			pickup = ammobox.instantiate()
 	main_node.add_child.call_deferred(pickup)
 
 	pickup.position = enemy.global_position
@@ -78,6 +78,10 @@ func die():
 func handle_hit():
 	if (health > 0):
 		health -= 20
+		var impact = BULLET_IMPACT.instantiate()
+		impact.global_position = position
+		impact.emitting = true
+		particle_manager.add_child.call_deferred(impact)
 	if (health <= 0):
 		die();
 
@@ -113,6 +117,10 @@ func handle_kill(position:Vector2):
 	var impact = BULLET_IMPACT_KILL.instantiate()
 	impact.global_position = position
 	impact.emitting = true
-	blood_pool.global_position = position
+	var blood = blood_pool.instantiate()
+	blood.global_position = position
 	particle_manager.add_child.call_deferred(impact)
-	particle_manager.add_child.call_deferred(blood_pool)
+	particle_manager.add_child.call_deferred(blood)
+
+func isEnemy():
+	pass

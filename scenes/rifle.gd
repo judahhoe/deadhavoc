@@ -3,30 +3,33 @@ extends Node2D
 class_name Rifle
 
 @export var weapon_type : String
-@export var max_ammo : int
-@export var ammo : int
+var max_ammo : int = 120
+var ammo : int = 60
 @export var mag_size : int
 @export var ammo_in_mag : int
 @export var Bullet : PackedScene
 @export var reload_modifier : int 
 @export var recoil : float = 6.0
 
+@onready var muzzle_player = $AnimationPlayer
 @onready var casing_emitter = preload("res://scenes/rifle_casing_particles.tscn")
 @onready var end_of_gun = $EndOfGun
 @onready var bullet_direction = $BulletDirection
-@onready var animation_player = $AnimationPlayer
+@onready var animation_player = $"../../../../../../../AnimationPlayerBody"
 @onready var shooting_cooldown = $ShootingCooldown
 @onready var reload_timer = $ReloadTimer
+@onready var gunshot_sound = $Gunshot
+@onready var reload_sound = $Reload
 
-@onready var ammo_count = $"../HUD/AmmoCount"
-@onready var reload_progress = $"../HUD/ReloadProgress"
-@onready var bullet_manager = $"../../BulletManager"
+@onready var ammo_count = $"../../../../../../../HUD/AmmoCount"
+@onready var reload_progress = $"../../../../../../../HUD/ReloadProgress"
+@onready var bullet_manager = $"../../../../../../../../BulletManager"
 @onready var casing_eject = $"CasingEject"
 
 @onready var particle_manager = get_node("/root/Main/ParticleManager")
 
-@onready var ammo_bar_bottom = $"../HUD/Rifle_ammo_bar1"
-@onready var ammo_bar_top = $"../HUD/Rifle_ammo_bar2"
+@onready var ammo_bar_bottom = $"../../../../../../../HUD/Rifle_ammo_bar1"
+@onready var ammo_bar_top = $"../../../../../../../HUD/Rifle_ammo_bar2"
 
 signal player_fired_bullet(bullet, direction)
 var max_level : int = 3
@@ -43,6 +46,11 @@ var nick = "test_user"
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	get_settings_from_db()
+	max_ammo += ammo_level * 20
+	ammo += ammo_level * 20
+	recoil -= recoil_level * 1.2
+	reload_timer.wait_time -= reload_level * 0.2
+	
 	reload_progress.visible = false
 	ammo_count.text = str(ammo_in_mag) + "/" + str(ammo)
 	get_node(".").connect("player_fired_bullet",bullet_manager._on_pistol_player_fired_bullet)
@@ -73,7 +81,8 @@ func shoot():
 		direction_to_shoot = direction_to_shoot.rotated(recoil_radians)
 		bullet_instance.set_direction(direction_to_shoot)
 		emit_signal("player_fired_bullet", bullet_instance)
-		animation_player.play("muzzle_flash")
+		gunshot_sound.play()
+		muzzle_player.play("muzzle_flash")
 		emitt_casing()
 		shooting_cooldown.start()
 	else:
@@ -90,8 +99,10 @@ func emitt_casing():
 func reload():
 	if(ammo > 0 && reload_timer.is_stopped()):
 		reload_timer.start()
+		reload_sound.play()
 		reload_progress.visible = true
 		print("reloading")
+		animation_player.play("rifle_reload")
 	else:
 		print ("mag is empty or reloading")
 	

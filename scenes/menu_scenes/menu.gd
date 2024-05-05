@@ -19,6 +19,7 @@ var nick = "test_user"
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	Input.set_custom_mouse_cursor(cursor)
+	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 	get_settings_from_db()
 	get_settings_from_db()
 	playbutton.grab_focus()
