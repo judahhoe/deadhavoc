@@ -15,7 +15,7 @@ extends Control
 var SelectedFps = 60
 var db #database object 
 var db_name = "res://DataStore/database" #Path to DB
-var nick = "test_user"
+var nick = GlobalVariables.nickname
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	Input.set_custom_mouse_cursor(cursor)

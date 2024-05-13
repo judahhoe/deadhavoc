@@ -18,7 +18,7 @@ extends Control
 var SelectedFps = 60
 var db #database object 
 var db_name = "res://DataStore/database" #Path to DB
-var nick = "test_user"
+var nick = GlobalVariables.nickname
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -122,7 +122,6 @@ func update_db_video():
 	db.path = db_name
 	db.open_db()
 	var table_name = "user_configuration"
-	var nick = "test_user"
 	var display_mode_index = DisplayModeDropdown.selected
 	var display_mode_todb = ""
 	if display_mode_index == 0:
@@ -148,7 +147,6 @@ func update_db_audio():
 	db.path = db_name
 	db.open_db()
 	var table_name = "user_configuration"
-	var nick = "test_user"
 	var master_sound_todb = str(MasterSlider.value)
 	var music_todb = str(MusicSlider.value)
 	var sound_effects_todb = str(SfxSlider.value)
