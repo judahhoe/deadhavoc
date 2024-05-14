@@ -41,7 +41,7 @@ var speed_level = 0
 
 var db #database object 
 var db_name = "res://DataStore/database" #Path to DB
-var nick = "test_user"
+var nick_todb = GlobalVariables.nickname
 
 signal player_fired_bullet(bullet, direction)
 
@@ -121,7 +121,7 @@ func get_settings_from_db():
 	db.path = db_name
 	db.open_db()
 	#remember to not use variables inside the query somehow connected with other variables names, it's not working properly
-	db.query("SELECT perks.player_health, perks.movement_speed, perks.weapons_recoil, perks.max_ammo, perks.reload_speed from user INNER JOIN perks ON user.id = perks.id where user.nickname = '" + nick + "';")
+	db.query("SELECT perks.player_health, perks.movement_speed, perks.weapons_recoil, perks.max_ammo, perks.reload_speed from user INNER JOIN perks ON user.id = perks.id where user.nickname = '" + nick_todb + "';")
 	health_level = db.query_result[0]["player_health"]
 	speed_level = db.query_result[0]["movement_speed"]
 	recoil_level = db.query_result[0]["weapons_recoil"]

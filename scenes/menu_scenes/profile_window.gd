@@ -26,8 +26,8 @@ var profile_indicator = 0;
 func _ready():
 	adjust_profiles()
 	nicknamefield.grab_focus()
-	if(!BackgroundMusic.isMusicPlaying):
-		BackgroundMusic.play_music()
+	#if(!BackgroundMusic.isMusicPlaying):
+		#BackgroundMusic.play_music()
 # Called every frame. 'delta' is the elapsed time since the previous frame.d
 func _process(delta):
 	pass
