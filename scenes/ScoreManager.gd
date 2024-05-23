@@ -15,6 +15,7 @@ var points: int = 0
 var exp_to_next_level: int = 300
 var level: int = 1
 var money:int = 0
+var nick = GlobalVariables.nickname
 
 func _ready():
 	exp_bar.max_value = exp_to_next_level
@@ -63,7 +64,6 @@ func update_db_exp(amount: int):
 	db.path = db_name
 	db.open_db()
 	var table_name = "user"
-	var nick = "test_user"
 	var exp = str(amount)
 	#var dict : Dictionary = Dictionary()
 	#dict["nickname"] = "test3_user"
@@ -80,7 +80,6 @@ func update_db_coins(amount: int):
 	db.path = db_name
 	db.open_db()
 	var table_name = "user"
-	var nick = "test_user"
 	var coins = str(amount)
 	db.query("UPDATE " + table_name + " SET coins = coins + " + coins + " WHERE nickname = '" + nick + "';")
 
@@ -89,6 +88,5 @@ func update_db_money(amount: int):
 	db.path = db_name
 	db.open_db()
 	var table_name = "user"
-	var nick = "test_user"
 	var money = str(amount)
 	db.query("UPDATE " + table_name + " SET money = money + " + money + " WHERE nickname = '" + nick + "';")
