@@ -14,7 +14,6 @@
 [ext_resource type="PackedScene" uid="uid://cay224l783qu2" path="res://scenes/knife.tscn" id="10_asmyu"]
 [ext_resource type="Texture2D" uid="uid://chcgu73vk4dpp" path="res://assets/HUD/HP.png" id="10_dk3ec"]
 [ext_resource type="Texture2D" uid="uid://crhw8jpp5ivdm" path="res://textures/reload.png" id="11_eoshx"]
-[ext_resource type="Texture2D" uid="uid://dof8ixgdbinqt" path="res://textures/light.png" id="12_4v6hq"]
 [ext_resource type="Texture2D" uid="uid://bcq4qb6aigpbg" path="res://assets/BloodOverlay/Krew5.png" id="12_mkfaa"]
 [ext_resource type="Texture2D" uid="uid://bl7b2ql18klwg" path="res://assets/HUD/Weapons/Pistol2.png" id="13_jmjl0"]
 [ext_resource type="Texture2D" uid="uid://d0ra4koqh8dgt" path="res://assets/HUD/Weapons/Rifle2.png" id="14_y1d4f"]
@@ -28,6 +27,7 @@
 [ext_resource type="Texture2D" uid="uid://dpwk3yi04vdv4" path="res://assets/HUD/EXP_Under.png" id="22_pfv3p"]
 [ext_resource type="Texture2D" uid="uid://xreuodxrpnqc" path="res://assets/HUD/Weapons/Granat.png" id="22_xmt5h"]
 [ext_resource type="Texture2D" uid="uid://dhcxrw1weclwq" path="res://assets/HUD/EXP_Progress.png" id="23_rharf"]
+[ext_resource type="Texture2D" uid="uid://de2tv8apg87r5" path="res://textures/light_new.png" id="28_ldheh"]
 
 [sub_resource type="Animation" id="Animation_n2p41"]
 length = 0.001
@@ -5043,7 +5043,7 @@ _data = {
 }
 
 [node name="player" type="CharacterBody2D"]
-collision_mask = 515
+collision_mask = 33283
 script = ExtResource("1_d7hat")
 
 [node name="Camera2D" type="Camera2D" parent="."]
@@ -5556,12 +5556,13 @@ texture_under = ExtResource("22_pfv3p")
 texture_progress = ExtResource("23_rharf")
 
 [node name="PointLight2D" type="PointLight2D" parent="."]
+position = Vector2(26, 0)
 rotation = 1.57079
 energy = 0.3
 range_item_cull_mask = 3
 shadow_enabled = true
 shadow_filter = 2
-texture = ExtResource("12_4v6hq")
+texture = ExtResource("28_ldheh")
 offset = Vector2(0, -270)
 texture_scale = 0.4
 

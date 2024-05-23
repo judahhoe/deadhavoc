@@ -1,11 +1,10 @@
-[gd_scene load_steps=13 format=3 uid="uid://bgbubl4fsvupu"]
+[gd_scene load_steps=12 format=3 uid="uid://bgbubl4fsvupu"]
 
 [ext_resource type="TileSet" uid="uid://t83tuibqi32p" path="res://scenes/tileset.tres" id="1_hlkm7"]
 [ext_resource type="PackedScene" uid="uid://ddt2803mx7gtl" path="res://assets/maps/roof.tscn" id="2_lle1s"]
 [ext_resource type="PackedScene" uid="uid://dja4oynwt2e7o" path="res://assets/maps/clutter/trashcan.tscn" id="2_yyqf5"]
 [ext_resource type="PackedScene" uid="uid://ch2sway1kjwwi" path="res://assets/maps/clutter/lamp.tscn" id="3_dbxj6"]
 [ext_resource type="Script" path="res://scenes/border.gd" id="3_lvmog"]
-[ext_resource type="PackedScene" uid="uid://c4ixxt2df2oox" path="res://assets/maps/clutter/bush_vanity.tscn" id="4_1fbd7"]
 [ext_resource type="PackedScene" uid="uid://6uduq72lb2w0" path="res://assets/maps/clutter/sewer_vanity.tscn" id="5_6ehaw"]
 [ext_resource type="PackedScene" uid="uid://b7kunh16fqc0q" path="res://assets/maps/clutter/trashcan_open.tscn" id="6_1usan"]
 
@@ -78,119 +77,6 @@ rotation = 2.87979
 [node name="Trashcan7" parent="Clutter/Trashcans" instance=ExtResource("6_1usan")]
 position = Vector2(1755, -646)
 rotation = 2.87979
-
-[node name="bushes" type="Node2D" parent="Clutter"]
-
-[node name="bush_vanity" parent="Clutter/bushes" instance=ExtResource("4_1fbd7")]
-position = Vector2(1994, 371)
-
-[node name="bush_vanity2" parent="Clutter/bushes" instance=ExtResource("4_1fbd7")]
-position = Vector2(2031, 556)
-rotation = 0.950548
-
-[node name="bush_vanity28" parent="Clutter/bushes" instance=ExtResource("4_1fbd7")]
-position = Vector2(1880, 512)
-rotation = 0.950548
-
-[node name="bush_vanity3" parent="Clutter/bushes" instance=ExtResource("4_1fbd7")]
-position = Vector2(2166, 435)
-rotation = -0.336122
-
-[node name="bush_vanity4" parent="Clutter/bushes" instance=ExtResource("4_1fbd7")]
-position = Vector2(1907, 694)
-rotation = -0.328587
-
-[node name="bush_vanity5" parent="Clutter/bushes" instance=ExtResource("4_1fbd7")]
-position = Vector2(1877, 869)
-rotation = 0.62196
-
-[node name="bush_vanity6" parent="Clutter/bushes" instance=ExtResource("4_1fbd7")]
-position = Vector2(2116, 808)
-rotation = -0.664709
-
-[node name="bush_vanity7" parent="Clutter/bushes" instance=ExtResource("4_1fbd7")]
-position = Vector2(2260, 647)
-rotation = -0.328587
-
-[node name="bush_vanity8" parent="Clutter/bushes" instance=ExtResource("4_1fbd7")]
-position = Vector2(2270, 798)
-rotation = 0.62196
-
-[node name="bush_vanity9" parent="Clutter/bushes" instance=ExtResource("4_1fbd7")]
-position = Vector2(2412, 724)
-rotation = -0.664709
-
-[node name="bush_vanity10" parent="Clutter/bushes" instance=ExtResource("4_1fbd7")]
-position = Vector2(2129, 946)
-rotation = -0.328587
-
-[node name="bush_vanity11" parent="Clutter/bushes" instance=ExtResource("4_1fbd7")]
-position = Vector2(2176, 1097)
-rotation = 0.62196
-
-[node name="bush_vanity12" parent="Clutter/bushes" instance=ExtResource("4_1fbd7")]
-position = Vector2(2301, 1010)
-rotation = -0.664709
-
-[node name="bush_vanity13" parent="Clutter/bushes" instance=ExtResource("4_1fbd7")]
-position = Vector2(2425, 879)
-rotation = -0.328587
-
-[node name="bush_vanity14" parent="Clutter/bushes" instance=ExtResource("4_1fbd7")]
-position = Vector2(2462, 1064)
-rotation = 0.62196
-
-[node name="bush_vanity15" parent="Clutter/bushes" instance=ExtResource("4_1fbd7")]
-position = Vector2(2597, 943)
-rotation = -0.664709
-
-[node name="bush_vanity16" parent="Clutter/bushes" instance=ExtResource("4_1fbd7")]
-position = Vector2(2563, 566)
-rotation = -0.328587
-
-[node name="bush_vanity17" parent="Clutter/bushes" instance=ExtResource("4_1fbd7")]
-position = Vector2(2560, 744)
-rotation = 0.62196
-
-[node name="bush_vanity18" parent="Clutter/bushes" instance=ExtResource("4_1fbd7")]
-position = Vector2(2695, 623)
-rotation = -0.664709
-
-[node name="bush_vanity19" parent="Clutter/bushes" instance=ExtResource("4_1fbd7")]
-position = Vector2(2287, 307)
-rotation = -0.328587
-
-[node name="bush_vanity20" parent="Clutter/bushes" instance=ExtResource("4_1fbd7")]
-position = Vector2(2381, 552)
-rotation = 0.62196
-
-[node name="bush_vanity21" parent="Clutter/bushes" instance=ExtResource("4_1fbd7")]
-position = Vector2(2523, 411)
-rotation = -0.664709
-
-[node name="bush_vanity22" parent="Clutter/bushes" instance=ExtResource("4_1fbd7")]
-position = Vector2(2086, 92)
-rotation = -0.328587
-
-[node name="bush_vanity23" parent="Clutter/bushes" instance=ExtResource("4_1fbd7")]
-position = Vector2(2123, 277)
-rotation = 0.62196
-
-[node name="bush_vanity24" parent="Clutter/bushes" instance=ExtResource("4_1fbd7")]
-position = Vector2(2258, 156)
-rotation = -0.664709
-
-[node name="bush_vanity25" parent="Clutter/bushes" instance=ExtResource("4_1fbd7")]
-position = Vector2(1824, 119)
-rotation = -0.328587
-
-[node name="bush_vanity26" parent="Clutter/bushes" instance=ExtResource("4_1fbd7")]
-position = Vector2(1861, 304)
-rotation = 0.62196
-
-[node name="bush_vanity27" parent="Clutter/bushes" instance=ExtResource("4_1fbd7")]
-position = Vector2(1962, 200)
-rotation = -0.664709
 
 [node name="sewers" type="Node2D" parent="Clutter"]
 

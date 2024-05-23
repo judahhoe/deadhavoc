@@ -45,6 +45,7 @@ var is_infected = false
 var healthy = "f2f2f2"
 var infected = "696900"
 
+var isSprinting = false
 var health = 100
 var max_health = 100
 var speed = 200  # speed in pixels/sec
@@ -66,6 +67,7 @@ func _ready():
 	health = max_health
 	speed += speed_level * 10
 	
+	health_bar.max_value = max_health
 	health_bar.value = max_health
 	health_bar.tint_progress = healthy
 	weapon = pistol
@@ -94,12 +96,12 @@ func _physics_process(delta):
 	#tilemap.local_to_map(step_position.global_position - Vector2(80,-80)) DON'T EVER DELETE THIS
 	tile = tilemap.get_cell_atlas_coords(0, tilemap.local_to_map(step_position.global_position - Vector2(80,-80))) 
 	
-	if (Input.is_action_pressed("aim")):
-		speed = 30
+	if (Input.is_action_pressed("sprint")):
+		speed = 200
 	else:
 		speed = 150
-		if (!is_nan(speed_modifier)):
-			speed *= speed_modifier
+	if (!is_nan(speed_modifier)):
+		speed *= speed_modifier
 	var v = get_global_mouse_position() - global_position
 	var angle = v.angle()
 	var r = global_rotation
@@ -113,10 +115,11 @@ func _physics_process(delta):
 	
 func _unhandled_input(event):
 	if(event.is_action_pressed("reload")):
-		if(weapon.ammo_in_mag<weapon.mag_size):
-			weapon.reload()
-		else:
-			print("fully reloaded")
+		if(weapon != knife):
+			if(weapon.ammo_in_mag<weapon.mag_size):
+				weapon.reload()
+			else:
+				print("fully reloaded")
 	if(event.is_action_pressed("weapon_knife")):
 		change_weapon(knife)
 		animation_player_body.play("melee_idle")
@@ -227,6 +230,7 @@ func get_infected():
 
 func die():
 	handle_kill(global_position)
+	await get_tree().create_timer(1).timeout
 	get_tree().change_scene_to_file("res://scenes/gameover.tscn")
 
 func update_weapon_hud(weapon, visible = false):

@@ -22,14 +22,19 @@ shadow_color = Color(0, 0, 0, 0.360784)
 radius = 50.0
 height = 228.0
 
-[node name="car" type="Area2D"]
+[node name="car" type="StaticBody2D"]
+collision_layer = 32768
+collision_mask = 3
 script = ExtResource("1_3wybw")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 scale = Vector2(0.2, 0.2)
 texture = ExtResource("1_cuoj8")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+[node name="Area2D" type="Area2D" parent="."]
+collision_layer = 32768
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 rotation = -1.5708
 shape = SubResource("CapsuleShape2D_vpjyh")
 debug_color = Color(0, 0.643137, 0.298039, 0.2)
@@ -48,7 +53,7 @@ offset_right = 288.5
 offset_bottom = -44.9998
 grow_horizontal = 2
 grow_vertical = 0
-text = "I still need gas and the suitcase before i leave."
+text = "I still need gas and the suitcase before I leave."
 label_settings = SubResource("LabelSettings_e3u8i")
 metadata/_edit_use_anchors_ = true
 
@@ -102,4 +107,4 @@ position = Vector2(1, -2)
 rotation = -1.57079
 shape = SubResource("CapsuleShape2D_6puiv")
 
-[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]

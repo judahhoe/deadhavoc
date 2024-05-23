@@ -37,6 +37,6 @@ offset_right = 46.0
 offset_bottom = 56.0
 grow_horizontal = 2
 grow_vertical = 2
-text = "TRY AGAIN"
+text = "MENU"
 
 [connection signal="pressed" from="CanvasLayer/Button" to="." method="_on_button_pressed"]

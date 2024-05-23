@@ -2,8 +2,9 @@ extends CharacterBody2D
 
 @onready var Score_manager = get_node("/root/Main/ScoreManager")
 @onready var particle_manager = get_node("/root/Main/ParticleManager")
-@onready var main_node = get_node("/root/Main")
+@onready var main_node = get_node("/root/Main/PickupManager")
 
+@onready var gfx = $gfx
 @onready var player = $"../%player"
 @onready var nav_agent := $NavigationAgent2D as NavigationAgent2D
 @onready var medkit = preload("res://scenes/medkit.tscn")
@@ -11,10 +12,12 @@ extends CharacterBody2D
 @onready var blood_pool = preload("res://scenes/blood_pool.tscn")
 @onready var enemy = self
 @onready var animation_player = $AnimationPlayer
+@onready var animation_player_legs = $AnimationPlayerLegs 
 
 @onready var timer = $"Timer"
 @onready var sprite: Sprite2D = $Sprite2D
 @onready var attack_cooldown = $AttackCooldown
+var canAttack = true
 const BULLET_IMPACT = preload("res://scenes/bullet_impact.tscn")
 const BULLET_IMPACT_KILL = preload("res://scenes/bullet_impact2.tscn")
 var 	speed 	= 50
@@ -23,6 +26,8 @@ var 	drop
 var 	zombie_damage = 10
 var 	target
 var 	isTargetInRange = false
+
+var dropped_item = false
 
 var exp_value = 100
 var points_value = 300
@@ -34,13 +39,15 @@ var launch_time :float = 0.25
 
 func _ready():
 	animation_player.play("spawn")
+	animation_player_legs.play("walk")
+	
 
 func _physics_process(_delta: float) -> void:
 	var dir = to_local(nav_agent.get_next_path_position()).normalized()
 	velocity = dir * speed
 	move_and_slide()
-	sprite.look_at(player.global_position)
-	sprite.rotation += 1.57 # 90 in radians
+	gfx.look_at(player.global_position)
+	gfx.rotation += 1.57 # 90 in radians
 	
 func makepath() -> void:
 	nav_agent.target_position = player.global_position
@@ -50,12 +57,14 @@ func _on_timer_timeout():
 	makepath()
 
 func dropitem(item):
-	match item :
-		"medkit":
-			pickup = medkit.instantiate()
-		"ammo":
-			pickup = ammobox.instantiate()
-	main_node.add_child.call_deferred(pickup)
+	if(!dropped_item):
+		match item :
+			"medkit":
+				pickup = medkit.instantiate()
+			"ammo":
+				pickup = ammobox.instantiate()
+		main_node.add_child.call_deferred(pickup)
+		dropped_item = true;
 
 	pickup.position = enemy.global_position
 	var direction : Vector2 = Vector2(
@@ -85,11 +94,25 @@ func handle_hit():
 	if (health <= 0):
 		die();
 
+func changeAttackState():
+	if(canAttack):
+		canAttack = false
+	elif(!canAttack):
+		canAttack = true
 
 func _on_attack_cooldown_timeout():
-	deal_damage(target, zombie_damage)
+	if(canAttack):
+		deal_damage(target, zombie_damage)
 	
 func deal_damage(target,damage):
+	var attack = randi_range(1,3)
+	animation_player.play("attack_0")
+	if (attack == 1):
+		animation_player.play("attack_0")
+	if (attack == 2):
+		animation_player.play("attack_1")
+	if (attack == 3):
+		animation_player.play("attack_2")
 	if (isTargetInRange):
 		target.take_damage(damage)
 	else:
