@@ -22,6 +22,5 @@ func _ready():
 	vanishing.play("blood_vanish")
 
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
-	pass
+func delete():
+	queue_free()

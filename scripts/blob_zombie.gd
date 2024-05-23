@@ -1,33 +1,40 @@
 extends CharacterBody2D
 
 @onready var Score_manager = get_node("/root/Main/ScoreManager")
+@onready var particle_manager = get_node("/root/Main/ParticleManager")
+@onready var main_node = get_node("/root/Main/PickupManager")
 
+@onready var mob_scene = preload("res://scenes/basic_zombie_0.tscn")
 @onready var player = $"../%player"
 @onready var nav_agent := $NavigationAgent2D as NavigationAgent2D
-@onready var medkit = preload("res://scenes/medkit.tscn").instantiate()
-@onready var ammobox = preload("res://scenes/ammobox.tscn").instantiate()
+@onready var medkit = preload("res://scenes/medkit.tscn")
+@onready var ammobox = preload("res://scenes/ammobox.tscn")
+@onready var blood_pool = preload("res://scenes/blood_pool.tscn")
 @onready var enemy = self
+@onready var animation_player = $AnimationPlayer
 
+@onready var timer = $"Timer"
 @onready var sprite: Sprite2D = $Sprite2D
 @onready var attack_cooldown = $AttackCooldown
-@onready var mob_scene = preload("res://scenes/enemy.tscn")
-
-var 	speed 	= 10 # 20% of base movement speed
-var 	start_health = 2000.0
-var 	health 	= 2000.0  # *2000% of base health
+const BULLET_IMPACT = preload("res://scenes/bullet_impact.tscn")
+const BULLET_IMPACT_KILL = preload("res://scenes/bullet_impact2.tscn")
+var 	speed 	= 20
+var 	health 	= 800
 var 	drop
-var 	zombie_damage = 20 # * 200% of base damage
+var 	zombie_damage = 10
 var 	target
 var 	isTargetInRange = false
 
-var exp_value = 250
-var points_value = 800
-var money_value = 250
+var exp_value = 100
+var points_value = 300
+var money_value = 50
 #pickups vars
 var pickup : Pickup
 var launch_speed : float = 100
 var launch_time :float = 0.25
 
+func _ready():
+	animation_player.play("spawn")
 
 func _physics_process(_delta: float) -> void:
 	var dir = to_local(nav_agent.get_next_path_position()).normalized()
@@ -40,6 +47,7 @@ func makepath() -> void:
 	nav_agent.target_position = player.global_position
 
 func _on_timer_timeout():
+	timer.wait_time = randf_range(1, 2)
 	makepath()
 
 func dropitem(item):
@@ -48,8 +56,8 @@ func dropitem(item):
 			pickup = medkit.instantiate()
 		"ammo":
 			pickup = ammobox.instantiate()
-	
-	get_parent().add_child.call_deferred(pickup)
+	main_node.add_child.call_deferred(pickup)
+
 	pickup.position = enemy.global_position
 	var direction : Vector2 = Vector2(
 		randf_range(-1.0, 1.0),
@@ -64,29 +72,19 @@ func die():
 	if(drop>20 && drop <=40):
 		dropitem("ammo")
 	add_score()
+	handle_kill(enemy.global_position)
 	queue_free()
 
 
 func handle_hit():
-	health -= 20
+	if (health > 0):
+		health -= 20
+		var impact = BULLET_IMPACT.instantiate()
+		impact.global_position = position
+		impact.emitting = true
+		particle_manager.add_child.call_deferred(impact)
 	if (health <= 0):
 		die();
-	else:
-		var health_percent_drop = ((start_health - health) / start_health * 100)
-		if health_percent_drop >= 5:
-			start_health -= (start_health*0.05)
-			spawn_new_base_enemy()
-
-func spawn_new_base_enemy():
-	var mob = mob_scene.instantiate()
-	print("zombie spawned")
-	mob.player = player
-	mob.medkit = medkit
-	mob.ammobox = ammobox
-	var position = enemy.position
-	position+= Vector2(10,10)
-	mob.global_position = position
-	owner.add_child.call_deferred(mob)
 
 
 func _on_attack_cooldown_timeout():
@@ -115,3 +113,27 @@ func add_score():
 	Score_manager.add_experience(exp_value)
 	Score_manager.add_points(points_value)
 	Score_manager.add_money(money_value)
+	
+func handle_kill(position:Vector2):
+	var impact = BULLET_IMPACT_KILL.instantiate()
+	impact.global_position = position
+	impact.emitting = true
+	var blood = blood_pool.instantiate()
+	blood.global_position = position
+	particle_manager.add_child.call_deferred(impact)
+	particle_manager.add_child.call_deferred(blood)
+
+func isEnemy():
+	pass
+
+
+func spawn_new_base_enemy():
+	var mob = mob_scene.instantiate()
+	print("zombie spawned")
+	mob.player = player
+	mob.medkit = medkit
+	mob.ammobox = ammobox
+	var position = enemy.position
+	position+= Vector2(10,10)
+	mob.global_position = position
+	owner.add_child.call_deferred(mob)

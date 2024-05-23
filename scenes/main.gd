@@ -6,6 +6,7 @@ extends Node2D
 @onready var cursor = preload("res://textures/cursor.png")
 var isPaused = false
 @onready var pause_menu = $"Pause/PauseMenu"
+@onready var controls_menu = $"Controls/ControlsMenu"
 @onready var music = $BackgroundMusic
 
 @onready var label = $CanvasLayer/Label
@@ -17,6 +18,10 @@ var isPaused = false
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	isPaused = true
+	Input.set_custom_mouse_cursor(cursor)
+	get_tree().paused = true
+	controls_menu.show()
 	#spawn objective
 	var suitcaseSpawnID = randi_range(1,21)
 	suitcase.global_position = objectiveSpawnpoints.get_child(suitcaseSpawnID).global_position
@@ -26,9 +31,9 @@ func _ready():
 	gascan.global_position = objectiveSpawnpoints.get_child(gascanSpawnID).global_position
 	
 	music.play()
-	Input.set_custom_mouse_cursor(crosshair)
+	await get_tree().create_timer(5).timeout
 	label.visible = true
-	await get_tree().create_timer(3).timeout
+	await get_tree().create_timer(5).timeout
 	label.visible = false
 	
 	
@@ -61,10 +66,12 @@ func unpause():
 	#Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 	#Input.set_mouse_mode(Input.MOUSE_MODE_HIDDEN)
 	pause_menu.hide()
+	controls_menu.hide()
 	get_tree().paused = false
 
 
 func _on_button_pressed():
+	Input.set_custom_mouse_cursor(crosshair)
 	unpause()
 
 
