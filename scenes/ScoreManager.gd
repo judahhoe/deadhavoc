@@ -15,7 +15,7 @@ var points: int = 0
 var exp_to_next_level: int = 300
 var level: int = 1
 var money:int = 0
-var nick = GlobalVariables.nickname
+@onready var nick = GlobalVariables.nickname
 
 func _ready():
 	exp_bar.max_value = exp_to_next_level
