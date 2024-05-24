@@ -40,7 +40,7 @@ var reload_level = 0
 var speed_level = 0
 
 var db #database object 
-var db_name = "res://DataStore/database" #Path to DB
+var db_name = "user://data/database" #Path to DB
 @onready var nick_todb = GlobalVariables.nickname
 
 # Called when the node enters the scene tree for the first time.
