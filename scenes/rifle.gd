@@ -41,7 +41,7 @@ var speed_level = 0
 
 var db #database object 
 var db_name = "res://DataStore/database" #Path to DB
-var nick_todb = GlobalVariables.nickname
+@onready var nick_todb = GlobalVariables.nickname
 
 # Called when the node enters the scene tree for the first time.
 func _ready():

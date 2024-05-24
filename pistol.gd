@@ -41,7 +41,7 @@ var speed_level = 0
 
 var db #database object 
 var db_name = "res://DataStore/database" #Path to DB
-var nick_todb = GlobalVariables.nickname
+@onready var nick_todb = GlobalVariables.nickname
 
 signal player_fired_bullet(bullet, direction)
 
