@@ -24,7 +24,7 @@ var reload_level = 0
 var speed_level = 0
 
 var db #database object 
-var db_name = "res://DataStore/database" #Path to DB
+var db_name = "user://data/database" #Path to DB
 @onready var nick_todb = GlobalVariables.nickname
 
 @onready var particle_manager = get_node("/root/Main/ParticleManager")

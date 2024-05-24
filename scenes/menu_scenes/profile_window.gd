@@ -19,15 +19,197 @@ extends Control
 
 var SelectedFps = 60
 var db #database object 
-var db_name = "res://DataStore/database" #Path to DB
+var db_name = "user://data/database" #Path to DB
 var nick = "test_user"
 var profile_indicator = 0;
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	if not FileAccess.file_exists(db_name):
+		create_db()
+	else:
+		print("Database already exists.")
 	adjust_profiles()
 	nicknamefield.grab_focus()
 	#if(!BackgroundMusic.isMusicPlaying):
 		#BackgroundMusic.play_music()
+		
+func create_db():
+	# Create db directory
+	var dir = DirAccess.make_dir_absolute("user://data")
+	# Create an instance of the SQLite object
+	db = SQLite.new()
+	db.path = db_name
+	# Open the database (will create the file if it doesn't exist)
+	var success = db.open_db()
+	
+	if !success:
+		print("Failed to open or create database: ", success)
+		return
+	
+	# Example of creating a table
+	var create_table_query = """
+	CREATE TABLE "achievement" (
+	"id"	INTEGER NOT NULL UNIQUE,
+	"name"	TEXT NOT NULL,
+	"description"	TEXT NOT NULL,
+	"reward"	TEXT,
+	"user_id"	INTEGER NOT NULL,
+	PRIMARY KEY("id" AUTOINCREMENT)
+)
+	"""
+	# Execute the query
+	var result = db.query(create_table_query)
+	
+	if !result:
+		print("Failed to create table")
+	else:
+		print("Table created successfully.")
+		
+	create_table_query = """
+	CREATE TABLE "level_completed" (
+	"id"	INTEGER NOT NULL UNIQUE,
+	"name"	TEXT NOT NULL,
+	"user_id"	INTEGER NOT NULL,
+	PRIMARY KEY("id" AUTOINCREMENT)
+)
+	"""
+	# Execute the query
+	result = db.query(create_table_query)
+	
+	if !result:
+		print("Failed to create table")
+	else:
+		print("Table created successfully.")
+	
+	
+	create_table_query = """
+	CREATE TABLE "perks" (
+	"id"	INTEGER NOT NULL UNIQUE,
+	"player_health"	INTEGER,
+	"movement_speed"	INTEGER,
+	"weapons_recoil"	INTEGER,
+	"max_ammo"	INTEGER,
+	"reload_speed"	INTEGER,
+	PRIMARY KEY("id" AUTOINCREMENT)
+)
+	"""
+	# Execute the query
+	result = db.query(create_table_query)
+	
+	if !result:
+		print("Failed to create table")
+	else:
+		print("Table created successfully.")
+	
+	create_table_query = """
+	CREATE TABLE "shop" (
+	"id"	INTEGER NOT NULL UNIQUE,
+	"type"	TEXT,
+	"class"	TEXT,
+	"name"	TEXT NOT NULL,
+	"description"	TEXT,
+	"cost"	NUMERIC NOT NULL,
+	PRIMARY KEY("id" AUTOINCREMENT)
+)
+	"""
+	# Execute the query
+	result = db.query(create_table_query)
+	
+	if !result:
+		print("Failed to create table")
+	else:
+		print("Table created successfully.")
+	
+	create_table_query = """
+	CREATE TABLE sqlite_sequence(name,seq)
+	"""
+	# Execute the query
+	result = db.query(create_table_query)
+	
+	if !result:
+		print("Failed to create table")
+	else:
+		print("Table created successfully.")
+	
+	create_table_query = """
+	CREATE TABLE "transaction" (
+	"id"	INTEGER NOT NULL UNIQUE,
+	"user_id"	INTEGER NOT NULL,
+	"shop_id"	INTEGER NOT NULL,
+	"discount"	NUMERIC,
+	"total_cost"	NUMERIC NOT NULL,
+	FOREIGN KEY("user_id") REFERENCES "user"("id"),
+	PRIMARY KEY("id" AUTOINCREMENT)
+)
+	"""
+	# Execute the query
+	result = db.query(create_table_query)
+	
+	if !result:
+		print("Failed to create table")
+	else:
+		print("Table created successfully.")
+	
+	create_table_query = """
+	CREATE TABLE "user" (
+	"id"	INTEGER NOT NULL UNIQUE,
+	"nickname"	TEXT NOT NULL UNIQUE,
+	"email"	NUMERIC UNIQUE,
+	"password"	TEXT,
+	"experience"	INTEGER,
+	"coins"	NUMERIC,
+	"money"	NUMERIC,
+	PRIMARY KEY("id" AUTOINCREMENT)
+)
+	"""
+	# Execute the query
+	result = db.query(create_table_query)
+	
+	if !result:
+		print("Failed to create table")
+	else:
+		print("Table created successfully.")
+	
+	create_table_query = """
+	CREATE TABLE "user_configuration" (
+	"user_id"	INTEGER NOT NULL UNIQUE,
+	"master_sound"	NUMERIC NOT NULL,
+	"music"	NUMERIC NOT NULL,
+	"sound_effects"	NUMERIC NOT NULL,
+	"display_mode"	TEXT NOT NULL,
+	"vsync"	INTEGER NOT NULL,
+	"fps_cap"	INTEGER NOT NULL,
+	PRIMARY KEY("user_id" AUTOINCREMENT),
+	FOREIGN KEY("user_id") REFERENCES "user"("id")
+)	
+	"""
+	# Execute the query
+	result = db.query(create_table_query)
+	
+	if !result:
+		print("Failed to create table")
+	else:
+		print("Table created successfully.")
+	
+	
+	create_table_query = """
+	CREATE TABLE "user_data" (
+	"user_id"	INTEGER NOT NULL UNIQUE,
+	"time_spent"	INTEGER,
+	"coins_spent"	NUMERIC,
+	"levels_passed"	INTEGER,
+	"zombies_killed"	INTEGER,
+	PRIMARY KEY("user_id" AUTOINCREMENT)
+)
+	"""
+	# Execute the query
+	result = db.query(create_table_query)
+	
+	if !result:
+		print("Failed to create table")
+	else:
+		print("Table created successfully.")
+
 # Called every frame. 'delta' is the elapsed time since the previous frame.d
 func _process(delta):
 	pass

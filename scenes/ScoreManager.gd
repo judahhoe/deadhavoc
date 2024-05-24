@@ -8,7 +8,7 @@ extends Node2D
 @onready var experience_to_next_level = $"/root/Main/player/HUD/ExpToNextLvlLabel"
 
 var db #database object 
-var db_name = "res://DataStore/database" #Path to DB
+var db_name = "user://data/database" #Path to DB
 
 var experience: int = 0
 var points: int = 0
