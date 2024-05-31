@@ -1,4 +1,4 @@
-[gd_scene load_steps=50 format=3 uid="uid://cyliupk1rrn74"]
+[gd_scene load_steps=54 format=3 uid="uid://cyliupk1rrn74"]
 
 [ext_resource type="Script" path="res://scripts/CharacterBody2D.gd" id="1_d7hat"]
 [ext_resource type="Texture2D" uid="uid://btnpl5lmu6peb" path="res://textures/player_parts_new.png" id="2_8w576"]
@@ -30,7 +30,11 @@
 [ext_resource type="Texture2D" uid="uid://dpwk3yi04vdv4" path="res://assets/HUD/EXP_Under.png" id="22_pfv3p"]
 [ext_resource type="Texture2D" uid="uid://xreuodxrpnqc" path="res://assets/HUD/Weapons/Granat.png" id="22_xmt5h"]
 [ext_resource type="Texture2D" uid="uid://dhcxrw1weclwq" path="res://assets/HUD/EXP_Progress.png" id="23_rharf"]
+[ext_resource type="Texture2D" uid="uid://cn8yjam7ecie4" path="res://assets/HUD/Weapons/Ammo/revolver_ammo_meter_under.png" id="24_vd2kd"]
+[ext_resource type="Texture2D" uid="uid://0fqjgqfpep07" path="res://assets/HUD/Weapons/Ammo/revolver_ammo_meter_progress.png" id="25_drtxt"]
 [ext_resource type="Texture2D" uid="uid://de2tv8apg87r5" path="res://textures/light_new.png" id="28_ldheh"]
+[ext_resource type="Texture2D" uid="uid://c0gpd4w4bpjmo" path="res://assets/HUD/Weapons/Ammo/pump_ammo_meter_under.png" id="30_8013p"]
+[ext_resource type="Texture2D" uid="uid://ctb3rjbu57o58" path="res://assets/HUD/Weapons/Ammo/pump_ammo_meter_progress.png" id="31_eox7d"]
 
 [sub_resource type="Animation" id="Animation_n2p41"]
 length = 0.001
@@ -5518,11 +5522,11 @@ offset_left = 1640.0
 offset_top = 1006.0
 offset_right = 1810.0
 offset_bottom = 1046.0
-scale = Vector2(0.7, 0.7)
-max_value = 15.0
+scale = Vector2(0.048, 0.048)
+max_value = 6.0
 value = 4.0
-texture_under = ExtResource("16_ewqkt")
-texture_progress = ExtResource("17_pbxx7")
+texture_under = ExtResource("24_vd2kd")
+texture_progress = ExtResource("25_drtxt")
 
 [node name="Rifle_ammo_bar1" type="TextureProgressBar" parent="HUD"]
 offset_left = 1640.0
@@ -5562,11 +5566,11 @@ offset_left = 1636.0
 offset_top = 993.0
 offset_right = 1811.0
 offset_bottom = 1046.0
-scale = Vector2(0.7, 0.7)
-max_value = 15.0
+scale = Vector2(0.048, 0.048)
+max_value = 5.0
 value = 4.0
-texture_under = ExtResource("20_4vtyd")
-texture_progress = ExtResource("21_j77pw")
+texture_under = ExtResource("30_8013p")
+texture_progress = ExtResource("31_eox7d")
 
 [node name="Grenade" type="TextureRect" parent="HUD"]
 offset_left = 1819.0

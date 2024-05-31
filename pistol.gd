@@ -62,7 +62,7 @@ func _ready():
 		shooting_cooldown.wait_time = shooting_cd
 	if(sidearm_db == 1):
 		weapon_sprite.texture = revolver_sprite
-		shooting_cd = 0.5
+		shooting_cd = 0.8
 		shooting_cooldown.wait_time = shooting_cd
 	max_ammo += ammo_level * 20
 	ammo += ammo_level * 20
@@ -88,6 +88,10 @@ func shoot():
 		ammo_count.text = str(ammo_in_mag) + "/" + str(ammo)
 		var recoil_radians = deg_to_rad(randf_range(-recoil, recoil)) 
 		var bullet_instance = Bullet.instantiate()
+		if(sidearm_db == 0):
+			gunshot_sound.pitch_scale = 1
+		if(sidearm_db == 1):
+			gunshot_sound.pitch_scale = 0.7
 		gunshot_sound.play()
 		bullet_instance.global_position = end_of_gun.global_position
 		var target = bullet_direction.global_position

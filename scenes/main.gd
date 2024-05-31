@@ -14,10 +14,10 @@ var isPaused = false
 @onready var gascan = $gascan
 
 @onready var objectiveSpawnpoints = $ObjectiveSpawnpoints
-
-
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	var par = get_parent()
+	par.remove_child(MenuBackground)
 	isPaused = true
 	Input.set_custom_mouse_cursor(cursor)
 	get_tree().paused = true

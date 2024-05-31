@@ -19,6 +19,7 @@ config/icon="res://icon.svg"
 
 BackgroundMusic="*res://scenes/menu_scenes/background_music.tscn"
 GlobalVariables="*res://global_variables.gd"
+MenuBackground="*res://scenes/menu_scenes/menu_background.tscn"
 
 [display]
 

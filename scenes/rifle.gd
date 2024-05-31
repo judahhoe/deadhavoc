@@ -91,6 +91,10 @@ func shoot():
 		direction_to_shoot = direction_to_shoot.rotated(recoil_radians)
 		bullet_instance.set_direction(direction_to_shoot)
 		emit_signal("player_fired_bullet", bullet_instance)
+		if(rifle_db == 0):
+			gunshot_sound.pitch_scale = 1
+		if(rifle_db == 1):
+			gunshot_sound.pitch_scale = 0.7
 		gunshot_sound.play()
 		muzzle_player.play("muzzle_flash")
 		emitt_casing()
