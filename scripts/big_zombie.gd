@@ -151,4 +151,4 @@ func throw():
 	var target =  player.global_position
 	var direction_to_shoot = bullet_instance.global_position.direction_to(target).normalized() * 0.5
 	bullet_instance.set_direction(direction_to_shoot)
-	owner.add_child.call_deferred(bullet_instance)
+	main_node.add_child.call_deferred(bullet_instance)

@@ -21,4 +21,5 @@ func _process(delta):
 	if progress[0] == 1:
 		await get_tree().create_timer(1).timeout
 		var packed_scene = ResourceLoader.load_threaded_get(main_scene)
+		await get_tree().create_timer(1).timeout
 		get_tree().change_scene_to_packed(packed_scene)

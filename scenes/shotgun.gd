@@ -93,6 +93,10 @@ func shoot():
 			bullet_instance.set_direction(direction_to_shoot)
 			emit_signal("player_fired_bullet", bullet_instance)
 			pellets_shot += 1
+		if(shotgun_db == 0):
+			gunshot_sound.pitch_scale = 1
+		if(shotgun_db == 1):
+			gunshot_sound.pitch_scale = 0.7
 		gunshot_sound.play()
 		muzzle_player.play("muzzle_flash")
 		shooting_cooldown.start()

@@ -30,9 +30,9 @@ func spawn_enemy(enemy_count):
 		var random = randi_range(1,20)
 		if (random >= 7 && random <=8):
 			enemy_type = enemyTypeBig
-		if (random >= 5 && random <= 6):
+		elif (random >= 5 && random <= 6):
 			enemy_type = enemyTypeBlob
-		if (random >= 1 && random <= 4):
+		elif (random >= 1 && random <= 4):
 			enemy_type = enemyTypeQuick
 		else:
 			var randomize_basic = randi_range(1,3)

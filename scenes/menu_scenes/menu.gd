@@ -19,6 +19,9 @@ var db_name = "user://data/database" #Path to DB
 var nick = GlobalVariables.nickname
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	var par = get_parent()
+	par.add_child(MenuBackground)
+	par.move_child(MenuBackground, 0)
 	Input.set_custom_mouse_cursor(cursor)
 	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 	get_settings_from_db()
