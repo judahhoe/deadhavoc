@@ -75,8 +75,7 @@ default_color = Color(1, 0, 0, 0.623529)
 gradient = SubResource("Gradient_gor4i")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-position = Vector2(35, 4.54747e-13)
-rotation = 1.57079
+position = Vector2(33, 1.61559e-27)
 scale = Vector2(0.05, 0.05)
 texture = ExtResource("2_hpq5l")
 
@@ -107,7 +106,7 @@ wait_time = 0.8
 one_shot = true
 
 [node name="CasingEject" type="Marker2D" parent="."]
-position = Vector2(40, 3)
+position = Vector2(30, 3)
 
 [node name="Gunshot" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("5_bip14")

@@ -10,8 +10,8 @@ config_version=5
 
 [application]
 
-config/name="hauntedzone"
-run/main_scene="res://scenes/main.tscn"
+config/name="DeadHavoc"
+run/main_scene="res://scenes/menu_scenes/profile_window.tscn"
 config/features=PackedStringArray("4.2", "GL Compatibility")
 config/icon="res://icon.svg"
 

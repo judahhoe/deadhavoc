@@ -45,6 +45,7 @@ func spawn_enemy(enemy_count):
 		var spawned_enemy = enemy_type.instantiate()
 		owner.add_child.call_deferred(spawned_enemy)
 		spawned_enemy.position = global_position
+		spawned_enemy.visible = true
 		await get_tree().create_timer(randf_range(2.0,3.0)).timeout
 		enemy_count -= 1
 

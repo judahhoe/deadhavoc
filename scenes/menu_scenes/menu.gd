@@ -2,6 +2,7 @@ extends Control
 
 @onready var playbutton = $VBoxContainer/PlayButton
 @onready var perksbutton = $VBoxContainer/PerksButton
+@onready var weaponsbutton = $VBoxContainer/WeaponsButton
 @onready var optionsbutton = $VBoxContainer/OptionsButton
 @onready var quitbutton = $VBoxContainer/QuitButton
 @onready var sound = $ButtonClickSplatter
@@ -169,3 +170,30 @@ func get_settings_from_db():
 		
 	SelectedFps = fps_cap_query
 	Engine.max_fps = SelectedFps
+
+
+func _on_weapons_button_pressed():
+	sound.play()
+	weaponsbutton.icon = load("res://assets/menus/menu_plank_4_bloody.png")
+	await get_tree().create_timer(0.2).timeout
+	get_tree().change_scene_to_file("res://scenes/menu_scenes/weapons_menu/weapon_tree.tscn")
+
+
+func _on_weapons_button_focus_entered():
+	weaponsbutton.modulate = "909090"
+	weaponsbutton.grab_focus()
+
+
+func _on_weapons_button_focus_exited():
+	weaponsbutton.modulate = "ffffff"
+	weaponsbutton.release_focus()
+
+
+func _on_weapons_button_mouse_entered():
+	weaponsbutton.modulate = "909090"
+	weaponsbutton.grab_focus()
+
+
+func _on_weapons_button_mouse_exited():
+	weaponsbutton.modulate = "ffffff"
+	weaponsbutton.release_focus()

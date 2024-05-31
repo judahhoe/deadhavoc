@@ -9,7 +9,7 @@ var speed_level = 0
 
 var db #database object 
 var db_name = "user://data/database" #Path to DB
-var nick = GlobalVariables.nickname
+@onready var nick = GlobalVariables.nickname
 
 @onready var skill_points_label = $"SkillPoints"
 
@@ -138,4 +138,3 @@ func update_db_perks():
 	db.query("SELECT id from user where nickname = '" + nick + "';")
 	var user_id_todb = str(db.query_result[0]["id"])
 	db.query("UPDATE " + table_name + " SET player_health = " + health_level_todb + ", movement_speed = " + speed_level_todb + ", weapons_recoil = " + recoil_level_todb + ", max_ammo = " + ammo_level_todb + ", reload_speed = " + reload_level_todb + " WHERE id = " + user_id_todb + ";")
-

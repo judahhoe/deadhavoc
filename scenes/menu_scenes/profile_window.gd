@@ -13,6 +13,8 @@ extends Control
 @onready var sound = $ButtonClickSplatter
 @onready var nicknamefield = $VBoxContainer/NicknameField
 
+@onready var cursor = preload("res://textures/cursor.png")
+
 @onready var MasterBus = AudioServer.get_bus_index("Master")
 @onready var MusicBus = AudioServer.get_bus_index("Music")
 @onready var SfxBus = AudioServer.get_bus_index("SoundEffects")
@@ -24,6 +26,7 @@ var nick = "test_user"
 var profile_indicator = 0;
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	Input.set_custom_mouse_cursor(cursor)
 	if not FileAccess.file_exists(db_name):
 		create_db()
 	else:
@@ -209,6 +212,24 @@ func create_db():
 		print("Failed to create table")
 	else:
 		print("Table created successfully.")
+	
+	create_table_query = """
+	CREATE TABLE "weapons" (
+	"id"	INTEGER NOT NULL UNIQUE,
+	"sidearm"	INTEGER,
+	"rifle"	INTEGER,
+	"shotgun"	INTEGER,
+	PRIMARY KEY("id" AUTOINCREMENT)
+)
+	"""
+	# Execute the query
+	result = db.query(create_table_query)
+	
+	if !result:
+		print("Failed to create table")
+	else:
+		print("Table created successfully.")
+	
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.d
 func _process(delta):
@@ -319,6 +340,7 @@ func create_user_in_db():
 	db.query("select max(id) as id from user;")
 	var id = str(db.query_result[0].id)
 	db.query("insert into perks (id, player_health, movement_speed, weapons_recoil, max_ammo, reload_speed) values (" + id + ",0, 0, 0, 0, 0);")
+	db.query("insert into weapons (id, sidearm, rifle, shotgun) values (" + id + ", 0, 0, 0);")
 	db.query("insert into user_configuration (user_id, master_sound, music, sound_effects, display_mode, vsync, fps_cap) values (" + id + ",0.5, 0.5, 0.5, 'fullscreen', 1, 60);")
 		
 func adjust_profiles():

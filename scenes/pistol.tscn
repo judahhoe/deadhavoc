@@ -42,7 +42,7 @@ gradient = SubResource("Gradient_wvh71")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(8.42502, 9.53674e-07)
-rotation = 1.57079
+rotation = 6.28318
 scale = Vector2(0.05, 0.05)
 texture = ExtResource("1_unxar")
 
