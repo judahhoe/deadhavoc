@@ -1,4 +1,4 @@
-[gd_scene load_steps=47 format=3 uid="uid://cyliupk1rrn74"]
+[gd_scene load_steps=50 format=3 uid="uid://cyliupk1rrn74"]
 
 [ext_resource type="Script" path="res://scripts/CharacterBody2D.gd" id="1_d7hat"]
 [ext_resource type="Texture2D" uid="uid://btnpl5lmu6peb" path="res://textures/player_parts_new.png" id="2_8w576"]
@@ -15,15 +15,18 @@
 [ext_resource type="Texture2D" uid="uid://chcgu73vk4dpp" path="res://assets/HUD/HP.png" id="10_dk3ec"]
 [ext_resource type="Texture2D" uid="uid://crhw8jpp5ivdm" path="res://textures/reload.png" id="11_eoshx"]
 [ext_resource type="Texture2D" uid="uid://bcq4qb6aigpbg" path="res://assets/BloodOverlay/Krew5.png" id="12_mkfaa"]
-[ext_resource type="Texture2D" uid="uid://bl7b2ql18klwg" path="res://assets/HUD/Weapons/Pistol2.png" id="13_jmjl0"]
-[ext_resource type="Texture2D" uid="uid://d0ra4koqh8dgt" path="res://assets/HUD/Weapons/Rifle2.png" id="14_y1d4f"]
-[ext_resource type="Texture2D" uid="uid://c8thmncbrnpv5" path="res://assets/HUD/Weapons/Shotgun2.png" id="15_5wqk3"]
+[ext_resource type="Texture2D" uid="uid://d1glismwnwl62" path="res://assets/HUD/Weapons/pistol_hud.png" id="16_d4qdy"]
 [ext_resource type="Texture2D" uid="uid://b62p4tmuadwfr" path="res://assets/HUD/Weapons/Ammo/Pistol_ammo_under.png" id="16_ewqkt"]
+[ext_resource type="Texture2D" uid="uid://emm5gk3o20ce" path="res://assets/HUD/Weapons/revolver_hud.png" id="17_714li"]
 [ext_resource type="Texture2D" uid="uid://v51b0dj4o3vb" path="res://assets/HUD/Weapons/Ammo/Pistol_ammo_progress.png" id="17_pbxx7"]
 [ext_resource type="Texture2D" uid="uid://c6q3r1jun6qc" path="res://assets/HUD/Weapons/Ammo/Rifle_ammo_under.png" id="18_am8uu"]
+[ext_resource type="Texture2D" uid="uid://kjxqaj5oq4ra" path="res://assets/HUD/Weapons/rifle_hud.png" id="18_tbd48"]
 [ext_resource type="Texture2D" uid="uid://dpb2jt3p8dgd0" path="res://assets/HUD/Weapons/Ammo/Rifle_ammo_progress.png" id="19_6ubdg"]
+[ext_resource type="Texture2D" uid="uid://dsf4c4rg73dpt" path="res://assets/HUD/Weapons/ak_hud.png" id="19_yaxb0"]
 [ext_resource type="Texture2D" uid="uid://c5in8qrwi4b7x" path="res://assets/HUD/Weapons/Ammo/Shotgun_ammo_under.png" id="20_4vtyd"]
+[ext_resource type="Texture2D" uid="uid://dovj70etubnj" path="res://assets/HUD/Weapons/shotgun_hud.png" id="20_pp2tt"]
 [ext_resource type="Texture2D" uid="uid://s7sqaaws7t3w" path="res://assets/HUD/Weapons/Ammo/Shotgun_ammo_progress.png" id="21_j77pw"]
+[ext_resource type="Texture2D" uid="uid://bnkbmqsfdndww" path="res://assets/HUD/Weapons/pump_hud.png" id="21_ys3m0"]
 [ext_resource type="Texture2D" uid="uid://dpwk3yi04vdv4" path="res://assets/HUD/EXP_Under.png" id="22_pfv3p"]
 [ext_resource type="Texture2D" uid="uid://xreuodxrpnqc" path="res://assets/HUD/Weapons/Granat.png" id="22_xmt5h"]
 [ext_resource type="Texture2D" uid="uid://dhcxrw1weclwq" path="res://assets/HUD/EXP_Progress.png" id="23_rharf"]
@@ -3963,6 +3966,23 @@ tracks/29/keys = {
 "update": 0,
 "values": [Vector2(0, 0), Vector2(0, 0), Vector2(0, 0)]
 }
+tracks/30/type = "method"
+tracks/30/imported = false
+tracks/30/enabled = true
+tracks/30/path = NodePath(".")
+tracks/30/interp = 1
+tracks/30/loop_wrap = true
+tracks/30/keys = {
+"times": PackedFloat32Array(0, 0.4),
+"transitions": PackedFloat32Array(1, 1),
+"values": [{
+"args": [],
+"method": &"switch_reload_state"
+}, {
+"args": [],
+"method": &"switch_reload_state"
+}]
+}
 
 [sub_resource type="Animation" id="Animation_paqix"]
 resource_name = "shotgun_reload"
@@ -5392,13 +5412,30 @@ anchor_left = 1.0
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -620.0
-offset_top = -160.0
-offset_right = -220.0
-offset_bottom = -10.0
+offset_left = -471.0
+offset_top = -115.0
+offset_right = -71.0
+offset_bottom = 131.0
 grow_horizontal = 0
 grow_vertical = 0
-texture = ExtResource("13_jmjl0")
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("16_d4qdy")
+stretch_mode = 3
+
+[node name="Revolver" type="TextureRect" parent="HUD"]
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -481.0
+offset_top = -114.0
+offset_right = 2.0
+offset_bottom = 129.0
+grow_horizontal = 0
+grow_vertical = 0
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("17_714li")
 stretch_mode = 3
 
 [node name="Rifle" type="TextureRect" parent="HUD"]
@@ -5407,13 +5444,30 @@ anchor_left = 1.0
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -604.0
-offset_top = -172.0
-offset_right = -204.0
-offset_bottom = -22.0
+offset_left = -514.0
+offset_top = -122.0
+offset_right = 213.0
+offset_bottom = 153.0
 grow_horizontal = 0
 grow_vertical = 0
-texture = ExtResource("14_y1d4f")
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("18_tbd48")
+stretch_mode = 3
+
+[node name="Ak" type="TextureRect" parent="HUD"]
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -507.0
+offset_top = -117.0
+offset_right = 210.0
+offset_bottom = 97.0
+grow_horizontal = 0
+grow_vertical = 0
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("19_yaxb0")
 stretch_mode = 3
 
 [node name="Shotgun" type="TextureRect" parent="HUD"]
@@ -5422,17 +5476,44 @@ anchor_left = 1.0
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -604.0
-offset_top = -179.0
-offset_right = -204.0
-offset_bottom = -29.0
+offset_left = -531.0
+offset_top = -117.0
+offset_right = 599.0
+offset_bottom = 167.0
 grow_horizontal = 0
 grow_vertical = 0
-scale = Vector2(1.1, 1.1)
-texture = ExtResource("15_5wqk3")
+scale = Vector2(0.18, 0.18)
+texture = ExtResource("20_pp2tt")
+stretch_mode = 3
+
+[node name="Pump" type="TextureRect" parent="HUD"]
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -537.0
+offset_top = -115.0
+offset_right = 624.0
+offset_bottom = 113.0
+grow_horizontal = 0
+grow_vertical = 0
+scale = Vector2(0.18, 0.18)
+texture = ExtResource("21_ys3m0")
 stretch_mode = 3
 
 [node name="Pistol_ammo_bar" type="TextureProgressBar" parent="HUD"]
+offset_left = 1640.0
+offset_top = 1006.0
+offset_right = 1810.0
+offset_bottom = 1046.0
+scale = Vector2(0.7, 0.7)
+max_value = 15.0
+value = 4.0
+texture_under = ExtResource("16_ewqkt")
+texture_progress = ExtResource("17_pbxx7")
+
+[node name="Revolver_ammo_bar" type="TextureProgressBar" parent="HUD"]
 offset_left = 1640.0
 offset_top = 1006.0
 offset_right = 1810.0
@@ -5466,6 +5547,17 @@ texture_under = ExtResource("18_am8uu")
 texture_progress = ExtResource("19_6ubdg")
 
 [node name="Shotgun_ammo_bar" type="TextureProgressBar" parent="HUD"]
+offset_left = 1636.0
+offset_top = 993.0
+offset_right = 1811.0
+offset_bottom = 1046.0
+scale = Vector2(0.7, 0.7)
+max_value = 15.0
+value = 4.0
+texture_under = ExtResource("20_4vtyd")
+texture_progress = ExtResource("21_j77pw")
+
+[node name="Pump_ammo_bar" type="TextureProgressBar" parent="HUD"]
 offset_left = 1636.0
 offset_top = 993.0
 offset_right = 1811.0

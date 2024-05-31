@@ -10,6 +10,13 @@ var ammo : int = 60
 @export var Bullet : PackedScene
 @export var reload_modifier : int 
 @export var recoil : float = 6.0
+@export var sprite : Texture
+
+@onready var weapon_sprite = $"Sprite2D"
+var rifle_db
+
+@onready var rifle_sprite = preload("res://textures/rifle.png")
+@onready var ak_sprite = preload("res://textures/ak.png")
 
 @onready var muzzle_player = $AnimationPlayer
 @onready var casing_emitter = preload("res://scenes/rifle_casing_particles.tscn")
@@ -46,11 +53,14 @@ var db_name = "user://data/database" #Path to DB
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	get_settings_from_db()
+	if(rifle_db == 0):
+		weapon_sprite.texture = rifle_sprite
+	if(rifle_db == 1):
+		weapon_sprite.texture = ak_sprite
 	max_ammo += ammo_level * 20
 	ammo += ammo_level * 20
 	recoil -= recoil_level * 1.2
 	reload_timer.wait_time -= reload_level * 0.2
-	
 	reload_progress.visible = false
 	ammo_count.text = str(ammo_in_mag) + "/" + str(ammo)
 	get_node(".").connect("player_fired_bullet",bullet_manager._on_pistol_player_fired_bullet)
@@ -134,3 +144,5 @@ func get_settings_from_db():
 	recoil_level = db.query_result[0]["weapons_recoil"]
 	ammo_level = db.query_result[0]["max_ammo"]
 	reload_level = db.query_result[0]["reload_speed"]
+	db.query("SELECT weapons.rifle from user INNER JOIN weapons ON user.id = weapons.id where user.nickname = '" + nick_todb + "';")
+	rifle_db = db.query_result[0]["rifle"]

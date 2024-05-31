@@ -1,9 +1,10 @@
-[gd_scene load_steps=7 format=3 uid="uid://d4bs42drru1p3"]
+[gd_scene load_steps=8 format=3 uid="uid://d4bs42drru1p3"]
 
 [ext_resource type="Script" path="res://scenes/menu_scenes/menu.gd" id="1_gl6o7"]
 [ext_resource type="Texture2D" uid="uid://bau7t5snkuwln" path="res://assets/menus/menu_plank_0.png" id="2_bdwmd"]
 [ext_resource type="Texture2D" uid="uid://dnwgdox5d6ywh" path="res://assets/menus/menu_plank_1.png" id="3_mwr3x"]
 [ext_resource type="Texture2D" uid="uid://dfi6a8cqyxdaq" path="res://assets/menus/menu_plank_2.png" id="4_sxq74"]
+[ext_resource type="Texture2D" uid="uid://doyahhkku7e6b" path="res://assets/menus/menu_plank_4.png" id="4_w5yoy"]
 [ext_resource type="Texture2D" uid="uid://dn85rkghsjd4t" path="res://assets/menus/menu_plank_3.png" id="5_38m7u"]
 [ext_resource type="AudioStream" uid="uid://fkvn2yts26js" path="res://assets/menus/blood_splatter2.ogg" id="6_ek6ln"]
 
@@ -41,6 +42,11 @@ layout_mode = 2
 icon = ExtResource("3_mwr3x")
 flat = true
 
+[node name="WeaponsButton" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+icon = ExtResource("4_w5yoy")
+flat = true
+
 [node name="OptionsButton" type="Button" parent="VBoxContainer"]
 layout_mode = 2
 icon = ExtResource("4_sxq74")
@@ -68,6 +74,11 @@ bus = &"UI"
 [connection signal="mouse_entered" from="VBoxContainer/PerksButton" to="." method="_on_perks_button_mouse_entered"]
 [connection signal="mouse_exited" from="VBoxContainer/PerksButton" to="." method="_on_perks_button_mouse_exited"]
 [connection signal="pressed" from="VBoxContainer/PerksButton" to="." method="_on_perks_button_pressed"]
+[connection signal="focus_entered" from="VBoxContainer/WeaponsButton" to="." method="_on_weapons_button_focus_entered"]
+[connection signal="focus_exited" from="VBoxContainer/WeaponsButton" to="." method="_on_weapons_button_focus_exited"]
+[connection signal="mouse_entered" from="VBoxContainer/WeaponsButton" to="." method="_on_weapons_button_mouse_entered"]
+[connection signal="mouse_exited" from="VBoxContainer/WeaponsButton" to="." method="_on_weapons_button_mouse_exited"]
+[connection signal="pressed" from="VBoxContainer/WeaponsButton" to="." method="_on_weapons_button_pressed"]
 [connection signal="focus_entered" from="VBoxContainer/OptionsButton" to="." method="_on_options_button_focus_entered"]
 [connection signal="focus_exited" from="VBoxContainer/OptionsButton" to="." method="_on_options_button_focus_exited"]
 [connection signal="mouse_entered" from="VBoxContainer/OptionsButton" to="." method="_on_options_button_mouse_entered"]

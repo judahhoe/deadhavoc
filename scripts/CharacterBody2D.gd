@@ -5,15 +5,24 @@ extends CharacterBody2D
 @onready var shotgun = $"Skeleton2D/hip/chest/arm_right/forearm_right/hand_right/shotgun"
 @onready var rifle = $"Skeleton2D/hip/chest/arm_right/forearm_right/hand_right/rifle"
 
+var sidearm_db = 0
+var rifle_db = 0
+var shotgun_db = 0
+
 @onready var health_bar = $"HUD/HealthBar"
 
 @onready var pistol_ammo_bar = $"HUD/Pistol_ammo_bar"
 @onready var rifle_ammo_bar_bottom = $"HUD/Rifle_ammo_bar1"
 @onready var rifle_ammo_bar_top = $"HUD/Rifle_ammo_bar2"
 @onready var shotgun_ammo_bar = $"HUD/Shotgun_ammo_bar"
+@onready var revolver_ammo_bar = $"HUD/Revolver_ammo_bar"
+@onready var pump_ammo_bar = $"HUD/Pump_ammo_bar"
 @onready var pistol_hud = $"HUD/Pistol"
 @onready var rifle_hud = $"HUD/Rifle"
 @onready var shotgun_hud = $"HUD/Shotgun"
+@onready var revolver_hud = $"HUD/Revolver"
+@onready var ak_hud = $"HUD/Ak"
+@onready var pump_hud = $"HUD/Pump"
 @onready var Pain = $"HUD/BloodOverlay/AnimationPlayer" 
 const BULLET_IMPACT_KILL = preload("res://scenes/bullet_impact2.tscn")
 var max_level : int = 3
@@ -23,9 +32,11 @@ var recoil_level = 0
 var reload_level = 0
 var speed_level = 0
 
+var canReload = true
+
 var db #database object 
 var db_name = "user://data/database" #Path to DB
-@onready var nick_todb = GlobalVariables.nickname
+@onready var nick = GlobalVariables.nickname
 
 @onready var particle_manager = get_node("/root/Main/ParticleManager")
 
@@ -38,6 +49,8 @@ var db_name = "user://data/database" #Path to DB
 @onready var wood_step = preload("res://sfx/drewno krok 1 cut.mp3")
 @onready var cement_step = preload("res://sfx/beton krok 1 cut.mp3")
 @onready var step_position = $"StepChecker"
+
+
 var tile
 
 var infection_count
@@ -67,6 +80,40 @@ func _ready():
 	health = max_health
 	speed += speed_level * 10
 	
+	#set weapons according to db
+	if(sidearm_db == 0):
+		pistol.mag_size = 15
+		pistol.ammo_in_mag = 15
+		pistol.reload_modifier = 0
+		pistol.recoil = 6
+	if(sidearm_db == 1):
+		pistol.mag_size = 6
+		pistol.ammo_in_mag = 6
+		pistol.reload_modifier = 0
+		pistol.recoil = 8
+	if(rifle_db == 0):
+		rifle.mag_size = 30
+		rifle.ammo_in_mag = 30
+		rifle.reload_modifier = 0
+		rifle.recoil = 10
+	if(rifle_db == 1):
+		rifle.mag_size = 30
+		rifle.ammo_in_mag = 30
+		rifle.reload_modifier = 0
+		rifle.recoil = 14
+	if(shotgun_db == 0):
+		shotgun.mag_size = 7
+		shotgun.ammo_in_mag = 7
+		shotgun.reload_modifier = 15
+		shotgun.recoil = 20
+		shotgun.max_pellets = 6
+	if(shotgun_db == 1):
+		shotgun.mag_size = 5
+		shotgun.ammo_in_mag = 5
+		shotgun.reload_modifier = 15
+		shotgun.recoil = 14
+		shotgun.max_pellets = 5
+	
 	health_bar.max_value = max_health
 	health_bar.value = max_health
 	health_bar.tint_progress = healthy
@@ -76,7 +123,11 @@ func _ready():
 	change_weapon(pistol)
 	animation_player_body.play("pistol_aim")
 
-
+func switch_reload_state():
+	if(canReload):
+		canReload = false
+	if(!canReload):
+		canReload = true
 
 func _physics_process(delta):
 	if(Input.is_action_pressed("shoot")):
@@ -116,8 +167,9 @@ func _physics_process(delta):
 func _unhandled_input(event):
 	if(event.is_action_pressed("reload")):
 		if(weapon != knife):
-			if(weapon.ammo_in_mag<weapon.mag_size):
-				weapon.reload()
+			if(canReload):
+				if(weapon.ammo_in_mag<weapon.mag_size):
+					weapon.reload()
 			else:
 				print("fully reloaded")
 	if(event.is_action_pressed("weapon_knife")):
@@ -235,25 +287,41 @@ func die():
 
 func update_weapon_hud(weapon, visible = false):
 	pistol_hud.visible = false
+	revolver_hud.visible = false
 	rifle_hud.visible = false
+	ak_hud.visible = false
 	shotgun_hud.visible = false
+	pump_hud.visible = false
 	pistol_ammo_bar.visible = false
+	revolver_ammo_bar.visible = false
 	rifle_ammo_bar_top.visible = false
 	rifle_ammo_bar_bottom.visible = false
 	shotgun_ammo_bar.visible = false
+	pump_ammo_bar.visible = false
 	
 	if weapon is Knife and visible:
 		pass
 	elif weapon is Pistol and visible:
-		pistol_hud.visible = true
-		pistol_ammo_bar.visible = true
+		if(sidearm_db == 0):
+			pistol_hud.visible = true
+			pistol_ammo_bar.visible = true
+		if(sidearm_db == 1):
+			revolver_hud.visible = true
+			revolver_ammo_bar.visible = true
 	elif weapon is Rifle and visible:
-		rifle_hud.visible = true
+		if(rifle_db == 0):
+			rifle_hud.visible = true
+		if(rifle_db == 1):
+			ak_hud.visible = true
 		rifle_ammo_bar_top.visible = true
 		rifle_ammo_bar_bottom.visible = true
 	elif weapon is Shotgun and visible:
-		shotgun_hud.visible = true
-		shotgun_ammo_bar.visible = true
+		if(shotgun_db == 0):
+			shotgun_hud.visible = true
+			shotgun_ammo_bar.visible = true
+		if(shotgun_db == 1):
+			pump_hud.visible = true
+			pump_ammo_bar.visible = true
 		
 func handle_kill(position:Vector2):
 	var impact = BULLET_IMPACT_KILL.instantiate()
@@ -276,12 +344,16 @@ func get_settings_from_db():
 	db.path = db_name
 	db.open_db()
 	#remember to not use variables inside the query somehow connected with other variables names, it's not working properly
-	db.query("SELECT perks.player_health, perks.movement_speed, perks.weapons_recoil, perks.max_ammo, perks.reload_speed from user INNER JOIN perks ON user.id = perks.id where user.nickname = '" + nick_todb + "';")
+	db.query("SELECT perks.player_health, perks.movement_speed, perks.weapons_recoil, perks.max_ammo, perks.reload_speed from user INNER JOIN perks ON user.id = perks.id where user.nickname = '" + nick + "';")
 	health_level = db.query_result[0]["player_health"]
 	speed_level = db.query_result[0]["movement_speed"]
 	recoil_level = db.query_result[0]["weapons_recoil"]
 	ammo_level = db.query_result[0]["max_ammo"]
 	reload_level = db.query_result[0]["reload_speed"]
+	db.query("SELECT weapons.sidearm, weapons.rifle, weapons.shotgun from user INNER JOIN weapons ON user.id = weapons.id where user.nickname = '" + nick + "';")
+	sidearm_db = db.query_result[0]["sidearm"]
+	rifle_db = db.query_result[0]["rifle"]
+	shotgun_db = db.query_result[0]["shotgun"]
 
 func set_step():
 	if(step):
