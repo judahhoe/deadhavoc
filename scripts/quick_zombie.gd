@@ -4,6 +4,7 @@ extends CharacterBody2D
 @onready var particle_manager = get_node("/root/Main/ParticleManager")
 @onready var main_node = get_node("/root/Main/PickupManager")
 
+@onready var gfx = $gfx
 @onready var player = $"../%player"
 @onready var nav_agent := $NavigationAgent2D as NavigationAgent2D
 @onready var medkit = preload("res://scenes/medkit.tscn")
@@ -11,6 +12,7 @@ extends CharacterBody2D
 @onready var blood_pool = preload("res://scenes/blood_pool.tscn")
 @onready var enemy = self
 @onready var animation_player = $AnimationPlayer
+@onready var animation_player_legs = $AnimationPlayerLegs 
 
 @onready var timer = $"Timer"
 @onready var sprite: Sprite2D = $Sprite2D
@@ -34,13 +36,14 @@ var launch_time :float = 0.25
 
 func _ready():
 	animation_player.play("spawn")
+	animation_player_legs.play("walk",0,2.0)
 
 func _physics_process(_delta: float) -> void:
 	var dir = to_local(nav_agent.get_next_path_position()).normalized()
 	velocity = dir * speed
 	move_and_slide()
-	sprite.look_at(player.global_position)
-	sprite.rotation += 1.57 # 90 in radians
+	gfx.look_at(player.global_position)
+	gfx.rotation += 1.57 # 90 in radians
 	
 func makepath() -> void:
 	nav_agent.target_position = player.global_position

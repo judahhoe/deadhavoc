@@ -36,7 +36,7 @@ func _process(delta):
 
 func _on_play_button_pressed():
 	sound.play()
-	playbutton.icon = load("res://assets/menus/menu_plank_bloody_0.png")
+	#playbutton.icon = load("res://assets/menus/menu_plank_bloody_0.png")
 	await get_tree().create_timer(0.2).timeout
 	if(BackgroundMusic.isMusicPlaying):
 		BackgroundMusic.stop_music()
@@ -46,21 +46,21 @@ func _on_play_button_pressed():
 
 func _on_perks_button_pressed():
 	sound.play()
-	perksbutton.icon = load("res://assets/menus/menu_plank_bloody_1.png")
+	#perksbutton.icon = load("res://assets/menus/menu_plank_bloody_1.png")
 	await get_tree().create_timer(0.2).timeout
 	get_tree().change_scene_to_file("res://scenes/menu_scenes/perks_menu/skill_tree.tscn")
 
 
 func _on_options_button_pressed():
 	sound.play()
-	optionsbutton.icon = load("res://assets/menus/menu_plank_bloody_2.png")
+	#optionsbutton.icon = load("res://assets/menus/menu_plank_bloody_2.png")
 	await get_tree().create_timer(0.2).timeout
 	get_tree().change_scene_to_file("res://scenes/menu_scenes/menu_options.tscn")
 
 
 func _on_quit_button_pressed():
 	sound.play()
-	quitbutton.icon = load("res://assets/menus/menu_plank_bloody_3.png")
+	#quitbutton.icon = load("res://assets/menus/menu_plank_bloody_3.png")
 	await get_tree().create_timer(0.2).timeout
 	get_tree().quit()
 
@@ -177,7 +177,7 @@ func get_settings_from_db():
 
 func _on_weapons_button_pressed():
 	sound.play()
-	weaponsbutton.icon = load("res://assets/menus/menu_plank_4_bloody.png")
+	#weaponsbutton.icon = load("res://assets/menus/menu_plank_4_bloody.png")
 	await get_tree().create_timer(0.2).timeout
 	get_tree().change_scene_to_file("res://scenes/menu_scenes/weapons_menu/weapon_tree.tscn")
 

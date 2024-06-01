@@ -1,12 +1,16 @@
-[gd_scene load_steps=8 format=3 uid="uid://byfoewl1ap1wn"]
+[gd_scene load_steps=12 format=3 uid="uid://byfoewl1ap1wn"]
 
 [ext_resource type="Script" path="res://scenes/menu_scenes/profile_window.gd" id="1_c3811"]
 [ext_resource type="Texture2D" uid="uid://brd61l88rxfvm" path="res://textures/menu_theme_background.png" id="2_1cp2h"]
 [ext_resource type="Texture2D" uid="uid://d1nfy7tvrfvp1" path="res://assets/menus/menu_plank_add.png" id="2_2o34k"]
 [ext_resource type="Texture2D" uid="uid://c3e7jevfuf21l" path="res://assets/menus/menu_plank_remove.png" id="3_1i6cb"]
+[ext_resource type="Texture2D" uid="uid://dsmxihhbpp2j2" path="res://assets/menus/menu_plank_add_bloody.png" id="4_cn5n2"]
 [ext_resource type="Texture2D" uid="uid://c4nhvc1vj81aw" path="res://assets/menus/menu_plank_enter.png" id="4_ysrrp"]
 [ext_resource type="Texture2D" uid="uid://dn85rkghsjd4t" path="res://assets/menus/menu_plank_3.png" id="5_x6xtb"]
+[ext_resource type="Texture2D" uid="uid://dv2b5g6qb0rad" path="res://assets/menus/menu_plank_remove_bloody.png" id="6_mwcvk"]
 [ext_resource type="AudioStream" uid="uid://fkvn2yts26js" path="res://assets/menus/blood_splatter2.ogg" id="6_tyjtq"]
+[ext_resource type="Texture2D" uid="uid://2tx3wckut1dp" path="res://assets/menus/menu_plank_enter_bloody.png" id="8_7cfqe"]
+[ext_resource type="Texture2D" uid="uid://ch23iev2ua3ov" path="res://assets/menus/menu_plank_bloody_3.png" id="10_vvw48"]
 
 [node name="profile_window" type="Control"]
 layout_mode = 3
@@ -79,26 +83,26 @@ placeholder_text = "username"
 [node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
 layout_mode = 2
 
-[node name="AddUserButton" type="Button" parent="VBoxContainer/HBoxContainer"]
+[node name="AddUserButton" type="TextureButton" parent="VBoxContainer/HBoxContainer"]
 layout_mode = 2
-icon = ExtResource("2_2o34k")
-flat = true
+texture_normal = ExtResource("2_2o34k")
+texture_pressed = ExtResource("4_cn5n2")
 
-[node name="RemoveUserButton" type="Button" parent="VBoxContainer/HBoxContainer"]
+[node name="RemoveUserButton" type="TextureButton" parent="VBoxContainer/HBoxContainer"]
 layout_mode = 2
-icon = ExtResource("3_1i6cb")
-flat = true
+texture_normal = ExtResource("3_1i6cb")
+texture_pressed = ExtResource("6_mwcvk")
 
-[node name="EnterButton" type="Button" parent="VBoxContainer/HBoxContainer"]
+[node name="EnterButton" type="TextureButton" parent="VBoxContainer/HBoxContainer"]
 layout_mode = 2
-icon = ExtResource("4_ysrrp")
-flat = true
+texture_normal = ExtResource("4_ysrrp")
+texture_pressed = ExtResource("8_7cfqe")
 
-[node name="QuitButton" type="Button" parent="VBoxContainer"]
+[node name="QuitButton" type="TextureButton" parent="VBoxContainer"]
 layout_mode = 2
-icon = ExtResource("5_x6xtb")
-flat = true
-icon_alignment = 1
+size_flags_horizontal = 4
+texture_normal = ExtResource("5_x6xtb")
+texture_pressed = ExtResource("10_vvw48")
 
 [node name="ButtonClickSplatter" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("6_tyjtq")

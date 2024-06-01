@@ -1068,6 +1068,18 @@ tracks/0/keys = {
 "update": 0,
 "values": [Vector2(0, 0), Vector2(1, 1)]
 }
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.1),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_2yx1h"]
 _data = {
@@ -1309,12 +1321,12 @@ _data = {
 }
 
 [node name="enemy" type="CharacterBody2D"]
-visible = false
 collision_layer = 2
 collision_mask = 32771
 script = ExtResource("1_eo08o")
 
 [node name="gfx" type="Node2D" parent="."]
+scale = Vector2(0.1, 0.1)
 
 [node name="polygons" type="Node2D" parent="gfx"]
 position = Vector2(-24, -31)

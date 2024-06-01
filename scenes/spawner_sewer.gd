@@ -28,12 +28,12 @@ func spawn_enemy(enemy_count):
 	sound.play()
 	await get_tree().create_timer(2.0).timeout
 	while (enemy_count>0):
-		var random = randi_range(1,20)
+		var random = randi_range(1,40)
 		if (random >= 7 && random <=8):
 			enemy_type = enemyTypeBig
-		elif (random >= 5 && random <= 6):
+		elif (random == 9):
 			enemy_type = enemyTypeBlob
-		elif (random >= 1 && random <= 4):
+		elif (random >= 1 && random <= 6):
 			enemy_type = enemyTypeQuick
 		else:
 			var randomize_basic = randi_range(1,3)
