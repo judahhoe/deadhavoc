@@ -1,12 +1,17 @@
-[gd_scene load_steps=8 format=3 uid="uid://d4bs42drru1p3"]
+[gd_scene load_steps=13 format=3 uid="uid://d4bs42drru1p3"]
 
 [ext_resource type="Script" path="res://scenes/menu_scenes/menu.gd" id="1_gl6o7"]
 [ext_resource type="Texture2D" uid="uid://bau7t5snkuwln" path="res://assets/menus/menu_plank_0.png" id="2_bdwmd"]
+[ext_resource type="Texture2D" uid="uid://ctybuh33rvhe4" path="res://assets/menus/menu_plank_bloody_0.png" id="3_in088"]
 [ext_resource type="Texture2D" uid="uid://dnwgdox5d6ywh" path="res://assets/menus/menu_plank_1.png" id="3_mwr3x"]
 [ext_resource type="Texture2D" uid="uid://dfi6a8cqyxdaq" path="res://assets/menus/menu_plank_2.png" id="4_sxq74"]
 [ext_resource type="Texture2D" uid="uid://doyahhkku7e6b" path="res://assets/menus/menu_plank_4.png" id="4_w5yoy"]
 [ext_resource type="Texture2D" uid="uid://dn85rkghsjd4t" path="res://assets/menus/menu_plank_3.png" id="5_38m7u"]
+[ext_resource type="Texture2D" uid="uid://db5f1unmxb5v1" path="res://assets/menus/menu_plank_bloody_1.png" id="5_dxgaw"]
 [ext_resource type="AudioStream" uid="uid://fkvn2yts26js" path="res://assets/menus/blood_splatter2.ogg" id="6_ek6ln"]
+[ext_resource type="Texture2D" uid="uid://3v2ylvngha6b" path="res://assets/menus/menu_plank_4_bloody.png" id="7_jcxsd"]
+[ext_resource type="Texture2D" uid="uid://d2cphucwl5oky" path="res://assets/menus/menu_plank_bloody_2.png" id="9_elmm1"]
+[ext_resource type="Texture2D" uid="uid://ch23iev2ua3ov" path="res://assets/menus/menu_plank_bloody_3.png" id="11_hxe02"]
 
 [node name="Menu" type="Control"]
 layout_mode = 3
@@ -31,33 +36,32 @@ offset_bottom = 20.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="PlayButton" type="Button" parent="VBoxContainer"]
+[node name="PlayButton" type="TextureButton" parent="VBoxContainer"]
 layout_mode = 2
 focus_neighbor_top = NodePath("../QuitButton")
-icon = ExtResource("2_bdwmd")
-flat = true
+texture_normal = ExtResource("2_bdwmd")
+texture_pressed = ExtResource("3_in088")
 
-[node name="PerksButton" type="Button" parent="VBoxContainer"]
+[node name="PerksButton" type="TextureButton" parent="VBoxContainer"]
 layout_mode = 2
-icon = ExtResource("3_mwr3x")
-flat = true
+texture_normal = ExtResource("3_mwr3x")
+texture_pressed = ExtResource("5_dxgaw")
 
-[node name="WeaponsButton" type="Button" parent="VBoxContainer"]
+[node name="WeaponsButton" type="TextureButton" parent="VBoxContainer"]
 layout_mode = 2
-icon = ExtResource("4_w5yoy")
-flat = true
+texture_normal = ExtResource("4_w5yoy")
+texture_pressed = ExtResource("7_jcxsd")
 
-[node name="OptionsButton" type="Button" parent="VBoxContainer"]
+[node name="OptionsButton" type="TextureButton" parent="VBoxContainer"]
 layout_mode = 2
-icon = ExtResource("4_sxq74")
-flat = true
+texture_normal = ExtResource("4_sxq74")
+texture_pressed = ExtResource("9_elmm1")
 
-[node name="QuitButton" type="Button" parent="VBoxContainer"]
+[node name="QuitButton" type="TextureButton" parent="VBoxContainer"]
 layout_mode = 2
 focus_neighbor_bottom = NodePath("../PlayButton")
-icon = ExtResource("5_38m7u")
-flat = true
-icon_alignment = 1
+texture_normal = ExtResource("5_38m7u")
+texture_pressed = ExtResource("11_hxe02")
 
 [node name="ButtonClickSplatter" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("6_ek6ln")

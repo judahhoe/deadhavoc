@@ -237,7 +237,7 @@ func _process(delta):
 
 func _on_quit_button_pressed():
 	sound.play()
-	quitbutton.icon = load("res://assets/menus/menu_plank_bloody_3.png")
+	#quitbutton.icon = load("res://assets/menus/menu_plank_bloody_3.png")
 	await get_tree().create_timer(0.2).timeout
 	get_tree().quit()
 
@@ -392,7 +392,7 @@ func _on_enter_button_pressed():
 			GlobalVariables.nickname = profile6button.text 
 			
 		sound.play()
-		enterbutton.icon = load("res://assets/menus/menu_plank_enter_bloody.png")
+		#enterbutton.icon = load("res://assets/menus/menu_plank_enter_bloody.png")
 		await get_tree().create_timer(0.2).timeout
 		get_tree().change_scene_to_file("res://scenes/menu_scenes/menu_main.tscn")
 	

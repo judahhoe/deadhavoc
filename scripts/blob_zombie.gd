@@ -13,8 +13,8 @@ extends CharacterBody2D
 @onready var enemy = self
 @onready var animation_player = $AnimationPlayer
 
+@onready var gfx = $"gfx"
 @onready var timer = $"Timer"
-@onready var sprite: Sprite2D = $Sprite2D
 @onready var attack_cooldown = $AttackCooldown
 const BULLET_IMPACT = preload("res://scenes/bullet_impact.tscn")
 const BULLET_IMPACT_KILL = preload("res://scenes/bullet_impact2.tscn")
@@ -35,13 +35,14 @@ var launch_time :float = 0.25
 
 func _ready():
 	animation_player.play("spawn")
+	animation_player.play("walk")
 
 func _physics_process(_delta: float) -> void:
 	var dir = to_local(nav_agent.get_next_path_position()).normalized()
 	velocity = dir * speed
 	move_and_slide()
-	sprite.look_at(player.global_position)
-	sprite.rotation += 1.57 # 90 in radians
+	gfx.look_at(player.global_position)
+	gfx.rotation += 1.57 # 90 in radians
 	
 func makepath() -> void:
 	nav_agent.target_position = player.global_position
