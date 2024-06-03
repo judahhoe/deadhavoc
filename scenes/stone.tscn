@@ -19,6 +19,7 @@ point_count = 3
 [node name="bullet" type="Area2D"]
 scale = Vector2(4.61354, 4.61354)
 collision_layer = 8
+collision_mask = 16385
 script = ExtResource("1_5yk6u")
 
 [node name="Smear" type="Sprite2D" parent="."]
