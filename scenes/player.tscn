@@ -1,4 +1,4 @@
-[gd_scene load_steps=54 format=3 uid="uid://cyliupk1rrn74"]
+[gd_scene load_steps=55 format=3 uid="uid://cyliupk1rrn74"]
 
 [ext_resource type="Script" path="res://scripts/CharacterBody2D.gd" id="1_d7hat"]
 [ext_resource type="Texture2D" uid="uid://btnpl5lmu6peb" path="res://textures/player_parts_new.png" id="2_8w576"]
@@ -17,6 +17,7 @@
 [ext_resource type="Texture2D" uid="uid://bcq4qb6aigpbg" path="res://assets/BloodOverlay/Krew5.png" id="12_mkfaa"]
 [ext_resource type="Texture2D" uid="uid://d1glismwnwl62" path="res://assets/HUD/Weapons/pistol_hud.png" id="16_d4qdy"]
 [ext_resource type="Texture2D" uid="uid://b62p4tmuadwfr" path="res://assets/HUD/Weapons/Ammo/Pistol_ammo_under.png" id="16_ewqkt"]
+[ext_resource type="Texture2D" uid="uid://cfnrga044fxml" path="res://assets/HUD/Weapons/knife_hud.png" id="16_jk4vn"]
 [ext_resource type="Texture2D" uid="uid://emm5gk3o20ce" path="res://assets/HUD/Weapons/revolver_hud.png" id="17_714li"]
 [ext_resource type="Texture2D" uid="uid://v51b0dj4o3vb" path="res://assets/HUD/Weapons/Ammo/Pistol_ammo_progress.png" id="17_pbxx7"]
 [ext_resource type="Texture2D" uid="uid://c6q3r1jun6qc" path="res://assets/HUD/Weapons/Ammo/Rifle_ammo_under.png" id="18_am8uu"]
@@ -5269,6 +5270,7 @@ rotation = 0.0585604
 
 [node name="knife" parent="Skeleton2D/hip/chest/arm_right/forearm_right/hand_right" instance=ExtResource("10_asmyu")]
 visible = false
+z_index = -1
 position = Vector2(7.04981, 1.89472)
 rotation = 1.3333
 
@@ -5409,6 +5411,22 @@ size_flags_horizontal = 4
 value = 80.0
 fill_mode = 4
 texture_progress = ExtResource("11_eoshx")
+
+[node name="Knife" type="TextureRect" parent="HUD"]
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -345.0
+offset_top = -99.0
+offset_right = -183.0
+offset_bottom = 676.0
+grow_horizontal = 0
+grow_vertical = 0
+rotation = 1.57079
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("16_jk4vn")
 
 [node name="Pistol" type="TextureRect" parent="HUD"]
 anchors_preset = 3
@@ -5573,6 +5591,7 @@ texture_under = ExtResource("30_8013p")
 texture_progress = ExtResource("31_eox7d")
 
 [node name="Grenade" type="TextureRect" parent="HUD"]
+visible = false
 offset_left = 1819.0
 offset_top = 989.0
 offset_right = 1862.0

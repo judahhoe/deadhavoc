@@ -11,12 +11,14 @@ var shotgun_db = 0
 
 @onready var health_bar = $"HUD/HealthBar"
 
+@onready var ammo_counter = $HUD/AmmoCount
 @onready var pistol_ammo_bar = $"HUD/Pistol_ammo_bar"
 @onready var rifle_ammo_bar_bottom = $"HUD/Rifle_ammo_bar1"
 @onready var rifle_ammo_bar_top = $"HUD/Rifle_ammo_bar2"
 @onready var shotgun_ammo_bar = $"HUD/Shotgun_ammo_bar"
 @onready var revolver_ammo_bar = $"HUD/Revolver_ammo_bar"
 @onready var pump_ammo_bar = $"HUD/Pump_ammo_bar"
+@onready var knife_hud = $"HUD/Knife"
 @onready var pistol_hud = $"HUD/Pistol"
 @onready var rifle_hud = $"HUD/Rifle"
 @onready var shotgun_hud = $"HUD/Shotgun"
@@ -192,7 +194,7 @@ func change_weapon(weapon_type):
 	weapon.visible = true
 	if(weapon_type != knife):
 		weapon.ammo_count.text = str(weapon.ammo_in_mag) + "/" + str(weapon.ammo)
-		update_weapon_hud(weapon, true)
+	update_weapon_hud(weapon, true)
 	
 func calculate_angle(vectorA, vectorB):
 	# Calculate the dot product of the vectors
@@ -282,10 +284,11 @@ func get_infected():
 
 func die():
 	handle_kill(global_position)
-	await get_tree().create_timer(1).timeout
+	await get_tree().create_timer(0.3).timeout
 	get_tree().change_scene_to_file("res://scenes/gameover.tscn")
 
 func update_weapon_hud(weapon, visible = false):
+	knife_hud.visible = false
 	pistol_hud.visible = false
 	revolver_hud.visible = false
 	rifle_hud.visible = false
@@ -298,9 +301,11 @@ func update_weapon_hud(weapon, visible = false):
 	rifle_ammo_bar_bottom.visible = false
 	shotgun_ammo_bar.visible = false
 	pump_ammo_bar.visible = false
+	ammo_counter.visible = true
 	
 	if weapon is Knife and visible:
-		pass
+		knife_hud.visible = true
+		ammo_counter.visible = false
 	elif weapon is Pistol and visible:
 		if(sidearm_db == 0):
 			pistol_hud.visible = true

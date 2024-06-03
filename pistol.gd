@@ -40,6 +40,7 @@ var sidearm_db
 @onready var particle_manager = get_node("/root/Main/ParticleManager")
 
 @onready var ammo_bar = $"../../../../../../../HUD/Pistol_ammo_bar"
+@onready var rev_ammo_bar = $"../../../../../../../HUD/Revolver_ammo_bar"
 var max_level : int = 3
 var ammo_level = 0
 var health_level = 0
@@ -60,10 +61,14 @@ func _ready():
 		weapon_sprite.texture = pistol_sprite
 		shooting_cd = 0.2
 		shooting_cooldown.wait_time = shooting_cd
+		mag_size = 15
+		ammo_in_mag = 15
 	if(sidearm_db == 1):
 		weapon_sprite.texture = revolver_sprite
 		shooting_cd = 0.8
 		shooting_cooldown.wait_time = shooting_cd
+		mag_size = 6
+		ammo_in_mag = 6
 	max_ammo += ammo_level * 20
 	ammo += ammo_level * 20
 	recoil -= recoil_level * 1.2
@@ -74,7 +79,9 @@ func _ready():
 	ammo_count.text = str(ammo_in_mag) + "/" + str(ammo)
 	get_node(".").connect("player_fired_bullet",bullet_manager._on_pistol_player_fired_bullet)
 	ammo_bar.max_value = mag_size 
-	ammo_bar.value = ammo_in_mag 
+	ammo_bar.value = ammo_in_mag
+	rev_ammo_bar.max_value = mag_size 
+	rev_ammo_bar.value = ammo_in_mag 
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -84,7 +91,8 @@ func _physics_process(delta):
 func shoot():
 	if (shooting_cooldown.is_stopped() && ammo_in_mag >=1 && reload_timer.is_stopped()):
 		ammo_in_mag -= 1
-		ammo_bar.value = ammo_in_mag 
+		ammo_bar.value = ammo_in_mag
+		rev_ammo_bar.value = ammo_in_mag 
 		ammo_count.text = str(ammo_in_mag) + "/" + str(ammo)
 		var recoil_radians = deg_to_rad(randf_range(-recoil, recoil)) 
 		var bullet_instance = Bullet.instantiate()
@@ -130,7 +138,8 @@ func cancel_reload():
 func _on_reload_timer_timeout():
 	while (ammo_in_mag < mag_size && ammo > 0):
 		ammo_in_mag += 1
-		ammo_bar.value = ammo_in_mag  
+		ammo_bar.value = ammo_in_mag
+		rev_ammo_bar.value = ammo_in_mag 
 		ammo -= 1
 	ammo_count.text = str(ammo_in_mag) + "/" + str(ammo)
 	reload_progress.visible = false
