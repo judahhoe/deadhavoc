@@ -35,6 +35,7 @@ var shotgun_db
 @onready var particle_manager = get_node("/root/Main/ParticleManager")
 
 @onready var ammo_bar = $"../../../../../../../HUD/Shotgun_ammo_bar"
+@onready var pump_ammo_bar = $"../../../../../../../HUD/Pump_ammo_bar"
 
 @onready var gunshot_sound = $"Gunshot"
 @onready var pellets_shot = 0
@@ -68,7 +69,9 @@ func _ready():
 	ammo_count.text = str(ammo_in_mag) + "/" + str(ammo)
 	get_node(".").connect("player_fired_bullet",bullet_manager._on_pistol_player_fired_bullet)
 	ammo_bar.max_value = mag_size 
-	ammo_bar.value = ammo_in_mag  
+	ammo_bar.value = ammo_in_mag
+	pump_ammo_bar.max_value = mag_size 
+	pump_ammo_bar.value = ammo_in_mag  
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -80,8 +83,10 @@ func shoot():
 	if (shooting_cooldown.is_stopped() && ammo_in_mag >=1):
 		pellets_shot = 0
 		ammo_in_mag -= 1
-		ammo_bar.max_value = mag_size 
-		ammo_bar.value = ammo_in_mag  
+		ammo_bar.max_value = mag_size
+		ammo_bar.value = ammo_in_mag
+		pump_ammo_bar.max_value = mag_size 
+		pump_ammo_bar.value = ammo_in_mag  
 		ammo_count.text = str(ammo_in_mag) + "/" + str(ammo) 
 		while (pellets_shot < max_pellets):
 			var recoil_radians = deg_to_rad(randf_range(-recoil, recoil)) 
@@ -130,8 +135,10 @@ func cancel_reload():
 func _on_reload_timer_timeout():
 	if (ammo_in_mag < mag_size && ammo > 0):
 		ammo_in_mag += 1
-		ammo_bar.max_value = mag_size  
-		ammo_bar.value = ammo_in_mag  
+		ammo_bar.max_value = mag_size
+		ammo_bar.value = ammo_in_mag
+		pump_ammo_bar.max_value = mag_size
+		pump_ammo_bar.value = ammo_in_mag
 		ammo -= 1
 	ammo_count.text = str(ammo_in_mag) + "/" + str(ammo)
 	reload_progress.visible = false

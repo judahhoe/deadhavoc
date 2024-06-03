@@ -874,6 +874,7 @@ grow_vertical = 2
 color = Color(0.286275, 0.286275, 0.286275, 0.666667)
 
 [node name="Sprite2D" type="Sprite2D" parent="Controls/ControlsMenu"]
+position = Vector2(22, 81)
 rotation = -1.57079
 texture = ExtResource("11_bcjic")
 
@@ -920,9 +921,12 @@ offset = Vector2(85, 120)
 [node name="Camera2D" type="Camera2D" parent="UI/SubViewportContainer/SubViewport"]
 zoom = Vector2(1.5, 1.5)
 
-[node name="Sprite2D" type="Sprite2D" parent="UI/SubViewportContainer"]
+[node name="MinimapMarker" type="Sprite2D" parent="UI/SubViewportContainer"]
 position = Vector2(100, 100)
 texture = ExtResource("13_posf4")
+
+[node name="Marker2D" type="Marker2D" parent="UI/SubViewportContainer"]
+position = Vector2(-691, 482)
 
 [node name="gascan" parent="." instance=ExtResource("14_cu04f")]
 position = Vector2(876, -708)

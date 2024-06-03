@@ -33,6 +33,8 @@ var pickup : Pickup
 var launch_speed : float = 100
 var launch_time :float = 0.25
 
+var dropped_item = false
+
 func _ready():
 	animation_player.play("spawn")
 	animation_player.play("walk")
@@ -52,12 +54,14 @@ func _on_timer_timeout():
 	makepath()
 
 func dropitem(item):
-	match item :
-		"medkit":
-			pickup = medkit.instantiate()
-		"ammo":
-			pickup = ammobox.instantiate()
-	main_node.add_child.call_deferred(pickup)
+	if(!dropped_item):
+		match item :
+			"medkit":
+				pickup = medkit.instantiate()
+			"ammo":
+				pickup = ammobox.instantiate()
+		main_node.add_child.call_deferred(pickup)
+		dropped_item = true;
 
 	pickup.position = enemy.global_position
 	var direction : Vector2 = Vector2(
