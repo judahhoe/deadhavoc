@@ -1,7 +1,7 @@
 [gd_scene load_steps=7 format=3 uid="uid://b3mxvq14r1e0h"]
 
 [ext_resource type="Script" path="res://scenes/car.gd" id="1_3wybw"]
-[ext_resource type="Texture2D" uid="uid://c32xfmxawagyp" path="res://textures/car_template.png" id="1_cuoj8"]
+[ext_resource type="Texture2D" uid="uid://bqe7577w8588y" path="res://assets/MapAssets/Cars/Jeep1.png" id="2_dgqo0"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_vpjyh"]
 radius = 88.0
@@ -28,8 +28,9 @@ collision_mask = 3
 script = ExtResource("1_3wybw")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-scale = Vector2(0.2, 0.2)
-texture = ExtResource("1_cuoj8")
+rotation = 1.5708
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("2_dgqo0")
 
 [node name="Area2D" type="Area2D" parent="."]
 collision_layer = 32768
