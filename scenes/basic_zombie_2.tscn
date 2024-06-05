@@ -1323,7 +1323,7 @@ _data = {
 
 [node name="enemy" type="CharacterBody2D"]
 collision_layer = 2
-collision_mask = 32771
+collision_mask = 49155
 script = ExtResource("1_d64ug")
 
 [node name="gfx" type="Node2D" parent="."]

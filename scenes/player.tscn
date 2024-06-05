@@ -5068,7 +5068,7 @@ _data = {
 }
 
 [node name="player" type="CharacterBody2D"]
-collision_mask = 33283
+collision_mask = 49667
 script = ExtResource("1_d7hat")
 
 [node name="Camera2D" type="Camera2D" parent="."]
