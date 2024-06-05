@@ -162,6 +162,8 @@ func create_db():
 	"experience"	INTEGER,
 	"coins"	NUMERIC,
 	"money"	NUMERIC,
+	"skillpoints"	NUMERIC,
+	"level"	NUMERIC,
 	PRIMARY KEY("id" AUTOINCREMENT)
 )
 	"""
@@ -336,7 +338,7 @@ func create_user_in_db():
 	db = SQLite.new()
 	db.path = db_name
 	db.open_db()
-	db.query("insert into user (nickname, experience, coins, money) values ('" + nick  + "', 0, 0, 0);")
+	db.query("insert into user (nickname, experience, coins, money, skillpoints, level) values ('" + nick  + "', 0, 0, 0, 0, 1);")
 	db.query("select max(id) as id from user;")
 	var id = str(db.query_result[0].id)
 	db.query("insert into perks (id, player_health, movement_speed, weapons_recoil, max_ammo, reload_speed) values (" + id + ",0, 0, 0, 0, 0);")
