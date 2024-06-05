@@ -5650,6 +5650,7 @@ scale = Vector2(0.8, 0.8)
 text = "TEKST"
 
 [node name="MoneyLabel" type="Label" parent="HUD"]
+visible = false
 anchors_preset = 2
 anchor_top = 1.0
 anchor_bottom = 1.0

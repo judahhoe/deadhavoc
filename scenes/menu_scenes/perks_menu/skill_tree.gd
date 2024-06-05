@@ -1,5 +1,5 @@
 extends Control
-@export var skill_points : int = 10
+var skill_points
 var max_level : int = 3
 var ammo_level = 0
 var health_level = 0
@@ -96,6 +96,7 @@ func _on_apply_button_pressed():
 
 func _on_return_button_pressed():
 	get_tree().change_scene_to_file("res://scenes/menu_scenes/menu_main.tscn")
+
 func get_settings_from_db():
 	db = SQLite.new()
 	db.path = db_name
@@ -107,6 +108,8 @@ func get_settings_from_db():
 	recoil_level = db.query_result[0]["weapons_recoil"]
 	ammo_level = db.query_result[0]["max_ammo"]
 	reload_level = db.query_result[0]["reload_speed"]
+	db.query("SELECT skillpoints from user where nickname = '" + nick + "';")
+	skill_points = db.query_result[0]["skillpoints"]
 	skill_points = skill_points - (health_level+speed_level+recoil_level+ammo_level+reload_level)
 	skill_points_label.text = "Skill points: " + str(skill_points)
 	if (speed_level > 0):
