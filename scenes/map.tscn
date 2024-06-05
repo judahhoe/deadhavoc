@@ -1,4 +1,4 @@
-[gd_scene load_steps=124 format=3 uid="uid://bgbubl4fsvupu"]
+[gd_scene load_steps=122 format=3 uid="uid://bgbubl4fsvupu"]
 
 [ext_resource type="TileSet" uid="uid://t83tuibqi32p" path="res://scenes/tileset.tres" id="1_hlkm7"]
 [ext_resource type="PackedScene" uid="uid://ddt2803mx7gtl" path="res://assets/maps/roof.tscn" id="2_lle1s"]
@@ -6,14 +6,15 @@
 [ext_resource type="PackedScene" uid="uid://ch2sway1kjwwi" path="res://assets/maps/clutter/lamp.tscn" id="3_dbxj6"]
 [ext_resource type="Script" path="res://scenes/border.gd" id="3_lvmog"]
 [ext_resource type="PackedScene" uid="uid://6uduq72lb2w0" path="res://assets/maps/clutter/sewer_vanity.tscn" id="5_6ehaw"]
+[ext_resource type="PackedScene" uid="uid://ce5a435por0k6" path="res://scenes/map_clutter/blood_splatter_0.tscn" id="5_7fmgo"]
 [ext_resource type="PackedScene" uid="uid://b7kunh16fqc0q" path="res://assets/maps/clutter/trashcan_open.tscn" id="6_1usan"]
-[ext_resource type="Texture2D" uid="uid://ch3nwlh512kae" path="res://assets/MapAssets/Bench/Bench1.png" id="8_l5nf7"]
-[ext_resource type="Texture2D" uid="uid://bogasxnqjvg65" path="res://assets/MapAssets/Bench/Bench3.png" id="9_fcyyt"]
-[ext_resource type="Texture2D" uid="uid://bs0v53scwrbu7" path="res://assets/MapAssets/Bench/Bench2.png" id="10_e46f7"]
-[ext_resource type="Texture2D" uid="uid://c5t2ecnpnbg2e" path="res://assets/MapAssets/GarbageCan/GarbageCan1.png" id="11_7bb4w"]
-[ext_resource type="Texture2D" uid="uid://n0puqjkj1mx4" path="res://assets/MapAssets/GarbageCan/GarbageCan2.png" id="12_2fr1j"]
-[ext_resource type="Texture2D" uid="uid://dcchi83i67gu4" path="res://assets/MapAssets/GarbageCan/GarbageCan3.png" id="13_nitsk"]
-[ext_resource type="Texture2D" uid="uid://hm2g1qr27vxn" path="res://assets/MapAssets/GarbageCan/GarbageCan4.png" id="14_nt0x3"]
+[ext_resource type="PackedScene" uid="uid://bdvww133oyqy7" path="res://scenes/map_clutter/blood_splatter_1.tscn" id="6_k5m0c"]
+[ext_resource type="PackedScene" uid="uid://b2cu3iqouimkr" path="res://scenes/map_clutter/blood_splatter_3.tscn" id="7_4aqaw"]
+[ext_resource type="PackedScene" uid="uid://d3nfutwy0orqg" path="res://scenes/map_clutter/bench_new.tscn" id="8_jpu65"]
+[ext_resource type="PackedScene" uid="uid://bnk17oqb8f3jk" path="res://scenes/map_clutter/bench_worn.tscn" id="9_ve37a"]
+[ext_resource type="PackedScene" uid="uid://dri4r46n2mk08" path="res://scenes/map_clutter/waste_containter_green.tscn" id="10_12v08"]
+[ext_resource type="PackedScene" uid="uid://4kqu4nfusftv" path="res://scenes/map_clutter/waste_container_blue.tscn" id="11_skaew"]
+[ext_resource type="PackedScene" uid="uid://cvljbodn8xvn" path="res://scenes/map_clutter/waste_container_gray.tscn" id="12_ui405"]
 [ext_resource type="Texture2D" uid="uid://bo28v2rxk32qh" path="res://assets/MapAssets/Cars/Car1.png" id="15_llyjv"]
 [ext_resource type="Texture2D" uid="uid://12u1mhpq8hkx" path="res://assets/MapAssets/Cars/Car2.png" id="16_f2gg4"]
 [ext_resource type="Texture2D" uid="uid://bblcgs0gwr1s2" path="res://assets/MapAssets/Cars/Car6.png" id="17_ex1mi"]
@@ -71,7 +72,7 @@
 [ext_resource type="Texture2D" uid="uid://r25akcs707pv" path="res://assets/InsideAssets/Furnitures/bottle2.png" id="56_u8yvy"]
 [ext_resource type="Texture2D" uid="uid://cjw6gl8ibm4vr" path="res://assets/InsideAssets/Furnitures/newspaper.png" id="57_voo7l"]
 [ext_resource type="Texture2D" uid="uid://hmkv2u60yv0m" path="res://assets/InsideAssets/Furnitures/milk.png" id="58_3gpwr"]
-[ext_resource type="Texture2D" uid="uid://ddx2yffnhrk1o" path="res://assets/InsideAssets/Furnitures/electricbox.png" id="72_ms5d1"]
+[ext_resource type="PackedScene" uid="uid://df1ykte6kqywn" path="res://scenes/map_clutter/electric_box.tscn" id="72_f5sd1"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_hjayk"]
 size = Vector2(32000, 72.375)
@@ -89,12 +90,6 @@ shadow_color = Color(0, 0, 0, 0.360784)
 font_size = 40
 shadow_size = 20
 shadow_color = Color(0, 0, 0, 0.360784)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_xebum"]
-size = Vector2(35, 84)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_41krf"]
-size = Vector2(112, 82)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_dufll"]
 size = Vector2(115.138, 244.133)
@@ -230,9 +225,6 @@ size = Vector2(80, 40)
 [sub_resource type="CircleShape2D" id="CircleShape2D_ufwyu"]
 radius = 104.48
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_il8pm"]
-size = Vector2(72, 96)
-
 [node name="Map" type="Node2D"]
 light_mask = 3
 z_index = -10
@@ -287,15 +279,316 @@ position = Vector2(1952, -576)
 rotation = 2.87979
 
 [node name="sewers" type="Node2D" parent="Clutter"]
+visible = false
 
 [node name="sewer_vanity" parent="Clutter/sewers" instance=ExtResource("5_6ehaw")]
-position = Vector2(751, -493)
+position = Vector2(621, -365)
 rotation = -0.411207
+
+[node name="Blood" type="Node2D" parent="Clutter"]
+
+[node name="Sprite2D" parent="Clutter/Blood" instance=ExtResource("5_7fmgo")]
+
+[node name="Sprite2D2" parent="Clutter/Blood" instance=ExtResource("6_k5m0c")]
+
+[node name="Sprite2D3" parent="Clutter/Blood" instance=ExtResource("7_4aqaw")]
+position = Vector2(-112, 8)
+
+[node name="Sprite2D4" parent="Clutter/Blood" instance=ExtResource("5_7fmgo")]
+position = Vector2(722, 326.8)
+
+[node name="Sprite2D5" parent="Clutter/Blood" instance=ExtResource("6_k5m0c")]
+position = Vector2(417, 347.8)
+
+[node name="Sprite2D6" parent="Clutter/Blood" instance=ExtResource("7_4aqaw")]
+position = Vector2(580, 372.8)
+
+[node name="Sprite2D7" parent="Clutter/Blood" instance=ExtResource("5_7fmgo")]
+position = Vector2(902, -543)
+
+[node name="Sprite2D8" parent="Clutter/Blood" instance=ExtResource("6_k5m0c")]
+position = Vector2(209, -449)
+
+[node name="Sprite2D83" parent="Clutter/Blood" instance=ExtResource("6_k5m0c")]
+position = Vector2(-428, -501)
+
+[node name="Sprite2D9" parent="Clutter/Blood" instance=ExtResource("7_4aqaw")]
+position = Vector2(475, -558)
+
+[node name="Sprite2D84" parent="Clutter/Blood" instance=ExtResource("7_4aqaw")]
+position = Vector2(-158, -834)
+
+[node name="Sprite2D85" parent="Clutter/Blood" instance=ExtResource("7_4aqaw")]
+position = Vector2(-138, -810)
+rotation = 1.41325
+
+[node name="Sprite2D10" parent="Clutter/Blood" instance=ExtResource("5_7fmgo")]
+position = Vector2(1577, -480)
+
+[node name="Sprite2D86" parent="Clutter/Blood" instance=ExtResource("5_7fmgo")]
+position = Vector2(-458, -802)
+rotation = -1.3124
+
+[node name="Sprite2D11" parent="Clutter/Blood" instance=ExtResource("6_k5m0c")]
+position = Vector2(1181, -292.2)
+rotation = 0.647533
+
+[node name="Sprite2D12" parent="Clutter/Blood" instance=ExtResource("7_4aqaw")]
+position = Vector2(1634, -171)
+
+[node name="Sprite2D13" parent="Clutter/Blood" instance=ExtResource("5_7fmgo")]
+position = Vector2(1835, -757.2)
+
+[node name="Sprite2D14" parent="Clutter/Blood" instance=ExtResource("6_k5m0c")]
+position = Vector2(1530, -736.2)
+rotation = 2.00386
+
+[node name="Sprite2D15" parent="Clutter/Blood" instance=ExtResource("7_4aqaw")]
+position = Vector2(1566, -1145)
+
+[node name="Sprite2D16" parent="Clutter/Blood" instance=ExtResource("5_7fmgo")]
+position = Vector2(1948, -958)
+
+[node name="Sprite2D17" parent="Clutter/Blood" instance=ExtResource("6_k5m0c")]
+position = Vector2(1577, -871)
+rotation = -1.07253
+
+[node name="Sprite2D18" parent="Clutter/Blood" instance=ExtResource("7_4aqaw")]
+position = Vector2(1680, -963.2)
+
+[node name="Sprite2D19" parent="Clutter/Blood" instance=ExtResource("5_7fmgo")]
+position = Vector2(2337, -1104.2)
+
+[node name="Sprite2D20" parent="Clutter/Blood" instance=ExtResource("6_k5m0c")]
+position = Vector2(1851, -1262)
+rotation = 2.73539
+
+[node name="Sprite2D21" parent="Clutter/Blood" instance=ExtResource("7_4aqaw")]
+position = Vector2(2075, -1333)
+
+[node name="Sprite2D22" parent="Clutter/Blood" instance=ExtResource("5_7fmgo")]
+position = Vector2(2429, -834.2)
+
+[node name="Sprite2D23" parent="Clutter/Blood" instance=ExtResource("6_k5m0c")]
+position = Vector2(2124, -813.2)
+
+[node name="Sprite2D24" parent="Clutter/Blood" instance=ExtResource("7_4aqaw")]
+position = Vector2(2287, -788.2)
+
+[node name="Sprite2D26" parent="Clutter/Blood" instance=ExtResource("5_7fmgo")]
+position = Vector2(3019.84, -1296.18)
+rotation = -1.06768
+
+[node name="Sprite2D29" parent="Clutter/Blood" instance=ExtResource("5_7fmgo")]
+position = Vector2(3520, -1582)
+rotation = -1.06768
+
+[node name="Sprite2D32" parent="Clutter/Blood" instance=ExtResource("5_7fmgo")]
+position = Vector2(3500.84, -1172.38)
+rotation = -1.06768
+
+[node name="Sprite2D35" parent="Clutter/Blood" instance=ExtResource("6_k5m0c")]
+position = Vector2(3195.84, -1151.38)
+rotation = -1.06768
+
+[node name="Sprite2D82" parent="Clutter/Blood" instance=ExtResource("7_4aqaw")]
+position = Vector2(3358.84, -1126.38)
+rotation = -1.06768
+
+[node name="Sprite2D25" parent="Clutter/Blood" instance=ExtResource("5_7fmgo")]
+position = Vector2(1606, -1570)
+rotation = -1.30612
+
+[node name="Sprite2D27" parent="Clutter/Blood" instance=ExtResource("7_4aqaw")]
+position = Vector2(1808, -1507)
+
+[node name="Sprite2D28" parent="Clutter/Blood" instance=ExtResource("5_7fmgo")]
+position = Vector2(1881, -1515)
+
+[node name="Sprite2D30" parent="Clutter/Blood" instance=ExtResource("7_4aqaw")]
+position = Vector2(1829, -1460)
+
+[node name="Sprite2D31" parent="Clutter/Blood" instance=ExtResource("5_7fmgo")]
+position = Vector2(2002, -1645)
+rotation = 1.3898
+
+[node name="Sprite2D33" parent="Clutter/Blood" instance=ExtResource("7_4aqaw")]
+position = Vector2(1787, -1707)
+
+[node name="Sprite2D34" parent="Clutter/Blood" instance=ExtResource("5_7fmgo")]
+position = Vector2(2339, -1379.2)
+
+[node name="Sprite2D36" parent="Clutter/Blood" instance=ExtResource("7_4aqaw")]
+position = Vector2(2723, -1393)
+
+[node name="Sprite2D37" parent="Clutter/Blood" instance=ExtResource("5_7fmgo")]
+position = Vector2(1479, 658)
+
+[node name="Sprite2D80" parent="Clutter/Blood" instance=ExtResource("5_7fmgo")]
+position = Vector2(1399, 740)
+rotation = -0.685734
+
+[node name="Sprite2D38" parent="Clutter/Blood" instance=ExtResource("6_k5m0c")]
+position = Vector2(833, 849)
+rotation = -0.00737776
+
+[node name="Sprite2D39" parent="Clutter/Blood" instance=ExtResource("7_4aqaw")]
+position = Vector2(1323, 673.8)
+
+[node name="Sprite2D81" parent="Clutter/Blood" instance=ExtResource("7_4aqaw")]
+position = Vector2(1479, 443)
+rotation = 0.800565
+
+[node name="Sprite2D40" parent="Clutter/Blood" instance=ExtResource("5_7fmgo")]
+position = Vector2(1009, 855)
+
+[node name="Sprite2D41" parent="Clutter/Blood" instance=ExtResource("6_k5m0c")]
+position = Vector2(827, 888)
+
+[node name="Sprite2D42" parent="Clutter/Blood" instance=ExtResource("7_4aqaw")]
+position = Vector2(1102, 499)
+
+[node name="Sprite2D43" parent="Clutter/Blood" instance=ExtResource("5_7fmgo")]
+position = Vector2(1456, 945.8)
+rotation = 1.89631
+
+[node name="Sprite2D44" parent="Clutter/Blood" instance=ExtResource("6_k5m0c")]
+position = Vector2(829, 847)
+rotation = 0.960438
+
+[node name="Sprite2D45" parent="Clutter/Blood" instance=ExtResource("7_4aqaw")]
+position = Vector2(1195, 1018)
+
+[node name="Sprite2D46" parent="Clutter/Blood" instance=ExtResource("5_7fmgo")]
+position = Vector2(132, 519)
+
+[node name="Sprite2D47" parent="Clutter/Blood" instance=ExtResource("6_k5m0c")]
+position = Vector2(392, 840)
+rotation = 4.0441
+
+[node name="Sprite2D70" parent="Clutter/Blood" instance=ExtResource("6_k5m0c")]
+position = Vector2(466, 877)
+rotation = 4.42944
+
+[node name="Sprite2D71" parent="Clutter/Blood" instance=ExtResource("6_k5m0c")]
+position = Vector2(531, 921)
+rotation = 4.42944
+
+[node name="Sprite2D72" parent="Clutter/Blood" instance=ExtResource("6_k5m0c")]
+position = Vector2(606, 982)
+rotation = 1.3511
+
+[node name="Sprite2D73" parent="Clutter/Blood" instance=ExtResource("6_k5m0c")]
+position = Vector2(672, 1048)
+rotation = 1.3511
+
+[node name="Sprite2D48" parent="Clutter/Blood" instance=ExtResource("7_4aqaw")]
+position = Vector2(97, 524)
+rotation = -0.824933
+
+[node name="Sprite2D49" parent="Clutter/Blood" instance=ExtResource("5_7fmgo")]
+position = Vector2(173, 529)
+rotation = 0.544047
+
+[node name="Sprite2D50" parent="Clutter/Blood" instance=ExtResource("6_k5m0c")]
+position = Vector2(-112, 598.8)
+
+[node name="Sprite2D51" parent="Clutter/Blood" instance=ExtResource("7_4aqaw")]
+position = Vector2(112, 554)
+
+[node name="Sprite2D52" parent="Clutter/Blood" instance=ExtResource("5_7fmgo")]
+position = Vector2(143, 551)
+rotation = -2.12652
+
+[node name="Sprite2D53" parent="Clutter/Blood" instance=ExtResource("6_k5m0c")]
+position = Vector2(-114, 643.8)
+
+[node name="Sprite2D54" parent="Clutter/Blood" instance=ExtResource("7_4aqaw")]
+position = Vector2(155, 657)
+
+[node name="Sprite2D77" parent="Clutter/Blood" instance=ExtResource("7_4aqaw")]
+modulate = Color(1, 1, 1, 0.466667)
+position = Vector2(931, 1425)
+
+[node name="Sprite2D78" parent="Clutter/Blood" instance=ExtResource("7_4aqaw")]
+modulate = Color(1, 1, 1, 0.466667)
+position = Vector2(978, 1425)
+rotation = -1.25662
+
+[node name="Sprite2D79" parent="Clutter/Blood" instance=ExtResource("7_4aqaw")]
+modulate = Color(1, 1, 1, 0.466667)
+position = Vector2(896, 1408)
+rotation = -1.25662
+
+[node name="Sprite2D55" parent="Clutter/Blood" instance=ExtResource("5_7fmgo")]
+position = Vector2(171, 561)
+rotation = -1.43124
+
+[node name="Sprite2D56" parent="Clutter/Blood" instance=ExtResource("6_k5m0c")]
+position = Vector2(293, 826)
+rotation = 0.579093
+
+[node name="Sprite2D74" parent="Clutter/Blood" instance=ExtResource("6_k5m0c")]
+modulate = Color(1, 1, 1, 0.662745)
+position = Vector2(755, 1152)
+rotation = -1.49842
+
+[node name="Sprite2D75" parent="Clutter/Blood" instance=ExtResource("6_k5m0c")]
+modulate = Color(1, 1, 1, 0.462745)
+position = Vector2(797, 1246)
+rotation = -4.39026
+
+[node name="Sprite2D76" parent="Clutter/Blood" instance=ExtResource("6_k5m0c")]
+modulate = Color(1, 1, 1, 0.462745)
+position = Vector2(842, 1351)
+rotation = -4.65502
+
+[node name="Sprite2D57" parent="Clutter/Blood" instance=ExtResource("7_4aqaw")]
+position = Vector2(152, 600)
+
+[node name="Sprite2D58" parent="Clutter/Blood" instance=ExtResource("5_7fmgo")]
+position = Vector2(128, 573)
+
+[node name="Sprite2D59" parent="Clutter/Blood" instance=ExtResource("6_k5m0c")]
+position = Vector2(213, 802)
+rotation = -1.69632
+
+[node name="Sprite2D60" parent="Clutter/Blood" instance=ExtResource("7_4aqaw")]
+position = Vector2(157, 730)
+
+[node name="Sprite2D61" parent="Clutter/Blood" instance=ExtResource("5_7fmgo")]
+position = Vector2(2669, 249)
+
+[node name="Sprite2D62" parent="Clutter/Blood" instance=ExtResource("6_k5m0c")]
+position = Vector2(3066, 333)
+rotation = 1.00819
+
+[node name="Sprite2D63" parent="Clutter/Blood" instance=ExtResource("7_4aqaw")]
+position = Vector2(2708, 242)
+
+[node name="Sprite2D64" parent="Clutter/Blood" instance=ExtResource("5_7fmgo")]
+position = Vector2(2700, 257.8)
+
+[node name="Sprite2D65" parent="Clutter/Blood" instance=ExtResource("6_k5m0c")]
+position = Vector2(3048, 370)
+
+[node name="Sprite2D66" parent="Clutter/Blood" instance=ExtResource("7_4aqaw")]
+position = Vector2(2690, 227)
+
+[node name="Sprite2D67" parent="Clutter/Blood" instance=ExtResource("5_7fmgo")]
+position = Vector2(2082, 134.8)
+
+[node name="Sprite2D68" parent="Clutter/Blood" instance=ExtResource("6_k5m0c")]
+position = Vector2(1521, -90)
+rotation = 2.17204
+
+[node name="Sprite2D69" parent="Clutter/Blood" instance=ExtResource("7_4aqaw")]
+position = Vector2(1940, 180.8)
 
 [node name="Lighting" type="Node2D" parent="."]
 
 [node name="Lamp" parent="Lighting" instance=ExtResource("3_dbxj6")]
-position = Vector2(419, 266)
+position = Vector2(359, 246)
 scale = Vector2(0.1, 0.1)
 
 [node name="Lamp2" parent="Lighting" instance=ExtResource("3_dbxj6")]
@@ -594,348 +887,92 @@ label_settings = SubResource("LabelSettings_t6rwp")
 
 [node name="Benches" type="Node2D" parent="."]
 
-[node name="Bench1" type="StaticBody2D" parent="Benches"]
-position = Vector2(2608, 112)
-scale = Vector2(1.3, 1.3)
+[node name="Bench" parent="Benches" instance=ExtResource("8_jpu65")]
 
-[node name="Sprite2D" type="Sprite2D" parent="Benches/Bench1"]
-scale = Vector2(0.2, 0.2)
-texture = ExtResource("8_l5nf7")
+[node name="Bench2" parent="Benches" instance=ExtResource("8_jpu65")]
+position = Vector2(2609, 250)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Benches/Bench1"]
-position = Vector2(0.5, 0)
-shape = SubResource("RectangleShape2D_xebum")
+[node name="Bench13" parent="Benches" instance=ExtResource("8_jpu65")]
+position = Vector2(2940, 339)
+rotation = -1.57079
 
-[node name="Bench7" type="StaticBody2D" parent="Benches"]
-position = Vector2(-32, -80)
-rotation = 1.5708
-scale = Vector2(1.3, 1.3)
+[node name="Bench3" parent="Benches" instance=ExtResource("9_ve37a")]
+position = Vector2(3044, 112)
 
-[node name="Sprite2D" type="Sprite2D" parent="Benches/Bench7"]
-scale = Vector2(0.2, 0.2)
-texture = ExtResource("9_fcyyt")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Benches/Bench7"]
-position = Vector2(0.5, 0)
-shape = SubResource("RectangleShape2D_xebum")
-
-[node name="Bench8" type="StaticBody2D" parent="Benches"]
-position = Vector2(-304, -80)
-rotation = 1.5708
-scale = Vector2(1.3, 1.3)
-
-[node name="Sprite2D" type="Sprite2D" parent="Benches/Bench8"]
-scale = Vector2(0.2, 0.2)
-texture = ExtResource("8_l5nf7")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Benches/Bench8"]
-position = Vector2(0.5, 0)
-shape = SubResource("RectangleShape2D_xebum")
-
-[node name="Bench9" type="StaticBody2D" parent="Benches"]
-position = Vector2(245, -80)
-rotation = -4.71239
-scale = Vector2(1.3, 1.3)
-
-[node name="Sprite2D" type="Sprite2D" parent="Benches/Bench9"]
-scale = Vector2(0.2, 0.2)
-texture = ExtResource("10_e46f7")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Benches/Bench9"]
-position = Vector2(0.5, 0)
-shape = SubResource("RectangleShape2D_xebum")
-
-[node name="Bench2" type="StaticBody2D" parent="Benches"]
-position = Vector2(2609, 248)
-scale = Vector2(1.3, 1.3)
-
-[node name="Sprite2D" type="Sprite2D" parent="Benches/Bench2"]
-scale = Vector2(0.2, 0.2)
-texture = ExtResource("8_l5nf7")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Benches/Bench2"]
-position = Vector2(0.5, 0)
-shape = SubResource("RectangleShape2D_xebum")
-
-[node name="Bench3" type="StaticBody2D" parent="Benches"]
+[node name="Bench4" parent="Benches" instance=ExtResource("9_ve37a")]
 position = Vector2(2732, 336)
 rotation = -1.5708
-scale = Vector2(1.3, 1.3)
 
-[node name="Sprite2D" type="Sprite2D" parent="Benches/Bench3"]
-scale = Vector2(0.2, 0.2)
-texture = ExtResource("9_fcyyt")
+[node name="Bench6" parent="Benches" instance=ExtResource("9_ve37a")]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Benches/Bench3"]
-position = Vector2(0.5, 0)
-shape = SubResource("RectangleShape2D_xebum")
+[node name="Bench5" parent="Benches" instance=ExtResource("9_ve37a")]
+position = Vector2(1633, -66)
+rotation = -1.57079
 
-[node name="Bench4" type="StaticBody2D" parent="Benches"]
-position = Vector2(2940, 336)
+[node name="Bench10" parent="Benches" instance=ExtResource("9_ve37a")]
+position = Vector2(1093, -65)
 rotation = -1.5708
-scale = Vector2(1.3, 1.3)
 
-[node name="Sprite2D" type="Sprite2D" parent="Benches/Bench4"]
-scale = Vector2(0.2, 0.2)
-texture = ExtResource("8_l5nf7")
+[node name="Bench11" parent="Benches" instance=ExtResource("9_ve37a")]
+position = Vector2(1374, -65)
+rotation = -1.57079
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Benches/Bench4"]
-position = Vector2(0.5, 0)
-shape = SubResource("RectangleShape2D_xebum")
+[node name="Bench7" parent="Benches" instance=ExtResource("9_ve37a")]
+position = Vector2(219, -86)
+rotation = 1.57079
 
-[node name="Bench5" type="StaticBody2D" parent="Benches"]
-position = Vector2(3044, 112)
-rotation = 3.14159
-scale = Vector2(1.3, 1.3)
+[node name="Bench12" parent="Benches" instance=ExtResource("9_ve37a")]
+position = Vector2(-321, -85)
+rotation = 1.57079
 
-[node name="Sprite2D" type="Sprite2D" parent="Benches/Bench5"]
-scale = Vector2(0.2, 0.2)
-texture = ExtResource("9_fcyyt")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Benches/Bench5"]
-position = Vector2(0.5, 0)
-shape = SubResource("RectangleShape2D_xebum")
-
-[node name="Bench6" type="StaticBody2D" parent="Benches"]
-position = Vector2(3044, 240)
-rotation = -3.14159
-scale = Vector2(1.3, 1.3)
-
-[node name="Sprite2D" type="Sprite2D" parent="Benches/Bench6"]
-scale = Vector2(0.2, 0.2)
-texture = ExtResource("10_e46f7")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Benches/Bench6"]
-position = Vector2(0.5, 0)
-shape = SubResource("RectangleShape2D_xebum")
-
-[node name="Bench10" type="StaticBody2D" parent="Benches"]
-position = Vector2(1040, -72)
-rotation = -1.5708
-scale = Vector2(1.3, 1.3)
-
-[node name="Sprite2D" type="Sprite2D" parent="Benches/Bench10"]
-scale = Vector2(0.2, 0.2)
-texture = ExtResource("10_e46f7")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Benches/Bench10"]
-position = Vector2(0.5, 0)
-shape = SubResource("RectangleShape2D_xebum")
-
-[node name="Bench11" type="StaticBody2D" parent="Benches"]
-position = Vector2(1340, -72)
-rotation = -1.5708
-scale = Vector2(1.3, 1.3)
-
-[node name="Sprite2D" type="Sprite2D" parent="Benches/Bench11"]
-scale = Vector2(0.2, 0.2)
-texture = ExtResource("8_l5nf7")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Benches/Bench11"]
-position = Vector2(0.5, 0)
-shape = SubResource("RectangleShape2D_xebum")
-
-[node name="Bench12" type="StaticBody2D" parent="Benches"]
-position = Vector2(1624, -72)
-rotation = -1.5708
-scale = Vector2(1.3, 1.3)
-
-[node name="Sprite2D" type="Sprite2D" parent="Benches/Bench12"]
-scale = Vector2(0.2, 0.2)
-texture = ExtResource("9_fcyyt")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Benches/Bench12"]
-position = Vector2(0.5, 0)
-shape = SubResource("RectangleShape2D_xebum")
+[node name="Bench14" parent="Benches" instance=ExtResource("9_ve37a")]
+position = Vector2(-40, -85)
+rotation = 1.57079
 
 [node name="Waste Containers" type="Node2D" parent="."]
 position = Vector2(-208, 272)
 
-[node name="Waste_Container_1" type="StaticBody2D" parent="Waste Containers"]
+[node name="Waste_Container_1" parent="Waste Containers" instance=ExtResource("10_12v08")]
 
-[node name="Sprite2D" type="Sprite2D" parent="Waste Containers/Waste_Container_1"]
-position = Vector2(8, 32)
-rotation = -3.14159
-scale = Vector2(0.2, 0.2)
-texture = ExtResource("11_7bb4w")
+[node name="Waste_Container_2" parent="Waste Containers" instance=ExtResource("11_skaew")]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Waste Containers/Waste_Container_1"]
-position = Vector2(8, 31)
-shape = SubResource("RectangleShape2D_41krf")
+[node name="Waste_Container_3" parent="Waste Containers" instance=ExtResource("12_ui405")]
 
-[node name="Waste_Container_2" type="StaticBody2D" parent="Waste Containers"]
-position = Vector2(112, 0)
+[node name="Waste_Container_15" parent="Waste Containers" instance=ExtResource("10_12v08")]
+position = Vector2(1181, 1105)
+rotation = 3.14159
 
-[node name="Sprite2D" type="Sprite2D" parent="Waste Containers/Waste_Container_2"]
-position = Vector2(8, 32)
-rotation = -3.14159
-scale = Vector2(0.2, 0.2)
-texture = ExtResource("12_2fr1j")
+[node name="Waste_Container_16" parent="Waste Containers" instance=ExtResource("11_skaew")]
+position = Vector2(1293, 1105)
+rotation = 3.14159
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Waste Containers/Waste_Container_2"]
-position = Vector2(8, 31)
-shape = SubResource("RectangleShape2D_41krf")
+[node name="Waste_Container_17" parent="Waste Containers" instance=ExtResource("12_ui405")]
+position = Vector2(1405, 1105)
+rotation = 3.14159
 
-[node name="Waste_Container_3" type="StaticBody2D" parent="Waste Containers"]
-position = Vector2(224, 0)
+[node name="Waste_Container_18" parent="Waste Containers" instance=ExtResource("10_12v08")]
+position = Vector2(2339, -2200)
+rotation = 6.28318
 
-[node name="Sprite2D" type="Sprite2D" parent="Waste Containers/Waste_Container_3"]
-position = Vector2(8, 32)
-rotation = -3.14159
-scale = Vector2(0.2, 0.2)
-texture = ExtResource("13_nitsk")
+[node name="Waste_Container_19" parent="Waste Containers" instance=ExtResource("11_skaew")]
+position = Vector2(2451, -2200)
+rotation = 6.28318
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Waste Containers/Waste_Container_3"]
-position = Vector2(8, 31)
-shape = SubResource("RectangleShape2D_41krf")
+[node name="Waste_Container_20" parent="Waste Containers" instance=ExtResource("12_ui405")]
+position = Vector2(2563, -2200)
+rotation = 6.28318
 
-[node name="Waste_Container_4" type="StaticBody2D" parent="Waste Containers"]
-position = Vector2(384, -1040)
-rotation = 1.5708
+[node name="Waste_Container_21" parent="Waste Containers" instance=ExtResource("10_12v08")]
+position = Vector2(2675, -2200)
+rotation = 6.28318
 
-[node name="Sprite2D" type="Sprite2D" parent="Waste Containers/Waste_Container_4"]
-position = Vector2(8, 31)
-rotation = -3.14159
-scale = Vector2(0.2, 0.2)
-texture = ExtResource("14_nt0x3")
+[node name="Waste_Container_22" parent="Waste Containers" instance=ExtResource("11_skaew")]
+position = Vector2(2787, -2200)
+rotation = 6.28318
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Waste Containers/Waste_Container_4"]
-position = Vector2(8, 31)
-shape = SubResource("RectangleShape2D_41krf")
-
-[node name="Waste_Container_5" type="StaticBody2D" parent="Waste Containers"]
-position = Vector2(384, -928)
-rotation = 1.5708
-
-[node name="Sprite2D" type="Sprite2D" parent="Waste Containers/Waste_Container_5"]
-position = Vector2(8, 31)
-rotation = -3.14159
-scale = Vector2(0.2, 0.2)
-texture = ExtResource("13_nitsk")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Waste Containers/Waste_Container_5"]
-position = Vector2(8, 31)
-shape = SubResource("RectangleShape2D_41krf")
-
-[node name="Waste_Container_6" type="StaticBody2D" parent="Waste Containers"]
-position = Vector2(2328, -2200)
-
-[node name="Sprite2D" type="Sprite2D" parent="Waste Containers/Waste_Container_6"]
-position = Vector2(8, 31)
-rotation = -3.14159
-scale = Vector2(0.2, 0.2)
-texture = ExtResource("12_2fr1j")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Waste Containers/Waste_Container_6"]
-position = Vector2(8, 31)
-shape = SubResource("RectangleShape2D_41krf")
-
-[node name="Waste_Container_7" type="StaticBody2D" parent="Waste Containers"]
-position = Vector2(2440, -2200)
-
-[node name="Sprite2D" type="Sprite2D" parent="Waste Containers/Waste_Container_7"]
-position = Vector2(8, 31)
-rotation = -3.14159
-scale = Vector2(0.2, 0.2)
-texture = ExtResource("13_nitsk")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Waste Containers/Waste_Container_7"]
-position = Vector2(8, 31)
-shape = SubResource("RectangleShape2D_41krf")
-
-[node name="Waste_Container_8" type="StaticBody2D" parent="Waste Containers"]
-position = Vector2(2552, -2200)
-
-[node name="Sprite2D" type="Sprite2D" parent="Waste Containers/Waste_Container_8"]
-position = Vector2(8, 31)
-rotation = -3.14159
-scale = Vector2(0.2, 0.2)
-texture = ExtResource("11_7bb4w")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Waste Containers/Waste_Container_8"]
-position = Vector2(8, 31)
-shape = SubResource("RectangleShape2D_41krf")
-
-[node name="Waste_Container_9" type="StaticBody2D" parent="Waste Containers"]
-position = Vector2(2664, -2200)
-
-[node name="Sprite2D" type="Sprite2D" parent="Waste Containers/Waste_Container_9"]
-position = Vector2(8, 31)
-rotation = -3.14159
-scale = Vector2(0.2, 0.2)
-texture = ExtResource("13_nitsk")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Waste Containers/Waste_Container_9"]
-position = Vector2(8, 31)
-shape = SubResource("RectangleShape2D_41krf")
-
-[node name="Waste_Container_10" type="StaticBody2D" parent="Waste Containers"]
-position = Vector2(2776, -2200)
-
-[node name="Sprite2D" type="Sprite2D" parent="Waste Containers/Waste_Container_10"]
-position = Vector2(8, 31)
-rotation = -3.14159
-scale = Vector2(0.2, 0.2)
-texture = ExtResource("13_nitsk")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Waste Containers/Waste_Container_10"]
-position = Vector2(8, 31)
-shape = SubResource("RectangleShape2D_41krf")
-
-[node name="Waste_Container_11" type="StaticBody2D" parent="Waste Containers"]
-position = Vector2(2880, -2200)
-
-[node name="Sprite2D" type="Sprite2D" parent="Waste Containers/Waste_Container_11"]
-position = Vector2(8, 31)
-rotation = -3.14159
-scale = Vector2(0.2, 0.2)
-texture = ExtResource("14_nt0x3")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Waste Containers/Waste_Container_11"]
-position = Vector2(8, 31)
-shape = SubResource("RectangleShape2D_41krf")
-
-[node name="Waste_Container_12" type="StaticBody2D" parent="Waste Containers"]
-position = Vector2(1160, 1104)
-rotation = -3.14159
-
-[node name="Sprite2D" type="Sprite2D" parent="Waste Containers/Waste_Container_12"]
-position = Vector2(8, 31)
-rotation = -3.14159
-scale = Vector2(0.2, 0.2)
-texture = ExtResource("14_nt0x3")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Waste Containers/Waste_Container_12"]
-position = Vector2(8, 31)
-shape = SubResource("RectangleShape2D_41krf")
-
-[node name="Waste_Container_13" type="StaticBody2D" parent="Waste Containers"]
-position = Vector2(1272, 1104)
-rotation = -3.14159
-
-[node name="Sprite2D" type="Sprite2D" parent="Waste Containers/Waste_Container_13"]
-position = Vector2(8, 31)
-rotation = -3.14159
-scale = Vector2(0.2, 0.2)
-texture = ExtResource("12_2fr1j")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Waste Containers/Waste_Container_13"]
-position = Vector2(8, 31)
-shape = SubResource("RectangleShape2D_41krf")
-
-[node name="Waste_Container_14" type="StaticBody2D" parent="Waste Containers"]
-position = Vector2(1384, 1104)
-rotation = -3.14159
-
-[node name="Sprite2D" type="Sprite2D" parent="Waste Containers/Waste_Container_14"]
-position = Vector2(8, 31)
-rotation = -3.14159
-scale = Vector2(0.2, 0.2)
-texture = ExtResource("11_7bb4w")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Waste Containers/Waste_Container_14"]
-position = Vector2(8, 31)
-shape = SubResource("RectangleShape2D_41krf")
+[node name="Waste_Container_23" parent="Waste Containers" instance=ExtResource("12_ui405")]
+position = Vector2(2899, -2200)
+rotation = 6.28318
 
 [node name="Cars" type="Node2D" parent="."]
 position = Vector2(472, 40)
@@ -953,7 +990,7 @@ position = Vector2(0, -3.05176e-05)
 shape = SubResource("RectangleShape2D_dufll")
 
 [node name="Car2" type="StaticBody2D" parent="Cars"]
-position = Vector2(-176, 152)
+position = Vector2(-194, 89)
 rotation = -2.61799
 
 [node name="Sprite2D" type="Sprite2D" parent="Cars/Car2"]
@@ -2441,12 +2478,6 @@ rotation = 4.71238
 scale = Vector2(0.3, 0.3)
 texture = ExtResource("55_1rq0o")
 
-[node name="bottle_blue53" type="Sprite2D" parent="garbages"]
-position = Vector2(608, -944)
-rotation = 2.61799
-scale = Vector2(0.3, 0.3)
-texture = ExtResource("55_1rq0o")
-
 [node name="bottle_blue54" type="Sprite2D" parent="garbages"]
 position = Vector2(375, -832)
 rotation = 4.45058
@@ -2843,12 +2874,6 @@ rotation = -0.523598
 scale = Vector2(0.3, 0.3)
 texture = ExtResource("56_u8yvy")
 
-[node name="bottle_red61" type="Sprite2D" parent="garbages"]
-position = Vector2(545, -840)
-rotation = -1.0472
-scale = Vector2(0.3, 0.3)
-texture = ExtResource("56_u8yvy")
-
 [node name="bottle_red62" type="Sprite2D" parent="garbages"]
 position = Vector2(720, -1040)
 scale = Vector2(0.3, 0.3)
@@ -2904,12 +2929,6 @@ texture = ExtResource("56_u8yvy")
 
 [node name="bottle_red5" type="Sprite2D" parent="garbages"]
 position = Vector2(1508, -1056)
-rotation = -0.523598
-scale = Vector2(0.3, 0.3)
-texture = ExtResource("56_u8yvy")
-
-[node name="bottle_red18" type="Sprite2D" parent="garbages"]
-position = Vector2(419, -736)
 rotation = -0.523598
 scale = Vector2(0.3, 0.3)
 texture = ExtResource("56_u8yvy")
@@ -3075,12 +3094,6 @@ rotation = 2.09439
 scale = Vector2(0.3, 0.3)
 texture = ExtResource("58_3gpwr")
 
-[node name="milk16" type="Sprite2D" parent="garbages"]
-position = Vector2(712, -872)
-rotation = -1.57079
-scale = Vector2(0.3, 0.3)
-texture = ExtResource("58_3gpwr")
-
 [node name="milk17" type="Sprite2D" parent="garbages"]
 position = Vector2(544, 272)
 rotation = 0.523598
@@ -3137,63 +3150,22 @@ texture = ExtResource("58_3gpwr")
 
 [node name="electricboxes" type="Node2D" parent="."]
 
-[node name="electricBox1" type="StaticBody2D" parent="electricboxes"]
-position = Vector2(136, 312)
-rotation = -1.57079
+[node name="electricBox" parent="electricboxes" instance=ExtResource("72_f5sd1")]
+position = Vector2(138, 307)
 
-[node name="Sprite2D" type="Sprite2D" parent="electricboxes/electricBox1"]
-scale = Vector2(0.3, 0.3)
-texture = ExtResource("72_ms5d1")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="electricboxes/electricBox1"]
-position = Vector2(-4, 0)
-shape = SubResource("RectangleShape2D_il8pm")
-
-[node name="electricBox2" type="StaticBody2D" parent="electricboxes"]
-position = Vector2(40, -312)
-rotation = -4.71238
-
-[node name="Sprite2D" type="Sprite2D" parent="electricboxes/electricBox2"]
-scale = Vector2(0.3, 0.3)
-texture = ExtResource("72_ms5d1")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="electricboxes/electricBox2"]
-position = Vector2(-4, 0)
-shape = SubResource("RectangleShape2D_il8pm")
-
-[node name="electricBox3" type="StaticBody2D" parent="electricboxes"]
-position = Vector2(1992, -1896)
-rotation = -1.57079
-
-[node name="Sprite2D" type="Sprite2D" parent="electricboxes/electricBox3"]
-scale = Vector2(0.3, 0.3)
-texture = ExtResource("72_ms5d1")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="electricboxes/electricBox3"]
-position = Vector2(-4, 0)
-shape = SubResource("RectangleShape2D_il8pm")
-
-[node name="electricBox4" type="StaticBody2D" parent="electricboxes"]
-position = Vector2(1322, 1344)
+[node name="electricBox6" parent="electricboxes" instance=ExtResource("72_f5sd1")]
+position = Vector2(31, -307)
 rotation = 1.57079
 
-[node name="Sprite2D" type="Sprite2D" parent="electricboxes/electricBox4"]
-scale = Vector2(0.3, 0.3)
-texture = ExtResource("72_ms5d1")
+[node name="electricBox7" parent="electricboxes" instance=ExtResource("72_f5sd1")]
+position = Vector2(2000, -1894)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="electricboxes/electricBox4"]
-position = Vector2(-4, 0)
-shape = SubResource("RectangleShape2D_il8pm")
+[node name="electricBox8" parent="electricboxes" instance=ExtResource("72_f5sd1")]
+position = Vector2(1307, 1343)
+rotation = 1.57079
 
-[node name="electricBox5" type="StaticBody2D" parent="electricboxes"]
-position = Vector2(3892, -1368)
-
-[node name="Sprite2D" type="Sprite2D" parent="electricboxes/electricBox5"]
-scale = Vector2(0.3, 0.3)
-texture = ExtResource("72_ms5d1")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="electricboxes/electricBox5"]
-position = Vector2(-4, 0)
-shape = SubResource("RectangleShape2D_il8pm")
+[node name="electricBox9" parent="electricboxes" instance=ExtResource("72_f5sd1")]
+position = Vector2(3901, -1544)
+rotation = 0.0
 
 [connection signal="body_entered" from="Borders/Area2D" to="Borders/Area2D" method="_on_body_entered"]

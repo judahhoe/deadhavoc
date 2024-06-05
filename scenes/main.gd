@@ -23,12 +23,12 @@ func _ready():
 	get_tree().paused = true
 	controls_menu.show()
 	#spawn objective
-	var suitcaseSpawnID = randi_range(1,21)
-	suitcase.global_position = objectiveSpawnpoints.get_child(suitcaseSpawnID).global_position
-	var gascanSpawnID = randi_range(1,21)
-	while gascanSpawnID == suitcaseSpawnID:
-		gascanSpawnID = randi_range(1,21)
-	gascan.global_position = objectiveSpawnpoints.get_child(gascanSpawnID).global_position
+	#var suitcaseSpawnID = randi_range(1,21)
+	#suitcase.global_position = objectiveSpawnpoints.get_child(suitcaseSpawnID).global_position
+	#var gascanSpawnID = randi_range(1,21)
+	#while gascanSpawnID == suitcaseSpawnID:
+	#	gascanSpawnID = randi_range(1,21)
+	#gascan.global_position = objectiveSpawnpoints.get_child(gascanSpawnID).global_position
 	
 	music.play()
 	await get_tree().create_timer(5).timeout

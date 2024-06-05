@@ -1,8 +1,9 @@
-[gd_scene load_steps=17 format=3 uid="uid://bg50tu1p2ffxv"]
+[gd_scene load_steps=18 format=3 uid="uid://bg50tu1p2ffxv"]
 
 [ext_resource type="Script" path="res://scripts/enemy.gd" id="1_d64ug"]
 [ext_resource type="Texture2D" uid="uid://cgyngcgh6f37e" path="res://textures/zombie_basic_2.png" id="2_nelll"]
 [ext_resource type="Texture2D" uid="uid://cevr5uftr6ebv" path="res://textures/zombie.png" id="3_53iom"]
+[ext_resource type="AudioStream" uid="uid://8mob40fyfwp2" path="res://sfx/zombie_basic.mp3" id="4_j8xy2"]
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_65n4j"]
 light_mode = 2
@@ -1466,6 +1467,16 @@ root_node = NodePath("../AnimationPlayer")
 libraries = {
 "": SubResource("AnimationLibrary_gp7qi")
 }
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("4_j8xy2")
+volume_db = 10.0
+max_distance = 400.0
+bus = &"SoundEffects"
+
+[node name="SoundTimer" type="Timer" parent="."]
+wait_time = 5.0
+autostart = true
 
 [connection signal="body_entered" from="gfx/DamageArea" to="." method="_on_damage_area_body_entered"]
 [connection signal="body_exited" from="gfx/DamageArea" to="." method="_on_damage_area_body_exited"]

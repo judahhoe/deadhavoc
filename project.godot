@@ -11,8 +11,9 @@ config_version=5
 [application]
 
 config/name="DeadHavoc"
-run/main_scene="res://scenes/menu_scenes/profile_window.tscn"
+run/main_scene="res://scenes/menu_scenes/startup.tscn"
 config/features=PackedStringArray("4.2", "GL Compatibility")
+boot_splash/image="res://textures/game_logo.png"
 config/icon="res://icon.svg"
 
 [autoload]
