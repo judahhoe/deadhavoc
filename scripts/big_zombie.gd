@@ -40,6 +40,7 @@ var launch_speed : float = 100
 var launch_time :float = 0.25
 
 var dropped_item = false
+var is_dead = false
 
 func _ready():
 	animation_player.play("spawn")
@@ -77,13 +78,17 @@ func dropitem(item):
 	pickup.launch(direction * launch_speed, launch_time)
 
 func die():
-	drop = randi_range(1,100)
-	if(drop>=1 && drop <=20):
-		dropitem("medkit")
-	if(drop>20 && drop <=40):
-		dropitem("ammo")
-	add_score()
-	handle_kill(enemy.global_position)
+	if(!is_dead):
+		is_dead = true
+		drop = randi_range(1,100)
+		if(drop>=1 && drop <=20):
+			dropitem("medkit")
+		if(drop>20 && drop <=40):
+			dropitem("ammo")
+			dropitem("ammo")
+			dropitem("ammo")
+		add_score()
+		handle_kill(enemy.global_position)
 	queue_free()
 
 func play_footsteps():

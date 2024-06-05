@@ -1,6 +1,51 @@
-[gd_scene load_steps=2 format=3 uid="uid://c3harb7fx7fga"]
+[gd_scene load_steps=5 format=3 uid="uid://c3harb7fx7fga"]
 
 [ext_resource type="Script" path="res://scenes/gameover.gd" id="1_bog7o"]
+[ext_resource type="Texture2D" uid="uid://dxhw0nby8r7lt" path="res://textures/you_died.png" id="2_nyo6i"]
+
+[sub_resource type="Animation" id="Animation_xy1ei"]
+resource_name = "splash"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CanvasLayer/TextureRect:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("CanvasLayer/TextureRect:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("CanvasLayer/TextureRect:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(932, 413), Vector2(669, 204)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_2nbyh"]
+_data = {
+"splash": SubResource("Animation_xy1ei")
+}
 
 [node name="Control" type="Control"]
 layout_mode = 3
@@ -12,6 +57,7 @@ script = ExtResource("1_bog7o")
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
 [node name="Label" type="Label" parent="CanvasLayer"]
+visible = false
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
@@ -38,5 +84,27 @@ offset_bottom = 56.0
 grow_horizontal = 2
 grow_vertical = 2
 text = "MENU"
+
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer"]
+modulate = Color(1, 1, 1, 0)
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -28.0
+offset_top = -127.0
+offset_right = 554.003
+offset_bottom = 193.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(1e-05, 1e-05)
+size_flags_horizontal = 4
+texture = ExtResource("2_nyo6i")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_2nbyh")
+}
 
 [connection signal="pressed" from="CanvasLayer/Button" to="." method="_on_button_pressed"]

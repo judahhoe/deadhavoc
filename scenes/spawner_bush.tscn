@@ -1,17 +1,8 @@
-[gd_scene load_steps=9 format=3 uid="uid://ci15i02n5bjak"]
+[gd_scene load_steps=6 format=3 uid="uid://ci15i02n5bjak"]
 
 [ext_resource type="Script" path="res://scenes/spawner_bush.gd" id="1_3qdnd"]
 [ext_resource type="Texture2D" uid="uid://dnmctpfefrq0a" path="res://textures/bush.png" id="3_fi0io"]
-[ext_resource type="Texture2D" uid="uid://ee4ahqivuqdc" path="res://textures/leaf.png" id="4_5lv3t"]
 [ext_resource type="AudioStream" uid="uid://yvguradifslc" path="res://sfx/bush.mp3" id="5_al6jd"]
-
-[sub_resource type="Curve" id="Curve_u80nk"]
-_data = [Vector2(0.0421053, 0.516483), 0.0, 0.0, 0, 0, Vector2(0.473684, 0.868132), 0.0, 0.0, 0, 0, Vector2(0.926316, 0.0659341), 0.0, 0.0, 0, 0]
-point_count = 3
-
-[sub_resource type="Gradient" id="Gradient_2b0am"]
-offsets = PackedFloat32Array(0, 0.796296, 1)
-colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_gcbj8"]
 radius = 216.037
@@ -26,26 +17,6 @@ script = ExtResource("1_3qdnd")
 [node name="Sprite2D" type="Sprite2D" parent="."]
 scale = Vector2(0.3, 0.3)
 texture = ExtResource("3_fi0io")
-
-[node name="CPUParticles2D" type="CPUParticles2D" parent="."]
-position = Vector2(1, 0)
-emitting = false
-amount = 50
-one_shot = true
-explosiveness = 1.0
-texture = ExtResource("4_5lv3t")
-emission_shape = 1
-emission_sphere_radius = 128.0
-direction = Vector2(0, 0)
-spread = 180.0
-gravity = Vector2(200, 200)
-initial_velocity_min = 200.0
-initial_velocity_max = 200.0
-angle_max = 360.0
-scale_amount_min = 0.05
-scale_amount_max = 0.1
-scale_amount_curve = SubResource("Curve_u80nk")
-color_ramp = SubResource("Gradient_2b0am")
 
 [node name="Area2D" type="Area2D" parent="."]
 

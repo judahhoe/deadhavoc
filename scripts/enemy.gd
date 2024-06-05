@@ -4,6 +4,8 @@ extends CharacterBody2D
 @onready var particle_manager = get_node("/root/Main/ParticleManager")
 @onready var main_node = get_node("/root/Main/PickupManager")
 
+@onready var sfx_timer = $SoundTimer
+@onready var sfx = $AudioStreamPlayer2D
 @onready var gfx = $gfx
 @onready var player = $"../%player"
 @onready var nav_agent := $NavigationAgent2D as NavigationAgent2D
@@ -27,6 +29,7 @@ var 	zombie_damage = 10
 var 	target
 var 	isTargetInRange = false
 
+var is_dead = false
 var dropped_item = false
 
 var exp_value = 100
@@ -40,6 +43,7 @@ var launch_time :float = 0.25
 func _ready():
 	animation_player.play("spawn")
 	animation_player_legs.play("walk")
+	sfx_timer.wait_time = randf_range(4.0, 8.0)
 	
 
 func _physics_process(_delta: float) -> void:
@@ -74,13 +78,15 @@ func dropitem(item):
 	pickup.launch(direction * launch_speed, launch_time)
 
 func die():
-	drop = randi_range(1,100)
-	if(drop>=1 && drop <=20):
-		dropitem("medkit")
-	if(drop>20 && drop <=40):
-		dropitem("ammo")
-	add_score()
-	handle_kill(enemy.global_position)
+	if(!is_dead):
+		is_dead = true
+		drop = randi_range(1,100)
+		if(drop>=1 && drop <=5):
+			dropitem("medkit")
+		if(drop>20 && drop <=40):
+			dropitem("ammo")
+		add_score()
+		handle_kill(enemy.global_position)
 	queue_free()
 
 
@@ -114,6 +120,7 @@ func deal_damage(target,damage):
 	if (attack == 3):
 		animation_player.play("attack_2")
 	if (isTargetInRange):
+		await get_tree().create_timer(1).timeout
 		target.take_damage(damage)
 	else:
 		print("target escaped")
@@ -147,3 +154,9 @@ func handle_kill(position:Vector2):
 
 func isEnemy():
 	pass
+
+
+func _on_sound_timer_timeout():
+	sfx.pitch_scale = randf_range(0.8,1.2)
+	sfx.play()
+	sfx_timer.wait_time = randf_range(4.0, 8.0)

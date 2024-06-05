@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://bdvww133oyqy7"]
+
+[ext_resource type="Texture2D" uid="uid://b0oksin6cxn5k" path="res://textures/blood_spatter_1.png" id="1_nu1v0"]
+
+[node name="Sprite2D2" type="Sprite2D"]
+position = Vector2(-275, -17)
+scale = Vector2(0.4, 0.4)
+texture = ExtResource("1_nu1v0")

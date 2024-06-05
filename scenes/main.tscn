@@ -44,77 +44,77 @@ script = ExtResource("1_1ogx0")
 [node name="SpawnersSewer" type="Node2D" parent="."]
 
 [node name="spawner_sewer" parent="SpawnersSewer" instance=ExtResource("6_togh1")]
-position = Vector2(732, 212)
+position = Vector2(602, 225)
 rotation = 0.837138
 scale = Vector2(0.08, 0.08)
 
 [node name="spawner_sewer15" parent="SpawnersSewer" instance=ExtResource("6_togh1")]
-position = Vector2(974, -489)
+position = Vector2(1124, -343)
 rotation = 0.837138
 scale = Vector2(0.08, 0.08)
 
 [node name="spawner_sewer2" parent="SpawnersSewer" instance=ExtResource("6_togh1")]
-position = Vector2(3583, -494)
+position = Vector2(3439, -366)
 rotation = 0.837138
 scale = Vector2(0.08, 0.08)
 
 [node name="spawner_sewer3" parent="SpawnersSewer" instance=ExtResource("6_togh1")]
-position = Vector2(3597, 974)
+position = Vector2(3480, 979)
 rotation = 0.837138
 scale = Vector2(0.08, 0.08)
 
 [node name="spawner_sewer4" parent="SpawnersSewer" instance=ExtResource("6_togh1")]
-position = Vector2(7788, -537)
+position = Vector2(7734, -459)
 rotation = 0.178078
 scale = Vector2(0.08, 0.08)
 
 [node name="spawner_sewer5" parent="SpawnersSewer" instance=ExtResource("6_togh1")]
-position = Vector2(7795, 1807)
+position = Vector2(7747, 1807)
 rotation = 1.35664
 scale = Vector2(0.08, 0.08)
 
 [node name="spawner_sewer6" parent="SpawnersSewer" instance=ExtResource("6_togh1")]
-position = Vector2(4788, 4223)
+position = Vector2(4648, 4337)
 rotation = 0.888399
 scale = Vector2(0.08, 0.08)
 
 [node name="spawner_sewer7" parent="SpawnersSewer" instance=ExtResource("6_togh1")]
-position = Vector2(756, 6863)
+position = Vector2(680, 6901)
 rotation = 0.888399
 scale = Vector2(0.08, 0.08)
 
 [node name="spawner_sewer8" parent="SpawnersSewer" instance=ExtResource("6_togh1")]
-position = Vector2(-3404, 3951)
+position = Vector2(-3396, 4010)
 rotation = 0.888399
 scale = Vector2(0.08, 0.08)
 
 [node name="spawner_sewer9" parent="SpawnersSewer" instance=ExtResource("6_togh1")]
-position = Vector2(8948, 4447)
+position = Vector2(8999, 4510)
 rotation = 0.888399
 scale = Vector2(0.08, 0.08)
 
 [node name="spawner_sewer10" parent="SpawnersSewer" instance=ExtResource("6_togh1")]
-position = Vector2(10420, 1167)
+position = Vector2(10360, 1167)
 rotation = 0.888399
 scale = Vector2(0.08, 0.08)
 
 [node name="spawner_sewer11" parent="SpawnersSewer" instance=ExtResource("6_togh1")]
-position = Vector2(740, 3253)
+position = Vector2(613, 3253)
 rotation = 0.888399
 scale = Vector2(0.08, 0.08)
 
 [node name="spawner_sewer12" parent="SpawnersSewer" instance=ExtResource("6_togh1")]
-position = Vector2(-3444, 1450)
+position = Vector2(-3457, 1526)
 rotation = -0.997262
 scale = Vector2(0.08, 0.08)
 
 [node name="spawner_sewer13" parent="SpawnersSewer" instance=ExtResource("6_togh1")]
-position = Vector2(-7438, 2966)
+position = Vector2(-7491, 2966)
 rotation = -3.13472
 scale = Vector2(0.08, 0.08)
 
 [node name="spawner_sewer14" parent="SpawnersSewer" instance=ExtResource("6_togh1")]
-position = Vector2(7795, 6967)
+position = Vector2(7723, 6958)
 rotation = -3.94654
 scale = Vector2(0.08, 0.08)
 
@@ -201,13 +201,15 @@ position = Vector2(752, -496)
 [node name="BulletManager" type="Node2D" parent="."]
 script = ExtResource("7_85jpq")
 
-[node name="destroyable_crate" parent="." instance=ExtResource("8_x1ocu")]
+[node name="Crates" type="Node2D" parent="."]
+
+[node name="destroyable_crate" parent="Crates" instance=ExtResource("8_x1ocu")]
 position = Vector2(396, 31)
 
-[node name="destroyable_crate2" parent="." instance=ExtResource("8_x1ocu")]
+[node name="destroyable_crate2" parent="Crates" instance=ExtResource("8_x1ocu")]
 position = Vector2(432, -74)
 
-[node name="destroyable_crate3" parent="." instance=ExtResource("8_x1ocu")]
+[node name="destroyable_crate3" parent="Crates" instance=ExtResource("8_x1ocu")]
 position = Vector2(377, -22)
 
 [node name="SpawnersBush" type="Node2D" parent="."]
@@ -929,10 +931,10 @@ texture = ExtResource("13_posf4")
 position = Vector2(-691, 482)
 
 [node name="gascan" parent="." instance=ExtResource("14_cu04f")]
-position = Vector2(876, -708)
+position = Vector2(3071, -1662)
 
 [node name="suitcase" parent="." instance=ExtResource("15_ywsrf")]
-position = Vector2(962, -596)
+position = Vector2(1019, 1432)
 
 [node name="BackgroundMusic" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("16_hmnpi")

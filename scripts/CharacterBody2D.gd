@@ -284,7 +284,7 @@ func get_infected():
 
 func die():
 	handle_kill(global_position)
-	await get_tree().create_timer(0.3).timeout
+	await get_tree().create_timer(1).timeout
 	get_tree().change_scene_to_file("res://scenes/gameover.tscn")
 
 func update_weapon_hud(weapon, visible = false):

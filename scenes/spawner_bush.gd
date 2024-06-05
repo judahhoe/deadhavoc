@@ -1,6 +1,5 @@
 extends Node2D
 
-@onready var particles = $CPUParticles2D
 @onready var sprite = $"Sprite2D"
 
 @onready var enemyTypeBasic_0 = preload("res://scenes/basic_zombie_0.tscn")
@@ -53,19 +52,10 @@ func spawn_enemy(enemy_count):
 func _on_area_2d_body_entered(body):
 	if(body.has_method("get_infected")):
 		sprite.modulate = "ffffff4e"
-	particles.emitting = true
-	sound.play()
-	await get_tree().create_timer(2.0).timeout
-	particles.restart()
-
 
 func _on_area_2d_body_exited(body):
 	if(body.has_method("get_infected")):
 		sprite.modulate = "ffffffff"
-	particles.emitting = true
-	sound.play()
-	await get_tree().create_timer(2.0).timeout
-	particles.restart()
 
 
 func _on_detect_player_body_entered(body):
