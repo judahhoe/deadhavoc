@@ -1,0 +1,43 @@
+[gd_scene load_steps=6 format=3 uid="uid://ci15i02n5bjak"]
+
+[ext_resource type="Script" path="res://scenes/spawner_bush.gd" id="1_3qdnd"]
+[ext_resource type="Texture2D" uid="uid://dnmctpfefrq0a" path="res://textures/bush.png" id="3_fi0io"]
+[ext_resource type="AudioStream" uid="uid://yvguradifslc" path="res://sfx/bush.mp3" id="5_al6jd"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_gcbj8"]
+radius = 216.037
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_1dcqv"]
+radius = 4282.32
+
+[node name="spawner_bush" type="Node2D"]
+position = Vector2(0, -1)
+script = ExtResource("1_3qdnd")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.3, 0.3)
+texture = ExtResource("3_fi0io")
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("CircleShape2D_gcbj8")
+
+[node name="BushSounds" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("5_al6jd")
+attenuation = 3.36359
+bus = &"SoundEffects"
+
+[node name="DetectPlayer" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DetectPlayer"]
+shape = SubResource("CircleShape2D_1dcqv")
+debug_color = Color(0.980392, 0.145098, 0, 0.027451)
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 300.0
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
+[connection signal="body_exited" from="Area2D" to="." method="_on_area_2d_body_exited"]
+[connection signal="body_entered" from="DetectPlayer" to="." method="_on_detect_player_body_entered"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

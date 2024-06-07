@@ -1,0 +1,111 @@
+[gd_scene load_steps=7 format=3 uid="uid://b3mxvq14r1e0h"]
+
+[ext_resource type="Script" path="res://scenes/car.gd" id="1_3wybw"]
+[ext_resource type="Texture2D" uid="uid://bqe7577w8588y" path="res://assets/MapAssets/Cars/Jeep1.png" id="2_dgqo0"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_vpjyh"]
+radius = 88.0
+height = 326.0
+
+[sub_resource type="LabelSettings" id="LabelSettings_e3u8i"]
+font_size = 40
+outline_color = Color(0, 0, 0, 1)
+shadow_size = 20
+shadow_color = Color(0, 0, 0, 0.360784)
+
+[sub_resource type="LabelSettings" id="LabelSettings_5o3va"]
+font_size = 40
+shadow_size = 20
+shadow_color = Color(0, 0, 0, 0.360784)
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_6puiv"]
+radius = 50.0
+height = 228.0
+
+[node name="car" type="StaticBody2D"]
+collision_layer = 32768
+collision_mask = 3
+script = ExtResource("1_3wybw")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+rotation = 1.5708
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("2_dgqo0")
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_layer = 32768
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+rotation = -1.5708
+shape = SubResource("CapsuleShape2D_vpjyh")
+debug_color = Color(0, 0.643137, 0.298039, 0.2)
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Label" type="Label" parent="CanvasLayer"]
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -288.5
+offset_top = -100.0
+offset_right = 288.5
+offset_bottom = -44.9998
+grow_horizontal = 2
+grow_vertical = 0
+text = "I still need gas and the suitcase before I leave."
+label_settings = SubResource("LabelSettings_e3u8i")
+metadata/_edit_use_anchors_ = true
+
+[node name="Label2" type="Label" parent="CanvasLayer"]
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -488.0
+offset_top = -100.0
+offset_right = 488.0
+offset_bottom = -45.0
+grow_horizontal = 2
+grow_vertical = 0
+text = "I have the suitcase but I still need gas to leave this town."
+label_settings = SubResource("LabelSettings_5o3va")
+
+[node name="Label3" type="Label" parent="CanvasLayer"]
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -488.0
+offset_top = -100.0
+offset_right = 488.0
+offset_bottom = -45.0
+grow_horizontal = 2
+grow_vertical = 0
+text = "I have gas but I still haven't found the suitcase. I can't leave without it."
+label_settings = SubResource("LabelSettings_5o3va")
+
+[node name="Label4" type="Label" parent="CanvasLayer"]
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -488.0
+offset_top = -100.0
+offset_right = 488.0
+offset_bottom = -45.0
+grow_horizontal = 2
+grow_vertical = 0
+text = "Finally I can leave this god forsaken town."
+label_settings = SubResource("LabelSettings_5o3va")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="."]
+position = Vector2(1, -2)
+rotation = -1.57079
+shape = SubResource("CapsuleShape2D_6puiv")
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]

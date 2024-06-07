@@ -1,0 +1,45 @@
+[gd_scene load_steps=7 format=3 uid="uid://ch2sway1kjwwi"]
+
+[ext_resource type="Script" path="res://assets/maps/clutter/lamp.gd" id="1_711dn"]
+[ext_resource type="Texture2D" uid="uid://cti11c5iog3f0" path="res://assets/maps/clutter/lamp.png" id="2_5stcf"]
+[ext_resource type="Texture2D" uid="uid://ml4a1sf81wn7" path="res://assets/maps/clutter/lamp_post.png" id="2_wf0fc"]
+[ext_resource type="Texture2D" uid="uid://dg6joe33xu7l" path="res://assets/maps/clutter/light_lamp.png" id="3_pusrm"]
+[ext_resource type="AudioStream" uid="uid://d1ypdhbm65asc" path="res://sfx/light_flicker.mp3" id="5_v61fi"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_40fti"]
+radius = 80.0
+
+[node name="Lamp" type="StaticBody2D"]
+script = ExtResource("1_711dn")
+
+[node name="Sprite2D2" type="Sprite2D" parent="."]
+z_as_relative = false
+position = Vector2(-446, -3)
+texture = ExtResource("2_wf0fc")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+z_index = 11
+z_as_relative = false
+texture = ExtResource("2_5stcf")
+
+[node name="PointLight2D" type="PointLight2D" parent="."]
+position = Vector2(260, 0)
+color = Color(1, 0.988235, 0.678431, 1)
+energy = 0.5
+shadow_enabled = true
+texture = ExtResource("3_pusrm")
+texture_scale = 5.0
+
+[node name="Timer" type="Timer" parent="."]
+autostart = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-398, 0)
+shape = SubResource("CircleShape2D_40fti")
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("5_v61fi")
+volume_db = -10.0
+bus = &"SoundEffects"
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

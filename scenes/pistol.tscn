@@ -1,0 +1,86 @@
+[gd_scene load_steps=11 format=3 uid="uid://dlx7joevlhiba"]
+
+[ext_resource type="Script" path="res://pistol.gd" id="1_t7bhw"]
+[ext_resource type="Texture2D" uid="uid://cw2ckuqrgoqia" path="res://textures/pistol.png" id="1_unxar"]
+[ext_resource type="PackedScene" uid="uid://buytdgkxqcuho" path="res://scenes/pistol_bullet.tscn" id="2_hqsxh"]
+[ext_resource type="Texture2D" uid="uid://cxeac5y833pnl" path="res://textures/muzzleflash.png" id="3_fvo0n"]
+[ext_resource type="AudioStream" uid="uid://blcrx1upwkcpn" path="res://sfx/shot_pitol.mp3" id="5_roosi"]
+[ext_resource type="AudioStream" uid="uid://cka4ak8ec404b" path="res://sfx/reload.mp3" id="6_jn7ek"]
+
+[sub_resource type="Gradient" id="Gradient_wvh71"]
+offsets = PackedFloat32Array(0, 0.160494, 0.919753, 1)
+colors = PackedColorArray(1, 0, 0, 0, 1, 0, 0, 0.784314, 1, 0, 0, 0.784314, 1, 0, 0, 0)
+
+[sub_resource type="Animation" id="Animation_uksqy"]
+resource_name = "dipense_casing"
+
+[sub_resource type="Animation" id="Animation_gnxu1"]
+resource_name = "muzzle_flash"
+length = 0.05
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_fxbyx"]
+_data = {
+"dipense_casing": SubResource("Animation_uksqy"),
+"muzzle_flash": SubResource("Animation_gnxu1")
+}
+
+[node name="pistol" type="Node2D"]
+script = ExtResource("1_t7bhw")
+weapon_type = "pistol"
+mag_size = 150
+ammo_in_mag = 150
+Bullet = ExtResource("2_hqsxh")
+reload_modifier = 50
+
+[node name="Line2D" type="Line2D" parent="."]
+visible = false
+position = Vector2(19, 0)
+points = PackedVector2Array(0, 0, 10, 0, 190, 0, 200, 0)
+width = 1.5
+default_color = Color(1, 0, 0, 0.623529)
+gradient = SubResource("Gradient_wvh71")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(8.42502, 9.53674e-07)
+rotation = 6.28318
+scale = Vector2(0.05, 0.05)
+texture = ExtResource("1_unxar")
+
+[node name="EndOfGun" type="Marker2D" parent="."]
+position = Vector2(35, 0)
+
+[node name="BulletDirection" type="Marker2D" parent="."]
+position = Vector2(45, 0)
+
+[node name="MuzzleFlash" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(32, 0)
+rotation = 1.57079
+scale = Vector2(0.05, 0.05)
+texture = ExtResource("3_fvo0n")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_fxbyx")
+}
+
+[node name="ShootingCooldown" type="Timer" parent="."]
+wait_time = 0.2
+one_shot = true
+
+[node name="ReloadTimer" type="Timer" parent="."]
+wait_time = 2.0
+one_shot = true
+
+[node name="CasingEject" type="Marker2D" parent="."]
+position = Vector2(4, 3)
+
+[node name="Gunshot" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("5_roosi")
+bus = &"SoundEffects"
+
+[node name="Reload" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("6_jn7ek")
+bus = &"SoundEffects"
+
+[connection signal="timeout" from="ReloadTimer" to="." method="_on_reload_timer_timeout"]

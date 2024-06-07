@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://cyqwtblge108h"
+path="res://.godot/imported/trawa krok1 cut.mp3-3c1f7a1f1bff95d364a10af6f3aba9cf.mp3str"
+
+[deps]
+
+source_file="res://sfx/trawa krok1 cut.mp3"
+dest_files=["res://.godot/imported/trawa krok1 cut.mp3-3c1f7a1f1bff95d364a10af6f3aba9cf.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

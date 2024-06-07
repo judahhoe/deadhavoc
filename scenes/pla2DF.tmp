@@ -1,0 +1,90 @@
+[gd_scene load_steps=12 format=3 uid="uid://cyliupk1rrn74"]
+
+[ext_resource type="Script" path="res://scripts/CharacterBody2D.gd" id="1_d7hat"]
+[ext_resource type="PackedScene" uid="uid://dc7afid6ykfrs" path="res://scenes/pistol.tscn" id="2_ixrmp"]
+[ext_resource type="Texture2D" uid="uid://vg4rn545m2sb" path="res://textures/character_pistol_aim.png" id="3_g4bnp"]
+[ext_resource type="PackedScene" uid="uid://c3ygjka63koed" path="res://scenes/ammo_count.tscn" id="3_p5vta"]
+[ext_resource type="PackedScene" uid="uid://647pldro1h44" path="res://scenes/shotgun.tscn" id="4_i1uek"]
+[ext_resource type="Texture2D" uid="uid://pvld50db7x4y" path="res://textures/crosshair.png" id="4_n73xp"]
+[ext_resource type="Texture2D" uid="uid://c356jvrlffjsu" path="res://textures/hp_under.png" id="8_gx0o6"]
+[ext_resource type="Texture2D" uid="uid://ni761p86o5d4" path="res://textures/hp_over.png" id="9_byqna"]
+[ext_resource type="Texture2D" uid="uid://co8drx5i04sbh" path="res://textures/hp_progress.png" id="10_n8xai"]
+[ext_resource type="Texture2D" uid="uid://crhw8jpp5ivdm" path="res://textures/reload.png" id="11_eoshx"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_t8v8n"]
+
+[node name="player" type="CharacterBody2D" node_paths=PackedStringArray("crosshair")]
+collision_mask = 515
+script = ExtResource("1_d7hat")
+crosshair = NodePath("crosshair")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+zoom = Vector2(1.5, 1.5)
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+rotation = 1.57079
+scale = Vector2(0.1, 0.1)
+texture = ExtResource("3_g4bnp")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+scale = Vector2(2, 2)
+shape = SubResource("CircleShape2D_t8v8n")
+debug_color = Color(0, 0.65098, 0.14902, 0.419608)
+
+[node name="pistol" parent="." instance=ExtResource("2_ixrmp")]
+position = Vector2(23, 10)
+
+[node name="shotgun" parent="." instance=ExtResource("4_i1uek")]
+visible = false
+
+[node name="crosshair" type="Sprite2D" parent="."]
+visible = false
+texture = ExtResource("4_n73xp")
+
+[node name="HUD" type="CanvasLayer" parent="."]
+
+[node name="AmmoCount" parent="HUD" instance=ExtResource("3_p5vta")]
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -161.0
+offset_top = -83.0
+offset_right = -90.0
+offset_bottom = -40.0
+grow_horizontal = 0
+grow_vertical = 0
+size_flags_horizontal = 8
+size_flags_vertical = 8
+
+[node name="HealthBar" type="TextureProgressBar" parent="HUD"]
+offset_left = 21.0
+offset_top = 21.0
+offset_right = 61.0
+offset_bottom = 61.0
+scale = Vector2(0.15, 0.15)
+value = 100.0
+texture_under = ExtResource("8_gx0o6")
+texture_over = ExtResource("9_byqna")
+texture_progress = ExtResource("10_n8xai")
+texture_progress_offset = Vector2(5, 0)
+
+[node name="ReloadProgress" type="TextureProgressBar" parent="HUD"]
+visible = false
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -90.0
+offset_top = -83.0
+offset_right = 350.0
+offset_bottom = 357.0
+grow_horizontal = 0
+grow_vertical = 0
+scale = Vector2(0.1, 0.1)
+size_flags_horizontal = 4
+value = 80.0
+fill_mode = 4
+texture_progress = ExtResource("11_eoshx")

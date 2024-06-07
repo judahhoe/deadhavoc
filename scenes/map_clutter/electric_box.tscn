@@ -1,0 +1,18 @@
+[gd_scene load_steps=3 format=3 uid="uid://df1ykte6kqywn"]
+
+[ext_resource type="Texture2D" uid="uid://ddx2yffnhrk1o" path="res://assets/InsideAssets/Furnitures/electricbox.png" id="1_jtwxu"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_il8pm"]
+size = Vector2(72, 96)
+
+[node name="electricBox" type="StaticBody2D"]
+position = Vector2(136, 312)
+rotation = -1.57079
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.3, 0.3)
+texture = ExtResource("1_jtwxu")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-4, 0)
+shape = SubResource("RectangleShape2D_il8pm")

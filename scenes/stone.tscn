@@ -1,0 +1,83 @@
+[gd_scene load_steps=9 format=3 uid="uid://cj77atslstuy5"]
+
+[ext_resource type="Script" path="res://stone.gd" id="1_5yk6u"]
+[ext_resource type="Texture2D" uid="uid://doo41snforyol" path="res://textures/bullet_smear.png" id="2_fl51o"]
+[ext_resource type="Texture2D" uid="uid://kais2ipll6tk" path="res://textures/stone.png" id="3_sabu4"]
+[ext_resource type="AudioStream" uid="uid://b70oe705drh5k" path="res://sfx/big_zombie_stone_break.mp3" id="4_2iqtd"]
+[ext_resource type="Texture2D" uid="uid://d3ofrfw60f33y" path="res://assets/destroyables/dust_1.png" id="5_70eoc"]
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_fusk2"]
+light_mode = 2
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_s8kyx"]
+radius = 3.16228
+
+[sub_resource type="Curve" id="Curve_y2vgk"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.578947, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[node name="bullet" type="Area2D"]
+scale = Vector2(4.61354, 4.61354)
+collision_layer = 8
+collision_mask = 16385
+script = ExtResource("1_5yk6u")
+
+[node name="Smear" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(-32, 1.81896e-12)
+rotation = 1.57079
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("2_fl51o")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+light_mask = 2
+material = SubResource("CanvasItemMaterial_fusk2")
+rotation = 1.57079
+scale = Vector2(0.006903, 0.006903)
+texture = ExtResource("3_sabu4")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+scale = Vector2(1.2601, 1.2601)
+shape = SubResource("CircleShape2D_s8kyx")
+
+[node name="KillTimer" type="Timer" parent="."]
+wait_time = 5.0
+
+[node name="BreakSound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("4_2iqtd")
+bus = &"SoundEffects"
+
+[node name="CPUParticles2D" type="CPUParticles2D" parent="."]
+emitting = false
+amount = 20
+one_shot = true
+explosiveness = 1.0
+texture = ExtResource("3_sabu4")
+spread = 180.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 8.0
+initial_velocity_max = 12.0
+angular_velocity_min = 100.0
+angular_velocity_max = 200.0
+scale_amount_min = 0.01
+scale_amount_max = 0.01
+scale_amount_curve = SubResource("Curve_y2vgk")
+
+[node name="CPUParticles2D2" type="CPUParticles2D" parent="."]
+emitting = false
+amount = 20
+one_shot = true
+explosiveness = 1.0
+texture = ExtResource("5_70eoc")
+spread = 180.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 4.0
+initial_velocity_max = 6.0
+angular_velocity_min = 100.0
+angular_velocity_max = 200.0
+scale_amount_min = 0.02
+scale_amount_max = 0.02
+scale_amount_curve = SubResource("Curve_y2vgk")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="timeout" from="KillTimer" to="." method="_on_kill_timer_timeout"]

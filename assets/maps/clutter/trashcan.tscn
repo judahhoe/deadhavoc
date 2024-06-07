@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://dja4oynwt2e7o"]
+
+[ext_resource type="Texture2D" uid="uid://btuu6bebe7gkk" path="res://assets/maps/clutter/trashcan_lid_top.png" id="2_nakhq"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_x3trr"]
+
+[node name="Trashcan" type="StaticBody2D"]
+
+[node name="Sprite2D2" type="Sprite2D" parent="."]
+scale = Vector2(0.06, 0.06)
+texture = ExtResource("2_nakhq")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_x3trr")

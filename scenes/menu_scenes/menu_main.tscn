@@ -1,0 +1,95 @@
+[gd_scene load_steps=13 format=3 uid="uid://d4bs42drru1p3"]
+
+[ext_resource type="Script" path="res://scenes/menu_scenes/menu.gd" id="1_gl6o7"]
+[ext_resource type="Texture2D" uid="uid://bau7t5snkuwln" path="res://assets/menus/menu_plank_0.png" id="2_bdwmd"]
+[ext_resource type="Texture2D" uid="uid://ctybuh33rvhe4" path="res://assets/menus/menu_plank_bloody_0.png" id="3_in088"]
+[ext_resource type="Texture2D" uid="uid://dnwgdox5d6ywh" path="res://assets/menus/menu_plank_1.png" id="3_mwr3x"]
+[ext_resource type="Texture2D" uid="uid://dfi6a8cqyxdaq" path="res://assets/menus/menu_plank_2.png" id="4_sxq74"]
+[ext_resource type="Texture2D" uid="uid://doyahhkku7e6b" path="res://assets/menus/menu_plank_4.png" id="4_w5yoy"]
+[ext_resource type="Texture2D" uid="uid://dn85rkghsjd4t" path="res://assets/menus/menu_plank_3.png" id="5_38m7u"]
+[ext_resource type="Texture2D" uid="uid://db5f1unmxb5v1" path="res://assets/menus/menu_plank_bloody_1.png" id="5_dxgaw"]
+[ext_resource type="AudioStream" uid="uid://fkvn2yts26js" path="res://assets/menus/blood_splatter2.ogg" id="6_ek6ln"]
+[ext_resource type="Texture2D" uid="uid://3v2ylvngha6b" path="res://assets/menus/menu_plank_4_bloody.png" id="7_jcxsd"]
+[ext_resource type="Texture2D" uid="uid://d2cphucwl5oky" path="res://assets/menus/menu_plank_bloody_2.png" id="9_elmm1"]
+[ext_resource type="Texture2D" uid="uid://ch23iev2ua3ov" path="res://assets/menus/menu_plank_bloody_3.png" id="11_hxe02"]
+
+[node name="Menu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_gl6o7")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="PlayButton" type="TextureButton" parent="VBoxContainer"]
+layout_mode = 2
+focus_neighbor_top = NodePath("../QuitButton")
+texture_normal = ExtResource("2_bdwmd")
+texture_pressed = ExtResource("3_in088")
+
+[node name="PerksButton" type="TextureButton" parent="VBoxContainer"]
+layout_mode = 2
+texture_normal = ExtResource("3_mwr3x")
+texture_pressed = ExtResource("5_dxgaw")
+
+[node name="WeaponsButton" type="TextureButton" parent="VBoxContainer"]
+layout_mode = 2
+texture_normal = ExtResource("4_w5yoy")
+texture_pressed = ExtResource("7_jcxsd")
+
+[node name="OptionsButton" type="TextureButton" parent="VBoxContainer"]
+layout_mode = 2
+texture_normal = ExtResource("4_sxq74")
+texture_pressed = ExtResource("9_elmm1")
+
+[node name="QuitButton" type="TextureButton" parent="VBoxContainer"]
+layout_mode = 2
+focus_neighbor_bottom = NodePath("../PlayButton")
+texture_normal = ExtResource("5_38m7u")
+texture_pressed = ExtResource("11_hxe02")
+
+[node name="ButtonClickSplatter" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("6_ek6ln")
+pitch_scale = 2.0
+bus = &"UI"
+
+[connection signal="focus_entered" from="VBoxContainer/PlayButton" to="." method="_on_play_button_focus_entered"]
+[connection signal="focus_exited" from="VBoxContainer/PlayButton" to="." method="_on_play_button_focus_exited"]
+[connection signal="mouse_entered" from="VBoxContainer/PlayButton" to="." method="_on_play_button_mouse_entered"]
+[connection signal="mouse_exited" from="VBoxContainer/PlayButton" to="." method="_on_play_button_mouse_exited"]
+[connection signal="pressed" from="VBoxContainer/PlayButton" to="." method="_on_play_button_pressed"]
+[connection signal="focus_entered" from="VBoxContainer/PerksButton" to="." method="_on_perks_button_focus_entered"]
+[connection signal="focus_exited" from="VBoxContainer/PerksButton" to="." method="_on_perks_button_focus_exited"]
+[connection signal="mouse_entered" from="VBoxContainer/PerksButton" to="." method="_on_perks_button_mouse_entered"]
+[connection signal="mouse_exited" from="VBoxContainer/PerksButton" to="." method="_on_perks_button_mouse_exited"]
+[connection signal="pressed" from="VBoxContainer/PerksButton" to="." method="_on_perks_button_pressed"]
+[connection signal="focus_entered" from="VBoxContainer/WeaponsButton" to="." method="_on_weapons_button_focus_entered"]
+[connection signal="focus_exited" from="VBoxContainer/WeaponsButton" to="." method="_on_weapons_button_focus_exited"]
+[connection signal="mouse_entered" from="VBoxContainer/WeaponsButton" to="." method="_on_weapons_button_mouse_entered"]
+[connection signal="mouse_exited" from="VBoxContainer/WeaponsButton" to="." method="_on_weapons_button_mouse_exited"]
+[connection signal="pressed" from="VBoxContainer/WeaponsButton" to="." method="_on_weapons_button_pressed"]
+[connection signal="focus_entered" from="VBoxContainer/OptionsButton" to="." method="_on_options_button_focus_entered"]
+[connection signal="focus_exited" from="VBoxContainer/OptionsButton" to="." method="_on_options_button_focus_exited"]
+[connection signal="mouse_entered" from="VBoxContainer/OptionsButton" to="." method="_on_options_button_mouse_entered"]
+[connection signal="mouse_exited" from="VBoxContainer/OptionsButton" to="." method="_on_options_button_mouse_exited"]
+[connection signal="pressed" from="VBoxContainer/OptionsButton" to="." method="_on_options_button_pressed"]
+[connection signal="focus_entered" from="VBoxContainer/QuitButton" to="." method="_on_quit_button_focus_entered"]
+[connection signal="focus_exited" from="VBoxContainer/QuitButton" to="." method="_on_quit_button_focus_exited"]
+[connection signal="mouse_entered" from="VBoxContainer/QuitButton" to="." method="_on_quit_button_mouse_entered"]
+[connection signal="mouse_exited" from="VBoxContainer/QuitButton" to="." method="_on_quit_button_mouse_exited"]
+[connection signal="pressed" from="VBoxContainer/QuitButton" to="." method="_on_quit_button_pressed"]

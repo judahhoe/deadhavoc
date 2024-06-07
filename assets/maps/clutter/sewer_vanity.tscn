@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=3 uid="uid://6uduq72lb2w0"]
+
+[ext_resource type="Texture2D" uid="uid://bl5ik8sls8l5b" path="res://textures/sewer_hole.png" id="1_18gh6"]
+[ext_resource type="Texture2D" uid="uid://luqhf8flfhm5" path="res://textures/sewer_grate.png" id="2_6ktbt"]
+
+[node name="sewer_vanity" type="Node2D"]
+scale = Vector2(0.1, 0.1)
+
+[node name="Sprite2D2" type="Sprite2D" parent="."]
+texture = ExtResource("1_18gh6")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_6ktbt")

@@ -1,0 +1,72 @@
+[gd_scene load_steps=5 format=3 uid="uid://xv3fltq4duor"]
+
+[ext_resource type="Script" path="res://scenes/blood_pool.gd" id="1_tjrsj"]
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_gg2gn"]
+light_mode = 2
+
+[sub_resource type="Animation" id="Animation_o1kpa"]
+resource_name = "blood_vanish"
+length = 20.0
+step = 1.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(-0.1, 0, 1, 20),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(1, 1)]
+}
+tracks/2/type = "method"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("..")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(20),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"delete"
+}]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_jhn5u"]
+_data = {
+"blood_vanish": SubResource("Animation_o1kpa")
+}
+
+[node name="blood_pool" type="Node2D"]
+scale = Vector2(0.05, 0.05)
+script = ExtResource("1_tjrsj")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+modulate = Color(1, 1, 1, 0)
+self_modulate = Color(0.231373, 0.231373, 0.231373, 0.705882)
+light_mask = 2
+z_index = -1
+z_as_relative = false
+material = SubResource("CanvasItemMaterial_gg2gn")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+root_node = NodePath("../Sprite2D")
+libraries = {
+"": SubResource("AnimationLibrary_jhn5u")
+}

@@ -1,0 +1,217 @@
+[gd_scene load_steps=2 format=3 uid="uid://dan7k6lv6lobq"]
+
+[ext_resource type="Script" path="res://scenes/menu_scenes/menu_options.gd" id="1_1wkvv"]
+
+[node name="menu_options" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_1wkvv")
+
+[node name="TabContainer" type="TabContainer" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -200.0
+offset_top = -200.0
+offset_right = 200.0
+offset_bottom = 200.0
+grow_horizontal = 2
+grow_vertical = 2
+all_tabs_in_front = true
+
+[node name="Video" type="TabBar" parent="TabContainer"]
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="TabContainer/Video"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
+
+[node name="GridContainer" type="GridContainer" parent="TabContainer/Video/MarginContainer"]
+layout_mode = 2
+columns = 2
+
+[node name="DisplayModeLabel" type="Label" parent="TabContainer/Video/MarginContainer/GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 2
+size_flags_vertical = 0
+text = "Display Mode"
+
+[node name="DisplayModeDropdown" type="OptionButton" parent="TabContainer/Video/MarginContainer/GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 10
+size_flags_vertical = 0
+item_count = 3
+selected = 1
+popup/item_0/text = "Windowed"
+popup/item_0/id = 0
+popup/item_1/text = "Fullscreen"
+popup/item_1/id = 1
+popup/item_2/text = "Borderless"
+popup/item_2/id = 2
+
+[node name="Vsync" type="Label" parent="TabContainer/Video/MarginContainer/GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 2
+size_flags_vertical = 0
+text = "Vsync"
+
+[node name="VsyncButton" type="CheckButton" parent="TabContainer/Video/MarginContainer/GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 8
+
+[node name="MaxFpsLabel" type="Label" parent="TabContainer/Video/MarginContainer/GridContainer"]
+layout_mode = 2
+text = "CapFps"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="TabContainer/Video/MarginContainer/GridContainer"]
+layout_mode = 2
+alignment = 2
+
+[node name="FPSSlider" type="HSlider" parent="TabContainer/Video/MarginContainer/GridContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+max_value = 120.0
+step = 30.0
+value = 30.0
+
+[node name="MaxFps" type="Label" parent="TabContainer/Video/MarginContainer/GridContainer/HBoxContainer"]
+layout_mode = 2
+text = "Unlimited"
+horizontal_alignment = 2
+
+[node name="ApplyButtonVideo" type="Button" parent="TabContainer/Video"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -26.0
+offset_top = -59.5
+offset_right = 26.0
+offset_bottom = -28.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "Apply"
+
+[node name="Audio" type="TabBar" parent="TabContainer"]
+visible = false
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="TabContainer/Audio"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
+
+[node name="GridContainer" type="GridContainer" parent="TabContainer/Audio/MarginContainer"]
+layout_mode = 2
+columns = 2
+
+[node name="MasterLabel" type="Label" parent="TabContainer/Audio/MarginContainer/GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 2
+size_flags_vertical = 0
+text = "Master
+"
+
+[node name="MasterSlider" type="HSlider" parent="TabContainer/Audio/MarginContainer/GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+max_value = 1.0
+step = 0.01
+value = 1.0
+
+[node name="MusicLabel" type="Label" parent="TabContainer/Audio/MarginContainer/GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 2
+size_flags_vertical = 0
+text = "Music"
+
+[node name="MusicSlider" type="HSlider" parent="TabContainer/Audio/MarginContainer/GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+max_value = 1.0
+step = 0.01
+value = 1.0
+
+[node name="SFXLabel" type="Label" parent="TabContainer/Audio/MarginContainer/GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 2
+size_flags_vertical = 0
+text = "Sound Effects"
+
+[node name="SFXSlider" type="HSlider" parent="TabContainer/Audio/MarginContainer/GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+max_value = 1.0
+step = 0.01
+value = 1.0
+
+[node name="ApplyButtonAudio" type="Button" parent="TabContainer/Audio"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -26.0
+offset_top = -60.0
+offset_right = 26.0
+offset_bottom = -29.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Apply"
+
+[node name="FpsCounter" type="Label" parent="."]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 23.0
+
+[node name="BackButton" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -2.0
+offset_top = -294.0
+offset_right = 6.0
+offset_bottom = -286.0
+grow_horizontal = 2
+grow_vertical = 0
+text = "BACK TO MENU"
+
+[connection signal="item_selected" from="TabContainer/Video/MarginContainer/GridContainer/DisplayModeDropdown" to="." method="_on_display_mode_dropdown_item_selected"]
+[connection signal="toggled" from="TabContainer/Video/MarginContainer/GridContainer/VsyncButton" to="." method="_on_vsync_button_toggled"]
+[connection signal="drag_ended" from="TabContainer/Video/MarginContainer/GridContainer/HBoxContainer/FPSSlider" to="." method="_on_fps_slider_drag_ended"]
+[connection signal="value_changed" from="TabContainer/Video/MarginContainer/GridContainer/HBoxContainer/FPSSlider" to="." method="_on_fps_slider_value_changed"]
+[connection signal="pressed" from="TabContainer/Video/ApplyButtonVideo" to="." method="_on_apply_button_video_pressed"]
+[connection signal="value_changed" from="TabContainer/Audio/MarginContainer/GridContainer/MasterSlider" to="." method="_on_master_slider_value_changed"]
+[connection signal="value_changed" from="TabContainer/Audio/MarginContainer/GridContainer/MusicSlider" to="." method="_on_music_slider_value_changed"]
+[connection signal="value_changed" from="TabContainer/Audio/MarginContainer/GridContainer/SFXSlider" to="." method="_on_sfx_slider_value_changed"]
+[connection signal="pressed" from="TabContainer/Audio/ApplyButtonAudio" to="." method="_on_apply_button_audio_pressed"]
+[connection signal="pressed" from="BackButton" to="." method="_on_back_button_pressed"]

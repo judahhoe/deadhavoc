@@ -1,0 +1,167 @@
+[gd_scene load_steps=9 format=3 uid="uid://b625ym56kmfu2"]
+
+[ext_resource type="Script" path="res://scenes/menu_scenes/weapons_menu/weapon_tree.gd" id="1_v60sp"]
+[ext_resource type="Texture2D" uid="uid://4np63138kj8u" path="res://scenes/menu_scenes/weapons_menu/pistol_menu.png" id="2_rnrt7"]
+[ext_resource type="Texture2D" uid="uid://dv231adk64u8t" path="res://scenes/menu_scenes/weapons_menu/revolver_menu.png" id="3_ik0dc"]
+[ext_resource type="Texture2D" uid="uid://ses77ivl7ju5" path="res://scenes/menu_scenes/weapons_menu/rifle_menu.png" id="4_u7q5v"]
+[ext_resource type="Texture2D" uid="uid://daiactkv23w8p" path="res://scenes/menu_scenes/weapons_menu/ak_menu.png" id="5_ybvye"]
+[ext_resource type="Texture2D" uid="uid://8k2bfsm5ej23" path="res://scenes/menu_scenes/weapons_menu/shotgun_menu.png" id="6_bxi8o"]
+[ext_resource type="Texture2D" uid="uid://da4i4r7lkg2w6" path="res://scenes/menu_scenes/weapons_menu/pump_menu.png" id="7_a2fiv"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_2mbrp"]
+font_size = 40
+
+[node name="weapon_tree" type="Control"]
+layout_direction = 1
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_v60sp")
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 2
+offset_left = 862.0
+offset_top = 55.0
+offset_right = 1057.0
+offset_bottom = 110.0
+grow_horizontal = 2
+size_flags_horizontal = 4
+text = "WEAPONS"
+label_settings = SubResource("LabelSettings_2mbrp")
+
+[node name="Sidearm" type="Label" parent="."]
+layout_mode = 2
+offset_left = 879.0
+offset_top = 200.0
+offset_right = 1053.0
+offset_bottom = 255.0
+grow_vertical = 2
+size_flags_horizontal = 4
+text = "SIDEARM"
+label_settings = SubResource("LabelSettings_2mbrp")
+
+[node name="PistolButton" type="TextureButton" parent="."]
+layout_mode = 2
+offset_left = 858.0
+offset_top = 304.0
+offset_right = 1197.0
+offset_bottom = 531.0
+scale = Vector2(0.6, 0.6)
+size_flags_horizontal = 4
+texture_normal = ExtResource("2_rnrt7")
+
+[node name="RevolverButton" type="TextureButton" parent="."]
+layout_mode = 2
+offset_left = 816.0
+offset_top = 547.0
+offset_right = 1286.0
+offset_bottom = 783.0
+scale = Vector2(0.6, 0.6)
+size_flags_horizontal = 4
+texture_normal = ExtResource("3_ik0dc")
+
+[node name="Rifle" type="Label" parent="."]
+layout_mode = 2
+offset_left = 259.0
+offset_top = 200.0
+offset_right = 362.0
+offset_bottom = 255.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+text = "RIFLE
+"
+label_settings = SubResource("LabelSettings_2mbrp")
+
+[node name="RifleButton" type="TextureButton" parent="."]
+layout_mode = 2
+offset_left = 127.0
+offset_top = 296.0
+offset_right = 821.0
+offset_bottom = 558.0
+scale = Vector2(0.6, 0.6)
+size_flags_horizontal = 4
+texture_normal = ExtResource("4_u7q5v")
+
+[node name="AkButton" type="TextureButton" parent="."]
+layout_mode = 2
+offset_left = 107.0
+offset_top = 547.0
+offset_right = 854.0
+offset_bottom = 772.0
+scale = Vector2(0.6, 0.6)
+size_flags_horizontal = 4
+texture_normal = ExtResource("5_ybvye")
+
+[node name="Shotgun" type="Label" parent="."]
+layout_mode = 2
+offset_left = 1503.0
+offset_top = 200.0
+offset_right = 1699.0
+offset_bottom = 255.0
+grow_horizontal = 0
+grow_vertical = 2
+size_flags_horizontal = 4
+text = "SHOTGUN"
+label_settings = SubResource("LabelSettings_2mbrp")
+
+[node name="ShotgunButton" type="TextureButton" parent="."]
+layout_mode = 2
+offset_left = 1373.0
+offset_top = 296.0
+offset_right = 2339.0
+offset_bottom = 538.0
+scale = Vector2(0.5, 0.5)
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture_normal = ExtResource("6_bxi8o")
+
+[node name="PumpButton" type="TextureButton" parent="."]
+layout_mode = 2
+offset_left = 1341.0
+offset_top = 545.0
+offset_right = 2464.0
+offset_bottom = 766.0
+scale = Vector2(0.5, 0.5)
+size_flags_horizontal = 4
+texture_normal = ExtResource("7_a2fiv")
+
+[node name="ApplyButton" type="Button" parent="."]
+layout_mode = 0
+offset_left = 935.0
+offset_top = 798.0
+offset_right = 992.0
+offset_bottom = 829.0
+text = "APPLY"
+
+[node name="ReturnButton" type="Button" parent="."]
+layout_mode = 0
+offset_left = 929.0
+offset_top = 875.0
+offset_right = 1000.0
+offset_bottom = 906.0
+text = "RETURN"
+
+[connection signal="mouse_entered" from="PistolButton" to="." method="_on_pistol_button_mouse_entered"]
+[connection signal="mouse_exited" from="PistolButton" to="." method="_on_pistol_button_mouse_exited"]
+[connection signal="pressed" from="PistolButton" to="." method="_on_pistol_button_pressed"]
+[connection signal="mouse_entered" from="RevolverButton" to="." method="_on_revolver_button_mouse_entered"]
+[connection signal="mouse_exited" from="RevolverButton" to="." method="_on_revolver_button_mouse_exited"]
+[connection signal="pressed" from="RevolverButton" to="." method="_on_revolver_button_pressed"]
+[connection signal="mouse_entered" from="RifleButton" to="." method="_on_rifle_button_mouse_entered"]
+[connection signal="mouse_exited" from="RifleButton" to="." method="_on_rifle_button_mouse_exited"]
+[connection signal="pressed" from="RifleButton" to="." method="_on_rifle_button_pressed"]
+[connection signal="mouse_entered" from="AkButton" to="." method="_on_ak_button_mouse_entered"]
+[connection signal="mouse_exited" from="AkButton" to="." method="_on_ak_button_mouse_exited"]
+[connection signal="pressed" from="AkButton" to="." method="_on_ak_button_pressed"]
+[connection signal="mouse_entered" from="ShotgunButton" to="." method="_on_shotgun_button_mouse_entered"]
+[connection signal="mouse_exited" from="ShotgunButton" to="." method="_on_shotgun_button_mouse_exited"]
+[connection signal="pressed" from="ShotgunButton" to="." method="_on_shotgun_button_pressed"]
+[connection signal="mouse_entered" from="PumpButton" to="." method="_on_pump_button_mouse_entered"]
+[connection signal="mouse_exited" from="PumpButton" to="." method="_on_pump_button_mouse_exited"]
+[connection signal="pressed" from="PumpButton" to="." method="_on_pump_button_pressed"]
+[connection signal="pressed" from="ApplyButton" to="." method="_on_apply_button_pressed"]
+[connection signal="pressed" from="ReturnButton" to="." method="_on_return_button_pressed"]

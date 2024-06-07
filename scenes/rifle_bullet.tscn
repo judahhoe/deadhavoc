@@ -1,0 +1,34 @@
+[gd_scene load_steps=5 format=3 uid="uid://d1h6wrvh2pp1"]
+
+[ext_resource type="Script" path="res://scenes/bullet.gd" id="1_0ej7r"]
+[ext_resource type="Texture2D" uid="uid://doo41snforyol" path="res://textures/bullet_smear.png" id="2_yhen2"]
+[ext_resource type="Texture2D" uid="uid://deg308ym5naae" path="res://textures/rifle_bullet.png" id="3_maiiw"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_s8kyx"]
+radius = 3.16228
+
+[node name="bullet" type="Area2D"]
+scale = Vector2(0.5, 0.5)
+collision_layer = 8
+collision_mask = 16386
+script = ExtResource("1_0ej7r")
+
+[node name="Smear" type="Sprite2D" parent="."]
+position = Vector2(-31, -1.59159e-12)
+rotation = 1.57079
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("2_yhen2")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+rotation = 7.85398
+scale = Vector2(0.3, 0.3)
+texture = ExtResource("3_maiiw")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_s8kyx")
+
+[node name="KillTimer" type="Timer" parent="."]
+wait_time = 0.5
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="timeout" from="KillTimer" to="." method="_on_kill_timer_timeout"]

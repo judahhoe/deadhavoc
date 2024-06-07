@@ -1,0 +1,64 @@
+[gd_scene load_steps=7 format=3 uid="uid://c8s8wv311rinj"]
+
+[ext_resource type="Texture2D" uid="uid://brd61l88rxfvm" path="res://textures/menu_theme_background.png" id="1_3fmsb"]
+[ext_resource type="Texture2D" uid="uid://tvd5irj0lfrt" path="res://assets/destroyables/dust_0.png" id="2_x536i"]
+[ext_resource type="Texture2D" uid="uid://bdy6lxhybm3wn" path="res://textures/fire_white.png" id="3_33s0p"]
+
+[sub_resource type="Curve" id="Curve_rnc8p"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.0894737, 1), 0.0, 0.0, 0, 0, Vector2(0.763158, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 4
+
+[sub_resource type="Curve" id="Curve_sl4ps"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.1, 0.571429), 2.9957, 2.9957, 0, 0, Vector2(0.152632, 1), 0.0, 0.0, 0, 0, Vector2(0.321053, 1), 0.0, 0.0, 0, 0, Vector2(0.731579, 0.538462), -2.48943, -2.48943, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 6
+
+[sub_resource type="Gradient" id="Gradient_55jqv"]
+offsets = PackedFloat32Array(0, 0.765432, 1)
+colors = PackedColorArray(0.823237, 0.21051, 0, 1, 0.961083, 0.63639, 3.56524e-07, 1, 0.972549, 0.670588, 0, 0)
+
+[node name="TextureRect" type="TextureRect"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_3fmsb")
+
+[node name="CPUParticles2D" type="CPUParticles2D" parent="."]
+modulate = Color(1, 1, 1, 0.905882)
+position = Vector2(570, 801)
+amount = 200
+lifetime = 20.0
+texture = ExtResource("2_x536i")
+direction = Vector2(0, -1)
+spread = 20.0
+gravity = Vector2(-3, 0)
+initial_velocity_min = 20.0
+initial_velocity_max = 60.0
+angular_velocity_min = -40.0
+angular_velocity_max = 40.0
+scale_amount_min = 0.03
+scale_amount_max = 0.1
+scale_amount_curve = SubResource("Curve_rnc8p")
+
+[node name="CPUParticles2D2" type="CPUParticles2D" parent="."]
+position = Vector2(570, 806)
+amount = 20
+lifetime = 5.0
+texture = ExtResource("3_33s0p")
+emission_shape = 4
+emission_points = PackedVector2Array(-10, 0, 0, 0, 10, 0)
+emission_colors = PackedColorArray()
+direction = Vector2(0, -1)
+spread = 20.0
+gravity = Vector2(0, -3)
+initial_velocity_min = 1.0
+initial_velocity_max = 6.0
+angular_velocity_min = -32.0
+angular_velocity_max = 32.0
+scale_amount_min = 0.01
+scale_amount_max = 0.05
+scale_amount_curve = SubResource("Curve_sl4ps")
+color_ramp = SubResource("Gradient_55jqv")
+hue_variation_min = -1.0
+hue_variation_max = 1.0

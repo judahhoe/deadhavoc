@@ -1,0 +1,19 @@
+[gd_scene load_steps=3 format=3 uid="uid://cvljbodn8xvn"]
+
+[ext_resource type="Texture2D" uid="uid://dcchi83i67gu4" path="res://assets/MapAssets/GarbageCan/GarbageCan3.png" id="1_dxcki"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_41krf"]
+size = Vector2(112, 82)
+
+[node name="Waste_Container_3" type="StaticBody2D"]
+position = Vector2(224, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(8, 32)
+rotation = -3.14159
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("1_dxcki")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(8, 31)
+shape = SubResource("RectangleShape2D_41krf")

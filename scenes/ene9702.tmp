@@ -1,0 +1,61 @@
+[gd_scene load_steps=8 format=3 uid="uid://cc5v1bd4naah2"]
+
+[ext_resource type="Script" path="res://scripts/enemy.gd" id="1_ikath"]
+[ext_resource type="PackedScene" uid="uid://bywqy23a8pc2w" path="res://scenes/medkit.tscn" id="2_h4dmw"]
+[ext_resource type="PackedScene" uid="uid://cpyurip1l5cvp" path="res://scenes/ammobox.tscn" id="3_i4e12"]
+[ext_resource type="Texture2D" uid="uid://cevr5uftr6ebv" path="res://textures/zombie.png" id="4_b4snf"]
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_jkbv8"]
+light_mode = 2
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_12256"]
+radius = 21.0238
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_pdxxf"]
+radius = 19.0
+
+[node name="enemy" type="CharacterBody2D" node_paths=PackedStringArray("enemy")]
+collision_layer = 2
+collision_mask = 3
+script = ExtResource("1_ikath")
+medkit = ExtResource("2_h4dmw")
+ammobox = ExtResource("3_i4e12")
+enemy = NodePath(".")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+modulate = Color(0.368627, 0.368627, 0.368627, 1)
+material = SubResource("CanvasItemMaterial_jkbv8")
+position = Vector2(4.76837e-07, -2.84217e-14)
+rotation = 1.57079
+scale = Vector2(0.06, 0.06)
+texture = ExtResource("4_b4snf")
+region_rect = Rect2(-0.780212, -4.24907, 676.967, 692.529)
+
+[node name="DamageArea" type="Area2D" parent="Sprite2D"]
+light_mask = 3
+position = Vector2(-4.93906e-11, 7.94728e-06)
+rotation = -1.57079
+scale = Vector2(16.6667, 16.6667)
+collision_layer = 0
+
+[node name="DamageCollision" type="CollisionShape2D" parent="Sprite2D/DamageArea"]
+position = Vector2(5, 0)
+shape = SubResource("CircleShape2D_12256")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_pdxxf")
+debug_color = Color(0.992157, 0, 0.278431, 0.419608)
+
+[node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 0.5
+autostart = true
+
+[node name="AttackCooldown" type="Timer" parent="."]
+wait_time = 0.5
+
+[connection signal="body_entered" from="Sprite2D/DamageArea" to="." method="_on_damage_area_body_entered"]
+[connection signal="body_exited" from="Sprite2D/DamageArea" to="." method="_on_damage_area_body_exited"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+[connection signal="timeout" from="AttackCooldown" to="." method="_on_attack_cooldown_timeout"]
