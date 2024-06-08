@@ -13,7 +13,7 @@ config_version=5
 config/name="DeadHavoc"
 run/main_scene="res://scenes/menu_scenes/startup.tscn"
 config/features=PackedStringArray("4.2", "GL Compatibility")
-boot_splash/image="res://textures/game_logo.png"
+boot_splash/image="res://textures/logo_with_woods.png"
 config/icon="res://icon.svg"
 
 [autoload]
@@ -104,6 +104,7 @@ sprint={
 2d_physics/layer_2="enemy"
 2d_physics/layer_4="bullets"
 2d_physics/layer_10="Pickups"
+2d_physics/layer_15="walls"
 2d_physics/layer_16="car"
 
 [rendering]

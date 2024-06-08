@@ -66,7 +66,7 @@ _data = {
 }
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_v7lv3"]
-radius = 15325.3
+radius = 7232.37
 
 [node name="spawner_sewer" type="Node2D"]
 script = ExtResource("1_5sxnv")
