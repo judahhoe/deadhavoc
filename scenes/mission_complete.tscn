@@ -1,6 +1,68 @@
-[gd_scene load_steps=2 format=3 uid="uid://dg4ku3ruwdldb"]
+[gd_scene load_steps=7 format=3 uid="uid://dg4ku3ruwdldb"]
 
 [ext_resource type="Script" path="res://scenes/mission_complete.gd" id="1_cuet5"]
+[ext_resource type="Texture2D" uid="uid://bohtjse2hma8n" path="res://textures/mission_complete.png" id="2_kmi7x"]
+[ext_resource type="Texture2D" uid="uid://brd61l88rxfvm" path="res://textures/menu_theme_background.png" id="2_vu8ps"]
+
+[sub_resource type="Animation" id="Animation_evyf5"]
+resource_name = "splash"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CanvasLayer/TextureRect:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("CanvasLayer/TextureRect:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(960, 378.5), Vector2(315, 201)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("CanvasLayer/TextureRect:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_6b40c"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CanvasLayer/TextureRect:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(960, 378.5)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ylyys"]
+_data = {
+"RESET": SubResource("Animation_6b40c"),
+"splash": SubResource("Animation_evyf5")
+}
 
 [node name="Control" type="Control"]
 layout_mode = 3
@@ -11,7 +73,23 @@ script = ExtResource("1_cuet5")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
+[node name="BG" type="TextureRect" parent="CanvasLayer"]
+modulate = Color(1, 1, 1, 0.768627)
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -960.0
+offset_top = -540.0
+offset_right = 960.0
+offset_bottom = 540.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_vu8ps")
+
 [node name="Label" type="Label" parent="CanvasLayer"]
+visible = false
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
@@ -41,5 +119,27 @@ size_flags_horizontal = 4
 size_flags_vertical = 4
 text = "MENU"
 metadata/_edit_use_anchors_ = true
+
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer"]
+modulate = Color(1, 1, 1, 0)
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 960.0
+offset_top = 378.5
+offset_right = 2247.0
+offset_bottom = 701.501
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(1e-05, 1e-05)
+size_flags_horizontal = 4
+texture = ExtResource("2_kmi7x")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_ylyys")
+}
 
 [connection signal="pressed" from="CanvasLayer/Button" to="." method="_on_button_pressed"]

@@ -40,11 +40,17 @@ shadow_color = Color(0, 0, 0, 0.360784)
 script = ExtResource("1_1ogx0")
 
 [node name="Map" parent="." instance=ExtResource("1_ng5yi")]
+position = Vector2(6, 7)
 
 [node name="SpawnersSewer" type="Node2D" parent="."]
 
 [node name="spawner_sewer" parent="SpawnersSewer" instance=ExtResource("6_togh1")]
 position = Vector2(602, 225)
+rotation = 0.837138
+scale = Vector2(0.08, 0.08)
+
+[node name="spawner_sewer4" parent="SpawnersSewer" instance=ExtResource("6_togh1")]
+position = Vector2(341, 1487)
 rotation = 0.837138
 scale = Vector2(0.08, 0.08)
 
@@ -54,7 +60,7 @@ rotation = 0.837138
 scale = Vector2(0.08, 0.08)
 
 [node name="spawner_sewer2" parent="SpawnersSewer" instance=ExtResource("6_togh1")]
-position = Vector2(3439, -366)
+position = Vector2(2806, -344)
 rotation = 0.837138
 scale = Vector2(0.08, 0.08)
 
@@ -63,84 +69,11 @@ position = Vector2(3480, 979)
 rotation = 0.837138
 scale = Vector2(0.08, 0.08)
 
-[node name="spawner_sewer4" parent="SpawnersSewer" instance=ExtResource("6_togh1")]
-position = Vector2(7734, -459)
-rotation = 0.178078
-scale = Vector2(0.08, 0.08)
-
-[node name="spawner_sewer5" parent="SpawnersSewer" instance=ExtResource("6_togh1")]
-position = Vector2(7747, 1807)
-rotation = 1.35664
-scale = Vector2(0.08, 0.08)
-
-[node name="spawner_sewer6" parent="SpawnersSewer" instance=ExtResource("6_togh1")]
-position = Vector2(4648, 4337)
-rotation = 0.888399
-scale = Vector2(0.08, 0.08)
-
-[node name="spawner_sewer7" parent="SpawnersSewer" instance=ExtResource("6_togh1")]
-position = Vector2(680, 6901)
-rotation = 0.888399
-scale = Vector2(0.08, 0.08)
-
-[node name="spawner_sewer8" parent="SpawnersSewer" instance=ExtResource("6_togh1")]
-position = Vector2(-3396, 4010)
-rotation = 0.888399
-scale = Vector2(0.08, 0.08)
-
-[node name="spawner_sewer9" parent="SpawnersSewer" instance=ExtResource("6_togh1")]
-position = Vector2(8999, 4510)
-rotation = 0.888399
-scale = Vector2(0.08, 0.08)
-
-[node name="spawner_sewer10" parent="SpawnersSewer" instance=ExtResource("6_togh1")]
-position = Vector2(10360, 1167)
-rotation = 0.888399
-scale = Vector2(0.08, 0.08)
-
-[node name="spawner_sewer11" parent="SpawnersSewer" instance=ExtResource("6_togh1")]
-position = Vector2(613, 3253)
-rotation = 0.888399
-scale = Vector2(0.08, 0.08)
-
-[node name="spawner_sewer12" parent="SpawnersSewer" instance=ExtResource("6_togh1")]
-position = Vector2(-3457, 1526)
-rotation = -0.997262
-scale = Vector2(0.08, 0.08)
-
-[node name="spawner_sewer13" parent="SpawnersSewer" instance=ExtResource("6_togh1")]
-position = Vector2(-7491, 2966)
-rotation = -3.13472
-scale = Vector2(0.08, 0.08)
-
-[node name="spawner_sewer14" parent="SpawnersSewer" instance=ExtResource("6_togh1")]
-position = Vector2(7723, 6958)
-rotation = -3.94654
-scale = Vector2(0.08, 0.08)
-
 [node name="ParticleManager" type="Node2D" parent="."]
 
 [node name="PickupManager" type="Node2D" parent="."]
 
 [node name="ObjectiveSpawnpoints" type="Node2D" parent="."]
-
-[node name="Marker2D" type="Marker2D" parent="ObjectiveSpawnpoints"]
-position = Vector2(-4122, 940)
-
-[node name="Marker2D2" type="Marker2D" parent="ObjectiveSpawnpoints"]
-position = Vector2(-3140, 929)
-
-[node name="Marker2D3" type="Marker2D" parent="ObjectiveSpawnpoints"]
-position = Vector2(-3866, 1986)
-
-[node name="Marker2D4" type="Marker2D" parent="ObjectiveSpawnpoints"]
-position = Vector2(-2520, 2125)
-
-[node name="Marker2D5" type="Marker2D" parent="ObjectiveSpawnpoints"]
-position = Vector2(-651, 1922)
-
-[node name="Marker2D6" type="Marker2D" parent="ObjectiveSpawnpoints"]
-position = Vector2(1741, 3385)
 
 [node name="Marker2D7" type="Marker2D" parent="ObjectiveSpawnpoints"]
 position = Vector2(-160, 950)
@@ -153,36 +86,6 @@ position = Vector2(3748, -1741)
 
 [node name="Marker2D10" type="Marker2D" parent="ObjectiveSpawnpoints"]
 position = Vector2(4261, 395)
-
-[node name="Marker2D11" type="Marker2D" parent="ObjectiveSpawnpoints"]
-position = Vector2(5938, 278)
-
-[node name="Marker2D12" type="Marker2D" parent="ObjectiveSpawnpoints"]
-position = Vector2(6493, 278)
-
-[node name="Marker2D13" type="Marker2D" parent="ObjectiveSpawnpoints"]
-position = Vector2(11523, 1730)
-
-[node name="Marker2D14" type="Marker2D" parent="ObjectiveSpawnpoints"]
-position = Vector2(12185, 577)
-
-[node name="Marker2D15" type="Marker2D" parent="ObjectiveSpawnpoints"]
-position = Vector2(5861, 6152)
-
-[node name="Marker2D16" type="Marker2D" parent="ObjectiveSpawnpoints"]
-position = Vector2(1924, 7206)
-
-[node name="Marker2D17" type="Marker2D" parent="ObjectiveSpawnpoints"]
-position = Vector2(45, 8235)
-
-[node name="Marker2D18" type="Marker2D" parent="ObjectiveSpawnpoints"]
-position = Vector2(-169, 6567)
-
-[node name="Marker2D19" type="Marker2D" parent="ObjectiveSpawnpoints"]
-position = Vector2(2688, 2884)
-
-[node name="Marker2D20" type="Marker2D" parent="ObjectiveSpawnpoints"]
-position = Vector2(1583, 2135)
 
 [node name="Marker2D21" type="Marker2D" parent="ObjectiveSpawnpoints"]
 position = Vector2(3780, -862)
@@ -204,32 +107,79 @@ script = ExtResource("7_85jpq")
 [node name="Crates" type="Node2D" parent="."]
 
 [node name="destroyable_crate" parent="Crates" instance=ExtResource("8_x1ocu")]
-position = Vector2(396, 31)
+position = Vector2(426, 30)
+rotation = 0.274924
 
 [node name="destroyable_crate2" parent="Crates" instance=ExtResource("8_x1ocu")]
 position = Vector2(432, -74)
+rotation = -0.0427013
 
 [node name="destroyable_crate3" parent="Crates" instance=ExtResource("8_x1ocu")]
 position = Vector2(377, -22)
+rotation = -0.0594537
+
+[node name="destroyable_crate4" parent="Crates" instance=ExtResource("8_x1ocu")]
+position = Vector2(683, 164)
+rotation = 0.129054
+
+[node name="destroyable_crate5" parent="Crates" instance=ExtResource("8_x1ocu")]
+position = Vector2(687, 221)
+rotation = 0.147791
+
+[node name="destroyable_crate6" parent="Crates" instance=ExtResource("8_x1ocu")]
+position = Vector2(740, 200)
+rotation = -0.201935
+
+[node name="destroyable_crate7" parent="Crates" instance=ExtResource("8_x1ocu")]
+position = Vector2(641, 893)
+rotation = -0.264536
+
+[node name="destroyable_crate8" parent="Crates" instance=ExtResource("8_x1ocu")]
+position = Vector2(585, 864)
+rotation = 0.836466
+
+[node name="destroyable_crate9" parent="Crates" instance=ExtResource("8_x1ocu")]
+position = Vector2(715, 897)
+rotation = 0.492682
+
+[node name="destroyable_crate10" parent="Crates" instance=ExtResource("8_x1ocu")]
+position = Vector2(1138, 1490)
+rotation = -0.264536
+
+[node name="destroyable_crate13" parent="Crates" instance=ExtResource("8_x1ocu")]
+position = Vector2(1244, 1453)
+rotation = 0.406386
+
+[node name="destroyable_crate14" parent="Crates" instance=ExtResource("8_x1ocu")]
+position = Vector2(964, -821)
+rotation = 0.261824
+
+[node name="destroyable_crate11" parent="Crates" instance=ExtResource("8_x1ocu")]
+position = Vector2(901, -798)
+rotation = 1.55588
+
+[node name="destroyable_crate12" parent="Crates" instance=ExtResource("8_x1ocu")]
+position = Vector2(832, -802)
+rotation = 1.2121
 
 [node name="SpawnersBush" type="Node2D" parent="."]
 
 [node name="spawner_bush" parent="SpawnersBush" instance=ExtResource("4_0x1ta")]
 z_index = 1
 z_as_relative = false
-position = Vector2(425, -288)
+position = Vector2(297, -269)
 scale = Vector2(0.3, 0.3)
 
 [node name="spawner_bush2" parent="SpawnersBush" instance=ExtResource("4_0x1ta")]
 z_index = 1
 z_as_relative = false
-position = Vector2(1983, 1109)
+position = Vector2(1643, 1733)
 scale = Vector2(0.3, 0.3)
 
 [node name="spawner_bush3" parent="SpawnersBush" instance=ExtResource("4_0x1ta")]
 z_index = 1
 z_as_relative = false
-position = Vector2(2351, 1189)
+position = Vector2(2323, 1297)
 scale = Vector2(0.3, 0.3)
 
 [node name="spawner_bush4" parent="SpawnersBush" instance=ExtResource("4_0x1ta")]
@@ -241,38 +191,26 @@ scale = Vector2(0.3, 0.3)
 [node name="spawner_bush5" parent="SpawnersBush" instance=ExtResource("4_0x1ta")]
 z_index = 1
 z_as_relative = false
-position = Vector2(-25, 1850)
+position = Vector2(1307, -2017)
 scale = Vector2(0.3, 0.3)
 
 [node name="spawner_bush6" parent="SpawnersBush" instance=ExtResource("4_0x1ta")]
 z_index = 1
 z_as_relative = false
-position = Vector2(226, 2335)
+position = Vector2(1151, -1201)
 scale = Vector2(0.3, 0.3)
 
 [node name="spawner_bush7" parent="SpawnersBush" instance=ExtResource("4_0x1ta")]
 z_index = 1
 z_as_relative = false
-position = Vector2(-1687, 1814)
+position = Vector2(3671, -1191)
 scale = Vector2(0.3, 0.3)
 
-[node name="spawner_bush8" parent="SpawnersBush" instance=ExtResource("4_0x1ta")]
-z_index = 1
-z_as_relative = false
-position = Vector2(-2531, 3260)
-scale = Vector2(0.3, 0.3)
+[node name="Sprite2D" parent="SpawnersBush/spawner_bush7" index="0"]
+visible = false
 
-[node name="spawner_bush9" parent="SpawnersBush" instance=ExtResource("4_0x1ta")]
-z_index = 1
-z_as_relative = false
-position = Vector2(-4049, 3323)
-scale = Vector2(0.3, 0.3)
-
-[node name="spawner_bush10" parent="SpawnersBush" instance=ExtResource("4_0x1ta")]
-z_index = 1
-z_as_relative = false
-position = Vector2(3234, 2667)
-scale = Vector2(0.3, 0.3)
+[node name="Area2D" parent="SpawnersBush/spawner_bush7" index="1"]
+visible = false
 
 [node name="spawner_bush11" parent="SpawnersBush" instance=ExtResource("4_0x1ta")]
 z_index = 1
@@ -284,336 +222,6 @@ scale = Vector2(0.3, 0.3)
 z_index = 1
 z_as_relative = false
 position = Vector2(4697, 709)
-scale = Vector2(0.3, 0.3)
-
-[node name="spawner_bush13" parent="SpawnersBush" instance=ExtResource("4_0x1ta")]
-z_index = 1
-z_as_relative = false
-position = Vector2(7068, 601)
-scale = Vector2(0.3, 0.3)
-
-[node name="spawner_bush14" parent="SpawnersBush" instance=ExtResource("4_0x1ta")]
-z_index = 1
-z_as_relative = false
-position = Vector2(7167, 825)
-scale = Vector2(0.3, 0.3)
-
-[node name="spawner_bush15" parent="SpawnersBush" instance=ExtResource("4_0x1ta")]
-z_index = 1
-z_as_relative = false
-position = Vector2(8245, -208)
-scale = Vector2(0.3, 0.3)
-
-[node name="spawner_bush16" parent="SpawnersBush" instance=ExtResource("4_0x1ta")]
-z_index = 1
-z_as_relative = false
-position = Vector2(8209, 34)
-scale = Vector2(0.3, 0.3)
-
-[node name="spawner_bush17" parent="SpawnersBush" instance=ExtResource("4_0x1ta")]
-z_index = 1
-z_as_relative = false
-position = Vector2(8730, -101)
-scale = Vector2(0.3, 0.3)
-
-[node name="spawner_bush18" parent="SpawnersBush" instance=ExtResource("4_0x1ta")]
-z_index = 1
-z_as_relative = false
-position = Vector2(9969, 546)
-scale = Vector2(0.3, 0.3)
-
-[node name="spawner_bush19" parent="SpawnersBush" instance=ExtResource("4_0x1ta")]
-z_index = 1
-z_as_relative = false
-position = Vector2(9762, 2387)
-scale = Vector2(0.3, 0.3)
-
-[node name="spawner_bush20" parent="SpawnersBush" instance=ExtResource("4_0x1ta")]
-z_index = 1
-z_as_relative = false
-position = Vector2(9960, 2647)
-scale = Vector2(0.3, 0.3)
-
-[node name="spawner_bush21" parent="SpawnersBush" instance=ExtResource("4_0x1ta")]
-z_index = 1
-z_as_relative = false
-position = Vector2(11307, 3778)
-scale = Vector2(0.3, 0.3)
-
-[node name="spawner_bush22" parent="SpawnersBush" instance=ExtResource("4_0x1ta")]
-z_index = 1
-z_as_relative = false
-position = Vector2(11217, 3410)
-scale = Vector2(0.3, 0.3)
-
-[node name="spawner_bush23" parent="SpawnersBush" instance=ExtResource("4_0x1ta")]
-z_index = 1
-z_as_relative = false
-position = Vector2(12133, 3186)
-scale = Vector2(0.3, 0.3)
-
-[node name="spawner_bush24" parent="SpawnersBush" instance=ExtResource("4_0x1ta")]
-z_index = 1
-z_as_relative = false
-position = Vector2(9421, 4919)
-scale = Vector2(0.3, 0.3)
-
-[node name="spawner_bush25" parent="SpawnersBush" instance=ExtResource("4_0x1ta")]
-z_index = 1
-z_as_relative = false
-position = Vector2(8352, 4964)
-scale = Vector2(0.3, 0.3)
-
-[node name="spawner_bush26" parent="SpawnersBush" instance=ExtResource("4_0x1ta")]
-z_index = 1
-z_as_relative = false
-position = Vector2(5136, 4564)
-scale = Vector2(0.3, 0.3)
-
-[node name="spawner_bush27" parent="SpawnersBush" instance=ExtResource("4_0x1ta")]
-z_index = 1
-z_as_relative = false
-position = Vector2(5568, 4500)
-scale = Vector2(0.3, 0.3)
-
-[node name="spawner_bush28" parent="SpawnersBush" instance=ExtResource("4_0x1ta")]
-z_index = 1
-z_as_relative = false
-position = Vector2(6528, 4756)
-scale = Vector2(0.3, 0.3)
-
-[node name="spawner_bush29" parent="SpawnersBush" instance=ExtResource("4_0x1ta")]
-z_index = 1
-z_as_relative = false
-position = Vector2(7216, 2708)
-scale = Vector2(0.3, 0.3)
-
-[node name="spawner_bush30" parent="SpawnersBush" instance=ExtResource("4_0x1ta")]
-z_index = 1
-z_as_relative = false
-position = Vector2(4416, 6500)
-scale = Vector2(0.3, 0.3)
-
-[node name="spawner_bush31" parent="SpawnersBush" instance=ExtResource("4_0x1ta")]
-z_index = 1
-z_as_relative = false
-position = Vector2(3904, 6500)
-scale = Vector2(0.3, 0.3)
-
-[node name="spawner_bush32" parent="SpawnersBush" instance=ExtResource("4_0x1ta")]
-z_index = 1
-z_as_relative = false
-position = Vector2(2672, 6468)
-scale = Vector2(0.3, 0.3)
-
-[node name="spawner_bush33" parent="SpawnersBush" instance=ExtResource("4_0x1ta")]
-z_index = 1
-z_as_relative = false
-position = Vector2(1872, 6500)
-scale = Vector2(0.3, 0.3)
-
-[node name="spawner_bush34" parent="SpawnersBush" instance=ExtResource("4_0x1ta")]
-z_index = 1
-z_as_relative = false
-position = Vector2(-944, 4804)
-scale = Vector2(0.3, 0.3)
-
-[node name="spawner_bush35" parent="SpawnersBush" instance=ExtResource("4_0x1ta")]
-z_index = 1
-z_as_relative = false
-position = Vector2(-1296, 5956)
-scale = Vector2(0.3, 0.3)
-
-[node name="spawner_bush36" parent="SpawnersBush" instance=ExtResource("4_0x1ta")]
-z_index = 1
-z_as_relative = false
-position = Vector2(3104, 8356)
-scale = Vector2(0.3, 0.3)
-
-[node name="spawner_bush37" parent="SpawnersBush" instance=ExtResource("4_0x1ta")]
-z_index = 1
-z_as_relative = false
-position = Vector2(6240, 8452)
-scale = Vector2(0.3, 0.3)
-
-[node name="spawner_bush38" parent="SpawnersBush" instance=ExtResource("4_0x1ta")]
-z_index = 1
-z_as_relative = false
-position = Vector2(9360, 8276)
-scale = Vector2(0.3, 0.3)
-
-[node name="spawner_bush39" parent="SpawnersBush" instance=ExtResource("4_0x1ta")]
-z_index = 1
-z_as_relative = false
-position = Vector2(11242, -1075)
-scale = Vector2(0.3, 0.3)
-
-[node name="spawner_bush40" parent="SpawnersBush" instance=ExtResource("4_0x1ta")]
-z_index = 1
-z_as_relative = false
-position = Vector2(12012, -1104)
-scale = Vector2(0.3, 0.3)
-
-[node name="spawner_bush41" parent="SpawnersBush" instance=ExtResource("4_0x1ta")]
-z_index = 1
-z_as_relative = false
-position = Vector2(10088, -1033)
-scale = Vector2(0.3, 0.3)
-
-[node name="spawner_bush42" parent="SpawnersBush" instance=ExtResource("4_0x1ta")]
-z_index = 1
-z_as_relative = false
-position = Vector2(13010, -1119)
-scale = Vector2(0.3, 0.3)
-
-[node name="spawner_bush43" parent="SpawnersBush" instance=ExtResource("4_0x1ta")]
-z_index = 1
-z_as_relative = false
-position = Vector2(14194, -1311)
-scale = Vector2(0.3, 0.3)
-
-[node name="spawner_bush44" parent="SpawnersBush" instance=ExtResource("4_0x1ta")]
-z_index = 1
-z_as_relative = false
-position = Vector2(13986, -1231)
-scale = Vector2(0.3, 0.3)
-
-[node name="spawner_bush45" parent="SpawnersBush" instance=ExtResource("4_0x1ta")]
-z_index = 1
-z_as_relative = false
-position = Vector2(12210, -1007)
-scale = Vector2(0.3, 0.3)
-
-[node name="spawner_bush46" parent="SpawnersBush" instance=ExtResource("4_0x1ta")]
-z_index = 1
-z_as_relative = false
-position = Vector2(10610, -1279)
-scale = Vector2(0.3, 0.3)
-
-[node name="spawner_bush47" parent="SpawnersBush" instance=ExtResource("4_0x1ta")]
-z_index = 1
-z_as_relative = false
-position = Vector2(10498, -991)
-scale = Vector2(0.3, 0.3)
-
-[node name="spawner_bush48" parent="SpawnersBush" instance=ExtResource("4_0x1ta")]
-z_index = 1
-z_as_relative = false
-position = Vector2(5554, -1599)
-scale = Vector2(0.3, 0.3)
-
-[node name="spawner_bush49" parent="SpawnersBush" instance=ExtResource("4_0x1ta")]
-z_index = 1
-z_as_relative = false
-position = Vector2(5714, -1343)
-scale = Vector2(0.3, 0.3)
-
-[node name="spawner_bush50" parent="SpawnersBush" instance=ExtResource("4_0x1ta")]
-z_index = 1
-z_as_relative = false
-position = Vector2(6210, -1743)
-scale = Vector2(0.3, 0.3)
-
-[node name="spawner_bush51" parent="SpawnersBush" instance=ExtResource("4_0x1ta")]
-z_index = 1
-z_as_relative = false
-position = Vector2(6322, -1215)
-scale = Vector2(0.3, 0.3)
-
-[node name="spawner_bush52" parent="SpawnersBush" instance=ExtResource("4_0x1ta")]
-z_index = 1
-z_as_relative = false
-position = Vector2(5682, -959)
-scale = Vector2(0.3, 0.3)
-
-[node name="spawner_bush53" parent="SpawnersBush" instance=ExtResource("4_0x1ta")]
-z_index = 1
-z_as_relative = false
-position = Vector2(-7374, 193)
-scale = Vector2(0.3, 0.3)
-
-[node name="spawner_bush54" parent="SpawnersBush" instance=ExtResource("4_0x1ta")]
-z_index = 1
-z_as_relative = false
-position = Vector2(-7913, 678)
-scale = Vector2(0.3, 0.3)
-
-[node name="spawner_bush55" parent="SpawnersBush" instance=ExtResource("4_0x1ta")]
-z_index = 1
-z_as_relative = false
-position = Vector2(-6638, 804)
-scale = Vector2(0.3, 0.3)
-
-[node name="spawner_bush56" parent="SpawnersBush" instance=ExtResource("4_0x1ta")]
-z_index = 1
-z_as_relative = false
-position = Vector2(-5291, -1172)
-scale = Vector2(0.3, 0.3)
-
-[node name="spawner_bush57" parent="SpawnersBush" instance=ExtResource("4_0x1ta")]
-z_index = 1
-z_as_relative = false
-position = Vector2(-4142, -1028)
-scale = Vector2(0.3, 0.3)
-
-[node name="spawner_bush58" parent="SpawnersBush" instance=ExtResource("4_0x1ta")]
-z_index = 1
-z_as_relative = false
-position = Vector2(-4286, -22)
-scale = Vector2(0.3, 0.3)
-
-[node name="spawner_bush59" parent="SpawnersBush" instance=ExtResource("4_0x1ta")]
-z_index = 1
-z_as_relative = false
-position = Vector2(-5884, 2259)
-scale = Vector2(0.3, 0.3)
-
-[node name="spawner_bush60" parent="SpawnersBush" instance=ExtResource("4_0x1ta")]
-z_index = 1
-z_as_relative = false
-position = Vector2(-9530, 1774)
-scale = Vector2(0.3, 0.3)
-
-[node name="spawner_bush61" parent="SpawnersBush" instance=ExtResource("4_0x1ta")]
-z_index = 1
-z_as_relative = false
-position = Vector2(-9512, 643)
-scale = Vector2(0.3, 0.3)
-
-[node name="spawner_bush62" parent="SpawnersBush" instance=ExtResource("4_0x1ta")]
-z_index = 1
-z_as_relative = false
-position = Vector2(-5274, 3247)
-scale = Vector2(0.3, 0.3)
-
-[node name="spawner_bush63" parent="SpawnersBush" instance=ExtResource("4_0x1ta")]
-z_index = 1
-z_as_relative = false
-position = Vector2(-7070, 4863)
-scale = Vector2(0.3, 0.3)
-
-[node name="spawner_bush64" parent="SpawnersBush" instance=ExtResource("4_0x1ta")]
-z_index = 1
-z_as_relative = false
-position = Vector2(-5543, 5240)
-scale = Vector2(0.3, 0.3)
-
-[node name="spawner_bush65" parent="SpawnersBush" instance=ExtResource("4_0x1ta")]
-z_index = 1
-z_as_relative = false
-position = Vector2(-9620, 4558)
-scale = Vector2(0.3, 0.3)
-
-[node name="spawner_bush66" parent="SpawnersBush" instance=ExtResource("4_0x1ta")]
-z_index = 1
-z_as_relative = false
-position = Vector2(-9889, 5869)
-scale = Vector2(0.3, 0.3)
-
-[node name="spawner_bush67" parent="SpawnersBush" instance=ExtResource("4_0x1ta")]
-z_index = 1
-z_as_relative = false
-position = Vector2(-6028, 6749)
 scale = Vector2(0.3, 0.3)
 
 [node name="bushes" type="Node2D" parent="."]
@@ -647,6 +255,60 @@ rotation = 0.62196
 position = Vector2(2116, 808)
 rotation = -0.664709
 
+[node name="bush_vanity29" parent="bushes" instance=ExtResource("9_mbn2c")]
+position = Vector2(1954, 1207)
+
+[node name="bush_vanity30" parent="bushes" instance=ExtResource("9_mbn2c")]
+position = Vector2(1991, 1392)
+rotation = 0.950548
+
+[node name="bush_vanity31" parent="bushes" instance=ExtResource("9_mbn2c")]
+position = Vector2(1840, 1348)
+rotation = 0.950548
+
+[node name="bush_vanity32" parent="bushes" instance=ExtResource("9_mbn2c")]
+position = Vector2(2577, 1258)
+rotation = -0.336122
+
+[node name="bush_vanity33" parent="bushes" instance=ExtResource("9_mbn2c")]
+position = Vector2(1867, 1530)
+rotation = -0.328587
+
+[node name="bush_vanity34" parent="bushes" instance=ExtResource("9_mbn2c")]
+position = Vector2(1837, 1705)
+rotation = 0.62196
+
+[node name="bush_vanity35" parent="bushes" instance=ExtResource("9_mbn2c")]
+position = Vector2(2076, 1644)
+rotation = -0.664709
+
+[node name="bush_vanity36" parent="bushes" instance=ExtResource("9_mbn2c")]
+position = Vector2(1458, 1447)
+
+[node name="bush_vanity37" parent="bushes" instance=ExtResource("9_mbn2c")]
+position = Vector2(1495, 1632)
+rotation = 0.950548
+
+[node name="bush_vanity38" parent="bushes" instance=ExtResource("9_mbn2c")]
+position = Vector2(1344, 1588)
+rotation = 0.950548
+
+[node name="bush_vanity39" parent="bushes" instance=ExtResource("9_mbn2c")]
+position = Vector2(1630, 1511)
+rotation = -0.336122
+
+[node name="bush_vanity40" parent="bushes" instance=ExtResource("9_mbn2c")]
+position = Vector2(1371, 1770)
+rotation = -0.328587
+
+[node name="bush_vanity41" parent="bushes" instance=ExtResource("9_mbn2c")]
+position = Vector2(1341, 1945)
+rotation = 0.62196
+
+[node name="bush_vanity42" parent="bushes" instance=ExtResource("9_mbn2c")]
+position = Vector2(1508, 1872)
+rotation = -0.664709
+
 [node name="bush_vanity7" parent="bushes" instance=ExtResource("9_mbn2c")]
 position = Vector2(2260, 647)
 rotation = -0.328587
@@ -664,7 +326,7 @@ position = Vector2(2129, 946)
 rotation = -0.328587
 
 [node name="bush_vanity11" parent="bushes" instance=ExtResource("9_mbn2c")]
-position = Vector2(2176, 1097)
+position = Vector2(2183, 1157)
 rotation = 0.62196
 
 [node name="bush_vanity12" parent="bushes" instance=ExtResource("9_mbn2c")]
@@ -964,3 +626,5 @@ metadata/_edit_use_anchors_ = true
 [connection signal="pressed" from="Pause/PauseMenu/MenuButton" to="." method="_on_menu_button_pressed"]
 [connection signal="pressed" from="Pause/PauseMenu/QuitButton" to="." method="_on_quit_button_pressed"]
 [connection signal="pressed" from="Controls/ControlsMenu/UnpauseButton" to="." method="_on_button_pressed"]
+
+[editable path="SpawnersBush/spawner_bush7"]

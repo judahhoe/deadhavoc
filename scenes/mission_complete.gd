@@ -1,9 +1,11 @@
 extends Control
 @onready var cursor = preload("res://textures/cursor.png")
+@onready var animation = $AnimationPlayer
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	Input.set_custom_mouse_cursor(cursor)
+	animation.play("splash")
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
