@@ -1,6 +1,7 @@
-[gd_scene load_steps=5 format=3 uid="uid://c3harb7fx7fga"]
+[gd_scene load_steps=7 format=3 uid="uid://c3harb7fx7fga"]
 
 [ext_resource type="Script" path="res://scenes/gameover.gd" id="1_bog7o"]
+[ext_resource type="Texture2D" uid="uid://brd61l88rxfvm" path="res://textures/menu_theme_background.png" id="2_k7mys"]
 [ext_resource type="Texture2D" uid="uid://dxhw0nby8r7lt" path="res://textures/you_died.png" id="2_nyo6i"]
 
 [sub_resource type="Animation" id="Animation_xy1ei"]
@@ -36,14 +37,30 @@ tracks/2/path = NodePath("CanvasLayer/TextureRect:position")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
-"times": PackedFloat32Array(0, 1),
-"transitions": PackedFloat32Array(1, 1),
+"times": PackedFloat32Array(0, 1, 1.0001, 1.0002),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 0,
-"values": [Vector2(932, 413), Vector2(669, 204)]
+"values": [Vector2(957, 413), Vector2(668, 209), Vector2(318, 174), Vector2(316.5, 173)]
+}
+
+[sub_resource type="Animation" id="Animation_m34u5"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CanvasLayer/TextureRect:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(316.5, 158)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_2nbyh"]
 _data = {
+"RESET": SubResource("Animation_m34u5"),
 "splash": SubResource("Animation_xy1ei")
 }
 
@@ -55,6 +72,21 @@ offset_bottom = 40.0
 script = ExtResource("1_bog7o")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="BG" type="TextureRect" parent="CanvasLayer"]
+modulate = Color(1, 1, 1, 0.768627)
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -960.0
+offset_top = -540.0
+offset_right = 960.0
+offset_bottom = 540.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_k7mys")
 
 [node name="Label" type="Label" parent="CanvasLayer"]
 visible = false
@@ -92,10 +124,10 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -28.0
-offset_top = -127.0
-offset_right = 554.003
-offset_bottom = 193.0
+offset_left = 316.5
+offset_top = 158.0
+offset_right = 898.503
+offset_bottom = 478.0
 grow_horizontal = 2
 grow_vertical = 2
 scale = Vector2(1e-05, 1e-05)
